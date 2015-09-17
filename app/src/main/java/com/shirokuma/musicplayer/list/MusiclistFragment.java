@@ -32,8 +32,8 @@ public class MusiclistFragment extends Fragment {
     View.OnTouchListener mTouchListener = new View.OnTouchListener() {
         @Override
         public boolean onTouch(View v, MotionEvent e) {
-            switch (v.getId()) {
-                case R.id.music_list:
+            switch (e.getAction()) {
+                case MotionEvent.ACTION_DOWN:
                     mStartXY[0] = e.getX();
                     mStartXY[1] = e.getY();
                     break;
@@ -143,7 +143,7 @@ public class MusiclistFragment extends Fragment {
         mListView.setSwipeMode(SwipeListView.SWIPE_MODE_LEFT);
         mListView.setSwipeCloseAllItemsWhenMoveList(true);
         mListView.setSwipeActionLeft(SwipeListView.SWIPE_ACTION_REVEAL); //there are four swipe actions
-        mListView.setOffsetLeft(Utils.dp2px(this.getActivity(), 320f)); // left side offset
+        mListView.setOffsetLeft(Utils.dp2px(this.getActivity(), 64f)); // left side offset
         mListView.setAnimationTime(32); // Animation time
         mListView.setSwipeListViewListener(mSwipeListener);
     }

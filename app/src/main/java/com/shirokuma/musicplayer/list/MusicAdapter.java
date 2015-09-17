@@ -62,7 +62,7 @@ public class MusicAdapter extends BaseAdapter {
             holder.head = (TextView) convertView.findViewById(R.id.head);
             holder.subhead = (TextView) convertView.findViewById(R.id.subhead);
             if (mOnTouchListener != null)
-                convertView.setOnTouchListener(mOnTouchListener);
+                convertView.findViewById(R.id.music_front).setOnTouchListener(mOnTouchListener);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
