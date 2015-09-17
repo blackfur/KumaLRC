@@ -22,11 +22,16 @@ public class MusicAdapter extends BaseAdapter {
     //head list and layout
     private ArrayList data;
     private LayoutInflater mInflater;
+    private View.OnTouchListener mOnTouchListener;
 
     //constructor
     public MusicAdapter(Context c, ArrayList theSongs) {
         data = theSongs;
         mInflater = LayoutInflater.from(c);
+    }
+
+    public void setOnTouchListener(View.OnTouchListener listener) {
+        mOnTouchListener = listener;
     }
 
     @Override
@@ -52,13 +57,13 @@ public class MusicAdapter extends BaseAdapter {
         if (convertView == null) {
             holder = new ViewHolder();
             //map to head layout
-            convertView = mInflater.inflate
-                    (R.layout.music, parent, false);
+            convertView = mInflater.inflate(R.layout.music, parent, false);
             //get title and subhead views
             holder.head = (TextView) convertView.findViewById(R.id.head);
             holder.subhead = (TextView) convertView.findViewById(R.id.subhead);
+            if (mOnTouchListener != null)
+                convertView.setOnTouchListener(mOnTouchListener);
             convertView.setTag(holder);
-            convertView.setTag(R.id.TAG_KEY_TYPE, item.type());
         } else {
             holder = (ViewHolder) convertView.getTag();
         }

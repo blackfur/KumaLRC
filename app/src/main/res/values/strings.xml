@@ -19,6 +19,7 @@
     <string name="shuffle">Shuffle</string>
     <string name="shutdown">"will shut down after "</string>
     <string name="cancel_sleep">canceled sleep mode</string>
+    <string name="delete">delete</string>
     <string-array name="songs_filter">
         <item>All Songs</item>
         <item>Artist</item>

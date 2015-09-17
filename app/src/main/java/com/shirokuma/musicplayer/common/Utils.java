@@ -1,5 +1,7 @@
 package com.shirokuma.musicplayer.common;
 
+import android.content.Context;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 
 import java.lang.reflect.Method;
@@ -24,5 +26,11 @@ public class Utils {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static int dp2px(Context context, float dp) {
+        DisplayMetrics metrics = context.getResources().getDisplayMetrics();
+        float px = dp * (metrics.densityDpi / 160f);
+        return (int) px;
     }
 }

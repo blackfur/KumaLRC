@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+// audio media filter for querying specific info: songs, artists, albums, playlist
 public class Filter implements Parcelable {
     public FilterType type;
     public String album, artist;
@@ -27,6 +28,7 @@ public class Filter implements Parcelable {
         this.artist = artist;
     }
 
+    // query media info
     public ArrayList fetch(Context context) {
         return type.musicStore.fetch(context, artist, album);
     }

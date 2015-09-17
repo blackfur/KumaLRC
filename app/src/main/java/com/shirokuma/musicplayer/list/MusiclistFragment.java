@@ -11,8 +11,8 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.TranslateAnimation;
-import android.widget.AdapterView;
-import android.widget.ListView;
+import com.fortysevendeg.swipelistview.BaseSwipeListViewListener;
+import com.fortysevendeg.swipelistview.SwipeListView;
 import com.shirokuma.musicplayer.R;
 import com.shirokuma.musicplayer.common.Filter;
 import com.shirokuma.musicplayer.common.Utils;
@@ -23,7 +23,7 @@ import java.util.ArrayList;
 
 public class MusiclistFragment extends Fragment {
     MusicListActivity main;
-    private ListView mListView;
+    private SwipeListView mListView;
     float[] mStartXY;
     int[] mEndXY;
     View mMusicNote;
@@ -39,44 +39,6 @@ public class MusiclistFragment extends Fragment {
                     break;
             }
             return false;
-        }
-    };
-    private AdapterView.OnItemClickListener mItemClickListener = new AdapterView.OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            switch (parent.getId()) {
-                case R.id.music_list:
-                    switch ((Filter.FilterType) view.getTag(R.id.TAG_KEY_TYPE)) {
-                        case Song:
-                            // set play list
-                            main.getMusicSrv().setPlaySongs(mDisplayMusic);
-                            // play song
-                            main.getMusicSrv().playSong(position);
-                            // animation
-                            AnimationSet mAnimDrop = new AnimationSet(true);
-                            mAnimDrop.setFillAfter(false);
-                            mAnimDrop.setFillEnabled(false);
-                            mAnimDrop.setAnimationListener(mAnimListener);
-                            TranslateAnimation translateAnimationX = new TranslateAnimation(mStartXY[0], mEndXY[0], 0, 0);
-                            translateAnimationX.setDuration(1000);
-                            TranslateAnimation translateAnimationY = new TranslateAnimation(0, 0, mStartXY[1], mEndXY[1]);
-                            translateAnimationY.setDuration(1000);
-                            AlphaAnimation alphaAnim = new AlphaAnimation(1.0f, 0.0f);
-                            alphaAnim.setDuration(800);
-                            mAnimDrop.addAnimation(translateAnimationY);
-                            mAnimDrop.addAnimation(translateAnimationX);
-                            mAnimDrop.addAnimation(alphaAnim);
-                            mMusicNote.startAnimation(mAnimDrop);
-                            break;
-                        case Album:
-                            main.displayList(new Filter(Filter.FilterType.Song, ((Album) mDisplayMusic.get(position)).album, null));
-                            break;
-                        case Artist:
-                            main.displayList(new Filter(Filter.FilterType.Song, null, ((Artist) mDisplayMusic.get(position)).artist));
-                            break;
-                    }
-                    break;
-            }
         }
     };
 
@@ -131,10 +93,58 @@ public class MusiclistFragment extends Fragment {
                 }
             }
         }
-        mListView = (ListView) root.findViewById(R.id.music_list);
-        mListView.setAdapter(new MusicAdapter(getActivity(), mDisplayMusic));
-        mListView.setOnItemClickListener(mItemClickListener);
-        mListView.setOnTouchListener(mTouchListener);
+        mListView = (SwipeListView) root.findViewById(R.id.music_list);
+        MusicAdapter adapter = new MusicAdapter(getActivity(), mDisplayMusic);
+        adapter.setOnTouchListener(mTouchListener);
+        mListView.setAdapter(adapter);
         return root;
+    }
+
+    private BaseSwipeListViewListener mSwipeListener = new BaseSwipeListViewListener() {
+        @Override
+        public void onClickFrontView(int position) {
+            if (mListView.getCountSelected() > 0) {
+                mListView.closeAnimate(position);
+            }
+            switch (((Filter) getArguments().getParcelable(Utils.ARGUMENTS_KEY_FILTER)).type) {
+                case Song:
+                    // set play list
+                    main.getMusicSrv().setPlaySongs(mDisplayMusic);
+                    // play song
+                    main.getMusicSrv().playSong(position);
+                    // animation
+                    AnimationSet mAnimDrop = new AnimationSet(true);
+                    mAnimDrop.setFillAfter(false);
+                    mAnimDrop.setFillEnabled(false);
+                    mAnimDrop.setAnimationListener(mAnimListener);
+                    TranslateAnimation translateAnimationX = new TranslateAnimation(mStartXY[0], mEndXY[0], 0, 0);
+                    translateAnimationX.setDuration(1000);
+                    TranslateAnimation translateAnimationY = new TranslateAnimation(0, 0, mStartXY[1], mEndXY[1]);
+                    translateAnimationY.setDuration(1000);
+                    AlphaAnimation alphaAnim = new AlphaAnimation(1.0f, 0.0f);
+                    alphaAnim.setDuration(800);
+                    mAnimDrop.addAnimation(translateAnimationY);
+                    mAnimDrop.addAnimation(translateAnimationX);
+                    mAnimDrop.addAnimation(alphaAnim);
+                    mMusicNote.startAnimation(mAnimDrop);
+                    break;
+                case Album:
+                    main.displayList(new Filter(Filter.FilterType.Song, ((Album) mDisplayMusic.get(position)).album, null));
+                    break;
+                case Artist:
+                    main.displayList(new Filter(Filter.FilterType.Song, null, ((Artist) mDisplayMusic.get(position)).artist));
+                    break;
+            }
+        }
+    };
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        mListView.setSwipeMode(SwipeListView.SWIPE_MODE_LEFT);
+        mListView.setSwipeCloseAllItemsWhenMoveList(true);
+        mListView.setSwipeActionLeft(SwipeListView.SWIPE_ACTION_REVEAL); //there are four swipe actions
+        mListView.setOffsetLeft(Utils.dp2px(this.getActivity(), 320f)); // left side offset
+        mListView.setAnimationTime(32); // Animation time
+        mListView.setSwipeListViewListener(mSwipeListener);
     }
 }
