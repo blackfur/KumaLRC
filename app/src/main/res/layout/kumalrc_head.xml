@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:background="@drawable/general_title_two"
+    android:padding="9dp"
+    android:gravity="center_vertical"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:visibility="gone"
+        android:id="@+id/btn_home"
+        style="@style/icon"
+        android:src="@drawable/kumalrc_icon_white" />
+
+    <ImageButton
+        android:id="@+id/btn_back"
+        style="@style/ctrl_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:src="@drawable/kumalrc_back_normal" />
+
+    <Spinner
+        android:visibility="gone"
+        android:layout_marginLeft="28dp"
+        android:layout_width="128dp"
+        style="@android:style/Widget.Spinner"
+        android:entries="@array/songs_filter"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner" />
+
+</LinearLayout>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:background="@color/grey"
+              android:orientation="horizontal"
+              android:padding="2dp"
+              android:gravity="center_vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+    <ImageView
+            style="@style/icon"
+            android:visibility="visible"
+            android:src="@drawable/default_play_image"
+            android:layout_width="0dp"
+            android:layout_weight="10"/>
+
+    <RelativeLayout
+            android:id="@+id/info_layout"
+            android:layout_margin="8dp"
+            android:layout_weight="45"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+        <TextView
+                android:textSize="18sp"
+                android:id="@+id/name"
+                android:textColor="@android:color/white"
+                android:layout_width="wrap_content"
+                android:text="@string/song"
+                android:layout_height="wrap_content"/>
+
+        <TextView
+                android:layout_marginTop="4dp"
+                android:id="@+id/artist"
+                android:textColor="@android:color/white"
+                android:layout_width="wrap_content"
+                android:text="@string/artist"
+                android:layout_below="@id/name"
+                android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+    <ImageButton
+            android:id="@+id/simple_ctrl_prev"
+            style="@style/simple_ctrl_btn"
+            android:src="@drawable/button_general_mini_playing_last"/>
+
+    <ImageButton
+            android:id="@+id/simple_ctrl_play"
+            style="@style/simple_ctrl_btn"
+            android:src="@drawable/button_general_mini_playing_play"/>
+
+    <ImageButton
+            android:visibility="gone"
+            android:id="@+id/simple_ctrl_pause"
+            style="@style/simple_ctrl_btn"
+            android:src="@drawable/button_general_mini_playing_suspension"/>
+
+    <ImageButton
+            android:id="@+id/simple_ctrl_next"
+            style="@style/simple_ctrl_btn"
+            android:src="@drawable/button_playing_next"/>
+</LinearLayout>

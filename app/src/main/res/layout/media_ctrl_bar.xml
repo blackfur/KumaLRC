@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/media_ctrl_layout"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/grey"
+              android:gravity="center_vertical"
+              android:orientation="horizontal">
+
+    <ImageButton
+            android:id="@+id/previous"
+            style="@style/full_ctrl_btn"
+            android:src="@drawable/button_general_mini_playing_last"/>
+
+    <ImageButton
+
+            android:id="@+id/rewind"
+            style="@style/full_ctrl_btn"
+            android:src="@drawable/rewind_normal"/>
+
+    <ImageButton
+            android:id="@+id/stop"
+            style="@style/full_ctrl_btn"
+            android:src="@drawable/stop_normal"/>
+
+    <ImageButton
+            android:id="@+id/play"
+            style="@style/full_ctrl_btn"
+            android:src="@drawable/button_general_mini_playing_play"/>
+
+    <ImageButton
+            android:id="@+id/pause"
+            style="@style/full_ctrl_btn"
+            android:src="@drawable/button_general_mini_playing_suspension"
+            android:visibility="gone"/>
+
+
+    <ImageButton
+            android:id="@+id/fastforward"
+            style="@style/full_ctrl_btn"
+            android:src="@drawable/fast_forward_normal"/>
+
+    <ImageButton
+            android:id="@+id/next"
+            style="@style/full_ctrl_btn"
+            android:src="@drawable/button_playing_next"/>
+</LinearLayout>
