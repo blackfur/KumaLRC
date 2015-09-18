@@ -9,8 +9,5 @@
 /gradle
 /*.iml
 
-# Security
-kumalrc.jks
-
 # output
 *.apk
