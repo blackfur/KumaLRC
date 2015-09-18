@@ -18,12 +18,13 @@ import com.shirokuma.musicplayer.common.Filter;
 import com.shirokuma.musicplayer.common.Utils;
 import com.shirokuma.musicplayer.playback.Album;
 import com.shirokuma.musicplayer.playback.Artist;
+import com.shirokuma.musicplayer.view.TouchSwipeListView;
 
 import java.util.ArrayList;
 
 public class MusiclistFragment extends Fragment {
     MusicListActivity main;
-    private SwipeListView mListView;
+    private TouchSwipeListView mListView;
     float[] mStartXY;
     int[] mEndXY;
     View mMusicNote;
@@ -93,9 +94,9 @@ public class MusiclistFragment extends Fragment {
                 }
             }
         }
-        mListView = (SwipeListView) root.findViewById(R.id.music_list);
+        mListView = (TouchSwipeListView) root.findViewById(R.id.music_list);
         MusicAdapter adapter = new MusicAdapter(getActivity(), mDisplayMusic);
-        adapter.setOnTouchListener(mTouchListener);
+//        adapter.setOnTouchListener(mTouchListener);
         mListView.setAdapter(adapter);
         return root;
     }
@@ -140,6 +141,7 @@ public class MusiclistFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+        mListView.setCustomOnTouchListener(mTouchListener);
         mListView.setSwipeMode(SwipeListView.SWIPE_MODE_LEFT);
         mListView.setSwipeCloseAllItemsWhenMoveList(true);
         mListView.setSwipeActionLeft(SwipeListView.SWIPE_ACTION_REVEAL); //there are four swipe actions

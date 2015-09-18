@@ -22,17 +22,16 @@ public class MusicAdapter extends BaseAdapter {
     //head list and layout
     private ArrayList data;
     private LayoutInflater mInflater;
-    private View.OnTouchListener mOnTouchListener;
+//    private View.OnTouchListener mOnTouchListener;
 
     //constructor
     public MusicAdapter(Context c, ArrayList theSongs) {
         data = theSongs;
         mInflater = LayoutInflater.from(c);
     }
-
-    public void setOnTouchListener(View.OnTouchListener listener) {
-        mOnTouchListener = listener;
-    }
+//    public void setOnTouchListener(View.OnTouchListener listener) {
+//        mOnTouchListener = listener;
+//    }
 
     @Override
     public int getCount() {
@@ -61,8 +60,8 @@ public class MusicAdapter extends BaseAdapter {
             //get title and subhead views
             holder.head = (TextView) convertView.findViewById(R.id.head);
             holder.subhead = (TextView) convertView.findViewById(R.id.subhead);
-            if (mOnTouchListener != null)
-                convertView.findViewById(R.id.music_front).setOnTouchListener(mOnTouchListener);
+//            if (mOnTouchListener != null)
+//                convertView.findViewById(R.id.music_front).setOnTouchListener(mOnTouchListener);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
