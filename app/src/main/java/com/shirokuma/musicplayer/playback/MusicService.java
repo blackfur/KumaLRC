@@ -57,14 +57,6 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
         //create mPlayer
         mPlayer = new MediaPlayer();
         //initialize mPlayer
-        initMusicPlayer();
-    }
-
-    public ArrayList getPlaySongs() {
-        return mPlaySongs;
-    }
-
-    public void initMusicPlayer() {
         //set mPlayer properties
         mPlayer.setWakeMode(getApplicationContext(),
                 PowerManager.PARTIAL_WAKE_LOCK);
@@ -73,6 +65,10 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
         mPlayer.setOnPreparedListener(this);
         mPlayer.setOnCompletionListener(this);
         mPlayer.setOnErrorListener(this);
+    }
+
+    public ArrayList getPlaySongs() {
+        return mPlaySongs;
     }
 
     public Song getCurrentSong() {
@@ -130,7 +126,6 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
         } else if (mCurrentState == State.Stopped) {
             playSong(mPlaySongIndex);
         }
-        mCurrentState = State.Started;
         sendBroadcast(new Intent(MusicBroadcast.MUSIC_BROADCAST_ACTION_PLAYBACK).putExtra(MusicBroadcast.MUSIC_BROADCAST_EXTRA, MusicBroadcast.Playback.Play.getIndex()));
     }
 
@@ -159,6 +154,7 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
                 Log.e("MUSIC SERVICE", "Error setting data source", e);
             }
             mPlayer.prepareAsync();
+            mCurrentState = State.Started;
         }
     }
 
@@ -170,10 +166,9 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
     @Override
     public void onCompletion(MediaPlayer mp) {
         //check if playback has reached the end of a track
-        if (mPlayer.getCurrentPosition() > 0) {
+        if (mp != null && mp.getCurrentPosition() > 0) {
             mp.reset();
             playNext();
-            sendBroadcast(new Intent(MusicBroadcast.MUSIC_BROADCAST_ACTION_PLAYBACK).putExtra(MusicBroadcast.MUSIC_BROADCAST_EXTRA, MusicBroadcast.Playback.Next.getIndex()));
         }
     }
 
@@ -267,6 +262,26 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
     }
 
     public boolean isPlaying() {
-        return mPlayer.isPlaying();
+        if (mPlayer != null)
+            return mPlayer.isPlaying();
+        else
+            return false;
+    }
+
+    public int getCurrentPosition() {
+        if (mPlayer != null)
+            return mPlayer.getCurrentPosition();
+        return 0;
+    }
+
+    public int getDuration() {
+        if (mPlayer != null)
+            return mPlayer.getDuration();
+        return 0;
+    }
+
+    public void seekTo(int position) {
+        if (mPlayer != null && position >= 0 && position < mPlayer.getDuration())
+            mPlayer.seekTo(position);
     }
 }

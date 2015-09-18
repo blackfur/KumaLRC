@@ -113,6 +113,9 @@ public abstract class BindSrvOpMenusActivity extends BaseActivity {
         @Override
         protected void onReceivePlayback(Playback action) {
             switch (action) {
+                case Previous:
+                    onMusicPrev();
+                    break;
                 case Next:
                     onMusicNext();
                     break;
@@ -131,6 +134,9 @@ public abstract class BindSrvOpMenusActivity extends BaseActivity {
             }
         }
     };
+
+    protected void onMusicPrev() {
+    }
 
     protected void onMusicNext() {
     }
