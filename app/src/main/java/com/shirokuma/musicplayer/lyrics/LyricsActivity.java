@@ -7,6 +7,7 @@ import android.widget.SeekBar;
 import com.shirokuma.musicplayer.R;
 import com.shirokuma.musicplayer.common.BindSrvOpMenusActivity;
 import com.shirokuma.musicplayer.common.Utils;
+import com.shirokuma.musicplayer.playback.MusicService;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -33,9 +34,13 @@ public class LyricsActivity extends BindSrvOpMenusActivity {
                     break;
                 case R.id.next:
                     mMusicSrv.playNext();
+                    mBtnPlay.setVisibility(View.GONE);
+                    mBtnPause.setVisibility(View.VISIBLE);
                     break;
                 case R.id.previous:
                     mMusicSrv.playPrev();
+                    mBtnPlay.setVisibility(View.GONE);
+                    mBtnPause.setVisibility(View.VISIBLE);
                     break;
                 case R.id.stop:
                     stopSeek();
@@ -70,8 +75,9 @@ public class LyricsActivity extends BindSrvOpMenusActivity {
     SeekBar.OnSeekBarChangeListener mSeekListener = new SeekBar.OnSeekBarChangeListener() {
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-            if (mMusicSrv != null && mMusicSrv.isPlaying() && fromUser) {
+            if (mMusicSrv != null && mMusicSrv.getCurrentState() != MusicService.State.Stopped && mMusicSrv.getDuration() > 0 && fromUser) {
                 mMusicSrv.seekTo(progress);
+                mLrcView.refresh();
             }
         }
 
@@ -198,6 +204,8 @@ public class LyricsActivity extends BindSrvOpMenusActivity {
         if (mMusicSrv != null && mLrcView != null && mMusicSrv.getCurrentSong() != null) {
             mLrcView.reset(mMusicSrv.getPlayer(), mMusicSrv.getCurrentSong());
             mSeek.setMax(mMusicSrv.getPlayer().getDuration());
+            if (mTimer == null)
+                restartSeek();
         }
     }
 
@@ -206,6 +214,8 @@ public class LyricsActivity extends BindSrvOpMenusActivity {
         if (mMusicSrv != null && mLrcView != null && mMusicSrv.getCurrentSong() != null) {
             mLrcView.reset(mMusicSrv.getPlayer(), mMusicSrv.getCurrentSong());
             mSeek.setMax(mMusicSrv.getPlayer().getDuration());
+            if (mTimer == null)
+                restartSeek();
         }
     }
 

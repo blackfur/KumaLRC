@@ -115,7 +115,7 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
         return false;
     }
 
-    enum State {
+    public enum State {
         Paused, Stopped, Started
     }
 
@@ -166,7 +166,7 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
     @Override
     public void onCompletion(MediaPlayer mp) {
         //check if playback has reached the end of a track
-        if (mp != null && mp.getCurrentPosition() > 0) {
+        if (mp != null && mp.getCurrentPosition() > 0 && mCurrentState == State.Started) {
             mp.reset();
             playNext();
         }
@@ -235,8 +235,8 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
     }
 
     //toggle shuffle
-    public void setShuffle() {
-        shuffle = !shuffle;
+    public void setShuffle(boolean b) {
+        shuffle = b;
     }
 
     public void rewind() {
@@ -283,5 +283,9 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
     public void seekTo(int position) {
         if (mPlayer != null && position >= 0 && position < mPlayer.getDuration())
             mPlayer.seekTo(position);
+    }
+
+    public State getCurrentState() {
+        return mCurrentState;
     }
 }

@@ -20,6 +20,7 @@
     <string name="shutdown">"will shut down after "</string>
     <string name="cancel_sleep">canceled sleep mode</string>
     <string name="delete">delete</string>
+    <string name="in_order">in order</string>
     <string-array name="songs_filter">
         <item>All Songs</item>
         <item>Artist</item>

@@ -8,10 +8,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import com.shirokuma.musicplayer.KumalrcApplication;
 import com.shirokuma.musicplayer.R;
+import com.shirokuma.musicplayer.Setting.MediaSetting;
 import com.shirokuma.musicplayer.Setting.TimerActivity;
 import com.shirokuma.musicplayer.playback.MusicBroadcast;
 import com.shirokuma.musicplayer.playback.MusicService;
 
+// bind service and create options menu
 public abstract class BindSrvOpMenusActivity extends BaseActivity {
     protected MusicService mMusicSrv;
     private ProgressDialog mProgress;
@@ -93,11 +95,24 @@ public abstract class BindSrvOpMenusActivity extends BaseActivity {
     }
 
     @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        boolean b = MediaSetting.getInstance(this).getShuffle();
+        menu.findItem(R.id.action_in_order).setVisible(b);
+        menu.findItem(R.id.action_shuffle).setVisible(!b);
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         //menu item selected
         switch (item.getItemId()) {
+            case R.id.action_in_order:
+                mMusicSrv.setShuffle(false);
+                MediaSetting.getInstance(this).setShuffle(false);
+                break;
             case R.id.action_shuffle:
-                mMusicSrv.setShuffle();
+                mMusicSrv.setShuffle(true);
+                MediaSetting.getInstance(this).setShuffle(true);
                 break;
             case R.id.action_end:
                 ((KumalrcApplication) getApplication()).exit();

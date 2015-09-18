@@ -9,6 +9,7 @@ public class MediaSetting {
     private SharedPreferences mSharedPre;
     private final String KEY_LAST_PLAY_INDEX = "last_play_index";
     private final String KEY_FIRST_INSTALL = "first_install";
+    private final String KEY_SHUFFLE = "shuffle";
 
     public MediaSetting(Context context) {
         mInstance = this;
@@ -42,5 +43,15 @@ public class MediaSetting {
 
     public boolean getFirstInstall() {
         return mSharedPre.getBoolean(KEY_FIRST_INSTALL, true);
+    }
+
+    public void setShuffle(boolean b) {
+        SharedPreferences.Editor editor = mSharedPre.edit();
+        editor.putBoolean(KEY_SHUFFLE, b);
+        editor.commit();
+    }
+
+    public boolean getShuffle() {
+        return mSharedPre.getBoolean(KEY_SHUFFLE, true);
     }
 }
