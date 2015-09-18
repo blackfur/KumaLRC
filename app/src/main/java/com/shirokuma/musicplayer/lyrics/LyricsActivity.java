@@ -113,7 +113,8 @@ public class LyricsActivity extends BindSrvOpMenusActivity {
             mBtnPlay.setVisibility(View.GONE);
             mBtnPause.setVisibility(View.VISIBLE);
         }
-        mLrcView.reset(mMusicSrv.getPlayer(), mMusicSrv.getCurrentSong());
+        if (mMusicSrv.getCurrentSong() != null)
+            mLrcView.reset(mMusicSrv.getPlayer(), mMusicSrv.getCurrentSong());
     }
 
     @Override
@@ -123,7 +124,7 @@ public class LyricsActivity extends BindSrvOpMenusActivity {
 
     @Override
     protected void onMusicNext() {
-        if (mMusicSrv != null && mLrcView != null)
+        if (mMusicSrv != null && mLrcView != null && mMusicSrv.getCurrentSong() != null)
             mLrcView.reset(mMusicSrv.getPlayer(), mMusicSrv.getCurrentSong());
     }
 

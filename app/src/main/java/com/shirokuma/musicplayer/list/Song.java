@@ -1,4 +1,4 @@
-package com.shirokuma.musicplayer.playback;
+package com.shirokuma.musicplayer.list;
 
 /*
  * This is demo code to accompany the Mobiletuts+ series:
@@ -8,8 +8,8 @@ package com.shirokuma.musicplayer.playback;
  */
 
 import android.graphics.Bitmap;
-import com.shirokuma.musicplayer.common.Filter;
-import com.shirokuma.musicplayer.common.Music;
+import com.shirokuma.musicplayer.list.Filter;
+import com.shirokuma.musicplayer.list.Music;
 
 public class Song implements Music {
     public long id;
@@ -18,6 +18,7 @@ public class Song implements Music {
     public String lrc;
     public String album;
     public String dir;
+    public String path;
 
     public Song(String[] pars) {
         id = Long.valueOf(pars[0]);
@@ -26,6 +27,7 @@ public class Song implements Music {
         lrc = pars[3];
         album = pars[4];
         dir = pars[5];
+        path = pars[6];
     }
 
     @Override

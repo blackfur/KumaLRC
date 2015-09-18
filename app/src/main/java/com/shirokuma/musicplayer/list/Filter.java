@@ -1,4 +1,4 @@
-package com.shirokuma.musicplayer.common;
+package com.shirokuma.musicplayer.list;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -7,10 +7,6 @@ import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.provider.MediaStore;
-import com.shirokuma.musicplayer.playback.Album;
-import com.shirokuma.musicplayer.playback.Artist;
-import com.shirokuma.musicplayer.playback.Playlist;
-import com.shirokuma.musicplayer.playback.Song;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -92,17 +88,17 @@ public class Filter implements Parcelable {
                     String dir = pathTemp.substring(0, pathTemp.lastIndexOf(File.separator));
 //                String lrcTrim = pathTemp.substring(0, pathTemp.length() - 4).trim() + ".lrc".trim();
                     String lrc = pathTemp.substring(0, pathTemp.lastIndexOf('.')) + ".lrc";
-                    mDisplayMusic.add(new Song(new String[]{String.valueOf(id), titleTemp, artistTemp, lrc, albumTemp, dir}));
+                    mDisplayMusic.add(new Song(new String[]{String.valueOf(id), titleTemp, artistTemp, lrc, albumTemp, dir, pathTemp}));
                 } while (musicCursor.moveToNext());
                 if (musicCursor != null)
                     musicCursor.close();
+                //sort alphabetically by title
+                Collections.sort(mDisplayMusic, new Comparator<Song>() {
+                    public int compare(Song a, Song b) {
+                        return a.title.compareTo(b.title);
+                    }
+                });
             }
-            //sort alphabetically by title
-            Collections.sort(mDisplayMusic, new Comparator<Song>() {
-                public int compare(Song a, Song b) {
-                    return a.title.compareTo(b.title);
-                }
-            });
             return mDisplayMusic;
         }
     };

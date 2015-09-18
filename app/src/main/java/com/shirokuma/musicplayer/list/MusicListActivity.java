@@ -14,7 +14,6 @@ import com.shirokuma.musicplayer.GuideActivity;
 import com.shirokuma.musicplayer.R;
 import com.shirokuma.musicplayer.Setting.MediaSetting;
 import com.shirokuma.musicplayer.common.BindSrvOpMenusActivity;
-import com.shirokuma.musicplayer.common.Filter;
 import com.shirokuma.musicplayer.common.Utils;
 import com.shirokuma.musicplayer.lyrics.LyricsActivity;
 
@@ -78,13 +77,17 @@ public class MusicListActivity extends BindSrvOpMenusActivity {
                     break;
                 case R.id.simple_ctrl_next:
                     mMusicSrv.playNext();
-                    mName.setText(mMusicSrv.getCurrentSong().title);
-                    mArtist.setText(mMusicSrv.getCurrentSong().artist);
+                    if(mMusicSrv.getCurrentSong() != null) {
+                        mName.setText(mMusicSrv.getCurrentSong().title);
+                        mArtist.setText(mMusicSrv.getCurrentSong().artist);
+                    }
                     break;
                 case R.id.simple_ctrl_prev:
                     mMusicSrv.playPrev();
-                    mName.setText(mMusicSrv.getCurrentSong().title);
-                    mArtist.setText(mMusicSrv.getCurrentSong().artist);
+                    if(mMusicSrv.getCurrentSong() != null) {
+                        mName.setText(mMusicSrv.getCurrentSong().title);
+                        mArtist.setText(mMusicSrv.getCurrentSong().artist);
+                    }
                     break;
                 case R.id.simple_ctrl_play:
                     mBtnPause.setVisibility(View.VISIBLE);
@@ -139,7 +142,7 @@ public class MusicListActivity extends BindSrvOpMenusActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (mMusicSrv != null) {
+        if (mMusicSrv != null && mMusicSrv.getCurrentSong() != null) {
             mName.setText(mMusicSrv.getCurrentSong().title);
             mArtist.setText(mMusicSrv.getCurrentSong().artist);
             if (mMusicSrv.isPlaying()) {
@@ -164,7 +167,7 @@ public class MusicListActivity extends BindSrvOpMenusActivity {
         }
     }
 
-    public void displayList(com.shirokuma.musicplayer.common.Filter filter) {
+    public void displayList(Filter filter) {
         FragmentManager mgr = getFragmentManager();
         FragmentTransaction transaction = mgr.beginTransaction();
         transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_left, R.anim.slide_out_right);
@@ -179,7 +182,7 @@ public class MusicListActivity extends BindSrvOpMenusActivity {
 
     @Override
     protected void onMusicNext() {
-        if (mMusicSrv != null) {
+        if (mMusicSrv != null && mMusicSrv.getCurrentSong() != null) {
             mName.setText(mMusicSrv.getCurrentSong().title);
             mArtist.setText(mMusicSrv.getCurrentSong().artist);
         }
@@ -187,7 +190,7 @@ public class MusicListActivity extends BindSrvOpMenusActivity {
 
     @Override
     protected void onMusicPlay() {
-        if (mMusicSrv != null) {
+        if (mMusicSrv != null&& mMusicSrv.getCurrentSong() != null) {
             mBtnPlay.setVisibility(View.GONE);
             mBtnPause.setVisibility(View.VISIBLE);
             mName.setText(mMusicSrv.getCurrentSong().title);

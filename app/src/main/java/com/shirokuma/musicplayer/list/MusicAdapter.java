@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 import com.shirokuma.musicplayer.R;
-import com.shirokuma.musicplayer.common.Music;
 
 import java.util.ArrayList;
 
@@ -22,6 +21,7 @@ public class MusicAdapter extends BaseAdapter {
     //head list and layout
     private ArrayList data;
     private LayoutInflater mInflater;
+    private MusiclistFragment callback;
 //    private View.OnTouchListener mOnTouchListener;
 
     //constructor
@@ -29,9 +29,13 @@ public class MusicAdapter extends BaseAdapter {
         data = theSongs;
         mInflater = LayoutInflater.from(c);
     }
-//    public void setOnTouchListener(View.OnTouchListener listener) {
+
+    //    public void setOnTouchListener(View.OnTouchListener listener) {
 //        mOnTouchListener = listener;
 //    }
+    public void setCallback(MusiclistFragment cb) {
+        callback = cb;
+    }
 
     @Override
     public int getCount() {
@@ -49,7 +53,7 @@ public class MusicAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
         //get head using position
         Music item = (Music) data.get(position);
@@ -60,6 +64,8 @@ public class MusicAdapter extends BaseAdapter {
             //get title and subhead views
             holder.head = (TextView) convertView.findViewById(R.id.head);
             holder.subhead = (TextView) convertView.findViewById(R.id.subhead);
+            if (item.type() == Filter.FilterType.Song)
+                holder.delete = convertView.findViewById(R.id.delete);
 //            if (mOnTouchListener != null)
 //                convertView.findViewById(R.id.music_front).setOnTouchListener(mOnTouchListener);
             convertView.setTag(holder);
@@ -73,11 +79,21 @@ public class MusicAdapter extends BaseAdapter {
             holder.subhead.setVisibility(View.VISIBLE);
         } else
             holder.subhead.setVisibility(View.INVISIBLE);
-        //set position as tag
+        // delete song
+        if (holder.delete != null) {
+            holder.delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (callback != null)
+                        callback.delete(position);
+                }
+            });
+        }
         return convertView;
     }
 
     public static class ViewHolder {
         TextView head, subhead;
+        View delete;
     }
 }

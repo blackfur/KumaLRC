@@ -1,8 +1,8 @@
-package com.shirokuma.musicplayer.playback;
+package com.shirokuma.musicplayer.list;
 
 import android.graphics.Bitmap;
-import com.shirokuma.musicplayer.common.Filter;
-import com.shirokuma.musicplayer.common.Music;
+import com.shirokuma.musicplayer.list.Filter;
+import com.shirokuma.musicplayer.list.Music;
 
 public class Album implements Music{
     public String album;

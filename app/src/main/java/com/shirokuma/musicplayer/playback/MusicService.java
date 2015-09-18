@@ -1,5 +1,6 @@
 package com.shirokuma.musicplayer.playback;
 
+import android.annotation.TargetApi;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -9,13 +10,16 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Binder;
+import android.os.Build;
 import android.os.IBinder;
 import android.os.PowerManager;
 import android.util.Log;
 import com.shirokuma.musicplayer.R;
 import com.shirokuma.musicplayer.Setting.MediaSetting;
+import com.shirokuma.musicplayer.list.Song;
 import com.shirokuma.musicplayer.lyrics.LyricsActivity;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -56,6 +60,10 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
         initMusicPlayer();
     }
 
+    public ArrayList getPlaySongs() {
+        return mPlaySongs;
+    }
+
     public void initMusicPlayer() {
         //set mPlayer properties
         mPlayer.setWakeMode(getApplicationContext(),
@@ -66,7 +74,6 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
         mPlayer.setOnCompletionListener(this);
         mPlayer.setOnErrorListener(this);
     }
-
 
     public Song getCurrentSong() {
         if (mPlaySongIndex < mPlaySongs.size())
@@ -128,13 +135,15 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
     }
 
     //reset a song
-    public void playSong(int index) {
+    private void playSong(int index) {
         if (index < mPlaySongs.size()) {
             mPlaySongIndex = index;
             //reset
             mPlayer.reset();
             //get song
             Song playSong = mPlaySongs.get(mPlaySongIndex);
+            if (!new File(playSong.path).exists())
+                return;
             //get title
             songTitle = playSong.title;
             //get id
@@ -150,8 +159,12 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
                 Log.e("MUSIC SERVICE", "Error setting data source", e);
             }
             mPlayer.prepareAsync();
-            sendBroadcast(new Intent(MusicBroadcast.MUSIC_BROADCAST_ACTION_PLAYBACK).putExtra(MusicBroadcast.MUSIC_BROADCAST_EXTRA, MusicBroadcast.Playback.Play.getIndex()));
         }
+    }
+
+    public void play(int index) {
+        playSong(index);
+        sendBroadcast(new Intent(MusicBroadcast.MUSIC_BROADCAST_ACTION_PLAYBACK).putExtra(MusicBroadcast.MUSIC_BROADCAST_EXTRA, MusicBroadcast.Playback.Play.getIndex()));
     }
 
     @Override
@@ -171,6 +184,7 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
         return false;
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onPrepared(MediaPlayer mp) {
         //start playback
@@ -196,6 +210,7 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
         mPlaySongIndex--;
         if (mPlaySongIndex < 0) mPlaySongIndex = mPlaySongs.size() - 1;
         playSong(mPlaySongIndex);
+        sendBroadcast(new Intent(MusicBroadcast.MUSIC_BROADCAST_ACTION_PLAYBACK).putExtra(MusicBroadcast.MUSIC_BROADCAST_EXTRA, MusicBroadcast.Playback.Previous.getIndex()));
     }
 
     //skip to next
@@ -208,9 +223,10 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
             mPlaySongIndex = newSong;
         } else {
             mPlaySongIndex++;
-            if (mPlaySongIndex >= mPlaySongs.size()) mPlaySongIndex = 0;
         }
+        if (mPlaySongIndex >= mPlaySongs.size()) mPlaySongIndex = 0;
         playSong(mPlaySongIndex);
+        sendBroadcast(new Intent(MusicBroadcast.MUSIC_BROADCAST_ACTION_PLAYBACK).putExtra(MusicBroadcast.MUSIC_BROADCAST_EXTRA, MusicBroadcast.Playback.Next.getIndex()));
     }
 
     @Override
@@ -227,7 +243,6 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
     public void setShuffle() {
         shuffle = !shuffle;
     }
-
 
     public void rewind() {
         // if the player is stopped, do seeking will cause illegal state exception

@@ -2,7 +2,10 @@ package com.shirokuma.musicplayer.list;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.ProgressDialog;
+import android.content.ContentUris;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -14,12 +17,10 @@ import android.view.animation.TranslateAnimation;
 import com.fortysevendeg.swipelistview.BaseSwipeListViewListener;
 import com.fortysevendeg.swipelistview.SwipeListView;
 import com.shirokuma.musicplayer.R;
-import com.shirokuma.musicplayer.common.Filter;
 import com.shirokuma.musicplayer.common.Utils;
-import com.shirokuma.musicplayer.playback.Album;
-import com.shirokuma.musicplayer.playback.Artist;
 import com.shirokuma.musicplayer.view.TouchSwipeListView;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class MusiclistFragment extends Fragment {
@@ -97,22 +98,26 @@ public class MusiclistFragment extends Fragment {
         mListView = (TouchSwipeListView) root.findViewById(R.id.music_list);
         MusicAdapter adapter = new MusicAdapter(getActivity(), mDisplayMusic);
 //        adapter.setOnTouchListener(mTouchListener);
+        adapter.setCallback(this);
         mListView.setAdapter(adapter);
         return root;
     }
 
+    private int mLastSelectedPosition;
     private BaseSwipeListViewListener mSwipeListener = new BaseSwipeListViewListener() {
         @Override
+        public void onOpened(int position, boolean toRight) {
+            mLastSelectedPosition = mListView.getFirstVisiblePosition();
+        }
+
+        @Override
         public void onClickFrontView(int position) {
-            if (mListView.getCountSelected() > 0) {
-                mListView.closeAnimate(position);
-            }
             switch (((Filter) getArguments().getParcelable(Utils.ARGUMENTS_KEY_FILTER)).type) {
                 case Song:
                     // set play list
                     main.getMusicSrv().setPlaySongs(mDisplayMusic);
                     // play song
-                    main.getMusicSrv().playSong(position);
+                    main.getMusicSrv().play(position);
                     // animation
                     AnimationSet mAnimDrop = new AnimationSet(true);
                     mAnimDrop.setFillAfter(false);
@@ -145,8 +150,46 @@ public class MusiclistFragment extends Fragment {
         mListView.setSwipeMode(SwipeListView.SWIPE_MODE_LEFT);
         mListView.setSwipeCloseAllItemsWhenMoveList(true);
         mListView.setSwipeActionLeft(SwipeListView.SWIPE_ACTION_REVEAL); //there are four swipe actions
-        mListView.setOffsetLeft(Utils.dp2px(this.getActivity(), 64f)); // left side offset
+        mListView.setOffsetLeft(Utils.dp2px(this.getActivity(), 256f)); // left side offset
         mListView.setAnimationTime(32); // Animation time
         mListView.setSwipeListViewListener(mSwipeListener);
+    }
+
+    public void delete(int position) {
+        final ProgressDialog dialog = ProgressDialog.show(getActivity(), "", getString(R.string.loading));
+        final Song song = (Song) mDisplayMusic.get(position);
+        // delete on database
+        getActivity().getContentResolver().delete(ContentUris.withAppendedId(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, song.id), null, null);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                final ArrayList newDisplayMusic = getArguments().<Filter>getParcelable(Utils.ARGUMENTS_KEY_FILTER).fetch(getActivity());
+                mListView.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        // adjust playback if current displayed list is playing list
+                        if (main.getMusicSrv().getPlaySongs() == mDisplayMusic) {
+                            if (main.getMusicSrv().isPlaying() && main.getMusicSrv().getCurrentSong().id == song.id)
+                                if (mDisplayMusic.size() > 1)
+                                    main.getMusicSrv().playNext();
+                                else
+                                    main.getMusicSrv().stop();
+                            main.getMusicSrv().setPlaySongs(newDisplayMusic);
+                        }
+                        mDisplayMusic = newDisplayMusic;
+                        // update play list
+                        MusicAdapter adapter = new MusicAdapter(getActivity(), mDisplayMusic);
+                        adapter.setCallback(MusiclistFragment.this);
+                        mListView.setAdapter(adapter);
+                        mListView.setSelection(mLastSelectedPosition);
+                        // delete on storage
+                        File file = new File(song.path);
+                        if (file.exists())
+                            file.delete();
+                        dialog.dismiss();
+                    }
+                });
+            }
+        }).start();
     }
 }
