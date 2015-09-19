@@ -45,7 +45,7 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
     //notification id
     private static final int NOTIFY_ID = 1;
     //shuffle flag and random
-    private boolean shuffle = false;
+    private boolean shuffle = MediaSetting.getInstance(this).getShuffle();
     private Random rand;
     private State mCurrentState = State.Stopped;
 
