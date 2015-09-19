@@ -5,7 +5,7 @@ import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import com.shirokuma.musicplayer.Setting.MediaSetting;
+import com.shirokuma.musicplayer.setting.MediaSetting;
 
 public class GuideActivity extends Activity {
     @Override

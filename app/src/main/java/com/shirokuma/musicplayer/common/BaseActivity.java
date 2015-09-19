@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 public abstract class BaseActivity extends Activity {
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(setContentViewRes());
         initData();

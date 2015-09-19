@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
-import com.shirokuma.musicplayer.list.MusicListActivity;
+import com.shirokuma.musicplayer.musiclib.MusicListActivity;
 
 public class WelcomeActivity extends Activity {
     @Override

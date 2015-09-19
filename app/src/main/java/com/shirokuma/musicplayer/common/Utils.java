@@ -15,6 +15,7 @@ public class Utils {
     public static final int STANDARD_EAST_FONT_LINE_LENGTH = 21;
     public static final String ARGUMENTS_KEY_FILTER = "filter";
     public static final int SEEK_INTERVAL = 1000;
+    public static final String ACTION_MEDIA_SCANNER_SCAN_DIR = "android.intent.action.MEDIA_SCANNER_SCAN_DIR";
 
     public static void setOptionMenuIconEnable(Menu menu, boolean enable) {
         try {

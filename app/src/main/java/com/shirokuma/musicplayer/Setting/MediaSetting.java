@@ -1,4 +1,4 @@
-package com.shirokuma.musicplayer.Setting;
+package com.shirokuma.musicplayer.setting;
 
 import android.app.Activity;
 import android.content.Context;

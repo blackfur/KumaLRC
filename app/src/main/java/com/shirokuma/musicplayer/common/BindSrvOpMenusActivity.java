@@ -8,8 +8,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import com.shirokuma.musicplayer.KumalrcApplication;
 import com.shirokuma.musicplayer.R;
-import com.shirokuma.musicplayer.Setting.MediaSetting;
-import com.shirokuma.musicplayer.Setting.TimerActivity;
+import com.shirokuma.musicplayer.setting.MediaSetting;
+import com.shirokuma.musicplayer.setting.ScanActivity;
+import com.shirokuma.musicplayer.setting.TimerActivity;
 import com.shirokuma.musicplayer.playback.MusicBroadcast;
 import com.shirokuma.musicplayer.playback.MusicService;
 
@@ -106,6 +107,11 @@ public abstract class BindSrvOpMenusActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         //menu item selected
         switch (item.getItemId()) {
+            case R.id.action_scan:
+                if (mMusicSrv != null && mMusicSrv.isPlaying())
+                    mMusicSrv.stop();
+                startActivity(new Intent(this, ScanActivity.class));
+                break;
             case R.id.action_in_order:
                 mMusicSrv.setShuffle(false);
                 MediaSetting.getInstance(this).setShuffle(false);

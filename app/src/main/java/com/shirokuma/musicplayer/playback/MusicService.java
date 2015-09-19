@@ -15,8 +15,8 @@ import android.os.IBinder;
 import android.os.PowerManager;
 import android.util.Log;
 import com.shirokuma.musicplayer.R;
-import com.shirokuma.musicplayer.Setting.MediaSetting;
-import com.shirokuma.musicplayer.list.Song;
+import com.shirokuma.musicplayer.setting.MediaSetting;
+import com.shirokuma.musicplayer.musiclib.Song;
 import com.shirokuma.musicplayer.lyrics.LyricsActivity;
 
 import java.io.File;
@@ -45,7 +45,7 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
     //notification id
     private static final int NOTIFY_ID = 1;
     //shuffle flag and random
-    private boolean shuffle = MediaSetting.getInstance(this).getShuffle();
+    private boolean shuffle;
     private Random rand;
     private State mCurrentState = State.Stopped;
 
@@ -65,6 +65,7 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
         mPlayer.setOnPreparedListener(this);
         mPlayer.setOnCompletionListener(this);
         mPlayer.setOnErrorListener(this);
+        shuffle = MediaSetting.getInstance(this).getShuffle();
     }
 
     public ArrayList getPlaySongs() {

@@ -1,4 +1,4 @@
-package com.shirokuma.musicplayer.list;
+package com.shirokuma.musicplayer.musiclib;
 
 import android.content.Context;
 import android.view.LayoutInflater;

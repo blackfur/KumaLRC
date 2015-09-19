@@ -1,4 +1,4 @@
-package com.shirokuma.musicplayer.list;
+package com.shirokuma.musicplayer.musiclib;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -12,7 +12,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import com.shirokuma.musicplayer.GuideActivity;
 import com.shirokuma.musicplayer.R;
-import com.shirokuma.musicplayer.Setting.MediaSetting;
+import com.shirokuma.musicplayer.setting.MediaSetting;
 import com.shirokuma.musicplayer.common.BindSrvOpMenusActivity;
 import com.shirokuma.musicplayer.common.Utils;
 import com.shirokuma.musicplayer.lyrics.LyricsActivity;

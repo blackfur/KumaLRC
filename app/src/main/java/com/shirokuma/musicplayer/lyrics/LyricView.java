@@ -14,7 +14,7 @@ import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
 import com.shirokuma.musicplayer.R;
-import com.shirokuma.musicplayer.list.Song;
+import com.shirokuma.musicplayer.musiclib.Song;
 
 import java.util.Timer;
 import java.util.TimerTask;

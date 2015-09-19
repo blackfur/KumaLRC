@@ -1,4 +1,4 @@
-package com.shirokuma.musicplayer.list;
+package com.shirokuma.musicplayer.musiclib;
 
 import android.content.ContentResolver;
 import android.content.Context;

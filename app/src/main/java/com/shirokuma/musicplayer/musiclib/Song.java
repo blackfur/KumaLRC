@@ -1,4 +1,4 @@
-package com.shirokuma.musicplayer.list;
+package com.shirokuma.musicplayer.musiclib;
 
 /*
  * This is demo code to accompany the Mobiletuts+ series:
@@ -8,8 +8,6 @@ package com.shirokuma.musicplayer.list;
  */
 
 import android.graphics.Bitmap;
-import com.shirokuma.musicplayer.list.Filter;
-import com.shirokuma.musicplayer.list.Music;
 
 public class Song implements Music {
     public long id;

@@ -1,5 +1,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+            android:id="@+id/action_scan"
+            android:icon="@drawable/zoom_in"
+            android:title="@string/scan"/>
+    <item
             android:id="@+id/action_in_order"
             android:icon="@drawable/in_order"
             android:title="@string/in_order"/>
