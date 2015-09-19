@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -77,14 +78,14 @@ public class MusicListActivity extends BindSrvOpMenusActivity {
                     break;
                 case R.id.simple_ctrl_next:
                     mMusicSrv.playNext();
-                    if(mMusicSrv.getCurrentSong() != null) {
+                    if (mMusicSrv.getCurrentSong() != null) {
                         mName.setText(mMusicSrv.getCurrentSong().title);
                         mArtist.setText(mMusicSrv.getCurrentSong().artist);
                     }
                     break;
                 case R.id.simple_ctrl_prev:
                     mMusicSrv.playPrev();
-                    if(mMusicSrv.getCurrentSong() != null) {
+                    if (mMusicSrv.getCurrentSong() != null) {
                         mName.setText(mMusicSrv.getCurrentSong().title);
                         mArtist.setText(mMusicSrv.getCurrentSong().artist);
                     }
@@ -181,6 +182,13 @@ public class MusicListActivity extends BindSrvOpMenusActivity {
     }
 
     @Override
+    public void onScanCompleted(String path, Uri uri) {
+        super.onScanCompleted(path, uri);
+        // when finish scanning, refresh song list
+        displayList(new Filter(Filter.FilterType.Song, null, null));
+    }
+
+    @Override
     protected void onMusicNext() {
         if (mMusicSrv != null && mMusicSrv.getCurrentSong() != null) {
             mName.setText(mMusicSrv.getCurrentSong().title);
@@ -190,7 +198,7 @@ public class MusicListActivity extends BindSrvOpMenusActivity {
 
     @Override
     protected void onMusicPlay() {
-        if (mMusicSrv != null&& mMusicSrv.getCurrentSong() != null) {
+        if (mMusicSrv != null && mMusicSrv.getCurrentSong() != null) {
             mBtnPlay.setVisibility(View.GONE);
             mBtnPause.setVisibility(View.VISIBLE);
             mName.setText(mMusicSrv.getCurrentSong().title);
