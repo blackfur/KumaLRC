@@ -1,14 +1,14 @@
 package com.shirokuma.musicplayer.lyrics;
 
 import android.os.Bundle;
-import android.util.DisplayMetrics;
+import android.os.HandlerThread;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ScrollView;
 import android.widget.SeekBar;
-import android.widget.TextView;
+import android.os.Handler;
 import com.shirokuma.musicplayer.R;
 import com.shirokuma.musicplayer.common.BindSrvOpMenusActivity;
+import com.shirokuma.musicplayer.common.FutureCallback;
 import com.shirokuma.musicplayer.common.Utils;
 import com.shirokuma.musicplayer.playback.MusicService;
 
@@ -18,20 +18,20 @@ import java.util.TimerTask;
 public class LyricsActivity extends BindSrvOpMenusActivity {
     View mBtnBack;
     private ImageButton mBtnPlay, mBtnStop, mBtnPause, mBtnPre, mBtnNext, mBtnRewind, mBtnFastFroward;
-    PlaybackSeekbar mSeek;
+    PlaybackSeekbar mSeekbar;
     // LRC lyrics
     private LyricView mLrcView;
     // txt lyrics
-    private ScrollView mLrcScroll;
-    TextView mLrcContent;
-    int halfScreenHeightPx;
+    private TextScrollView mTextScroll;
+    Handler mWorkHandler;
+    private HandlerThread mWorkThread;
 
     @Override
     protected void initData() {
         super.initData();
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        halfScreenHeightPx = displayMetrics.heightPixels / 2;
+        mWorkThread = new HandlerThread("follow playback work");
+        mWorkThread.start();
+        mWorkHandler = new Handler(mWorkThread.getLooper());
     }
 
     protected View.OnClickListener mBtnListener = new View.OnClickListener() {
@@ -55,7 +55,6 @@ public class LyricsActivity extends BindSrvOpMenusActivity {
                     break;
                 case R.id.stop:
                     stop();
-                    mLrcView.stop();
                     mMusicSrv.stop();
                     mBtnPlay.setVisibility(View.VISIBLE);
                     mBtnPause.setVisibility(View.GONE);
@@ -82,7 +81,8 @@ public class LyricsActivity extends BindSrvOpMenusActivity {
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
             if (mMusicSrv != null && mMusicSrv.getCurrentState() != MusicService.State.Stopped && mMusicSrv.getDuration() > 0 && fromUser) {
                 mMusicSrv.seekTo(progress);
-                mLrcView.refresh();
+                mLrcView.progress(progress);
+                mTextScroll.progress(mMusicSrv.getDuration(), progress);
             }
         }
 
@@ -98,7 +98,7 @@ public class LyricsActivity extends BindSrvOpMenusActivity {
     @Override
     protected void initView() {
         super.initView();
-        mSeek = (PlaybackSeekbar) findViewById(R.id.seekbar);
+        mSeekbar = (PlaybackSeekbar) findViewById(R.id.seekbar);
         mBtnFastFroward = (ImageButton) findViewById(R.id.fastforward);
         mBtnNext = (ImageButton) findViewById(R.id.next);
         mBtnPlay = (ImageButton) findViewById(R.id.play);
@@ -115,14 +115,13 @@ public class LyricsActivity extends BindSrvOpMenusActivity {
         mBtnRewind.setOnClickListener(mBtnListener);
         mBtnBack = findViewById(R.id.btn_back);
         mLrcView = (LyricView) findViewById(R.id.lrc);
-        mLrcScroll = (ScrollView) findViewById(R.id.txt_lrc);
-        mLrcContent = (TextView) findViewById(R.id.txt_lrc_content);
+        mTextScroll = (TextScrollView) findViewById(R.id.txt_lrc);
         mBtnBack.postDelayed(new Runnable() {
             @Override
             public void run() {
                 mBtnBack.setVisibility(View.VISIBLE);
                 mBtnBack.setOnClickListener(mBtnListener);
-                mSeek.setOnSeekBarChangeListener(mSeekListener);
+                mSeekbar.setOnSeekBarChangeListener(mSeekListener);
             }
         }, 200);
     }
@@ -139,13 +138,39 @@ public class LyricsActivity extends BindSrvOpMenusActivity {
 
     @Override
     public void onDestroy() {
-        mLrcView.release();
         stop();
+        if (mWorkHandler != null) {
+            mWorkHandler = null;
+            mWorkThread.quit();
+            mWorkThread = null;
+        }
         super.onDestroy();
     }
 
-    private void reset() {
-        mSeek.reset(mMusicSrv.getDuration());
+    private void reset(final FutureCallback callback) {
+        mWorkHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mSeekbar.reset(mMusicSrv.getDuration());
+                // try to find a LRC file and show
+                mLrcView.reset(mMusicSrv.getCurrentSong());
+                // if there is no LRC file, try to find a txt
+                if (mLrcView.getVisibility() == View.VISIBLE) {
+                    mTextScroll.setVisibility(View.GONE);
+                } else {
+                    mTextScroll.reset(mMusicSrv.getCurrentSong());
+                }
+                if (callback != null) {
+                    // go back to main thread
+                    mSeekbar.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            callback.execute();
+                        }
+                    });
+                }
+            }
+        }, 200);
     }
 
     TimerTask progressTask;
@@ -154,7 +179,7 @@ public class LyricsActivity extends BindSrvOpMenusActivity {
     // update UI(txt lyrics and seek bar) according to playback progress
     private void start() {
         // delay to wait for player preparing
-        mSeek.postDelayed(new Runnable() {
+        mSeekbar.postDelayed(new Runnable() {
             @Override
             public void run() {
                 if (mMusicSrv.isPlaying()) {
@@ -170,18 +195,12 @@ public class LyricsActivity extends BindSrvOpMenusActivity {
                         @Override
                         public void run() {
                             if (mMusicSrv != null) {
-                                mSeek.post(new Runnable() {
+                                mWorkHandler.post(new Runnable() {
                                     @Override
                                     public void run() {
-                                        mSeek.progress(mMusicSrv.getCurrentPosition());
-                                        // if txt lyrics found, auto scroll depend on playback progress
-                                        if (mLrcScroll.getVisibility() == View.VISIBLE) {
-                                            int y = 0;
-                                            if (mMusicSrv.getCurrentPosition() > 0)
-                                                y = mLrcScroll.getChildAt(0).getHeight() / (mMusicSrv.getDuration() / mMusicSrv.getCurrentPosition());
-                                            if (y > halfScreenHeightPx)
-                                                mLrcScroll.scrollTo(0, y - halfScreenHeightPx);
-                                        }
+                                        mSeekbar.progress(mMusicSrv.getCurrentPosition());
+                                        mTextScroll.progress(mMusicSrv.getDuration(), mMusicSrv.getCurrentPosition());
+                                        mLrcView.progress(mMusicSrv.getCurrentPosition());
                                     }
                                 });
                             }
@@ -212,33 +231,17 @@ public class LyricsActivity extends BindSrvOpMenusActivity {
             mBtnPause.setVisibility(View.VISIBLE);
         }
         if (mMusicSrv.getCurrentSong() != null) {
-            resetLrc();
-            start();
-        }
-    }
-
-    private void resetLrc() {
-        // try to find a LRC file and show
-        if (mLrcView.reset(mMusicSrv.getPlayer(), mMusicSrv.getCurrentSong())) {
-            mLrcScroll.setVisibility(View.GONE);
-        } else {
-            mLrcScroll.setVisibility(View.VISIBLE);
-            // if there is no LRC file, try to find a txt
-            String txt = new StringBuilder().append(mMusicSrv.getCurrentSong().path.substring(0, mMusicSrv.getCurrentSong().path.lastIndexOf('.'))).append(".txt").toString();
-            String content = Utils.file2str(txt, null);
-            if (content != null) {
-                mLrcContent.setText(content);
-            } else {
-                // if no txt found then show the title
-                mLrcContent.setText(mMusicSrv.getCurrentSong().head());
-            }
-            mLrcScroll.scrollTo(0, 0);
+            reset(new FutureCallback() {
+                @Override
+                public void execute(Object... pars) {
+                    start();
+                }
+            });
         }
     }
 
     @Override
     protected void onMusicSrvDisconnected() {
-        mLrcView.release();
         stop();
     }
 
@@ -246,10 +249,13 @@ public class LyricsActivity extends BindSrvOpMenusActivity {
     protected void onMusicPrev() {
         if (mMusicSrv != null && mLrcView != null && mMusicSrv.getCurrentSong() != null) {
 //            mLrcView.reset(mMusicSrv.getPlayer(), mMusicSrv.getCurrentSong());
-            resetLrc();
-            mSeek.reset(mMusicSrv.getPlayer().getDuration());
-            if (mTimer == null)
-                start();
+            reset(new FutureCallback() {
+                @Override
+                public void execute(Object... pars) {
+                    if (mTimer == null)
+                        start();
+                }
+            });
         }
     }
 
@@ -257,33 +263,32 @@ public class LyricsActivity extends BindSrvOpMenusActivity {
     protected void onMusicNext() {
         if (mMusicSrv != null && mLrcView != null && mMusicSrv.getCurrentSong() != null) {
 //            mLrcView.reset(mMusicSrv.getPlayer(), mMusicSrv.getCurrentSong());
-            resetLrc();
-            mSeek.reset(mMusicSrv.getPlayer().getDuration());
-            if (mTimer == null)
-                start();
+            reset(new FutureCallback() {
+                @Override
+                public void execute(Object... pars) {
+                    if (mTimer == null)
+                        start();
+                }
+            });
         }
     }
 
     @Override
     protected void onMusicPlay() {
         if (mMusicSrv != null && mLrcView != null) {
-            if (mLrcView.getVisibility() == View.VISIBLE)
-                mLrcView.start();
             start();
         }
     }
 
     @Override
     protected void onMusicPause() {
-        if (mLrcView != null)
-            mLrcView.stop();
         stop();
     }
 
     @Override
     protected void onMusicSeek() {
-        if (mLrcView.getVisibility() == View.VISIBLE)
-            mLrcView.refresh();
-        mSeek.progress(mMusicSrv.getCurrentPosition());
+        mLrcView.progress(mMusicSrv.getCurrentPosition());
+        mSeekbar.progress(mMusicSrv.getCurrentPosition());
+        mTextScroll.progress(mMusicSrv.getDuration(), mMusicSrv.getCurrentPosition());
     }
 }

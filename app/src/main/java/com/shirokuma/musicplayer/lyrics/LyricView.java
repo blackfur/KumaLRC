@@ -6,9 +6,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.media.MediaPlayer;
-import android.os.Handler;
-import android.os.HandlerThread;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
@@ -16,11 +13,8 @@ import android.view.View;
 import com.shirokuma.musicplayer.R;
 import com.shirokuma.musicplayer.musiclib.Song;
 
-import java.io.File;
-import java.util.Timer;
-import java.util.TimerTask;
-
-public class LyricView extends View {
+public class LyricView extends View implements FollowPlayback {
+    ProgressDialog progressDialog;
     private float STEP = 0.8f;
     private float mMiddleX;        //屏幕X轴的中点，此值固定，保持歌词在X中间显示
     private float mMiddleY;
@@ -32,19 +26,12 @@ public class LyricView extends View {
     private float mLineSpace;//歌词每行的间隔
     Paint paint = new Paint();//画笔，用于画不是高亮的歌词
     Paint paintHL = new Paint();//画笔，用于画高亮的歌词，即当前唱到这句歌词
-    private MediaPlayer mPlayer;
-    private Timer mTimer;
-    private Handler mUIhandler;
     private Lyrics mLyrics;
-    Handler mWorkHandler;
-    private HandlerThread mWorkThread;
+    private boolean parsed = false;
 
-    private void init() {
+    public LyricView(Context context, AttributeSet attrs) {
+        super(context, attrs);
         // paint
-        mWorkThread = new HandlerThread("lyric view");
-        mWorkThread.start();
-        mWorkHandler = new Handler(mWorkThread.getLooper());
-        mUIhandler = new Handler();
         paint = new Paint();
         paint.setTextAlign(Paint.Align.CENTER);
         paint.setColor(Color.WHITE);
@@ -64,138 +51,69 @@ public class LyricView extends View {
         setBackgroundColor(getContext().getResources().getColor(R.color.grey));
     }
 
-    public LyricView(Context context) {
-        super(context);
-        init();
-    }
-
-    public LyricView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        init();
-    }
-
     Song mSong;
 
-    public boolean reset(MediaPlayer player, final Song song) {
+    @Override
+    public void reset(Object... pars) {
+        final Song song = (Song) pars[0];
         if (mLyrics.findLrc(song)) {
-            setVisibility(View.VISIBLE);
+            post(new Runnable() {
+                @Override
+                public void run() {
+                    setVisibility(View.VISIBLE);
+                }
+            });
         } else {
-            setVisibility(View.GONE);
-            return false;
+            post(new Runnable() {
+                @Override
+                public void run() {
+                    setVisibility(View.GONE);
+                }
+            });
+            return;
         }
         mSong = song;
-        mTouchOffsetY = 0;
-        mPlayer = player;
+        mRollingOffsetY = mTouchOffsetY = 0;
         // parse lyrics
-        final ProgressDialog progressDialog = ProgressDialog.show(getContext(), "", getContext().getString(R.string.loading));
-        mWorkHandler.post(new Runnable() {
+        post(new Runnable() {
             @Override
             public void run() {
-                mLyrics.parse(song.lrc);
-                mLineSpace = mLyrics.getCharSize() / 2;
-                progressDialog.dismiss();
-                start();
+                progressDialog = ProgressDialog.show(getContext(), "", getContext().getString(R.string.loading));
             }
         });
-        return true;
-    }
-
-    public void start() {
-        if (mLyrics.isFoundLrc())
-            mUIhandler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    if (mPlayer.isPlaying() && mLyrics.isFoundLrc()) {
-                        // start draw thread
-                        if (mTimer != null)
-                            mTimer.cancel();
-                        mTimer = new Timer();
-                        if (rollTask != null)
-                            rollTask.cancel();
-                        rollTask = new RollTask();
-                        mTimer.schedule(rollTask, 200, INTERVEL);
-                    } else if (mSong != null) {
-                        // if not playing, show the lyrics found or just title if not found
-                        invalidate();
-                    }
-                }
-            }, 200);
-    }
-
-    public void stop() {
-        if (mTimer != null)
-            mTimer.cancel();
-//        mTimer = new Timer();
-        if (rollTask != null)
-            rollTask.cancel();
-        mRollingOffsetY = mTouchOffsetY = 0;
-    }
-
-    // roll lyrics
-    TimerTask rollTask;
-
-    public void zoomIn() {
-        if (mLyrics.isFoundLrc())
-            mLyrics.setCharSize(mLyrics.getCharSize() * 1.2f);
-    }
-
-    public void zoomOut() {
-        if (mLyrics.isFoundLrc())
-            mLyrics.setCharSize(mLyrics.getCharSize() * 0.8f);
-    }
-
-    public void refresh() {
-        if (mLyrics.isFoundLrc())
-            mUIhandler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    // if it's playing now, leave the refresh job to rolling task
-                    if (!mPlayer.isPlaying()) {
-                        mLyrics.setCurrentIndex(mPlayer.getCurrentPosition());
-                        invalidate();
-                    }
-                }
-            }, 200);
-    }
-
-    private class RollTask extends TimerTask {
-        @Override
-        public void run() {
-            if (mPlayer != null) {
-                if (mPlayer.isPlaying()) {
-                    boolean newLine = mLyrics.setCurrentIndex(mPlayer.getCurrentPosition());
-                    // reset rolling offset and step
-                    if (newLine) {
-                        mRollingOffsetY = 0;
-                        Lyrics.Sentence obj = mLyrics.getCurrentSentence();
-                        if (obj.timeline > 0)
-                            STEP = (mLyrics.getCharSize() + mLineSpace) * obj.lrcs.length * INTERVEL / (float) obj.timeline;
-                        else {
-                            STEP = 0.8f;
-                        }
-                    }
-                    mUIhandler.post(new Runnable() {
-                        public void run() {
-                            invalidate(); // 更新视图
-                        }
-                    });
-                }
-            } else {
-                stop();
+        parsed = false;
+        mLyrics.parse(song.lrc);
+        mLineSpace = mLyrics.getCharSize() / 2;
+        parsed = true;
+        post(new Runnable() {
+            @Override
+            public void run() {
+                progressDialog.dismiss();
             }
-        }
+        });
     }
 
-    public void release() {
-        if (mTimer != null) {
-            mTimer.cancel();
-            mTimer = null;
+    @Override
+    public void progress(final Object... pars) {
+        if (getVisibility() == View.VISIBLE && mLyrics.isFoundLrc() && parsed) {
+            int progress = (Integer) pars[0];
+            boolean newLine = mLyrics.setCurrentIndex(progress);
+            // reset rolling offset and step
+            if (newLine) {
+                mRollingOffsetY = 0;
+                Lyrics.Sentence obj = mLyrics.getCurrentSentence();
+                if (obj.timeline > 0)
+                    STEP = (mLyrics.getCharSize() + mLineSpace) * obj.lrcs.length * INTERVEL / (float) obj.timeline;
+                else {
+                    STEP = 0.8f;
+                }
+            }
+            post(new Runnable() {
+                public void run() {
+                    invalidate();
+                }
+            });
         }
-        if (rollTask != null) {
-            rollTask.cancel();
-            rollTask = null;
-        }
-        mWorkThread.quit();
     }
 
     // used for roll smoothly

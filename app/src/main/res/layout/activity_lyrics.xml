@@ -26,20 +26,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
-        <ScrollView
+        <com.shirokuma.musicplayer.lyrics.TextScrollView
                 android:padding="16dp"
                 android:id="@+id/txt_lrc"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-            <TextView
-                    android:gravity="center_horizontal"
-                    android:textSize="20sp"
-                    android:text="somfowiefewofiweofiwneofiwenfcoiernfoeifnwoefinfoeifnjieujfowjfowei"
-                    android:id="@+id/txt_lrc_content"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-        </ScrollView>
+                android:layout_height="match_parent"/>
 
     </RelativeLayout>
 

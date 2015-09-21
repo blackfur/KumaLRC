@@ -11,17 +11,23 @@ public class PlaybackSeekbar extends SeekBar implements FollowPlayback {
 
     @Override
     public void reset(Object... pars) {
-        Integer max = (Integer) pars[0];
-        setMax(max);
+        final Integer max = (Integer) pars[0];
+        post(new Runnable() {
+            @Override
+            public void run() {
+                setMax(max);
+            }
+        });
     }
 
     @Override
     public void progress(Object... pars) {
-        Integer progress = (Integer) pars[0];
-        setProgress(progress);
-    }
-
-    @Override
-    public void stop() {
+        final Integer progress = (Integer) pars[0];
+        post(new Runnable() {
+            @Override
+            public void run() {
+                setProgress(progress);
+            }
+        });
     }
 }
