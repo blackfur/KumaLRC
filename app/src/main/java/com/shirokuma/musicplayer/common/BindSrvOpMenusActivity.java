@@ -2,22 +2,24 @@ package com.shirokuma.musicplayer.common;
 
 import android.app.ProgressDialog;
 import android.content.*;
+import android.media.MediaScannerConnection;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.IBinder;
 import android.view.Menu;
 import android.view.MenuItem;
 import com.shirokuma.musicplayer.KumalrcApplication;
 import com.shirokuma.musicplayer.R;
 import com.shirokuma.musicplayer.setting.MediaSetting;
-import com.shirokuma.musicplayer.setting.ScanActivity;
 import com.shirokuma.musicplayer.setting.TimerActivity;
 import com.shirokuma.musicplayer.playback.MusicBroadcast;
 import com.shirokuma.musicplayer.playback.MusicService;
 
 // bind service and create options menu
-public abstract class BindSrvOpMenusActivity extends BaseActivity {
+public abstract class BindSrvOpMenusActivity extends BaseActivity implements MediaScannerConnection.OnScanCompletedListener {
     protected MusicService mMusicSrv;
-    private ProgressDialog mProgress;
+    protected ProgressDialog mProgress;
 
     @Override
     protected void initData() {
@@ -110,7 +112,9 @@ public abstract class BindSrvOpMenusActivity extends BaseActivity {
             case R.id.action_scan:
                 if (mMusicSrv != null && mMusicSrv.isPlaying())
                     mMusicSrv.stop();
-                startActivity(new Intent(this, ScanActivity.class));
+                MediaScannerConnection.scanFile(this, new String[]{Environment
+                        .getExternalStorageDirectory().getAbsolutePath()}, null, this);
+                mProgress = ProgressDialog.show(this, "", getString(R.string.scanning));
                 break;
             case R.id.action_in_order:
                 mMusicSrv.setShuffle(false);
@@ -128,6 +132,14 @@ public abstract class BindSrvOpMenusActivity extends BaseActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onScanCompleted(String path, Uri uri) {
+        if (mProgress != null) {
+            mProgress.dismiss();
+            mProgress = null;
+        }
     }
 
     MusicBroadcast mMusicBroadcastReceiver = new MusicBroadcast() {

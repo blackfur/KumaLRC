@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -180,6 +181,13 @@ public class MusicListActivity extends BindSrvOpMenusActivity {
         transaction.replace(R.id.music_list_container, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    @Override
+    public void onScanCompleted(String path, Uri uri) {
+        super.onScanCompleted(path, uri);
+        // when finish scanning, refresh song list
+        displayList(new Filter(Filter.FilterType.Song, null, null));
     }
 
     @Override

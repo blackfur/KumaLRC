@@ -52,10 +52,6 @@
 
         <receiver android:name=".playback.MusicBroadcast" />
 
-        <activity
-            android:name=".setting.ScanActivity"
-            android:label="@string/title_activity_scan" >
-        </activity>
     </application>
 
 </manifest>
