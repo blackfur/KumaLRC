@@ -212,11 +212,7 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
     //skip to next
     public void playNext() {
         if (shuffle) {
-            int newSong = mPlaySongIndex;
-            while (newSong == mPlaySongIndex) {
-                newSong = rand.nextInt(mPlaySongs.size());
-            }
-            mPlaySongIndex = newSong;
+            mPlaySongIndex = rand.nextInt(mPlaySongs.size());
         } else {
             mPlaySongIndex++;
         }
