@@ -1,6 +1,7 @@
 package com.shirokuma.musicplayer.lyrics;
 
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ScrollView;
@@ -9,10 +10,8 @@ import android.widget.TextView;
 import com.shirokuma.musicplayer.R;
 import com.shirokuma.musicplayer.common.BindSrvOpMenusActivity;
 import com.shirokuma.musicplayer.common.Utils;
-import com.shirokuma.musicplayer.musiclib.Song;
 import com.shirokuma.musicplayer.playback.MusicService;
 
-import java.io.File;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -25,10 +24,14 @@ public class LyricsActivity extends BindSrvOpMenusActivity {
     // txt lyrics
     private ScrollView mLrcScroll;
     TextView mLrcContent;
+    int halfScreenHeightPx;
 
     @Override
     protected void initData() {
         super.initData();
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        halfScreenHeightPx = displayMetrics.heightPixels / 2;
     }
 
     protected View.OnClickListener mBtnListener = new View.OnClickListener() {
@@ -173,7 +176,8 @@ public class LyricsActivity extends BindSrvOpMenusActivity {
                                             int y = 0;
                                             if (mMusicSrv.getCurrentPosition() > 0)
                                                 y = mLrcScroll.getChildAt(0).getHeight() / (mMusicSrv.getDuration() / mMusicSrv.getCurrentPosition());
-                                            mLrcScroll.scrollTo(0, y);
+                                            if (y > halfScreenHeightPx)
+                                                mLrcScroll.scrollTo(0, y - halfScreenHeightPx);
                                         }
                                     }
                                 });
@@ -218,13 +222,14 @@ public class LyricsActivity extends BindSrvOpMenusActivity {
             mLrcScroll.setVisibility(View.VISIBLE);
             // if there is no LRC file, try to find a txt
             String txt = new StringBuilder().append(mMusicSrv.getCurrentSong().path.substring(0, mMusicSrv.getCurrentSong().path.lastIndexOf('.'))).append(".txt").toString();
-            String content = Utils.file2str(txt);
+            String content = Utils.file2str(txt, null);
             if (content != null) {
                 mLrcContent.setText(content);
             } else {
                 // if no txt found then show the title
                 mLrcContent.setText(mMusicSrv.getCurrentSong().head());
             }
+            mLrcScroll.scrollTo(0, 0);
         }
     }
 

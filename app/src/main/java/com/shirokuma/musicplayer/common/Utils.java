@@ -4,11 +4,8 @@ import android.content.Context;
 import android.util.DisplayMetrics;
 import android.view.Menu;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.lang.reflect.Method;
-import java.nio.charset.Charset;
-import java.util.Scanner;
 
 public class Utils {
     public static final int STANDARD_SCREEN_WIDTH = 480;
@@ -19,7 +16,6 @@ public class Utils {
     public static final int STANDARD_EAST_FONT_LINE_LENGTH = 21;
     public static final String ARGUMENTS_KEY_FILTER = "filter";
     public static final int SEEK_INTERVAL = 1000;
-    public static final String ACTION_MEDIA_SCANNER_SCAN_DIR = "android.intent.action.MEDIA_SCANNER_SCAN_DIR";
 
     public static void setOptionMenuIconEnable(Menu menu, boolean enable) {
         try {
@@ -40,13 +36,39 @@ public class Utils {
         return (int) px;
     }
 
-    public static String file2str(String path) {
-        String content = null;
+    public static String file2str(String path, String encode) {
+        BufferedReader reader;
         try {
-            content = new Scanner(new File(path)).useDelimiter("\\Z").next();
+            FileInputStream stream = new FileInputStream(path);
+            reader = new BufferedReader(new InputStreamReader(stream, encode == null ? "GB2312" : encode));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+            return null;
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            return null;
         }
-        return content;
+        String line;
+        StringBuilder stringBuilder = new StringBuilder();
+        String ls = System.getProperty("line.separator");
+        try {
+            while ((line = reader.readLine()) != null) {
+                stringBuilder.append(line);
+                stringBuilder.append(ls);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return stringBuilder.toString();
+    }
+
+    public static String toGB2312(String source) {
+        try {
+            return new String(source.getBytes(), "GB2312");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return source;
     }
 }
