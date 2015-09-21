@@ -10,6 +10,7 @@ public class MediaSetting {
     private final String KEY_LAST_PLAY_INDEX = "last_play_index";
     private final String KEY_FIRST_INSTALL = "first_install";
     private final String KEY_SHUFFLE = "shuffle";
+    private final String KEY_LAST_PLAY_PROGRESS = "last_play_progress";
 
     public MediaSetting(Context context) {
         mInstance = this;
@@ -53,5 +54,15 @@ public class MediaSetting {
 
     public boolean getShuffle() {
         return mSharedPre.getBoolean(KEY_SHUFFLE, true);
+    }
+
+    public void setLastPlayProgress(int p) {
+        SharedPreferences.Editor editor = mSharedPre.edit();
+        editor.putInt(KEY_LAST_PLAY_PROGRESS, p);
+        editor.commit();
+    }
+
+    public int getLastPlayProgress() {
+        return mSharedPre.getInt(KEY_LAST_PLAY_PROGRESS, 0);
     }
 }

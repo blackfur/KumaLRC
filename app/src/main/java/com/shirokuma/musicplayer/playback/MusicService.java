@@ -106,10 +106,12 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
         return musicBind;
     }
 
-    //release resources when unbind
+    //release resources when all bound activities unbind
     @Override
     public boolean onUnbind(Intent intent) {
         MediaSetting.getInstance(getApplicationContext()).setLastPlayIndex(mPlaySongIndex);
+        if (mCurrentState == State.Started || mCurrentState == State.Paused)
+            MediaSetting.getInstance(getApplicationContext()).setLastPlayProgress(mPlayer.getCurrentPosition());
         mPlayer.stop();
         mPlayer.release();
         mPlayer = null;
@@ -128,6 +130,32 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
             playSong(mPlaySongIndex);
         }
         sendBroadcast(new Intent(MusicBroadcast.MUSIC_BROADCAST_ACTION_PLAYBACK).putExtra(MusicBroadcast.MUSIC_BROADCAST_EXTRA, MusicBroadcast.Playback.Play.getIndex()));
+    }
+
+    public void restore() {
+        //reset
+        mPlayer.reset();
+        //get song
+        Song playSong = mPlaySongs.get(mPlaySongIndex);
+        if (!new File(playSong.path).exists())
+            return;
+        //get title
+        songTitle = playSong.title;
+        //get id
+        long currSong = playSong.id;
+        //set uri
+        Uri trackUri = ContentUris.withAppendedId(
+                android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
+                currSong);
+        //set the data source
+        try {
+            mPlayer.setDataSource(getApplicationContext(), trackUri);
+        } catch (Exception e) {
+            Log.e("MUSIC SERVICE", "Error setting data source", e);
+        }
+        // will seek to last progress on onPrepared callback
+        mPlayer.prepareAsync();
+        mCurrentState = State.Paused;
     }
 
     //reset a song
@@ -183,8 +211,13 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onPrepared(MediaPlayer mp) {
-        //start playback
-        mp.start();
+        if (mCurrentState == State.Started)
+            //start playback
+            mp.start();
+            // restore last progress when application start
+        else if (mCurrentState == State.Paused) {
+            mp.seekTo(MediaSetting.getInstance(this).getLastPlayProgress());
+        }
         //notification
         Intent notIntent = new Intent(this, LyricsActivity.class);
         notIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -195,7 +228,7 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
                 .setSmallIcon(R.drawable.button_general_mini_playing_play)
                 .setTicker(songTitle)
                 .setOngoing(true)
-                .setContentTitle("Playing")
+                .setContentTitle(getString(R.string.playing))
                 .setContentText(songTitle);
         Notification not = builder.build();
         startForeground(NOTIFY_ID, not);

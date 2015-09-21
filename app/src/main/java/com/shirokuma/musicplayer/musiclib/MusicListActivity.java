@@ -77,14 +77,14 @@ public class MusicListActivity extends BindSrvOpMenusActivity {
                     break;
                 case R.id.simple_ctrl_next:
                     mMusicSrv.playNext();
-                    if(mMusicSrv.getCurrentSong() != null) {
+                    if (mMusicSrv.getCurrentSong() != null) {
                         mName.setText(mMusicSrv.getCurrentSong().title);
                         mArtist.setText(mMusicSrv.getCurrentSong().artist);
                     }
                     break;
                 case R.id.simple_ctrl_prev:
                     mMusicSrv.playPrev();
-                    if(mMusicSrv.getCurrentSong() != null) {
+                    if (mMusicSrv.getCurrentSong() != null) {
                         mName.setText(mMusicSrv.getCurrentSong().title);
                         mArtist.setText(mMusicSrv.getCurrentSong().artist);
                     }
@@ -163,6 +163,8 @@ public class MusicListActivity extends BindSrvOpMenusActivity {
             if (mMusicSrv.getCurrentSong() != null) {
                 mName.setText(mMusicSrv.getCurrentSong().title);
                 mArtist.setText(mMusicSrv.getCurrentSong().artist);
+                // restore last playback state
+                mMusicSrv.restore();
             }
         }
     }
@@ -190,7 +192,7 @@ public class MusicListActivity extends BindSrvOpMenusActivity {
 
     @Override
     protected void onMusicPlay() {
-        if (mMusicSrv != null&& mMusicSrv.getCurrentSong() != null) {
+        if (mMusicSrv != null && mMusicSrv.getCurrentSong() != null) {
             mBtnPlay.setVisibility(View.GONE);
             mBtnPause.setVisibility(View.VISIBLE);
             mName.setText(mMusicSrv.getCurrentSong().title);
