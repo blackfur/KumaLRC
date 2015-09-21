@@ -6,7 +6,7 @@
         android:orientation="vertical"
         android:background="@color/grey">
 
-    <SeekBar
+    <com.shirokuma.musicplayer.lyrics.PlaybackSeekbar
             android:id="@+id/seekbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

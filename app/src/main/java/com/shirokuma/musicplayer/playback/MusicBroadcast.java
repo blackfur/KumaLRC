@@ -39,7 +39,7 @@ public class MusicBroadcast extends BroadcastReceiver {
     }
 
     public static final String MUSIC_BROADCAST_ACTION_PLAYBACK = "com.shirokuma.musicplayer.playback.MusicBroadcast.playback";
-    public static final String MUSIC_BROADCAST_EXTRA = "com.shirokuma.musicplayer.playback.Playback";
+    public static final String MUSIC_BROADCAST_EXTRA = "com.shirokuma.musicplayer.playback.FollowPlayback";
 
     @Override
     public void onReceive(Context context, Intent intent) {

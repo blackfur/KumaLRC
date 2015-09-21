@@ -203,7 +203,7 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
 
     @Override
     public boolean onError(MediaPlayer mp, int what, int extra) {
-        Log.v("MUSIC PLAYER", "Playback Error");
+        Log.v("MUSIC PLAYER", "FollowPlayback Error");
         mp.reset();
         return false;
     }
