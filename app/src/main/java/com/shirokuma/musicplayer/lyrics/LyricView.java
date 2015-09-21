@@ -16,6 +16,7 @@ import android.view.View;
 import com.shirokuma.musicplayer.R;
 import com.shirokuma.musicplayer.musiclib.Song;
 
+import java.io.File;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -75,7 +76,13 @@ public class LyricView extends View {
 
     Song mSong;
 
-    public void reset(MediaPlayer player, final Song song) {
+    public boolean reset(MediaPlayer player, final Song song) {
+        if (mLyrics.findLrc(song)) {
+            setVisibility(View.VISIBLE);
+        } else {
+            setVisibility(View.GONE);
+            return false;
+        }
         mSong = song;
         mTouchOffsetY = 0;
         mPlayer = player;
@@ -90,33 +97,35 @@ public class LyricView extends View {
                 start();
             }
         });
+        return true;
     }
 
     public void start() {
-        mUIhandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (mPlayer.isPlaying() && mLyrics.isFoundLrc()) {
-                    // start draw thread
-                    if (mTimer != null)
-                        mTimer.cancel();
-                    mTimer = new Timer();
-                    if (rollTask != null)
-                        rollTask.cancel();
-                    rollTask = new RollTask();
-                    mTimer.schedule(rollTask, 200, INTERVEL);
-                } else if (mSong != null) {
-                    // if not playing, show the lyrics found or just title if not found
-                    invalidate();
+        if (mLyrics.isFoundLrc())
+            mUIhandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (mPlayer.isPlaying() && mLyrics.isFoundLrc()) {
+                        // start draw thread
+                        if (mTimer != null)
+                            mTimer.cancel();
+                        mTimer = new Timer();
+                        if (rollTask != null)
+                            rollTask.cancel();
+                        rollTask = new RollTask();
+                        mTimer.schedule(rollTask, 200, INTERVEL);
+                    } else if (mSong != null) {
+                        // if not playing, show the lyrics found or just title if not found
+                        invalidate();
+                    }
                 }
-            }
-        }, 200);
+            }, 200);
     }
 
     public void stop() {
         if (mTimer != null)
             mTimer.cancel();
-        mTimer = new Timer();
+//        mTimer = new Timer();
         if (rollTask != null)
             rollTask.cancel();
         mRollingOffsetY = mTouchOffsetY = 0;
@@ -126,24 +135,27 @@ public class LyricView extends View {
     TimerTask rollTask;
 
     public void zoomIn() {
-        mLyrics.setCharSize(mLyrics.getCharSize() * 1.2f);
+        if (mLyrics.isFoundLrc())
+            mLyrics.setCharSize(mLyrics.getCharSize() * 1.2f);
     }
 
     public void zoomOut() {
-        mLyrics.setCharSize(mLyrics.getCharSize() * 0.8f);
+        if (mLyrics.isFoundLrc())
+            mLyrics.setCharSize(mLyrics.getCharSize() * 0.8f);
     }
 
     public void refresh() {
-        mUIhandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                // if it's playing now, leave the refresh job to rolling task
-                if (!mPlayer.isPlaying()) {
-                    mLyrics.setCurrentIndex(mPlayer.getCurrentPosition());
-                    invalidate();
+        if (mLyrics.isFoundLrc())
+            mUIhandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    // if it's playing now, leave the refresh job to rolling task
+                    if (!mPlayer.isPlaying()) {
+                        mLyrics.setCurrentIndex(mPlayer.getCurrentPosition());
+                        invalidate();
+                    }
                 }
-            }
-        }, 200);
+            }, 200);
     }
 
     private class RollTask extends TimerTask {

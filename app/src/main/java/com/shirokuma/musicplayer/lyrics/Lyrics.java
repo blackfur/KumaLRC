@@ -2,6 +2,7 @@ package com.shirokuma.musicplayer.lyrics;
 
 import com.shirokuma.musicplayer.common.CheckLanguage;
 import com.shirokuma.musicplayer.common.Utils;
+import com.shirokuma.musicplayer.musiclib.Song;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -35,6 +36,16 @@ public class Lyrics {
     }
 
     private float mScreenWidth = 540;
+
+    public boolean findLrc(Song s) {
+        if (!new File(s.lrc).exists()) {
+            mFoundLrc = false;
+            return false;
+        } else {
+            mFoundLrc = true;
+            return true;
+        }
+    }
 
     public boolean isFoundLrc() {
         return mFoundLrc;

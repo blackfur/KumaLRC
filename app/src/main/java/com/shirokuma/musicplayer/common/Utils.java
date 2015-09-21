@@ -4,7 +4,11 @@ import android.content.Context;
 import android.util.DisplayMetrics;
 import android.view.Menu;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.lang.reflect.Method;
+import java.nio.charset.Charset;
+import java.util.Scanner;
 
 public class Utils {
     public static final int STANDARD_SCREEN_WIDTH = 480;
@@ -34,5 +38,15 @@ public class Utils {
         DisplayMetrics metrics = context.getResources().getDisplayMetrics();
         float px = dp * (metrics.densityDpi / 160f);
         return (int) px;
+    }
+
+    public static String file2str(String path) {
+        String content = null;
+        try {
+            content = new Scanner(new File(path)).useDelimiter("\\Z").next();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return content;
     }
 }

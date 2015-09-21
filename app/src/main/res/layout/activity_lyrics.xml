@@ -25,30 +25,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
-        <LinearLayout
+        <ScrollView
                 android:visibility="gone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
-                android:orientation="horizontal">
+                android:id="@+id/txt_lrc"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <ImageButton
-                    style="@style/ctrl_btn"
-                    android:src="@drawable/zoom_out"
-                    android:layout_width="32dp"
-                    android:maxHeight="64dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/zoom_out"/>
+            <TextView
+                    android:id="@+id/txt_lrc_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+        </ScrollView>
 
-            <ImageButton
-                    android:maxHeight="64dp"
-                    android:src="@drawable/zoom_in"
-                    style="@style/ctrl_btn"
-                    android:layout_width="32dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/zoom_in"/>
-        </LinearLayout>
     </RelativeLayout>
 
 </RelativeLayout>
