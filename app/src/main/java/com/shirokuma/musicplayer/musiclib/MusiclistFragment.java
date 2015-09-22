@@ -43,6 +43,7 @@ public class MusiclistFragment extends Fragment {
             return false;
         }
     };
+    private Filter filter;
 
     @Override
     public void onAttach(Activity activity) {
@@ -57,7 +58,7 @@ public class MusiclistFragment extends Fragment {
         main.setAnimEnd(mEndXY);
         mStartXY = new float[2];
         if (getArguments() != null) {
-            Filter filter = getArguments().getParcelable(Utils.ARGUMENTS_KEY_FILTER);
+            filter = getArguments().getParcelable(Utils.ARGUMENTS_KEY_FILTER);
             mDisplayMusic = filter.fetch(getActivity());
             switch (filter.type) {
                 case Song:
@@ -86,7 +87,6 @@ public class MusiclistFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_music_list, container, false);
         // filtrate media
         if (getArguments() != null) {
-            Filter filter = getArguments().getParcelable(Utils.ARGUMENTS_KEY_FILTER);
             if (filter != null) {
                 switch (filter.type) {
                     case Song:
@@ -112,9 +112,10 @@ public class MusiclistFragment extends Fragment {
 
         @Override
         public void onClickFrontView(int position) {
-            switch (((Filter) getArguments().getParcelable(Utils.ARGUMENTS_KEY_FILTER)).type) {
+            switch (filter.type) {
                 case Song:
                     // set play list
+                    main.getMusicSrv().setFilter(filter);
                     main.getMusicSrv().setPlaySongs(mDisplayMusic);
                     // play song
                     main.getMusicSrv().play(position);
@@ -163,7 +164,7 @@ public class MusiclistFragment extends Fragment {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                final ArrayList newDisplayMusic = getArguments().<Filter>getParcelable(Utils.ARGUMENTS_KEY_FILTER).fetch(getActivity());
+                final ArrayList newDisplayMusic = filter.fetch(getActivity());
                 mListView.post(new Runnable() {
                     @Override
                     public void run() {

@@ -1,4 +1,4 @@
-package com.shirokuma.musicplayer.lyrics;
+package com.shirokuma.musicplayer.view;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -11,6 +11,8 @@ import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
 import com.shirokuma.musicplayer.R;
+import com.shirokuma.musicplayer.lyrics.FollowPlayback;
+import com.shirokuma.musicplayer.lyrics.Lyrics;
 import com.shirokuma.musicplayer.musiclib.Song;
 
 public class LyricView extends View implements FollowPlayback {
@@ -48,7 +50,10 @@ public class LyricView extends View implements FollowPlayback {
         ((Activity) getContext()).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         // lyrics
         mLyrics = new Lyrics(displayMetrics.widthPixels);
-        setBackgroundColor(getContext().getResources().getColor(R.color.grey));
+    }
+
+    public boolean ifFoundLRC() {
+        return mLyrics.isFoundLrc();
     }
 
     Song mSong;

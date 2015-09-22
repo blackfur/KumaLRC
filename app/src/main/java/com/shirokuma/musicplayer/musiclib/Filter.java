@@ -7,10 +7,8 @@ import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.provider.MediaStore;
-import com.shirokuma.musicplayer.common.Utils;
 
 import java.io.File;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;

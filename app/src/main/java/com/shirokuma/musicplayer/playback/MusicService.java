@@ -15,6 +15,7 @@ import android.os.IBinder;
 import android.os.PowerManager;
 import android.util.Log;
 import com.shirokuma.musicplayer.R;
+import com.shirokuma.musicplayer.musiclib.Filter;
 import com.shirokuma.musicplayer.setting.MediaSetting;
 import com.shirokuma.musicplayer.musiclib.Song;
 import com.shirokuma.musicplayer.lyrics.LyricsActivity;
@@ -48,6 +49,7 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
     private boolean shuffle;
     private Random rand;
     private State mCurrentState = State.Stopped;
+    private Filter currentFilter;
 
     public void onCreate() {
         //initialize position
@@ -68,6 +70,10 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
         shuffle = MediaSetting.getInstance(this).getShuffle();
     }
 
+    public void setFilter(Filter f) {
+        currentFilter = f;
+    }
+
     public ArrayList getPlaySongs() {
         return mPlaySongs;
     }
@@ -82,10 +88,6 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
         mPlayer.pause();
         mCurrentState = State.Paused;
         sendBroadcast(new Intent(MusicBroadcast.MUSIC_BROADCAST_ACTION_PLAYBACK).putExtra(MusicBroadcast.MUSIC_BROADCAST_EXTRA, MusicBroadcast.Playback.Pause.getIndex()));
-    }
-
-    public MediaPlayer getPlayer() {
-        return mPlayer;
     }
 
     public void stop() {
@@ -110,8 +112,11 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
     @Override
     public boolean onUnbind(Intent intent) {
         MediaSetting.getInstance(getApplicationContext()).setLastPlayIndex(mPlaySongIndex);
+        MediaSetting.getInstance(getApplicationContext()).setLastFilter(currentFilter);
         if (mCurrentState == State.Started || mCurrentState == State.Paused)
             MediaSetting.getInstance(getApplicationContext()).setLastPlayProgress(mPlayer.getCurrentPosition());
+        else
+            MediaSetting.getInstance(getApplicationContext()).setLastPlayProgress(0);
         mPlayer.stop();
         mPlayer.release();
         mPlayer = null;

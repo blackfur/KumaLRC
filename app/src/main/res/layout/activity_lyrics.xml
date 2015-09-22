@@ -1,5 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
+                android:background="@color/grey"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:context="com.shirokuma.musicplayer.lyrics.LyricsActivity">
@@ -18,17 +19,20 @@
             android:layout_above="@id/bottom"
             android:layout_below="@id/head"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
-        <com.shirokuma.musicplayer.lyrics.LyricView
+        <com.shirokuma.musicplayer.view.LyricView
+                android:background="@color/grey"
                 android:visibility="gone"
                 android:id="@+id/lrc"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
-        <com.shirokuma.musicplayer.lyrics.TextScrollView
-                android:padding="16dp"
+        <com.shirokuma.musicplayer.view.TextScrollView
+                android:visibility="gone"
+                android:background="@color/grey"
                 android:id="@+id/txt_lrc"
+                android:scrollbarStyle="outsideOverlay"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 

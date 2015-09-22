@@ -159,8 +159,9 @@ public class MusicListActivity extends BindSrvOpMenusActivity {
     @Override
     protected void onMusicSrvConnected() {
         if (mMusicSrv != null) {
-            mMusicSrv.setPlaySongs(Filter.SongStore.fetch(this, null, null));
-            displayList(new Filter(Filter.FilterType.Song, null, null));
+            Filter filter = MediaSetting.getInstance(this).getLastFilter();
+            mMusicSrv.setPlaySongs(filter.fetch(this));
+            displayList(filter);
             if (mMusicSrv.getCurrentSong() != null) {
                 mName.setText(mMusicSrv.getCurrentSong().title);
                 mArtist.setText(mMusicSrv.getCurrentSong().artist);

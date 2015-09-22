@@ -3,6 +3,7 @@ package com.shirokuma.musicplayer.setting;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import com.shirokuma.musicplayer.musiclib.Filter;
 
 public class MediaSetting {
     private static MediaSetting mInstance;
@@ -11,6 +12,9 @@ public class MediaSetting {
     private final String KEY_FIRST_INSTALL = "first_install";
     private final String KEY_SHUFFLE = "shuffle";
     private final String KEY_LAST_PLAY_PROGRESS = "last_play_progress";
+    private final String KEY_LAST_FITER_TYPE = "last_fiter_type";
+    private final String KEY_LAST_FITER_ARTIST = "last_fiter_artist";
+    private final String KEY_LAST_FITER_ALBUM = "last_fiter_album";
 
     public MediaSetting(Context context) {
         mInstance = this;
@@ -64,5 +68,21 @@ public class MediaSetting {
 
     public int getLastPlayProgress() {
         return mSharedPre.getInt(KEY_LAST_PLAY_PROGRESS, 0);
+    }
+
+    public void setLastFilter(Filter f) {
+        SharedPreferences.Editor editor = mSharedPre.edit();
+        editor.putInt(KEY_LAST_FITER_TYPE, f.type.getId());
+        editor.putString(KEY_LAST_FITER_ALBUM, f.album);
+        editor.putString(KEY_LAST_FITER_ARTIST, f.artist);
+        editor.commit();
+    }
+
+    public Filter getLastFilter() {
+        Filter f = new Filter(null, null, null);
+        f.type = Filter.FilterType.valueOfId(mSharedPre.getInt(KEY_LAST_FITER_TYPE, Filter.FilterType.Song.getId()));
+        f.album = mSharedPre.getString(KEY_LAST_FITER_ALBUM, null);
+        f.artist = mSharedPre.getString(KEY_LAST_FITER_ARTIST, null);
+        return f;
     }
 }

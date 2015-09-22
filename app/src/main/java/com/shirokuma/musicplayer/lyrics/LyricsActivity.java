@@ -11,6 +11,9 @@ import com.shirokuma.musicplayer.common.BindSrvOpMenusActivity;
 import com.shirokuma.musicplayer.common.FutureCallback;
 import com.shirokuma.musicplayer.common.Utils;
 import com.shirokuma.musicplayer.playback.MusicService;
+import com.shirokuma.musicplayer.view.LyricView;
+import com.shirokuma.musicplayer.view.PlaybackSeekbar;
+import com.shirokuma.musicplayer.view.TextScrollView;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -155,8 +158,13 @@ public class LyricsActivity extends BindSrvOpMenusActivity {
                 // try to find a LRC file and show
                 mLrcView.reset(mMusicSrv.getCurrentSong());
                 // if there is no LRC file, try to find a txt
-                if (mLrcView.getVisibility() == View.VISIBLE) {
-                    mTextScroll.setVisibility(View.GONE);
+                if (mLrcView.ifFoundLRC()) {
+                    mSeekbar.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            mTextScroll.setVisibility(View.GONE);
+                        }
+                    });
                 } else {
                     mTextScroll.reset(mMusicSrv.getCurrentSong());
                 }
