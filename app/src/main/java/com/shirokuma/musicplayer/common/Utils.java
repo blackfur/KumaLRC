@@ -63,9 +63,10 @@ public class Utils {
         return stringBuilder.toString();
     }
 
-    public static String toGB2312(String source) {
+    // convert gb2312 to utf-8
+    public static String gb2utf(String source) {
         try {
-            return new String(source.getBytes(), "GB2312");
+            return new String(source.getBytes("GB2312"), "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
