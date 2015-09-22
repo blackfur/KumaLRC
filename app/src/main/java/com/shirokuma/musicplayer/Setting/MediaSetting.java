@@ -71,11 +71,13 @@ public class MediaSetting {
     }
 
     public void setLastFilter(Filter f) {
-        SharedPreferences.Editor editor = mSharedPre.edit();
-        editor.putInt(KEY_LAST_FITER_TYPE, f.type.getId());
-        editor.putString(KEY_LAST_FITER_ALBUM, f.album);
-        editor.putString(KEY_LAST_FITER_ARTIST, f.artist);
-        editor.commit();
+        if (f != null) {
+            SharedPreferences.Editor editor = mSharedPre.edit();
+            editor.putInt(KEY_LAST_FITER_TYPE, f.type.getId());
+            editor.putString(KEY_LAST_FITER_ALBUM, f.album);
+            editor.putString(KEY_LAST_FITER_ARTIST, f.artist);
+            editor.commit();
+        }
     }
 
     public Filter getLastFilter() {

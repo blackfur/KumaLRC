@@ -81,6 +81,8 @@ public class MusicListActivity extends BindSrvOpMenusActivity {
                     if (mMusicSrv.getCurrentSong() != null) {
                         mName.setText(mMusicSrv.getCurrentSong().title);
                         mArtist.setText(mMusicSrv.getCurrentSong().artist);
+                        mBtnPause.setVisibility(View.VISIBLE);
+                        mBtnPlay.setVisibility(View.GONE);
                     }
                     break;
                 case R.id.simple_ctrl_prev:
@@ -88,6 +90,8 @@ public class MusicListActivity extends BindSrvOpMenusActivity {
                     if (mMusicSrv.getCurrentSong() != null) {
                         mName.setText(mMusicSrv.getCurrentSong().title);
                         mArtist.setText(mMusicSrv.getCurrentSong().artist);
+                        mBtnPause.setVisibility(View.VISIBLE);
+                        mBtnPlay.setVisibility(View.GONE);
                     }
                     break;
                 case R.id.simple_ctrl_play:
