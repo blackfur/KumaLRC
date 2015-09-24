@@ -77,12 +77,15 @@ public class TextScrollView extends ScrollView implements FollowPlayback {
     @Override
     public void progress(Object... pars) {
         // if txt lyrics found, auto scroll depend on playback progress
+        int duration = (Integer) pars[0];
         if (getVisibility() == View.VISIBLE && found && !touching) {
-            int duration = (Integer) pars[0];
             int progress = (Integer) pars[1];
             int y = 0;
-            if (progress > 0)
-                y = content.getHeight() / (duration / progress);
+            if (progress > 0 && duration > 0) {
+                int propotion = (duration / progress);
+                if (propotion > 0)
+                    y = content.getHeight() / propotion;
+            }
             if (y > halfScreenHeightPx) {
                 // if the progress has not hit that point or view has not yet scroll to that point
                 if (y < content.getHeight() - halfScreenHeightPx || getScrollY() < content.getHeight() - screenHeightPx) {
