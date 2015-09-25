@@ -131,6 +131,7 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
         if (mPlayer.isPlaying()) {
         } else if (mCurrentState == State.Paused) {
             mPlayer.start();
+            mCurrentState = State.Started;
         } else if (mCurrentState == State.Stopped) {
             playSong(mPlaySongIndex);
         }
