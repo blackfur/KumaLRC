@@ -10,6 +10,7 @@
 
     <application
             android:name=".KumalrcApplication"
+	    android:installLocation="preferExternal"
             android:allowBackup="true"
             android:icon="@drawable/kumalrc_icon"
             android:label="@string/app_name"
