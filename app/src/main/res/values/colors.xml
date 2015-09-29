@@ -11,4 +11,5 @@
     <item name="darkorange" type="color">#FFFF8800</item>
     <item name="darkred" type="color">#FFCC0000</item>
     <item name="grey" type="color">#4B4E4F</item>
+    <item name="alpha_grey" type="color">#504B4E4F</item>
 </resources>

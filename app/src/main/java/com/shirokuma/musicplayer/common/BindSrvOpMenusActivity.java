@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import com.shirokuma.musicplayer.KumalrcApplication;
 import com.shirokuma.musicplayer.R;
 import com.shirokuma.musicplayer.setting.MediaSetting;
+import com.shirokuma.musicplayer.setting.SettingActivity;
 import com.shirokuma.musicplayer.setting.TimerActivity;
 import com.shirokuma.musicplayer.playback.MusicBroadcast;
 import com.shirokuma.musicplayer.playback.MusicService;
@@ -129,6 +130,11 @@ public abstract class BindSrvOpMenusActivity extends BaseActivity implements Med
                 break;
             case R.id.action_timer:
                 startActivity(new Intent(this, TimerActivity.class));
+                break;
+            case R.id.action_setting:
+                if (mMusicSrv != null && mMusicSrv.isPlaying())
+                    mMusicSrv.stop();
+                startActivity(new Intent(this, SettingActivity.class));
                 break;
         }
         return super.onOptionsItemSelected(item);

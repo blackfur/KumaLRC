@@ -9,7 +9,7 @@
 
     <ImageView
             style="@style/icon"
-            android:visibility="visible"
+            android:visibility="gone"
             android:src="@drawable/default_play_image"
             android:layout_width="0dp"
             android:layout_weight="10"/>

@@ -21,7 +21,8 @@
     <string name="cancel_sleep">canceled sleep mode</string>
     <string name="delete">delete</string>
     <string name="in_order">in order</string>
-    <string name="scan">rescan audio file</string>
+    <string name="rescan">rescan audio file</string>
+    <string name="scan">scan</string>
     <string-array name="songs_filter">
         <item>All Songs</item>
         <item>Artist</item>
@@ -36,10 +37,12 @@
         <item>60 minutes</item>
         <item>90 minutes</item>
     </string-array>
-    <string name="title_activity_scan">ScanActivity</string>
 
-    <string name="hello_world">Hello world!</string>
     <string name="scanning">scanning</string>
     <string name="scanned">scanned</string>
     <string name="playing">Playing</string>
+    <string name="login">login</string>
+    <string name="bind_account">bind account</string>
+    <string name="save_last">save last playback</string>
+    <string name="version">version</string>
 </resources>

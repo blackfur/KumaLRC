@@ -67,7 +67,22 @@ public class LyricListView extends ListView implements FollowPlayback {
             mLyrics.setCurrentTime(progress);
             post(new Runnable() {
                 public void run() {
-                    smoothScrollToPosition(mLyrics.getCurrentPosition());
+                    final int position = mLyrics.getCurrentPosition();
+                    smoothScrollToPosition(position + 2);
+                    postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            // refresh color
+                            int totalVisible = getLastVisiblePosition() - getFirstVisiblePosition();
+                            for (int i = 0; i <= totalVisible; i++)
+                                ((TextView) getChildAt(i)).setTextColor(Color.WHITE);
+                            // current line
+                            int index = position - getFirstVisiblePosition();
+                            TextView textView = (TextView) getChildAt(index);
+                            if (textView != null)
+                                textView.setTextColor(Color.BLUE);
+                        }
+                    }, 128);
                 }
             });
         }

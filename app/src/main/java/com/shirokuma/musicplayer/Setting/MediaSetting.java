@@ -12,6 +12,7 @@ public class MediaSetting {
     private final String KEY_FIRST_INSTALL = "first_install";
     private final String KEY_SHUFFLE = "shuffle";
     private final String KEY_LAST_PLAY_PROGRESS = "last_play_progress";
+    private final String KEY_LAST_PLAY_SAVE = "last_play_save";
     private final String KEY_LAST_FITER_TYPE = "last_fiter_type";
     private final String KEY_LAST_FITER_ARTIST = "last_fiter_artist";
     private final String KEY_LAST_FITER_ALBUM = "last_fiter_album";
@@ -86,5 +87,15 @@ public class MediaSetting {
         f.album = mSharedPre.getString(KEY_LAST_FITER_ALBUM, null);
         f.artist = mSharedPre.getString(KEY_LAST_FITER_ARTIST, null);
         return f;
+    }
+
+    public void setSaveLast(boolean b) {
+        SharedPreferences.Editor editor = mSharedPre.edit();
+        editor.putBoolean(KEY_LAST_PLAY_SAVE, b);
+        editor.commit();
+    }
+
+    public boolean getSaveLast() {
+        return mSharedPre.getBoolean(KEY_LAST_PLAY_SAVE, true);
     }
 }

@@ -2,7 +2,7 @@
     <item
             android:id="@+id/action_scan"
             android:icon="@drawable/zoom_in"
-            android:title="@string/scan"/>
+            android:title="@string/rescan"/>
     <item
             android:id="@+id/action_in_order"
             android:icon="@drawable/in_order"
@@ -15,6 +15,10 @@
             android:id="@+id/action_timer"
             android:icon="@drawable/sleep"
             android:title="@string/sleep_mode"/>
+    <item
+            android:id="@+id/action_setting"
+            android:icon="@drawable/setting"
+            android:title="@string/action_settings"/>
     <item
             android:id="@+id/action_end"
             android:icon="@drawable/end"

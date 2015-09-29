@@ -1,0 +1,132 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:background="@android:color/white"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="com.shirokuma.musicplayer.lyrics.LyricsActivity">
+
+    <include
+            android:id="@+id/head"
+            style="@style/head"
+            layout="@layout/kumalrc_head"/>
+
+    <LinearLayout
+            android:paddingTop="16dp"
+            android:paddingLeft="28dp"
+            android:paddingRight="28dp"
+            android:layout_below="@id/head"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:layout_centerVertical="true"
+                    android:text="@string/shuffle"
+                    android:layout_alignParentLeft="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            <ToggleButton
+                    android:id="@+id/shuffle"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+        </RelativeLayout>
+
+        <View
+                android:background="@color/alpha_grey"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+        <RelativeLayout
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:layout_centerVertical="true"
+                    android:text="@string/bind_account"
+                    android:layout_alignParentLeft="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            <Button
+                    android:id="@+id/login"
+                    android:text="@string/login"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+        </RelativeLayout>
+
+        <View
+                android:visibility="gone"
+                android:background="@color/alpha_grey"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:layout_centerVertical="true"
+                    android:text="@string/rescan"
+                    android:layout_alignParentLeft="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            <Button
+                    android:text="@string/scan"
+                    android:id="@+id/scan"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+        </RelativeLayout>
+
+        <View
+                android:background="@color/alpha_grey"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:layout_centerVertical="true"
+                    android:text="@string/save_last"
+                    android:layout_alignParentLeft="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            <ToggleButton
+                    android:id="@+id/save_last"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+        </RelativeLayout>
+
+        <View
+                android:background="@color/alpha_grey"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+        <TextView
+                android:id="@+id/version"
+                android:paddingTop="16dp"
+                android:textSize="20sp"
+                android:textColor="@color/blue"
+                android:text="@string/version"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+</RelativeLayout>

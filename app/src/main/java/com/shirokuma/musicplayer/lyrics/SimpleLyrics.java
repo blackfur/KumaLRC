@@ -160,6 +160,6 @@ public class SimpleLyrics {
         // content
         public String lrc;
         // sequence position
-        public int position;
+        public int position = 0;
     }
 }

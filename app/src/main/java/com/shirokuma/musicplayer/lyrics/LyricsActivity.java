@@ -12,7 +12,6 @@ import com.shirokuma.musicplayer.common.FutureCallback;
 import com.shirokuma.musicplayer.common.Utils;
 import com.shirokuma.musicplayer.playback.MusicService;
 import com.shirokuma.musicplayer.view.LyricListView;
-import com.shirokuma.musicplayer.view.LyricView;
 import com.shirokuma.musicplayer.view.PlaybackSeekbar;
 import com.shirokuma.musicplayer.view.TextScrollView;
 

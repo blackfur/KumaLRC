@@ -113,9 +113,9 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
     public boolean onUnbind(Intent intent) {
         MediaSetting.getInstance(getApplicationContext()).setLastPlayIndex(mPlaySongIndex);
         MediaSetting.getInstance(getApplicationContext()).setLastFilter(currentFilter);
-        if (mCurrentState == State.Started || mCurrentState == State.Paused)
+        if (MediaSetting.getInstance(getApplicationContext()).getSaveLast() && (mCurrentState == State.Started || mCurrentState == State.Paused)) {
             MediaSetting.getInstance(getApplicationContext()).setLastPlayProgress(mPlayer.getCurrentPosition());
-        else
+        } else
             MediaSetting.getInstance(getApplicationContext()).setLastPlayProgress(0);
         mPlayer.stop();
         mPlayer.release();
