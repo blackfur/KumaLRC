@@ -1,35 +1,32 @@
 package com.shirokuma.musicplayer.share;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import com.shirokuma.musicplayer.R;
+import com.shirokuma.musicplayer.common.BaseActivity;
+import com.shirokuma.musicplayer.common.Utils;
+import com.tencent.mm.sdk.openapi.IWXAPI;
+import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
-public class ShareActivity extends ActionBarActivity {
+public class ShareActivity extends BaseActivity {
+    private IWXAPI webchatapi;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_share);
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_share, menu);
-        return true;
+    protected void initData() {
+        webchatapi = WXAPIFactory.createWXAPI(this, Utils.WEBCHAT_APP_ID, true);
+        webchatapi.registerApp(Utils.WEBCHAT_APP_ID);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+    protected void initView() {
+    }
+
+    @Override
+    protected int setContentViewRes() {
+        return R.layout.activity_share;
     }
 }

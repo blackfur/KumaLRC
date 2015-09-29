@@ -45,4 +45,7 @@
     <string name="bind_account">bind account</string>
     <string name="save_last">save last playback</string>
     <string name="version">version</string>
+    <string name="title_activity_share">ShareActivity</string>
+
+    <string name="hello_world">Hello world!</string>
 </resources>
