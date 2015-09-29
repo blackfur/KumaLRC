@@ -11,6 +11,7 @@ import com.shirokuma.musicplayer.common.BindSrvOpMenusActivity;
 import com.shirokuma.musicplayer.common.FutureCallback;
 import com.shirokuma.musicplayer.common.Utils;
 import com.shirokuma.musicplayer.playback.MusicService;
+import com.shirokuma.musicplayer.view.LyricListView;
 import com.shirokuma.musicplayer.view.LyricView;
 import com.shirokuma.musicplayer.view.PlaybackSeekbar;
 import com.shirokuma.musicplayer.view.TextScrollView;
@@ -23,7 +24,7 @@ public class LyricsActivity extends BindSrvOpMenusActivity {
     private ImageButton mBtnPlay, mBtnStop, mBtnPause, mBtnPre, mBtnNext, mBtnRewind, mBtnFastFroward;
     PlaybackSeekbar mSeekbar;
     // LRC lyrics
-    private LyricView mLrcView;
+    private LyricListView mLrcView;
     // txt lyrics
     private TextScrollView mTextScroll;
     Handler mWorkHandler;
@@ -117,7 +118,7 @@ public class LyricsActivity extends BindSrvOpMenusActivity {
         mBtnFastFroward.setOnClickListener(mBtnListener);
         mBtnRewind.setOnClickListener(mBtnListener);
         mBtnBack = findViewById(R.id.btn_back);
-        mLrcView = (LyricView) findViewById(R.id.lrc);
+        mLrcView = (LyricListView) findViewById(R.id.lrclist);
         mTextScroll = (TextScrollView) findViewById(R.id.txt_lrc);
         mBtnBack.postDelayed(new Runnable() {
             @Override
@@ -158,7 +159,7 @@ public class LyricsActivity extends BindSrvOpMenusActivity {
                 // try to find a LRC file and show
                 mLrcView.reset(mMusicSrv.getCurrentSong());
                 // if there is no LRC file, try to find a txt
-                if (mLrcView.ifFoundLRC()) {
+                if (mLrcView.isFoundLrc()) {
                     mSeekbar.post(new Runnable() {
                         @Override
                         public void run() {

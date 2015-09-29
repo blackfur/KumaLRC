@@ -18,16 +18,16 @@ import com.shirokuma.musicplayer.musiclib.Song;
 public class LyricView extends View implements FollowPlayback {
     ProgressDialog progressDialog;
     private float STEP = 0.8f;
-    private float mMiddleX;        //屏幕X轴的中点，此值固定，保持歌词在X中间显示
+    private float mMiddleX;
     private float mMiddleY;
     private float mMaxY; // bottom y
     // allow move lyrics position
     private boolean mAllowMove = false;
-    private float touchY;    //当触摸歌词View时，保存为当前触点的Y轴坐标
+    private float touchY;
     private int INTERVEL = 64;
-    private float mLineSpace;//歌词每行的间隔
-    Paint paint = new Paint();//画笔，用于画不是高亮的歌词
-    Paint paintHL = new Paint();//画笔，用于画高亮的歌词，即当前唱到这句歌词
+    private float mLineSpace;
+    Paint paint = new Paint();
+    Paint paintHL = new Paint();
     private Lyrics mLyrics;
     private boolean parsed = false;
 

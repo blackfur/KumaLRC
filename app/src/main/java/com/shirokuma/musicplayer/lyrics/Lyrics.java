@@ -30,12 +30,9 @@ public class Lyrics {
     private int mCurrentIndex;    //保存歌词TreeMap的下标
 
     public void setScreenWidth(float screenWidth) {
-        mScreenWidth = screenWidth;
         // divide 1.1 to leave space as margin
 //        mLrcLineLen = (int) (mScreenWidth / 1.1 / mCharSize);
     }
-
-    private float mScreenWidth = 540;
 
     public boolean findLrc(Song s) {
         if (!new File(s.lrc).exists()) {
@@ -57,12 +54,6 @@ public class Lyrics {
         return mCharSize;
     }
 
-    public void setCharSize(float mCharSize) {
-        this.mCharSize = mCharSize;
-        // divide 1.1 to leave space as margin
-        mLrcLineLen = (int) (mScreenWidth / 1.1 / mCharSize);
-    }
-
     private float mCharSize = 32;
     // how many characters in one line
     private int mLrcLineLen = 20;
@@ -70,7 +61,6 @@ public class Lyrics {
 
     public Lyrics(int widthPixels) {
         // calculate size
-        mScreenWidth = widthPixels;
         float ratio = widthPixels / (float) Utils.STANDARD_SCREEN_WIDTH;
         mWestFontSize = Math.round(Utils.STANDARD_WEST_FONT_SIZE * ratio);
         mWestFontLineLength = Utils.STANDARD_WEST_FONT_LINE_LENGTH;
