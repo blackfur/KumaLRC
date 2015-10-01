@@ -10,7 +10,7 @@ import java.lang.reflect.Method;
 public class Utils {
     public static final String ARGUMENTS_KEY_FILTER = "filter";
     public static final int SEEK_INTERVAL = 1000;
-    public static final String WEBCHAT_APP_ID = "wx88888888";
+    public static final String WEBCHAT_APPID= "wx8c97b24c8801739a";
 
     public static void setOptionMenuIconEnable(Menu menu, boolean enable) {
         try {
