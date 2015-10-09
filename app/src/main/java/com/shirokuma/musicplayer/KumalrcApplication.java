@@ -3,7 +3,14 @@ package com.shirokuma.musicplayer;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
+import com.shirokuma.musicplayer.common.Utils;
 import com.shirokuma.musicplayer.playback.MusicService;
+import com.tencent.mm.sdk.modelmsg.SendMessageToWX;
+import com.tencent.mm.sdk.modelmsg.WXMediaMessage;
+import com.tencent.mm.sdk.modelmsg.WXTextObject;
+import com.tencent.mm.sdk.openapi.IWXAPI;
+import com.tencent.mm.sdk.openapi.IWXAPIEventHandler;
+import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,11 +20,16 @@ import java.util.TimerTask;
 public class KumalrcApplication extends Application {
     Timer mTimer;
     static List<Activity> mBoundActivities = new ArrayList<Activity>();
+    private IWXAPI wxapi;
 
     @Override
     public void onCreate() {
         super.onCreate();
         startService(new Intent(this, MusicService.class));
+        if (Utils.isNetworkAvailable(this)) {
+            wxapi = WXAPIFactory.createWXAPI(this, Utils.WEBCHAT_APPID, false);
+            wxapi.registerApp(Utils.WEBCHAT_APPID);
+        }
     }
 
     public void addBoundActivity(Activity bound) {
@@ -45,6 +57,27 @@ public class KumalrcApplication extends Application {
                 }
             }, millis);
         }
+    }
+
+    public void webchatShare(String text) {
+        if (wxapi == null)
+            return;
+        WXTextObject textObj = new WXTextObject();
+        textObj.text = text;
+        WXMediaMessage msg = new WXMediaMessage();
+        msg.mediaObject = textObj;
+        msg.description = text;
+        SendMessageToWX.Req req = new SendMessageToWX.Req();
+        req.transaction = (text == null) ? String.valueOf(System.currentTimeMillis()) : "text" + System.currentTimeMillis();
+        req.message = msg;
+        req.scene = SendMessageToWX.Req.WXSceneTimeline;
+        wxapi.sendReq(req);
+    }
+
+    public void webchatHandleIntent(Intent intent, IWXAPIEventHandler handler) {
+        if (wxapi == null)
+            return;
+        wxapi.handleIntent(intent, handler);
     }
 
     public void exit() {

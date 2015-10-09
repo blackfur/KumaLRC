@@ -46,4 +46,9 @@
     <string name="save_last">save last playback</string>
     <string name="version">version</string>
     <string name="share">share</string>
+    <string name="errcode_success">send successfully</string>
+    <string name="errcode_cancel">cancel</string>
+    <string name="errcode_deny">deny</string>
+    <string name="errcode_unknown">unknown error</string>
+    <string name="listening">"I'm listening "</string>
 </resources>

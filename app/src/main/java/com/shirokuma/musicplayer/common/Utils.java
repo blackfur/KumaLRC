@@ -1,6 +1,8 @@
 package com.shirokuma.musicplayer.common;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.util.DisplayMetrics;
 import android.view.Menu;
 
@@ -10,7 +12,7 @@ import java.lang.reflect.Method;
 public class Utils {
     public static final String ARGUMENTS_KEY_FILTER = "filter";
     public static final int SEEK_INTERVAL = 1000;
-    public static final String WEBCHAT_APPID= "wx8c97b24c8801739a";
+    public static final String WEBCHAT_APPID = "wx8c97b24c8801739a";
 
     public static void setOptionMenuIconEnable(Menu menu, boolean enable) {
         try {
@@ -56,5 +58,16 @@ public class Utils {
             return null;
         }
         return stringBuilder.toString();
+    }
+
+    public static boolean isNetworkAvailable(Context context) {
+        ConnectivityManager connMgr = (ConnectivityManager)
+                context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

@@ -16,13 +16,11 @@ import com.shirokuma.musicplayer.setting.SettingActivity;
 import com.shirokuma.musicplayer.setting.TimerActivity;
 import com.shirokuma.musicplayer.playback.MusicBroadcast;
 import com.shirokuma.musicplayer.playback.MusicService;
-import com.tencent.mm.sdk.openapi.IWXAPI;
 
 // bind service and create options menu
 public abstract class BindSrvOpMenusActivity extends BaseActivity implements MediaScannerConnection.OnScanCompletedListener {
     protected MusicService mMusicSrv;
     protected ProgressDialog mProgress;
-    private IWXAPI api;
 
     @Override
     protected void initData() {
@@ -138,9 +136,12 @@ public abstract class BindSrvOpMenusActivity extends BaseActivity implements Med
                     mMusicSrv.stop();
                 startActivity(new Intent(this, SettingActivity.class));
                 break;
-	    case R.id.action_share:
-		api = WXAPIFactory.createWXAPI(this, Utils.WEBCHAT_APPID, false);
-		break;		
+            case R.id.action_share:
+                if (mMusicSrv != null && mMusicSrv.getCurrentSong() != null) {
+                    String content = new StringBuilder(getString(R.string.listening)).append(mMusicSrv.getCurrentSong().title).toString();
+                    ((KumalrcApplication) getApplication()).webchatShare(content);
+                }
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
