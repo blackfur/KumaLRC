@@ -68,7 +68,10 @@ public class LyricListView extends ListView implements FollowPlayback {
             post(new Runnable() {
                 public void run() {
                     final int position = mLyrics.getCurrentPosition();
-                    smoothScrollToPosition(position + 2);
+                    if (getFirstVisiblePosition() > position)
+                        smoothScrollToPosition(position);
+                    else
+                        smoothScrollToPosition(position + 2);
                     postDelayed(new Runnable() {
                         @Override
                         public void run() {

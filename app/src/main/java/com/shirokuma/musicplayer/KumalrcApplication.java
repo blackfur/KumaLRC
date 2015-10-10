@@ -3,6 +3,7 @@ package com.shirokuma.musicplayer;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
+import android.widget.Toast;
 import com.shirokuma.musicplayer.common.Utils;
 import com.shirokuma.musicplayer.playback.MusicService;
 import com.tencent.mm.sdk.modelmsg.SendMessageToWX;
@@ -60,8 +61,10 @@ public class KumalrcApplication extends Application {
     }
 
     public void webchatShare(String text) {
-        if (wxapi == null)
+        if (wxapi == null) {
+            Toast.makeText(getApplicationContext(), getString(R.string.share_err), Toast.LENGTH_LONG).show();
             return;
+        }
         WXTextObject textObj = new WXTextObject();
         textObj.text = text;
         WXMediaMessage msg = new WXMediaMessage();

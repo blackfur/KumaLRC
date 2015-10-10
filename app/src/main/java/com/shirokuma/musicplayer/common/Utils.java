@@ -13,14 +13,17 @@ public class Utils {
     public static final String ARGUMENTS_KEY_FILTER = "filter";
     public static final int SEEK_INTERVAL = 1000;
     public static final String WEBCHAT_APPID = "wx8c97b24c8801739a";
+    public static final String MORSE_CODE_BOOK[] = {"·-", "-···", "-·-·", "-··", "·", "··-·",
+            "--·", "····", "··", "·---", "-·-", "·-··", "--", "-·",
+            "---", "·--·", "--·-", "·-·", "···", "-", "··-", "···-",
+            "·--", "-··-", "-·--", "--··"
+    };
 
     public static void setOptionMenuIconEnable(Menu menu, boolean enable) {
         try {
-            //未知的类
             Class<?> clazz = Class.forName("com.android.internal.view.menu.MenuBuilder");
             Method m = clazz.getDeclaredMethod("setOptionalIconsVisible", boolean.class);
             m.setAccessible(true);
-            //MenuBuilder实现Menu接口，创建菜单时，传进来的menu其实就是MenuBuilder对象(java的多态特征)
             m.invoke(menu, enable);
         } catch (Exception e) {
             e.printStackTrace();
@@ -69,5 +72,15 @@ public class Utils {
         } else {
             return false;
         }
+    }
+
+    public static String str2morse(String text) {
+        StringBuffer buf = new StringBuffer(text.length() * 3);
+        int count = 0;
+        for (char c : text.toUpperCase().toCharArray()) {
+            if (count++ > 0) buf.append(", ");
+            buf.append(MORSE_CODE_BOOK[c - 'A']);
+        }
+        return buf.toString();
     }
 }

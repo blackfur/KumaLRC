@@ -51,4 +51,6 @@
     <string name="errcode_deny">deny</string>
     <string name="errcode_unknown">unknown error</string>
     <string name="listening">"I'm listening "</string>
+    <string name="share_err">Please install WebChat and make sure network access available.</string>
+    <string name="using">I\'m using kumalrc!</string>
 </resources>

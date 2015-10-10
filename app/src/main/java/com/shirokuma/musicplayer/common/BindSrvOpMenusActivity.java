@@ -137,10 +137,13 @@ public abstract class BindSrvOpMenusActivity extends BaseActivity implements Med
                 startActivity(new Intent(this, SettingActivity.class));
                 break;
             case R.id.action_share:
+                String content;
                 if (mMusicSrv != null && mMusicSrv.getCurrentSong() != null) {
-                    String content = new StringBuilder(getString(R.string.listening)).append(mMusicSrv.getCurrentSong().title).toString();
-                    ((KumalrcApplication) getApplication()).webchatShare(content);
+                    content = new StringBuilder(getString(R.string.listening)).append(mMusicSrv.getCurrentSong().title).toString();
+                } else {
+                    content = getString(R.string.using);
                 }
+                ((KumalrcApplication) getApplication()).webchatShare(content);
                 break;
         }
         return super.onOptionsItemSelected(item);
