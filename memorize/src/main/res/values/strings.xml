@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Memorize</string>
+    <string name="action_add">content</string>
+    <string name="backup">backup</string>
+    <string name="restore">restore</string>
+    <string name="save">save</string>
+    <string name="fail">failed</string>
+    <string name="import_from">import(utf8)</string>
+    <string name="func">functions</string>
+    <string name="loading">loading</string>
+    <string name="clear">clear</string>
+    <string name="input">Please input content</string>
+    <string name="finish">finish</string>
+    <string name="success">success</string>
+    <string name="nothing">nothing</string>
+    <string name="update">update</string>
+    <string name="done">done</string>
+    <string name="delete">delete</string>
+    <string name="redact">redact</string>
+    <string name="duplicate">duplicate is not allowed</string>
+    <string-array name="words">
+        <item>abash vt. 使羞愧</item>
+        <item>anthropology n. 人类学</item>
+        <item>barricade vt. 设路障; 阻碍</item>
+    </string-array>
+</resources>

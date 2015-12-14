@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:animateLayoutChanges="true"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <LinearLayout
+            android:id="@+id/ctrl"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+        <Button
+                style="@style/button"
+                android:visibility="gone"
+                android:text="@string/update"
+                android:id="@+id/update"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+
+        <Button
+                style="@style/button"
+                android:visibility="gone"
+                android:text="@string/delete"
+                android:id="@+id/delete"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+
+        <Button
+                style="@style/button"
+                android:text="@string/save"
+                android:id="@+id/save"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+
+        <Button
+                style="@style/button"
+                android:text="@string/clear"
+                android:id="@+id/clear"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+
+        <Button
+                style="@style/button"
+                android:visibility="gone"
+                android:text="@string/done"
+                android:id="@+id/cancel"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+
+        <Button
+                style="@style/button"
+                android:text="@string/finish"
+                android:id="@+id/finish"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <EditText
+            android:hint="@string/input"
+            android:textSize="24sp"
+            android:id="@+id/redact_content"
+            android:layout_above="@id/ctrl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+            android:layout_above="@id/redact_content"
+            android:id="@+id/swipe_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/entries"
+                android:scrollbars="vertical"
+                android:padding="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</RelativeLayout>

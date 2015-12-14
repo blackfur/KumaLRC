@@ -33,6 +33,7 @@
             </intent-filter>
         </activity>
         <activity
+                android:exported="true"
                 android:name=".musiclib.MusicListActivity"
                 android:launchMode="singleTop"
                 android:screenOrientation="portrait"/>

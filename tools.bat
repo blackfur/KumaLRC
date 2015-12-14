@@ -1,5 +1,5 @@
 setlocal
-set DEVICE=-s 192.168.3.103:5555
+set DEVICE=-s 192.168.3.121:5555
 set PACKAGE=com.shirokuma.musicplayer
 set PROJECT_PATH=e:\work\kumalrc
 set project=kumalrc
@@ -7,6 +7,7 @@ set module=app
 if "%1"=="reinstall" goto reinstall
 if [%1]==[sign] goto sign
 if [%1]==[release] goto release
+if [%1]==[run] goto run
 goto :eof
 :sign
 set ALIAS=shiro
@@ -26,20 +27,20 @@ if exist app-release.apk adb install app-release.apk
 goto :eof
 :release
 set apk=%module%/build/outputs/apk/%module%-release.apk
-call :install
-exit /b 0
-:install
 call :uninstall
-adb %DEVICE% install %apk%
+call :install
 call :run
 call :log
+exit /b 0
+:install
+adb %DEVICE% install %apk%
 exit /b 0
 :uninstall
 adb %DEVICE% uninstall %PACKAGE%
 exit /b 0
 :run
 rem set COMPONENT=android.app.NativeActivity
-set COMPONENT=%package%.WelcomeActivity
+set COMPONENT=%package%.musiclib.MusicListActivity
 adb %DEVICE% shell am start -n %PACKAGE%/%COMPONENT%
 exit /b 0
 :log

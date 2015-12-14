@@ -1,0 +1,33 @@
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+            android:id="@+id/ctrl"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+        <Button
+                style="@style/button"
+                android:text="@string/func"
+                android:id="@+id/func"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <TextView
+            android:layout_above="@id/ctrl"
+            android:id="@+id/content"
+            android:text="@string/app_name"
+            android:textSize="24sp"
+            android:gravity="center"
+            android:background="@drawable/pic2yellow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+</RelativeLayout>
