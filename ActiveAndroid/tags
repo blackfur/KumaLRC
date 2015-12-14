@@ -1,0 +1,1211 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+2.sql	.\tests\assets\migrations\2.sql	1;"	F
+4NT_args	.\gradlew.bat	/^:4NT_args$/;"	l
+AA_DB_NAME	.\src\com\activeandroid\Configuration.java	/^		private static final String AA_DB_NAME = "AA_DB_NAME";$/;"	f	class:Configuration.Builder	file:
+AA_DB_VERSION	.\src\com\activeandroid\Configuration.java	/^		private static final String AA_DB_VERSION = "AA_DB_VERSION";$/;"	f	class:Configuration.Builder	file:
+AA_MODELS	.\src\com\activeandroid\Configuration.java	/^		private final static String AA_MODELS = "AA_MODELS";$/;"	f	class:Configuration.Builder	file:
+AA_SERIALIZERS	.\src\com\activeandroid\Configuration.java	/^		private final static String AA_SERIALIZERS = "AA_SERIALIZERS";$/;"	f	class:Configuration.Builder	file:
+AA_SQL_PARSER	.\src\com\activeandroid\Configuration.java	/^		private final static String AA_SQL_PARSER = "AA_SQL_PARSER";$/;"	f	class:Configuration.Builder	file:
+ABORT	.\src\com\activeandroid\annotation\Column.java	/^		ROLLBACK, ABORT, FAIL, IGNORE, REPLACE$/;"	e	enum:Column.ConflictAction	file:
+APP_BASE_NAME	.\gradlew.bat	/^set APP_BASE_NAME=%~n0$/;"	v
+APP_HOME	.\gradlew.bat	/^set APP_HOME=%DIRNAME%$/;"	v
+ActiveAndroid	.\src\com\activeandroid\ActiveAndroid.java	/^public final class ActiveAndroid {$/;"	c
+ActiveAndroid.beginTransaction	.\src\com\activeandroid\ActiveAndroid.java	/^	public static void beginTransaction() {$/;"	m	class:ActiveAndroid
+ActiveAndroid.clearCache	.\src\com\activeandroid\ActiveAndroid.java	/^	public static void clearCache() {$/;"	m	class:ActiveAndroid
+ActiveAndroid.dispose	.\src\com\activeandroid\ActiveAndroid.java	/^	public static void dispose() {$/;"	m	class:ActiveAndroid
+ActiveAndroid.endTransaction	.\src\com\activeandroid\ActiveAndroid.java	/^	public static void endTransaction() {$/;"	m	class:ActiveAndroid
+ActiveAndroid.execSQL	.\src\com\activeandroid\ActiveAndroid.java	/^	public static void execSQL(String sql) {$/;"	m	class:ActiveAndroid
+ActiveAndroid.execSQL	.\src\com\activeandroid\ActiveAndroid.java	/^	public static void execSQL(String sql, Object[] bindArgs) {$/;"	m	class:ActiveAndroid
+ActiveAndroid.getDatabase	.\src\com\activeandroid\ActiveAndroid.java	/^	public static SQLiteDatabase getDatabase() {$/;"	m	class:ActiveAndroid
+ActiveAndroid.inTransaction	.\src\com\activeandroid\ActiveAndroid.java	/^	public static boolean inTransaction() {$/;"	m	class:ActiveAndroid
+ActiveAndroid.initialize	.\src\com\activeandroid\ActiveAndroid.java	/^	public static void initialize(Configuration configuration) {$/;"	m	class:ActiveAndroid
+ActiveAndroid.initialize	.\src\com\activeandroid\ActiveAndroid.java	/^	public static void initialize(Configuration configuration, boolean loggingEnabled) {$/;"	m	class:ActiveAndroid
+ActiveAndroid.initialize	.\src\com\activeandroid\ActiveAndroid.java	/^	public static void initialize(Context context) {$/;"	m	class:ActiveAndroid
+ActiveAndroid.initialize	.\src\com\activeandroid\ActiveAndroid.java	/^	public static void initialize(Context context, boolean loggingEnabled) {$/;"	m	class:ActiveAndroid
+ActiveAndroid.java	.\src\com\activeandroid\ActiveAndroid.java	1;"	F
+ActiveAndroid.setLoggingEnabled	.\src\com\activeandroid\ActiveAndroid.java	/^	public static void setLoggingEnabled(boolean enabled) {$/;"	m	class:ActiveAndroid
+ActiveAndroid.setTransactionSuccessful	.\src\com\activeandroid\ActiveAndroid.java	/^	public static void setTransactionSuccessful() {$/;"	m	class:ActiveAndroid
+ActiveAndroidTestCase	.\tests\src\com\activeandroid\test\ActiveAndroidTestCase.java	/^	public ActiveAndroidTestCase() {$/;"	m	class:ActiveAndroidTestCase
+ActiveAndroidTestCase	.\tests\src\com\activeandroid\test\ActiveAndroidTestCase.java	/^public abstract class ActiveAndroidTestCase extends ApplicationTestCase<Application> {$/;"	c
+ActiveAndroidTestCase.ActiveAndroidTestCase	.\tests\src\com\activeandroid\test\ActiveAndroidTestCase.java	/^	public ActiveAndroidTestCase() {$/;"	m	class:ActiveAndroidTestCase
+ActiveAndroidTestCase.assertArrayEquals	.\tests\src\com\activeandroid\test\ActiveAndroidTestCase.java	/^	public static <T> void assertArrayEquals(T[] actual, T... expected) {$/;"	m	class:ActiveAndroidTestCase
+ActiveAndroidTestCase.java	.\tests\src\com\activeandroid\test\ActiveAndroidTestCase.java	1;"	F
+ActiveAndroidTestCase.setUp	.\tests\src\com\activeandroid\test\ActiveAndroidTestCase.java	/^	protected void setUp() throws Exception {$/;"	m	class:ActiveAndroidTestCase
+ActiveAndroidTestCase.tearDown	.\tests\src\com\activeandroid\test\ActiveAndroidTestCase.java	/^	protected void tearDown() throws Exception {$/;"	m	class:ActiveAndroidTestCase
+AnotherMockModel	.\tests\src\com\activeandroid\test\ModelTest.java	/^	public static class AnotherMockModel extends Model {}$/;"	c	class:ModelTest
+Application	.\src\com\activeandroid\app\Application.java	/^public class Application extends android.app.Application {$/;"	c
+Application.java	.\src\com\activeandroid\app\Application.java	1;"	F
+Application.onCreate	.\src\com\activeandroid\app\Application.java	/^	public void onCreate() {$/;"	m	class:Application
+Application.onTerminate	.\src\com\activeandroid\app\Application.java	/^	public void onTerminate() {$/;"	m	class:Application
+BLOB	.\src\com\activeandroid\util\SQLiteUtils.java	/^		INTEGER, REAL, TEXT, BLOB$/;"	e	enum:SQLiteUtils.SQLiteType	file:
+BigDecimalSerializer	.\src\com\activeandroid\serializer\BigDecimalSerializer.java	/^public final class BigDecimalSerializer extends TypeSerializer {$/;"	c
+BigDecimalSerializer.deserialize	.\src\com\activeandroid\serializer\BigDecimalSerializer.java	/^	public BigDecimal deserialize(Object data) {$/;"	m	class:BigDecimalSerializer
+BigDecimalSerializer.getDeserializedType	.\src\com\activeandroid\serializer\BigDecimalSerializer.java	/^	public Class<?> getDeserializedType() {$/;"	m	class:BigDecimalSerializer
+BigDecimalSerializer.getSerializedType	.\src\com\activeandroid\serializer\BigDecimalSerializer.java	/^	public Class<?> getSerializedType() {$/;"	m	class:BigDecimalSerializer
+BigDecimalSerializer.java	.\src\com\activeandroid\serializer\BigDecimalSerializer.java	1;"	F
+BigDecimalSerializer.serialize	.\src\com\activeandroid\serializer\BigDecimalSerializer.java	/^	public String serialize(Object data) {$/;"	m	class:BigDecimalSerializer
+Builder	.\src\com\activeandroid\Configuration.java	/^		public Builder(Context context) {$/;"	m	class:Configuration.Builder
+Builder	.\src\com\activeandroid\Configuration.java	/^	public static class Builder {$/;"	c	class:Configuration
+CASCADE	.\src\com\activeandroid\annotation\Column.java	/^		SET_NULL, SET_DEFAULT, CASCADE, RESTRICT, NO_ACTION$/;"	e	enum:Column.ForeignKeyAction	file:
+CLASSPATH	.\gradlew.bat	/^set CLASSPATH=%APP_HOME%\\gradle\\wrapper\\gradle-wrapper.jar$/;"	v
+CMD_LINE_ARGS	.\gradlew.bat	/^set CMD_LINE_ARGS=$/;"	v
+CMD_LINE_ARGS	.\gradlew.bat	/^set CMD_LINE_ARGS=%*$/;"	v
+CMD_LINE_ARGS	.\gradlew.bat	/^set CMD_LINE_ARGS=%\$$/;"	v
+CROSS	.\src\com\activeandroid\query\Join.java	/^		LEFT, OUTER, INNER, CROSS$/;"	e	enum:Join.JoinType	file:
+Cache	.\src\com\activeandroid\Cache.java	/^	private Cache() {$/;"	m	class:Cache	file:
+Cache	.\src\com\activeandroid\Cache.java	/^public final class Cache {$/;"	c
+Cache.Cache	.\src\com\activeandroid\Cache.java	/^	private Cache() {$/;"	m	class:Cache	file:
+Cache.DEFAULT_CACHE_SIZE	.\src\com\activeandroid\Cache.java	/^	public static final int DEFAULT_CACHE_SIZE = 1024;$/;"	f	class:Cache
+Cache.addEntity	.\src\com\activeandroid\Cache.java	/^	public static synchronized void addEntity(Model entity) {$/;"	m	class:Cache
+Cache.clear	.\src\com\activeandroid\Cache.java	/^	public static synchronized void clear() {$/;"	m	class:Cache
+Cache.closeDatabase	.\src\com\activeandroid\Cache.java	/^	public static synchronized void closeDatabase() {$/;"	m	class:Cache
+Cache.dispose	.\src\com\activeandroid\Cache.java	/^	public static synchronized void dispose() {$/;"	m	class:Cache
+Cache.getContext	.\src\com\activeandroid\Cache.java	/^	public static Context getContext() {$/;"	m	class:Cache
+Cache.getEntity	.\src\com\activeandroid\Cache.java	/^	public static synchronized Model getEntity(Class<? extends Model> type, long id) {$/;"	m	class:Cache
+Cache.getIdentifier	.\src\com\activeandroid\Cache.java	/^	public static String getIdentifier(Class<? extends Model> type, Long id) {$/;"	m	class:Cache
+Cache.getIdentifier	.\src\com\activeandroid\Cache.java	/^	public static String getIdentifier(Model entity) {$/;"	m	class:Cache
+Cache.getParserForType	.\src\com\activeandroid\Cache.java	/^	public static synchronized TypeSerializer getParserForType(Class<?> type) {$/;"	m	class:Cache
+Cache.getTableInfo	.\src\com\activeandroid\Cache.java	/^	public static synchronized TableInfo getTableInfo(Class<? extends Model> type) {$/;"	m	class:Cache
+Cache.getTableInfos	.\src\com\activeandroid\Cache.java	/^	public static synchronized Collection<TableInfo> getTableInfos() {$/;"	m	class:Cache
+Cache.getTableName	.\src\com\activeandroid\Cache.java	/^	public static synchronized String getTableName(Class<? extends Model> type) {$/;"	m	class:Cache
+Cache.initialize	.\src\com\activeandroid\Cache.java	/^	public static synchronized void initialize(Configuration configuration) {$/;"	m	class:Cache
+Cache.isInitialized	.\src\com\activeandroid\Cache.java	/^	public static boolean isInitialized() {$/;"	m	class:Cache
+Cache.java	.\src\com\activeandroid\Cache.java	1;"	F
+Cache.openDatabase	.\src\com\activeandroid\Cache.java	/^	public static synchronized SQLiteDatabase openDatabase() {$/;"	m	class:Cache
+Cache.removeEntity	.\src\com\activeandroid\Cache.java	/^	public static synchronized void removeEntity(Model entity) {$/;"	m	class:Cache
+Cache.sContext	.\src\com\activeandroid\Cache.java	/^	private static Context sContext;$/;"	f	class:Cache	file:
+Cache.sDatabaseHelper	.\src\com\activeandroid\Cache.java	/^	private static DatabaseHelper sDatabaseHelper;$/;"	f	class:Cache	file:
+Cache.sEntities	.\src\com\activeandroid\Cache.java	/^	private static LruCache<String, Model> sEntities;$/;"	f	class:Cache	file:
+Cache.sIsInitialized	.\src\com\activeandroid\Cache.java	/^	private static boolean sIsInitialized = false;$/;"	f	class:Cache	file:
+Cache.sModelInfo	.\src\com\activeandroid\Cache.java	/^	private static ModelInfo sModelInfo;$/;"	f	class:Cache	file:
+CacheTest	.\tests\src\com\activeandroid\test\CacheTest.java	/^public class CacheTest extends AndroidTestCase {$/;"	c
+CacheTest.CacheTestModel	.\tests\src\com\activeandroid\test\CacheTest.java	/^    private static class CacheTestModel extends Model {$/;"	c	class:CacheTest
+CacheTest.CacheTestModel2	.\tests\src\com\activeandroid\test\CacheTest.java	/^    private static class CacheTestModel2 extends Model {$/;"	c	class:CacheTest
+CacheTest.java	.\tests\src\com\activeandroid\test\CacheTest.java	1;"	F
+CacheTest.setUp	.\tests\src\com\activeandroid\test\CacheTest.java	/^    protected void setUp() {$/;"	m	class:CacheTest
+CacheTest.testGetTableInfos	.\tests\src\com\activeandroid\test\CacheTest.java	/^    public void testGetTableInfos() {$/;"	m	class:CacheTest
+CacheTestModel	.\tests\src\com\activeandroid\test\CacheTest.java	/^    private static class CacheTestModel extends Model {$/;"	c	class:CacheTest
+CacheTestModel2	.\tests\src\com\activeandroid\test\CacheTest.java	/^    private static class CacheTestModel2 extends Model {$/;"	c	class:CacheTest
+CalendarSerializer	.\src\com\activeandroid\serializer\CalendarSerializer.java	/^public final class CalendarSerializer extends TypeSerializer {$/;"	c
+CalendarSerializer.deserialize	.\src\com\activeandroid\serializer\CalendarSerializer.java	/^	public Calendar deserialize(Object data) {$/;"	m	class:CalendarSerializer
+CalendarSerializer.getDeserializedType	.\src\com\activeandroid\serializer\CalendarSerializer.java	/^	public Class<?> getDeserializedType() {$/;"	m	class:CalendarSerializer
+CalendarSerializer.getSerializedType	.\src\com\activeandroid\serializer\CalendarSerializer.java	/^	public Class<?> getSerializedType() {$/;"	m	class:CalendarSerializer
+CalendarSerializer.java	.\src\com\activeandroid\serializer\CalendarSerializer.java	1;"	F
+CalendarSerializer.serialize	.\src\com\activeandroid\serializer\CalendarSerializer.java	/^	public Long serialize(Object data) {$/;"	m	class:CalendarSerializer
+ChildMockModel	.\tests\src\com\activeandroid\test\ModelTest.java	/^    public static class ChildMockModel extends ParentJoinMockModel {$/;"	c	class:ModelTest
+Column	.\src\com\activeandroid\annotation\Column.java	/^public @interface Column {$/;"	i
+Column	.\src\com\activeandroid\query\Select.java	/^		public Column(String name, String alias) {$/;"	m	class:Select.Column
+Column	.\src\com\activeandroid\query\Select.java	/^	public static class Column {$/;"	c	class:Select
+Column.ConflictAction	.\src\com\activeandroid\annotation\Column.java	/^	public enum ConflictAction {$/;"	g	interface:Column
+Column.ConflictAction.FAIL	.\src\com\activeandroid\annotation\Column.java	/^	public ConflictAction onNullConflict() default ConflictAction.FAIL;$/;"	f	interface:Column
+Column.ConflictAction.FAIL	.\src\com\activeandroid\annotation\Column.java	/^	public ConflictAction onUniqueConflict() default ConflictAction.FAIL;$/;"	f	interface:Column
+Column.ForeignKeyAction	.\src\com\activeandroid\annotation\Column.java	/^	public enum ForeignKeyAction {$/;"	g	interface:Column
+Column.ForeignKeyAction.NO_ACTION	.\src\com\activeandroid\annotation\Column.java	/^	public ForeignKeyAction onDelete() default ForeignKeyAction.NO_ACTION;$/;"	f	interface:Column
+Column.ForeignKeyAction.NO_ACTION	.\src\com\activeandroid\annotation\Column.java	/^	public ForeignKeyAction onUpdate() default ForeignKeyAction.NO_ACTION;$/;"	f	interface:Column
+Column.false	.\src\com\activeandroid\annotation\Column.java	/^	public boolean index() default false;$/;"	f	interface:Column
+Column.false	.\src\com\activeandroid\annotation\Column.java	/^	public boolean notNull() default false;$/;"	f	interface:Column
+Column.false	.\src\com\activeandroid\annotation\Column.java	/^	public boolean unique() default false;$/;"	f	interface:Column
+Column.java	.\src\com\activeandroid\annotation\Column.java	1;"	F
+Column.Ó	.\src\com\activeandroid\annotation\Column.java	/^	public String name() default "";$/;"	f	interface:Column
+Configuration	.\src\com\activeandroid\Configuration.java	/^	private Configuration(Context context) {$/;"	m	class:Configuration	file:
+Configuration	.\src\com\activeandroid\Configuration.java	/^public class Configuration {$/;"	c
+Configuration.Builder	.\src\com\activeandroid\Configuration.java	/^	public static class Builder {$/;"	c	class:Configuration
+Configuration.Builder.AA_DB_NAME	.\src\com\activeandroid\Configuration.java	/^		private static final String AA_DB_NAME = "AA_DB_NAME";$/;"	f	class:Configuration.Builder	file:
+Configuration.Builder.AA_DB_VERSION	.\src\com\activeandroid\Configuration.java	/^		private static final String AA_DB_VERSION = "AA_DB_VERSION";$/;"	f	class:Configuration.Builder	file:
+Configuration.Builder.AA_MODELS	.\src\com\activeandroid\Configuration.java	/^		private final static String AA_MODELS = "AA_MODELS";$/;"	f	class:Configuration.Builder	file:
+Configuration.Builder.AA_SERIALIZERS	.\src\com\activeandroid\Configuration.java	/^		private final static String AA_SERIALIZERS = "AA_SERIALIZERS";$/;"	f	class:Configuration.Builder	file:
+Configuration.Builder.AA_SQL_PARSER	.\src\com\activeandroid\Configuration.java	/^		private final static String AA_SQL_PARSER = "AA_SQL_PARSER";$/;"	f	class:Configuration.Builder	file:
+Configuration.Builder.Builder	.\src\com\activeandroid\Configuration.java	/^		public Builder(Context context) {$/;"	m	class:Configuration.Builder
+Configuration.Builder.DEFAULT_CACHE_SIZE	.\src\com\activeandroid\Configuration.java	/^		private static final int DEFAULT_CACHE_SIZE = 1024;$/;"	f	class:Configuration.Builder	file:
+Configuration.Builder.DEFAULT_DB_NAME	.\src\com\activeandroid\Configuration.java	/^		private static final String DEFAULT_DB_NAME = "Application.db";$/;"	f	class:Configuration.Builder	file:
+Configuration.Builder.DEFAULT_SQL_PARSER	.\src\com\activeandroid\Configuration.java	/^		private static final String DEFAULT_SQL_PARSER = SQL_PARSER_LEGACY;$/;"	f	class:Configuration.Builder	file:
+Configuration.Builder.addModelClass	.\src\com\activeandroid\Configuration.java	/^		public Builder addModelClass(Class<? extends Model> modelClass) {$/;"	m	class:Configuration.Builder
+Configuration.Builder.addModelClasses	.\src\com\activeandroid\Configuration.java	/^		public Builder addModelClasses(Class<? extends Model>... modelClasses) {$/;"	m	class:Configuration.Builder
+Configuration.Builder.addTypeSerializer	.\src\com\activeandroid\Configuration.java	/^		public Builder addTypeSerializer(Class<? extends TypeSerializer> typeSerializer) {$/;"	m	class:Configuration.Builder
+Configuration.Builder.addTypeSerializers	.\src\com\activeandroid\Configuration.java	/^		public Builder addTypeSerializers(Class<? extends TypeSerializer>... typeSerializers) {$/;"	m	class:Configuration.Builder
+Configuration.Builder.create	.\src\com\activeandroid\Configuration.java	/^		public Configuration create() {$/;"	m	class:Configuration.Builder
+Configuration.Builder.getMetaDataDatabaseNameOrDefault	.\src\com\activeandroid\Configuration.java	/^		private String getMetaDataDatabaseNameOrDefault() {$/;"	m	class:Configuration.Builder	file:
+Configuration.Builder.getMetaDataDatabaseVersionOrDefault	.\src\com\activeandroid\Configuration.java	/^		private int getMetaDataDatabaseVersionOrDefault() {$/;"	m	class:Configuration.Builder	file:
+Configuration.Builder.getMetaDataSqlParserOrDefault	.\src\com\activeandroid\Configuration.java	/^		private String getMetaDataSqlParserOrDefault() {$/;"	m	class:Configuration.Builder	file:
+Configuration.Builder.loadModelList	.\src\com\activeandroid\Configuration.java	/^		private List<Class<? extends Model>> loadModelList(String[] models) {$/;"	m	class:Configuration.Builder	file:
+Configuration.Builder.loadSerializerList	.\src\com\activeandroid\Configuration.java	/^		private List<Class<? extends TypeSerializer>> loadSerializerList(String[] serializers) {$/;"	m	class:Configuration.Builder	file:
+Configuration.Builder.mCacheSize	.\src\com\activeandroid\Configuration.java	/^		private Integer mCacheSize;$/;"	f	class:Configuration.Builder	file:
+Configuration.Builder.mContext	.\src\com\activeandroid\Configuration.java	/^		private Context mContext;$/;"	f	class:Configuration.Builder	file:
+Configuration.Builder.mDatabaseName	.\src\com\activeandroid\Configuration.java	/^		private String mDatabaseName;$/;"	f	class:Configuration.Builder	file:
+Configuration.Builder.mDatabaseVersion	.\src\com\activeandroid\Configuration.java	/^		private Integer mDatabaseVersion;$/;"	f	class:Configuration.Builder	file:
+Configuration.Builder.mModelClasses	.\src\com\activeandroid\Configuration.java	/^		private List<Class<? extends Model>> mModelClasses;$/;"	f	class:Configuration.Builder	file:
+Configuration.Builder.mSqlParser	.\src\com\activeandroid\Configuration.java	/^		private String mSqlParser;$/;"	f	class:Configuration.Builder	file:
+Configuration.Builder.mTypeSerializers	.\src\com\activeandroid\Configuration.java	/^		private List<Class<? extends TypeSerializer>> mTypeSerializers;$/;"	f	class:Configuration.Builder	file:
+Configuration.Builder.setCacheSize	.\src\com\activeandroid\Configuration.java	/^		public Builder setCacheSize(int cacheSize) {$/;"	m	class:Configuration.Builder
+Configuration.Builder.setDatabaseName	.\src\com\activeandroid\Configuration.java	/^		public Builder setDatabaseName(String databaseName) {$/;"	m	class:Configuration.Builder
+Configuration.Builder.setDatabaseVersion	.\src\com\activeandroid\Configuration.java	/^		public Builder setDatabaseVersion(int databaseVersion) {$/;"	m	class:Configuration.Builder
+Configuration.Builder.setModelClasses	.\src\com\activeandroid\Configuration.java	/^		public Builder setModelClasses(Class<? extends Model>... modelClasses) {$/;"	m	class:Configuration.Builder
+Configuration.Builder.setSqlParser	.\src\com\activeandroid\Configuration.java	/^		public Builder setSqlParser(String sqlParser) {$/;"	m	class:Configuration.Builder
+Configuration.Builder.setTypeSerializers	.\src\com\activeandroid\Configuration.java	/^		public Builder setTypeSerializers(Class<? extends TypeSerializer>... typeSerializers) {$/;"	m	class:Configuration.Builder
+Configuration.Configuration	.\src\com\activeandroid\Configuration.java	/^	private Configuration(Context context) {$/;"	m	class:Configuration	file:
+Configuration.SQL_PARSER_DELIMITED	.\src\com\activeandroid\Configuration.java	/^    public final static String SQL_PARSER_DELIMITED = "delimited";$/;"	f	class:Configuration
+Configuration.SQL_PARSER_LEGACY	.\src\com\activeandroid\Configuration.java	/^    public final static String SQL_PARSER_LEGACY = "legacy";$/;"	f	class:Configuration
+Configuration.getCacheSize	.\src\com\activeandroid\Configuration.java	/^	public int getCacheSize() {$/;"	m	class:Configuration
+Configuration.getContext	.\src\com\activeandroid\Configuration.java	/^	public Context getContext() {$/;"	m	class:Configuration
+Configuration.getDatabaseName	.\src\com\activeandroid\Configuration.java	/^	public String getDatabaseName() {$/;"	m	class:Configuration
+Configuration.getDatabaseVersion	.\src\com\activeandroid\Configuration.java	/^	public int getDatabaseVersion() {$/;"	m	class:Configuration
+Configuration.getModelClasses	.\src\com\activeandroid\Configuration.java	/^	public List<Class<? extends Model>> getModelClasses() {$/;"	m	class:Configuration
+Configuration.getSqlParser	.\src\com\activeandroid\Configuration.java	/^	public String getSqlParser() {$/;"	m	class:Configuration
+Configuration.getTypeSerializers	.\src\com\activeandroid\Configuration.java	/^	public List<Class<? extends TypeSerializer>> getTypeSerializers() {$/;"	m	class:Configuration
+Configuration.isValid	.\src\com\activeandroid\Configuration.java	/^	public boolean isValid() {$/;"	m	class:Configuration
+Configuration.java	.\src\com\activeandroid\Configuration.java	1;"	F
+Configuration.mCacheSize	.\src\com\activeandroid\Configuration.java	/^	private int mCacheSize;$/;"	f	class:Configuration	file:
+Configuration.mContext	.\src\com\activeandroid\Configuration.java	/^	private Context mContext;$/;"	f	class:Configuration	file:
+Configuration.mDatabaseName	.\src\com\activeandroid\Configuration.java	/^	private String mDatabaseName;$/;"	f	class:Configuration	file:
+Configuration.mDatabaseVersion	.\src\com\activeandroid\Configuration.java	/^	private int mDatabaseVersion;$/;"	f	class:Configuration	file:
+Configuration.mModelClasses	.\src\com\activeandroid\Configuration.java	/^	private List<Class<? extends Model>> mModelClasses;$/;"	f	class:Configuration	file:
+Configuration.mSqlParser	.\src\com\activeandroid\Configuration.java	/^	private String mSqlParser;$/;"	f	class:Configuration	file:
+Configuration.mTypeSerializers	.\src\com\activeandroid\Configuration.java	/^	private List<Class<? extends TypeSerializer>> mTypeSerializers;$/;"	f	class:Configuration	file:
+ConfigurationTest	.\tests\src\com\activeandroid\test\ConfigurationTest.java	/^public class ConfigurationTest extends AndroidTestCase {$/;"	c
+ConfigurationTest.ConfigurationTestModel	.\tests\src\com\activeandroid\test\ConfigurationTest.java	/^    private static class ConfigurationTestModel extends Model {$/;"	c	class:ConfigurationTest
+ConfigurationTest.java	.\tests\src\com\activeandroid\test\ConfigurationTest.java	1;"	F
+ConfigurationTest.testCreateConfigurationWithMockModel	.\tests\src\com\activeandroid\test\ConfigurationTest.java	/^    public void testCreateConfigurationWithMockModel() {$/;"	m	class:ConfigurationTest
+ConfigurationTest.testDefaultValue	.\tests\src\com\activeandroid\test\ConfigurationTest.java	/^    public void testDefaultValue() throws IOException, ClassNotFoundException {$/;"	m	class:ConfigurationTest
+ConfigurationTestModel	.\tests\src\com\activeandroid\test\ConfigurationTest.java	/^    private static class ConfigurationTestModel extends Model {$/;"	c	class:ConfigurationTest
+ConflictAction	.\src\com\activeandroid\annotation\Column.java	/^	public enum ConflictAction {$/;"	g	interface:Column
+ConflictAction.FAIL	.\src\com\activeandroid\annotation\Column.java	/^	public ConflictAction onNullConflict() default ConflictAction.FAIL;$/;"	f	interface:Column
+ConflictAction.FAIL	.\src\com\activeandroid\annotation\Column.java	/^	public ConflictAction onUniqueConflict() default ConflictAction.FAIL;$/;"	f	interface:Column
+ContentProvider	.\src\com\activeandroid\content\ContentProvider.java	/^public class ContentProvider extends android.content.ContentProvider {$/;"	c
+ContentProvider.TYPE_CODES	.\src\com\activeandroid\content\ContentProvider.java	/^	private static final SparseArray<Class<? extends Model>> TYPE_CODES = new SparseArray<Class<? extends Model>>();$/;"	f	class:ContentProvider	file:
+ContentProvider.URI_MATCHER	.\src\com\activeandroid\content\ContentProvider.java	/^	private static final UriMatcher URI_MATCHER = new UriMatcher(UriMatcher.NO_MATCH);$/;"	f	class:ContentProvider	file:
+ContentProvider.createUri	.\src\com\activeandroid\content\ContentProvider.java	/^	public static Uri createUri(Class<? extends Model> type, Long id) {$/;"	m	class:ContentProvider
+ContentProvider.delete	.\src\com\activeandroid\content\ContentProvider.java	/^	public int delete(Uri uri, String selection, String[] selectionArgs) {$/;"	m	class:ContentProvider
+ContentProvider.getAuthority	.\src\com\activeandroid\content\ContentProvider.java	/^	protected String getAuthority() {$/;"	m	class:ContentProvider
+ContentProvider.getConfiguration	.\src\com\activeandroid\content\ContentProvider.java	/^	protected Configuration getConfiguration() {$/;"	m	class:ContentProvider
+ContentProvider.getModelType	.\src\com\activeandroid\content\ContentProvider.java	/^	private Class<? extends Model> getModelType(Uri uri) {$/;"	m	class:ContentProvider	file:
+ContentProvider.getType	.\src\com\activeandroid\content\ContentProvider.java	/^	public String getType(Uri uri) {$/;"	m	class:ContentProvider
+ContentProvider.insert	.\src\com\activeandroid\content\ContentProvider.java	/^	public Uri insert(Uri uri, ContentValues values) {$/;"	m	class:ContentProvider
+ContentProvider.java	.\src\com\activeandroid\content\ContentProvider.java	1;"	F
+ContentProvider.notifyChange	.\src\com\activeandroid\content\ContentProvider.java	/^	private void notifyChange(Uri uri) {$/;"	m	class:ContentProvider	file:
+ContentProvider.onCreate	.\src\com\activeandroid\content\ContentProvider.java	/^	public boolean onCreate() {$/;"	m	class:ContentProvider
+ContentProvider.query	.\src\com\activeandroid\content\ContentProvider.java	/^	public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {$/;"	m	class:ContentProvider
+ContentProvider.sAuthority	.\src\com\activeandroid\content\ContentProvider.java	/^	private static String sAuthority;$/;"	f	class:ContentProvider	file:
+ContentProvider.sMimeTypeCache	.\src\com\activeandroid\content\ContentProvider.java	/^	private static SparseArray<String> sMimeTypeCache = new SparseArray<String>();$/;"	f	class:ContentProvider	file:
+ContentProvider.update	.\src\com\activeandroid\content\ContentProvider.java	/^	public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {$/;"	m	class:ContentProvider
+CountTest	.\tests\src\com\activeandroid\test\query\CountTest.java	/^public class CountTest extends SqlableTestCase {$/;"	c
+CountTest.cleanTable	.\tests\src\com\activeandroid\test\query\CountTest.java	/^    private void cleanTable() {$/;"	m	class:CountTest	file:
+CountTest.java	.\tests\src\com\activeandroid\test\query\CountTest.java	1;"	F
+CountTest.populateTable	.\tests\src\com\activeandroid\test\query\CountTest.java	/^    private void populateTable() {$/;"	m	class:CountTest	file:
+CountTest.testCountEmptyResult	.\tests\src\com\activeandroid\test\query\CountTest.java	/^    public void testCountEmptyResult() {$/;"	m	class:CountTest
+CountTest.testCountGroupBy	.\tests\src\com\activeandroid\test\query\CountTest.java	/^    public void testCountGroupBy() {$/;"	m	class:CountTest
+CountTest.testCountOrderBy	.\tests\src\com\activeandroid\test\query\CountTest.java	/^    public void testCountOrderBy() {$/;"	m	class:CountTest
+CountTest.testCountOrderBySql	.\tests\src\com\activeandroid\test\query\CountTest.java	/^    public void testCountOrderBySql() {$/;"	m	class:CountTest
+CountTest.testCountTable	.\tests\src\com\activeandroid\test\query\CountTest.java	/^    public void testCountTable() {$/;"	m	class:CountTest
+CountTest.testCountTableSql	.\tests\src\com\activeandroid\test\query\CountTest.java	/^    public void testCountTableSql() {$/;"	m	class:CountTest
+CountTest.testCountWhereClause	.\tests\src\com\activeandroid\test\query\CountTest.java	/^    public void testCountWhereClause() {$/;"	m	class:CountTest
+CountTest.testCountWhereClauseSql	.\tests\src\com\activeandroid\test\query\CountTest.java	/^    public void testCountWhereClauseSql() {$/;"	m	class:CountTest
+DEFAULT_CACHE_SIZE	.\src\com\activeandroid\Cache.java	/^	public static final int DEFAULT_CACHE_SIZE = 1024;$/;"	f	class:Cache
+DEFAULT_CACHE_SIZE	.\src\com\activeandroid\Configuration.java	/^		private static final int DEFAULT_CACHE_SIZE = 1024;$/;"	f	class:Configuration.Builder	file:
+DEFAULT_DB_NAME	.\src\com\activeandroid\Configuration.java	/^		private static final String DEFAULT_DB_NAME = "Application.db";$/;"	f	class:Configuration.Builder	file:
+DEFAULT_ID_NAME	.\src\com\activeandroid\annotation\Table.java	/^	public String id() default DEFAULT_ID_NAME;$/;"	f	interface:Table
+DEFAULT_ID_NAME	.\src\com\activeandroid\annotation\Table.java	/^	public static final String DEFAULT_ID_NAME = "Id";$/;"	f	interface:Table
+DEFAULT_JVM_OPTS	.\gradlew.bat	/^set DEFAULT_JVM_OPTS=$/;"	v
+DEFAULT_SQL_PARSER	.\src\com\activeandroid\Configuration.java	/^		private static final String DEFAULT_SQL_PARSER = SQL_PARSER_LEGACY;$/;"	f	class:Configuration.Builder	file:
+DIRNAME	.\gradlew.bat	/^if "%DIRNAME%" == "" set DIRNAME=.$/;"	v
+DIRNAME	.\gradlew.bat	/^set DIRNAME=%~dp0$/;"	v
+DatabaseHelper	.\src\com\activeandroid\DatabaseHelper.java	/^	public DatabaseHelper(Configuration configuration) {$/;"	m	class:DatabaseHelper
+DatabaseHelper	.\src\com\activeandroid\DatabaseHelper.java	/^public final class DatabaseHelper extends SQLiteOpenHelper {$/;"	c
+DatabaseHelper.DatabaseHelper	.\src\com\activeandroid\DatabaseHelper.java	/^	public DatabaseHelper(Configuration configuration) {$/;"	m	class:DatabaseHelper
+DatabaseHelper.MIGRATION_PATH	.\src\com\activeandroid\DatabaseHelper.java	/^	public final static String MIGRATION_PATH = "migrations";$/;"	f	class:DatabaseHelper
+DatabaseHelper.copyAttachedDatabase	.\src\com\activeandroid\DatabaseHelper.java	/^	public void copyAttachedDatabase(Context context, String databaseName) {$/;"	m	class:DatabaseHelper
+DatabaseHelper.executeCreate	.\src\com\activeandroid\DatabaseHelper.java	/^	private void executeCreate(SQLiteDatabase db) {$/;"	m	class:DatabaseHelper	file:
+DatabaseHelper.executeCreateIndex	.\src\com\activeandroid\DatabaseHelper.java	/^	private void executeCreateIndex(SQLiteDatabase db) {$/;"	m	class:DatabaseHelper	file:
+DatabaseHelper.executeDelimitedSqlScript	.\src\com\activeandroid\DatabaseHelper.java	/^	private void executeDelimitedSqlScript(SQLiteDatabase db, InputStream stream) throws IOException {$/;"	m	class:DatabaseHelper	file:
+DatabaseHelper.executeLegacySqlScript	.\src\com\activeandroid\DatabaseHelper.java	/^	private void executeLegacySqlScript(SQLiteDatabase db, InputStream stream) throws IOException {$/;"	m	class:DatabaseHelper	file:
+DatabaseHelper.executeMigrations	.\src\com\activeandroid\DatabaseHelper.java	/^	private boolean executeMigrations(SQLiteDatabase db, int oldVersion, int newVersion) {$/;"	m	class:DatabaseHelper	file:
+DatabaseHelper.executePragmas	.\src\com\activeandroid\DatabaseHelper.java	/^	private void executePragmas(SQLiteDatabase db) {$/;"	m	class:DatabaseHelper	file:
+DatabaseHelper.executeSqlScript	.\src\com\activeandroid\DatabaseHelper.java	/^	private void executeSqlScript(SQLiteDatabase db, String file) {$/;"	m	class:DatabaseHelper	file:
+DatabaseHelper.java	.\src\com\activeandroid\DatabaseHelper.java	1;"	F
+DatabaseHelper.mSqlParser	.\src\com\activeandroid\DatabaseHelper.java	/^    private final String mSqlParser;$/;"	f	class:DatabaseHelper	file:
+DatabaseHelper.onCreate	.\src\com\activeandroid\DatabaseHelper.java	/^	public void onCreate(SQLiteDatabase db) {$/;"	m	class:DatabaseHelper
+DatabaseHelper.onOpen	.\src\com\activeandroid\DatabaseHelper.java	/^	public void onOpen(SQLiteDatabase db) {$/;"	m	class:DatabaseHelper
+DatabaseHelper.onUpgrade	.\src\com\activeandroid\DatabaseHelper.java	/^	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {$/;"	m	class:DatabaseHelper
+Delete	.\src\com\activeandroid\query\Delete.java	/^	public Delete() {$/;"	m	class:Delete
+Delete	.\src\com\activeandroid\query\Delete.java	/^public final class Delete implements Sqlable {$/;"	c
+Delete.Delete	.\src\com\activeandroid\query\Delete.java	/^	public Delete() {$/;"	m	class:Delete
+Delete.from	.\src\com\activeandroid\query\Delete.java	/^	public From from(Class<? extends Model> table) {$/;"	m	class:Delete
+Delete.java	.\src\com\activeandroid\query\Delete.java	1;"	F
+Delete.toSql	.\src\com\activeandroid\query\Delete.java	/^	public String toSql() {$/;"	m	class:Delete
+DeleteTest	.\tests\src\com\activeandroid\test\query\DeleteTest.java	/^public class DeleteTest extends SqlableTestCase {$/;"	c
+DeleteTest.java	.\tests\src\com\activeandroid\test\query\DeleteTest.java	1;"	F
+DeleteTest.testDelete	.\tests\src\com\activeandroid\test\query\DeleteTest.java	/^	public void testDelete() {$/;"	m	class:DeleteTest
+DeleteTest.testFrom	.\tests\src\com\activeandroid\test\query\DeleteTest.java	/^	public void testFrom() {$/;"	m	class:DeleteTest
+Entity1	.\tests\res\raw\block_comment.sql	/^CREATE TABLE Entity1$/;"	t
+Entity1	.\tests\res\raw\block_comment_with_semicolon.sql	/^CREATE TABLE Entity1$/;"	t
+Entity1	.\tests\res\raw\block_comment_with_string.sql	/^CREATE TABLE Entity1$/;"	t
+Entity1	.\tests\res\raw\block_with_line_comment.sql	/^CREATE TABLE Entity1$/;"	t
+Entity1	.\tests\res\raw\invalid_block_comment.sql	/^CREATE TABLE Entity1$/;"	t
+Entity1	.\tests\res\raw\line_comment.sql	/^CREATE TABLE Entity1$/;"	t
+Entity1	.\tests\res\raw\line_comment_and_block_end.sql	/^CREATE TABLE Entity1$/;"	t
+Entity1	.\tests\res\raw\line_comment_with_semicolon.sql	/^CREATE TABLE Entity1$/;"	t
+Entity1	.\tests\res\raw\line_comment_with_string.sql	/^CREATE TABLE Entity1$/;"	t
+Entity1	.\tests\res\raw\two_statements.sql	/^CREATE TABLE Entity1$/;"	t
+Entity1	.\tests\res\raw\whitespace.sql	/^CREATE TABLE Entity1$/;"	t
+Entity1.Column1	.\tests\res\raw\block_comment.sql	/^	Column1 INTEGER \/* This is a block comment and should be ignored *\/$/;"	F
+Entity1.Column1	.\tests\res\raw\block_comment_with_semicolon.sql	/^	Column1 INTEGER$/;"	F
+Entity1.Column1	.\tests\res\raw\block_comment_with_string.sql	/^	Column1 INTEGER \/* This is a block comment 'with a string that doesn't matter' *\/$/;"	F
+Entity1.Column1	.\tests\res\raw\block_with_line_comment.sql	/^	Id INTEGER AUTOINCREMENT PRIMARY KEY NOT NULL, \/* This is a block comment -- not a line comment *\/ Column1 INTEGER $/;"	F
+Entity1.Column1	.\tests\res\raw\line_comment.sql	/^	Column1 INTEGER -- This is a line comment and should be ignored$/;"	F
+Entity1.Column1	.\tests\res\raw\line_comment_and_block_end.sql	/^	Column1 INTEGER$/;"	F
+Entity1.Column1	.\tests\res\raw\line_comment_with_semicolon.sql	/^	Column1 INTEGER$/;"	F
+Entity1.Column1	.\tests\res\raw\line_comment_with_string.sql	/^	Column1 INTEGER -- This is a line comment 'with a string that doesn't matter'$/;"	F
+Entity1.Column1	.\tests\res\raw\two_statements.sql	/^	Column1 INTEGER$/;"	F
+Entity1.Column1	.\tests\res\raw\whitespace.sql	/^	Column1					INTEGER$/;"	F
+Entity1.Id	.\tests\res\raw\block_comment.sql	/^	Id INTEGER AUTOINCREMENT PRIMARY KEY NOT NULL,$/;"	F
+Entity1.Id	.\tests\res\raw\block_comment_with_semicolon.sql	/^	Id INTEGER AUTOINCREMENT PRIMARY KEY NOT NULL, \/* block comment ; with semicolon *\/$/;"	F
+Entity1.Id	.\tests\res\raw\block_comment_with_string.sql	/^	Id INTEGER AUTOINCREMENT PRIMARY KEY NOT NULL,$/;"	F
+Entity1.Id	.\tests\res\raw\block_with_line_comment.sql	/^	Id INTEGER AUTOINCREMENT PRIMARY KEY NOT NULL, \/* This is a block comment -- not a line comment *\/ Column1 INTEGER $/;"	F
+Entity1.Id	.\tests\res\raw\invalid_block_comment.sql	/^	Id INTEGER AUTOINCREMENT PRIMARY KEY NOT NULL,$/;"	F
+Entity1.Id	.\tests\res\raw\line_comment.sql	/^	Id INTEGER AUTOINCREMENT PRIMARY KEY NOT NULL,$/;"	F
+Entity1.Id	.\tests\res\raw\line_comment_and_block_end.sql	/^	Id INTEGER AUTOINCREMENT PRIMARY KEY NOT NULL,$/;"	F
+Entity1.Id	.\tests\res\raw\line_comment_with_semicolon.sql	/^	Id INTEGER AUTOINCREMENT PRIMARY KEY NOT NULL, -- line comment ; with semicolon$/;"	F
+Entity1.Id	.\tests\res\raw\line_comment_with_string.sql	/^	Id INTEGER AUTOINCREMENT PRIMARY KEY NOT NULL,$/;"	F
+Entity1.Id	.\tests\res\raw\two_statements.sql	/^	Id INTEGER AUTOINCREMENT PRIMARY KEY NOT NULL,$/;"	F
+Entity1.Id	.\tests\res\raw\whitespace.sql	/^	Id INTEGER AUTOINCREMENT                         PRIMARY KEY NOT NULL,$/;"	F
+Entity2	.\tests\res\raw\complex.sql	/^CREATE TABLE Entity2$/;"	t
+Entity2	.\tests\res\raw\two_statements.sql	/^CREATE TABLE Entity2$/;"	t
+Entity2.Column	.\tests\res\raw\complex.sql	/^    Column TEXT NOT NULL,$/;"	F
+Entity2.Column1	.\tests\res\raw\two_statements.sql	/^	Column1 INTEGER$/;"	F
+Entity2.Column2	.\tests\res\raw\complex.sql	/^    Column2 INTEGER NULL \/* this column is new *\/$/;"	F
+Entity2.Id	.\tests\res\raw\complex.sql	/^    Id INTEGER AUTO_INCREMENT PRIMARY KEY,$/;"	F
+Entity2.Id	.\tests\res\raw\two_statements.sql	/^	Id INTEGER AUTOINCREMENT PRIMARY KEY NOT NULL,$/;"	F
+ExistsTest	.\tests\src\com\activeandroid\test\query\ExistsTest.java	/^public class ExistsTest extends SqlableTestCase {$/;"	c
+ExistsTest.cleanTable	.\tests\src\com\activeandroid\test\query\ExistsTest.java	/^    private void cleanTable() {$/;"	m	class:ExistsTest	file:
+ExistsTest.java	.\tests\src\com\activeandroid\test\query\ExistsTest.java	1;"	F
+ExistsTest.populateTable	.\tests\src\com\activeandroid\test\query\ExistsTest.java	/^    private void populateTable() {$/;"	m	class:ExistsTest	file:
+ExistsTest.testCountGroupBy	.\tests\src\com\activeandroid\test\query\ExistsTest.java	/^    public void testCountGroupBy() {$/;"	m	class:ExistsTest
+ExistsTest.testCountGroupByEmpty	.\tests\src\com\activeandroid\test\query\ExistsTest.java	/^    public void testCountGroupByEmpty() {$/;"	m	class:ExistsTest
+ExistsTest.testCountOrderBy	.\tests\src\com\activeandroid\test\query\ExistsTest.java	/^    public void testCountOrderBy() {$/;"	m	class:ExistsTest
+ExistsTest.testCountOrderBySql	.\tests\src\com\activeandroid\test\query\ExistsTest.java	/^    public void testCountOrderBySql() {$/;"	m	class:ExistsTest
+ExistsTest.testCountTableSql	.\tests\src\com\activeandroid\test\query\ExistsTest.java	/^    public void testCountTableSql() {$/;"	m	class:ExistsTest
+ExistsTest.testCountWhereClauseSql	.\tests\src\com\activeandroid\test\query\ExistsTest.java	/^    public void testCountWhereClauseSql() {$/;"	m	class:ExistsTest
+ExistsTest.testExistsEmptyResult	.\tests\src\com\activeandroid\test\query\ExistsTest.java	/^    public void testExistsEmptyResult() {$/;"	m	class:ExistsTest
+ExistsTest.testExistsTable	.\tests\src\com\activeandroid\test\query\ExistsTest.java	/^    public void testExistsTable() {$/;"	m	class:ExistsTest
+ExistsTest.testExistsWhereClause	.\tests\src\com\activeandroid\test\query\ExistsTest.java	/^    public void testExistsWhereClause() {$/;"	m	class:ExistsTest
+FAIL	.\src\com\activeandroid\annotation\Column.java	/^		ROLLBACK, ABORT, FAIL, IGNORE, REPLACE$/;"	e	enum:Column.ConflictAction	file:
+FOREIGN_KEYS_SUPPORTED	.\src\com\activeandroid\util\SQLiteUtils.java	/^	public static final boolean FOREIGN_KEYS_SUPPORTED = Build.VERSION.SDK_INT >= Build.VERSION_CODES.FROYO;$/;"	f	class:SQLiteUtils
+FileSerializer	.\src\com\activeandroid\serializer\FileSerializer.java	/^public final class FileSerializer extends TypeSerializer {$/;"	c
+FileSerializer.deserialize	.\src\com\activeandroid\serializer\FileSerializer.java	/^	public File deserialize(Object data) {$/;"	m	class:FileSerializer
+FileSerializer.getDeserializedType	.\src\com\activeandroid\serializer\FileSerializer.java	/^	public Class<?> getDeserializedType() {$/;"	m	class:FileSerializer
+FileSerializer.getSerializedType	.\src\com\activeandroid\serializer\FileSerializer.java	/^	public Class<?> getSerializedType() {$/;"	m	class:FileSerializer
+FileSerializer.java	.\src\com\activeandroid\serializer\FileSerializer.java	1;"	F
+FileSerializer.serialize	.\src\com\activeandroid\serializer\FileSerializer.java	/^	public String serialize(Object data) {$/;"	m	class:FileSerializer
+ForeignKeyAction	.\src\com\activeandroid\annotation\Column.java	/^	public enum ForeignKeyAction {$/;"	g	interface:Column
+ForeignKeyAction.NO_ACTION	.\src\com\activeandroid\annotation\Column.java	/^	public ForeignKeyAction onDelete() default ForeignKeyAction.NO_ACTION;$/;"	f	interface:Column
+ForeignKeyAction.NO_ACTION	.\src\com\activeandroid\annotation\Column.java	/^	public ForeignKeyAction onUpdate() default ForeignKeyAction.NO_ACTION;$/;"	f	interface:Column
+From	.\src\com\activeandroid\query\From.java	/^	public From(Class<? extends Model> table, Sqlable queryBase) {$/;"	m	class:From
+From	.\src\com\activeandroid\query\From.java	/^public final class From implements Sqlable {$/;"	c
+From.From	.\src\com\activeandroid\query\From.java	/^	public From(Class<? extends Model> table, Sqlable queryBase) {$/;"	m	class:From
+From.addArguments	.\src\com\activeandroid\query\From.java	/^	void addArguments(Object[] args) {$/;"	m	class:From
+From.addFrom	.\src\com\activeandroid\query\From.java	/^    private void addFrom(final StringBuilder sql) {$/;"	m	class:From	file:
+From.addGroupBy	.\src\com\activeandroid\query\From.java	/^    private void addGroupBy(final StringBuilder sql) {$/;"	m	class:From	file:
+From.addHaving	.\src\com\activeandroid\query\From.java	/^    private void addHaving(final StringBuilder sql) {$/;"	m	class:From	file:
+From.addJoins	.\src\com\activeandroid\query\From.java	/^    private void addJoins(final StringBuilder sql) {$/;"	m	class:From	file:
+From.addLimit	.\src\com\activeandroid\query\From.java	/^    private void addLimit(final StringBuilder sql) {$/;"	m	class:From	file:
+From.addOffset	.\src\com\activeandroid\query\From.java	/^    private void addOffset(final StringBuilder sql) {$/;"	m	class:From	file:
+From.addOrderBy	.\src\com\activeandroid\query\From.java	/^    private void addOrderBy(final StringBuilder sql) {$/;"	m	class:From	file:
+From.addWhere	.\src\com\activeandroid\query\From.java	/^    private void addWhere(final StringBuilder sql) {$/;"	m	class:From	file:
+From.and	.\src\com\activeandroid\query\From.java	/^    public From and(String clause) {$/;"	m	class:From
+From.and	.\src\com\activeandroid\query\From.java	/^    public From and(String clause, Object... args) {$/;"	m	class:From
+From.as	.\src\com\activeandroid\query\From.java	/^	public From as(String alias) {$/;"	m	class:From
+From.count	.\src\com\activeandroid\query\From.java	/^    public int count() {$/;"	m	class:From
+From.crossJoin	.\src\com\activeandroid\query\From.java	/^	public Join crossJoin(Class<? extends Model> table) {$/;"	m	class:From
+From.execute	.\src\com\activeandroid\query\From.java	/^	public <T extends Model> List<T> execute() {$/;"	m	class:From
+From.executeSingle	.\src\com\activeandroid\query\From.java	/^	public <T extends Model> T executeSingle() {$/;"	m	class:From
+From.exists	.\src\com\activeandroid\query\From.java	/^    public boolean exists() {$/;"	m	class:From
+From.getArguments	.\src\com\activeandroid\query\From.java	/^	public String[] getArguments() {$/;"	m	class:From
+From.groupBy	.\src\com\activeandroid\query\From.java	/^	public From groupBy(String groupBy) {$/;"	m	class:From
+From.having	.\src\com\activeandroid\query\From.java	/^	public From having(String having) {$/;"	m	class:From
+From.innerJoin	.\src\com\activeandroid\query\From.java	/^	public Join innerJoin(Class<? extends Model> table) {$/;"	m	class:From
+From.java	.\src\com\activeandroid\query\From.java	1;"	F
+From.join	.\src\com\activeandroid\query\From.java	/^	public Join join(Class<? extends Model> table) {$/;"	m	class:From
+From.leftJoin	.\src\com\activeandroid\query\From.java	/^	public Join leftJoin(Class<? extends Model> table) {$/;"	m	class:From
+From.limit	.\src\com\activeandroid\query\From.java	/^	public From limit(String limit) {$/;"	m	class:From
+From.limit	.\src\com\activeandroid\query\From.java	/^	public From limit(int limit) {$/;"	m	class:From
+From.mAlias	.\src\com\activeandroid\query\From.java	/^	private String mAlias;$/;"	f	class:From	file:
+From.mArguments	.\src\com\activeandroid\query\From.java	/^	private List<Object> mArguments;$/;"	f	class:From	file:
+From.mGroupBy	.\src\com\activeandroid\query\From.java	/^	private String mGroupBy;$/;"	f	class:From	file:
+From.mHaving	.\src\com\activeandroid\query\From.java	/^	private String mHaving;$/;"	f	class:From	file:
+From.mJoins	.\src\com\activeandroid\query\From.java	/^	private List<Join> mJoins;$/;"	f	class:From	file:
+From.mLimit	.\src\com\activeandroid\query\From.java	/^	private String mLimit;$/;"	f	class:From	file:
+From.mOffset	.\src\com\activeandroid\query\From.java	/^	private String mOffset;$/;"	f	class:From	file:
+From.mOrderBy	.\src\com\activeandroid\query\From.java	/^	private String mOrderBy;$/;"	f	class:From	file:
+From.mQueryBase	.\src\com\activeandroid\query\From.java	/^	private Sqlable mQueryBase;$/;"	f	class:From	file:
+From.mType	.\src\com\activeandroid\query\From.java	/^	private Class<? extends Model> mType;$/;"	f	class:From	file:
+From.mWhere	.\src\com\activeandroid\query\From.java	/^	private final StringBuilder mWhere = new StringBuilder();$/;"	f	class:From	file:
+From.offset	.\src\com\activeandroid\query\From.java	/^	public From offset(String offset) {$/;"	m	class:From
+From.offset	.\src\com\activeandroid\query\From.java	/^	public From offset(int offset) {$/;"	m	class:From
+From.or	.\src\com\activeandroid\query\From.java	/^    public From or(String clause) {$/;"	m	class:From
+From.or	.\src\com\activeandroid\query\From.java	/^    public From or(String clause, Object... args) {$/;"	m	class:From
+From.orderBy	.\src\com\activeandroid\query\From.java	/^	public From orderBy(String orderBy) {$/;"	m	class:From
+From.outerJoin	.\src\com\activeandroid\query\From.java	/^	public Join outerJoin(Class<? extends Model> table) {$/;"	m	class:From
+From.sqlString	.\src\com\activeandroid\query\From.java	/^    private String sqlString(final StringBuilder sql) {$/;"	m	class:From	file:
+From.toCountSql	.\src\com\activeandroid\query\From.java	/^    public String toCountSql() {$/;"	m	class:From
+From.toExistsSql	.\src\com\activeandroid\query\From.java	/^    public String toExistsSql() {$/;"	m	class:From
+From.toSql	.\src\com\activeandroid\query\From.java	/^    public String toSql() {$/;"	m	class:From
+From.where	.\src\com\activeandroid\query\From.java	/^    public From where(String clause) {$/;"	m	class:From
+From.where	.\src\com\activeandroid\query\From.java	/^    public From where(String clause, Object... args) {$/;"	m	class:From
+FromTest	.\tests\src\com\activeandroid\test\query\FromTest.java	/^public class FromTest extends SqlableTestCase {$/;"	c
+FromTest.JoinModel	.\tests\src\com\activeandroid\test\query\FromTest.java	/^	private static class JoinModel extends Model {$/;"	c	class:FromTest
+FromTest.JoinModel2	.\tests\src\com\activeandroid\test\query\FromTest.java	/^	private static class JoinModel2 extends Model {$/;"	c	class:FromTest
+FromTest.SELECT_PREFIX	.\tests\src\com\activeandroid\test\query\FromTest.java	/^	private static final String SELECT_PREFIX = "SELECT ALL * FROM MockModel ";$/;"	f	class:FromTest	file:
+FromTest.from	.\tests\src\com\activeandroid\test\query\FromTest.java	/^	private From from() {$/;"	m	class:FromTest	file:
+FromTest.java	.\tests\src\com\activeandroid\test\query\FromTest.java	1;"	F
+FromTest.testAll	.\tests\src\com\activeandroid\test\query\FromTest.java	/^	public void testAll() {$/;"	m	class:FromTest
+FromTest.testAs	.\tests\src\com\activeandroid\test\query\FromTest.java	/^	public void testAs() {$/;"	m	class:FromTest
+FromTest.testGroupByHaving	.\tests\src\com\activeandroid\test\query\FromTest.java	/^	public void testGroupByHaving() {$/;"	m	class:FromTest
+FromTest.testJoinTypes	.\tests\src\com\activeandroid\test\query\FromTest.java	/^	public void testJoinTypes() {$/;"	m	class:FromTest
+FromTest.testJoins	.\tests\src\com\activeandroid\test\query\FromTest.java	/^	public void testJoins() {$/;"	m	class:FromTest
+FromTest.testLimit	.\tests\src\com\activeandroid\test\query\FromTest.java	/^	public void testLimit() {$/;"	m	class:FromTest
+FromTest.testLimitOffset	.\tests\src\com\activeandroid\test\query\FromTest.java	/^	public void testLimitOffset() {$/;"	m	class:FromTest
+FromTest.testOffset	.\tests\src\com\activeandroid\test\query\FromTest.java	/^	public void testOffset() {$/;"	m	class:FromTest
+FromTest.testOrderBy	.\tests\src\com\activeandroid\test\query\FromTest.java	/^	public void testOrderBy() {$/;"	m	class:FromTest
+FromTest.testSingleJoin	.\tests\src\com\activeandroid\test\query\FromTest.java	/^	public void testSingleJoin() {$/;"	m	class:FromTest
+FromTest.testWhereAlternateAndOrChaining	.\tests\src\com\activeandroid\test\query\FromTest.java	/^   public void testWhereAlternateAndOrChaining() {$/;"	m	class:FromTest
+FromTest.testWhereAndChaining	.\tests\src\com\activeandroid\test\query\FromTest.java	/^   public void testWhereAndChaining() {$/;"	m	class:FromTest
+FromTest.testWhereAndOrChaining	.\tests\src\com\activeandroid\test\query\FromTest.java	/^   public void testWhereAndOrChaining() {$/;"	m	class:FromTest
+FromTest.testWhereChaining	.\tests\src\com\activeandroid\test\query\FromTest.java	/^	public void testWhereChaining() {$/;"	m	class:FromTest
+FromTest.testWhereNoArguments	.\tests\src\com\activeandroid\test\query\FromTest.java	/^	public void testWhereNoArguments() {$/;"	m	class:FromTest
+FromTest.testWhereOrChaining	.\tests\src\com\activeandroid\test\query\FromTest.java	/^   public void testWhereOrChaining() {$/;"	m	class:FromTest
+FromTest.testWhereWithArguments	.\tests\src\com\activeandroid\test\query\FromTest.java	/^	public void testWhereWithArguments() {$/;"	m	class:FromTest
+FromTest.testWhereWithNoArgumentsAndWithArguments	.\tests\src\com\activeandroid\test\query\FromTest.java	/^    public void testWhereWithNoArgumentsAndWithArguments() {$/;"	m	class:FromTest
+HASH_PRIME	.\src\com\activeandroid\Model.java	/^	private static final int HASH_PRIME = 739;$/;"	f	class:Model	file:
+IGNORE	.\src\com\activeandroid\annotation\Column.java	/^		ROLLBACK, ABORT, FAIL, IGNORE, REPLACE$/;"	e	enum:Column.ConflictAction	file:
+INNER	.\src\com\activeandroid\query\Join.java	/^		LEFT, OUTER, INNER, CROSS$/;"	e	enum:Join.JoinType	file:
+INTEGER	.\src\com\activeandroid\util\SQLiteUtils.java	/^		INTEGER, REAL, TEXT, BLOB$/;"	e	enum:SQLiteUtils.SQLiteType	file:
+IOUtils	.\src\com\activeandroid\util\IOUtils.java	/^public class IOUtils {$/;"	c
+IOUtils.closeQuietly	.\src\com\activeandroid\util\IOUtils.java	/^    public static void closeQuietly(final Closeable closeable) {$/;"	m	class:IOUtils
+IOUtils.closeQuietly	.\src\com\activeandroid\util\IOUtils.java	/^    public static void closeQuietly(final Cursor cursor) {$/;"	m	class:IOUtils
+IOUtils.java	.\src\com\activeandroid\util\IOUtils.java	1;"	F
+JAVA_EXE	.\gradlew.bat	/^set JAVA_EXE=%JAVA_HOME%\/bin\/java.exe$/;"	v
+JAVA_EXE	.\gradlew.bat	/^set JAVA_EXE=java.exe$/;"	v
+JAVA_HOME	.\gradlew.bat	/^set JAVA_HOME=%JAVA_HOME:"=%$/;"	v
+Join	.\src\com\activeandroid\query\Join.java	/^	Join(From from, Class<? extends Model> table, JoinType joinType) {$/;"	m	class:Join
+Join	.\src\com\activeandroid\query\Join.java	/^public final class Join implements Sqlable {$/;"	c
+Join.Join	.\src\com\activeandroid\query\Join.java	/^	Join(From from, Class<? extends Model> table, JoinType joinType) {$/;"	m	class:Join
+Join.JoinType	.\src\com\activeandroid\query\Join.java	/^	static enum JoinType {$/;"	g	class:Join
+Join.as	.\src\com\activeandroid\query\Join.java	/^	public Join as(String alias) {$/;"	m	class:Join
+Join.java	.\src\com\activeandroid\query\Join.java	1;"	F
+Join.mAlias	.\src\com\activeandroid\query\Join.java	/^	private String mAlias;$/;"	f	class:Join	file:
+Join.mFrom	.\src\com\activeandroid\query\Join.java	/^	private From mFrom;$/;"	f	class:Join	file:
+Join.mJoinType	.\src\com\activeandroid\query\Join.java	/^	private JoinType mJoinType;$/;"	f	class:Join	file:
+Join.mOn	.\src\com\activeandroid\query\Join.java	/^	private String mOn;$/;"	f	class:Join	file:
+Join.mType	.\src\com\activeandroid\query\Join.java	/^	private Class<? extends Model> mType;$/;"	f	class:Join	file:
+Join.mUsing	.\src\com\activeandroid\query\Join.java	/^	private String[] mUsing;$/;"	f	class:Join	file:
+Join.on	.\src\com\activeandroid\query\Join.java	/^	public From on(String on) {$/;"	m	class:Join
+Join.on	.\src\com\activeandroid\query\Join.java	/^	public From on(String on, Object... args) {$/;"	m	class:Join
+Join.toSql	.\src\com\activeandroid\query\Join.java	/^	public String toSql() {$/;"	m	class:Join
+Join.using	.\src\com\activeandroid\query\Join.java	/^	public From using(String... columns) {$/;"	m	class:Join
+JoinModel	.\tests\src\com\activeandroid\test\query\FromTest.java	/^	private static class JoinModel extends Model {$/;"	c	class:FromTest
+JoinModel2	.\tests\src\com\activeandroid\test\query\FromTest.java	/^	private static class JoinModel2 extends Model {$/;"	c	class:FromTest
+JoinType	.\src\com\activeandroid\query\Join.java	/^	static enum JoinType {$/;"	g	class:Join
+LEFT	.\src\com\activeandroid\query\Join.java	/^		LEFT, OUTER, INNER, CROSS$/;"	e	enum:Join.JoinType	file:
+Log	.\src\com\activeandroid\util\Log.java	/^	private Log() {$/;"	m	class:Log	file:
+Log	.\src\com\activeandroid\util\Log.java	/^public final class Log {$/;"	c
+Log.Log	.\src\com\activeandroid\util\Log.java	/^	private Log() {$/;"	m	class:Log	file:
+Log.d	.\src\com\activeandroid\util\Log.java	/^	public static int d(String msg) {$/;"	m	class:Log
+Log.d	.\src\com\activeandroid\util\Log.java	/^	public static int d(String msg, Throwable tr) {$/;"	m	class:Log
+Log.d	.\src\com\activeandroid\util\Log.java	/^	public static int d(String tag, String msg) {$/;"	m	class:Log
+Log.d	.\src\com\activeandroid\util\Log.java	/^	public static int d(String tag, String msg, Throwable tr) {$/;"	m	class:Log
+Log.e	.\src\com\activeandroid\util\Log.java	/^	public static int e(String msg) {$/;"	m	class:Log
+Log.e	.\src\com\activeandroid\util\Log.java	/^	public static int e(String msg, Throwable tr) {$/;"	m	class:Log
+Log.e	.\src\com\activeandroid\util\Log.java	/^	public static int e(String tag, String msg) {$/;"	m	class:Log
+Log.e	.\src\com\activeandroid\util\Log.java	/^	public static int e(String tag, String msg, Throwable tr) {$/;"	m	class:Log
+Log.i	.\src\com\activeandroid\util\Log.java	/^	public static int i(String msg) {$/;"	m	class:Log
+Log.i	.\src\com\activeandroid\util\Log.java	/^	public static int i(String msg, Throwable tr) {$/;"	m	class:Log
+Log.i	.\src\com\activeandroid\util\Log.java	/^	public static int i(String tag, String msg) {$/;"	m	class:Log
+Log.i	.\src\com\activeandroid\util\Log.java	/^	public static int i(String tag, String msg, Throwable tr) {$/;"	m	class:Log
+Log.isEnabled	.\src\com\activeandroid\util\Log.java	/^    public static boolean isEnabled() {$/;"	m	class:Log
+Log.isLoggingEnabled	.\src\com\activeandroid\util\Log.java	/^	public static boolean isLoggingEnabled() {$/;"	m	class:Log
+Log.java	.\src\com\activeandroid\util\Log.java	1;"	F
+Log.sEnabled	.\src\com\activeandroid\util\Log.java	/^	private static boolean sEnabled = false;$/;"	f	class:Log	file:
+Log.sTag	.\src\com\activeandroid\util\Log.java	/^	private static String sTag = "ActiveAndroid";$/;"	f	class:Log	file:
+Log.setEnabled	.\src\com\activeandroid\util\Log.java	/^	public static void setEnabled(boolean enabled) {$/;"	m	class:Log
+Log.t	.\src\com\activeandroid\util\Log.java	/^	public static int t(String msg, Object... args) {$/;"	m	class:Log
+Log.v	.\src\com\activeandroid\util\Log.java	/^	public static int v(String msg) {$/;"	m	class:Log
+Log.v	.\src\com\activeandroid\util\Log.java	/^	public static int v(String msg, Throwable tr) {$/;"	m	class:Log
+Log.v	.\src\com\activeandroid\util\Log.java	/^	public static int v(String tag, String msg) {$/;"	m	class:Log
+Log.v	.\src\com\activeandroid\util\Log.java	/^	public static int v(String tag, String msg, Throwable tr) {$/;"	m	class:Log
+Log.w	.\src\com\activeandroid\util\Log.java	/^	public static int w(String msg) {$/;"	m	class:Log
+Log.w	.\src\com\activeandroid\util\Log.java	/^	public static int w(String msg, Throwable tr) {$/;"	m	class:Log
+Log.w	.\src\com\activeandroid\util\Log.java	/^	public static int w(String tag, String msg) {$/;"	m	class:Log
+Log.w	.\src\com\activeandroid\util\Log.java	/^	public static int w(String tag, String msg, Throwable tr) {$/;"	m	class:Log
+MIGRATION_PATH	.\src\com\activeandroid\DatabaseHelper.java	/^	public final static String MIGRATION_PATH = "migrations";$/;"	f	class:DatabaseHelper
+MockModel	.\tests\src\com\activeandroid\test\MockModel.java	/^public class MockModel extends Model {$/;"	c
+MockModel.booleanField	.\tests\src\com\activeandroid\test\MockModel.java	/^    public boolean booleanField;$/;"	f	class:MockModel
+MockModel.dateField	.\tests\src\com\activeandroid\test\MockModel.java	/^    public Date dateField;$/;"	f	class:MockModel
+MockModel.doubleField	.\tests\src\com\activeandroid\test\MockModel.java	/^    public double doubleField;$/;"	f	class:MockModel
+MockModel.intField	.\tests\src\com\activeandroid\test\MockModel.java	/^    public int intField;$/;"	f	class:MockModel
+MockModel.java	.\tests\src\com\activeandroid\test\MockModel.java	1;"	F
+Model	.\src\com\activeandroid\Model.java	/^	public Model() {$/;"	m	class:Model
+Model	.\src\com\activeandroid\Model.java	/^public abstract class Model {$/;"	c
+Model.HASH_PRIME	.\src\com\activeandroid\Model.java	/^	private static final int HASH_PRIME = 739;$/;"	f	class:Model	file:
+Model.Model	.\src\com\activeandroid\Model.java	/^	public Model() {$/;"	m	class:Model
+Model.delete	.\src\com\activeandroid\Model.java	/^	public final void delete() {$/;"	m	class:Model
+Model.delete	.\src\com\activeandroid\Model.java	/^	public static void delete(Class<? extends Model> type, long id) {$/;"	m	class:Model
+Model.equals	.\src\com\activeandroid\Model.java	/^	public boolean equals(Object obj) {$/;"	m	class:Model
+Model.getId	.\src\com\activeandroid\Model.java	/^	public final Long getId() {$/;"	m	class:Model
+Model.getMany	.\src\com\activeandroid\Model.java	/^	protected final <T extends Model> List<T> getMany(Class<T> type, String foreignKey) {$/;"	m	class:Model
+Model.hashCode	.\src\com\activeandroid\Model.java	/^	public int hashCode() {$/;"	m	class:Model
+Model.idName	.\src\com\activeandroid\Model.java	/^	private final String idName;$/;"	f	class:Model	file:
+Model.java	.\src\com\activeandroid\Model.java	1;"	F
+Model.load	.\src\com\activeandroid\Model.java	/^	public static <T extends Model> T load(Class<T> type, long id) {$/;"	m	class:Model
+Model.loadFromCursor	.\src\com\activeandroid\Model.java	/^	public final void loadFromCursor(Cursor cursor) {$/;"	m	class:Model
+Model.mId	.\src\com\activeandroid\Model.java	/^	private Long mId = null;$/;"	f	class:Model	file:
+Model.mTableInfo	.\src\com\activeandroid\Model.java	/^	private final TableInfo mTableInfo;$/;"	f	class:Model	file:
+Model.save	.\src\com\activeandroid\Model.java	/^	public final Long save() {$/;"	m	class:Model
+Model.toString	.\src\com\activeandroid\Model.java	/^	public String toString() {$/;"	m	class:Model
+ModelAdapter	.\src\com\activeandroid\widget\ModelAdapter.java	/^	public ModelAdapter(Context context, int resource, int textViewResourceId) {$/;"	m	class:ModelAdapter
+ModelAdapter	.\src\com\activeandroid\widget\ModelAdapter.java	/^	public ModelAdapter(Context context, int resource, int textViewResourceId, List<T> objects) {$/;"	m	class:ModelAdapter
+ModelAdapter	.\src\com\activeandroid\widget\ModelAdapter.java	/^	public ModelAdapter(Context context, int textViewResourceId) {$/;"	m	class:ModelAdapter
+ModelAdapter	.\src\com\activeandroid\widget\ModelAdapter.java	/^	public ModelAdapter(Context context, int textViewResourceId, List<T> objects) {$/;"	m	class:ModelAdapter
+ModelAdapter	.\src\com\activeandroid\widget\ModelAdapter.java	/^public class ModelAdapter<T extends Model> extends ArrayAdapter<T> {$/;"	c
+ModelAdapter.ModelAdapter	.\src\com\activeandroid\widget\ModelAdapter.java	/^	public ModelAdapter(Context context, int resource, int textViewResourceId) {$/;"	m	class:ModelAdapter
+ModelAdapter.ModelAdapter	.\src\com\activeandroid\widget\ModelAdapter.java	/^	public ModelAdapter(Context context, int resource, int textViewResourceId, List<T> objects) {$/;"	m	class:ModelAdapter
+ModelAdapter.ModelAdapter	.\src\com\activeandroid\widget\ModelAdapter.java	/^	public ModelAdapter(Context context, int textViewResourceId) {$/;"	m	class:ModelAdapter
+ModelAdapter.ModelAdapter	.\src\com\activeandroid\widget\ModelAdapter.java	/^	public ModelAdapter(Context context, int textViewResourceId, List<T> objects) {$/;"	m	class:ModelAdapter
+ModelAdapter.getItemId	.\src\com\activeandroid\widget\ModelAdapter.java	/^	public long getItemId(int position) {$/;"	m	class:ModelAdapter
+ModelAdapter.java	.\src\com\activeandroid\widget\ModelAdapter.java	1;"	F
+ModelAdapter.setData	.\src\com\activeandroid\widget\ModelAdapter.java	/^	public void setData(Collection<? extends T> collection) {$/;"	m	class:ModelAdapter
+ModelInfo	.\src\com\activeandroid\ModelInfo.java	/^	public ModelInfo(Configuration configuration) {$/;"	m	class:ModelInfo
+ModelInfo	.\src\com\activeandroid\ModelInfo.java	/^final class ModelInfo {$/;"	c
+ModelInfo.ModelInfo	.\src\com\activeandroid\ModelInfo.java	/^	public ModelInfo(Configuration configuration) {$/;"	m	class:ModelInfo
+ModelInfo.getTableInfo	.\src\com\activeandroid\ModelInfo.java	/^	public TableInfo getTableInfo(Class<? extends Model> type) {$/;"	m	class:ModelInfo
+ModelInfo.getTableInfos	.\src\com\activeandroid\ModelInfo.java	/^	public Collection<TableInfo> getTableInfos() {$/;"	m	class:ModelInfo
+ModelInfo.getTypeSerializer	.\src\com\activeandroid\ModelInfo.java	/^	public TypeSerializer getTypeSerializer(Class<?> type) {$/;"	m	class:ModelInfo
+ModelInfo.java	.\src\com\activeandroid\ModelInfo.java	1;"	F
+ModelInfo.loadModelFromMetaData	.\src\com\activeandroid\ModelInfo.java	/^	private boolean loadModelFromMetaData(Configuration configuration) {$/;"	m	class:ModelInfo	file:
+ModelInfo.mTableInfos	.\src\com\activeandroid\ModelInfo.java	/^	private Map<Class<? extends Model>, TableInfo> mTableInfos = new HashMap<Class<? extends Model>, TableInfo>();$/;"	f	class:ModelInfo	file:
+ModelInfo.mTypeSerializers	.\src\com\activeandroid\ModelInfo.java	/^	private Map<Class<?>, TypeSerializer> mTypeSerializers = new HashMap<Class<?>, TypeSerializer>() {$/;"	f	class:ModelInfo	file:
+ModelInfo.scanForModel	.\src\com\activeandroid\ModelInfo.java	/^	private void scanForModel(Context context) throws IOException {$/;"	m	class:ModelInfo	file:
+ModelInfo.scanForModelClasses	.\src\com\activeandroid\ModelInfo.java	/^	private void scanForModelClasses(File path, String packageName, ClassLoader classLoader) {$/;"	m	class:ModelInfo	file:
+ModelTest	.\tests\src\com\activeandroid\test\ModelTest.java	/^public class ModelTest extends ActiveAndroidTestCase {$/;"	c
+ModelTest.AnotherMockModel	.\tests\src\com\activeandroid\test\ModelTest.java	/^	public static class AnotherMockModel extends Model {}$/;"	c	class:ModelTest
+ModelTest.ChildMockModel	.\tests\src\com\activeandroid\test\ModelTest.java	/^    public static class ChildMockModel extends ParentJoinMockModel {$/;"	c	class:ModelTest
+ModelTest.ChildMockModel.parent	.\tests\src\com\activeandroid\test\ModelTest.java	/^        ParentJoinMockModel parent;$/;"	f	class:ModelTest.ChildMockModel
+ModelTest.ParentJoinMockModel	.\tests\src\com\activeandroid\test\ModelTest.java	/^    public static class ParentJoinMockModel extends Model {$/;"	c	class:ModelTest
+ModelTest.ParentJoinMockModel.booleanField	.\tests\src\com\activeandroid\test\ModelTest.java	/^        public boolean booleanField;$/;"	f	class:ModelTest.ParentJoinMockModel
+ModelTest.ParentJoinMockModel.dateField	.\tests\src\com\activeandroid\test\ModelTest.java	/^        public Date dateField;$/;"	f	class:ModelTest.ParentJoinMockModel
+ModelTest.ParentJoinMockModel.doubleField	.\tests\src\com\activeandroid\test\ModelTest.java	/^        public double doubleField;$/;"	f	class:ModelTest.ParentJoinMockModel
+ModelTest.ParentJoinMockModel.intField	.\tests\src\com\activeandroid\test\ModelTest.java	/^        public int intField;$/;"	f	class:ModelTest.ParentJoinMockModel
+ModelTest.java	.\tests\src\com\activeandroid\test\ModelTest.java	1;"	F
+ModelTest.testBooleanColumnType	.\tests\src\com\activeandroid\test\ModelTest.java	/^    public void testBooleanColumnType() {$/;"	m	class:ModelTest
+ModelTest.testColumnNamesDefaulToFieldNames	.\tests\src\com\activeandroid\test\ModelTest.java	/^    public void testColumnNamesDefaulToFieldNames() {$/;"	m	class:ModelTest
+ModelTest.testEqualsDifferentModel	.\tests\src\com\activeandroid\test\ModelTest.java	/^	public void testEqualsDifferentModel() {$/;"	m	class:ModelTest
+ModelTest.testEqualsDifferentRows	.\tests\src\com\activeandroid\test\ModelTest.java	/^	public void testEqualsDifferentRows() {$/;"	m	class:ModelTest
+ModelTest.testEqualsNonModel	.\tests\src\com\activeandroid\test\ModelTest.java	/^	public void testEqualsNonModel() {$/;"	m	class:ModelTest
+ModelTest.testEqualsOnNew	.\tests\src\com\activeandroid\test\ModelTest.java	/^	public void testEqualsOnNew() {$/;"	m	class:ModelTest
+ModelTest.testHashCode	.\tests\src\com\activeandroid\test\ModelTest.java	/^	public void testHashCode() {$/;"	m	class:ModelTest
+ModelTest.testHashCodeDifferentRows	.\tests\src\com\activeandroid\test\ModelTest.java	/^	public void testHashCodeDifferentRows() {$/;"	m	class:ModelTest
+ModelTest.testJoinWithSameNames	.\tests\src\com\activeandroid\test\ModelTest.java	/^    public void testJoinWithSameNames(){$/;"	m	class:ModelTest
+NO_ACTION	.\src\com\activeandroid\annotation\Column.java	/^		SET_NULL, SET_DEFAULT, CASCADE, RESTRICT, NO_ACTION$/;"	e	enum:Column.ForeignKeyAction	file:
+NaturalOrderComparator	.\src\com\activeandroid\util\NaturalOrderComparator.java	/^public class NaturalOrderComparator implements Comparator<Object> {$/;"	c
+NaturalOrderComparator.charAt	.\src\com\activeandroid\util\NaturalOrderComparator.java	/^	static char charAt(String s, int i) {$/;"	m	class:NaturalOrderComparator
+NaturalOrderComparator.compare	.\src\com\activeandroid\util\NaturalOrderComparator.java	/^	public int compare(Object o1, Object o2) {$/;"	m	class:NaturalOrderComparator
+NaturalOrderComparator.compareRight	.\src\com\activeandroid\util\NaturalOrderComparator.java	/^	int compareRight(String a, String b) {$/;"	m	class:NaturalOrderComparator
+NaturalOrderComparator.java	.\src\com\activeandroid\util\NaturalOrderComparator.java	1;"	F
+OUTER	.\src\com\activeandroid\query\Join.java	/^		LEFT, OUTER, INNER, CROSS$/;"	e	enum:Join.JoinType	file:
+ParentJoinMockModel	.\tests\src\com\activeandroid\test\ModelTest.java	/^    public static class ParentJoinMockModel extends Model {$/;"	c	class:ModelTest
+ParserConfigurationTest	.\tests\src\com\activeandroid\test\parser\ParserConfigurationTest.java	/^public class ParserConfigurationTest extends ActiveAndroidTestCase {$/;"	c
+ParserConfigurationTest.java	.\tests\src\com\activeandroid\test\parser\ParserConfigurationTest.java	1;"	F
+ParserConfigurationTest.testDelimitedMigration	.\tests\src\com\activeandroid\test\parser\ParserConfigurationTest.java	/^    public void testDelimitedMigration() {$/;"	m	class:ParserConfigurationTest
+ParserConfigurationTest.testLegacyMigration	.\tests\src\com\activeandroid\test\parser\ParserConfigurationTest.java	/^    public void testLegacyMigration() {$/;"	m	class:ParserConfigurationTest
+ParserTest	.\tests\src\com\activeandroid\test\parser\ParserTest.java	/^public class ParserTest extends ActiveAndroidTestCase {$/;"	c
+ParserTest.getStream	.\tests\src\com\activeandroid\test\parser\ParserTest.java	/^    private InputStream getStream(int id) {$/;"	m	class:ParserTest	file:
+ParserTest.invalid	.\tests\src\com\activeandroid\test\parser\ParserTest.java	/^    private final String invalid = "CREATE TABLE Entity1 ( Id INTEGER AUTOINCREMENT PRIMARY KEY NOT NULL, *\/ Column1 INTEGER )";$/;"	f	class:ParserTest	file:
+ParserTest.java	.\tests\src\com\activeandroid\test\parser\ParserTest.java	1;"	F
+ParserTest.sql1	.\tests\src\com\activeandroid\test\parser\ParserTest.java	/^    private final String sql1    = "CREATE TABLE Entity1 ( Id INTEGER AUTOINCREMENT PRIMARY KEY NOT NULL, Column1 INTEGER )";$/;"	f	class:ParserTest	file:
+ParserTest.sql2	.\tests\src\com\activeandroid\test\parser\ParserTest.java	/^    private final String sql2    = "CREATE TABLE Entity2 ( Id INTEGER AUTOINCREMENT PRIMARY KEY NOT NULL, Column1 INTEGER )";$/;"	f	class:ParserTest	file:
+ParserTest.testBlockAndLineComment	.\tests\src\com\activeandroid\test\parser\ParserTest.java	/^    public void testBlockAndLineComment() throws IOException {$/;"	m	class:ParserTest
+ParserTest.testBlockComment	.\tests\src\com\activeandroid\test\parser\ParserTest.java	/^    public void testBlockComment() throws IOException {$/;"	m	class:ParserTest
+ParserTest.testBlockCommentWithSemicolon	.\tests\src\com\activeandroid\test\parser\ParserTest.java	/^    public void testBlockCommentWithSemicolon() throws IOException {$/;"	m	class:ParserTest
+ParserTest.testBlockCommentWithString	.\tests\src\com\activeandroid\test\parser\ParserTest.java	/^    public void testBlockCommentWithString() throws IOException {$/;"	m	class:ParserTest
+ParserTest.testComplex	.\tests\src\com\activeandroid\test\parser\ParserTest.java	/^    public void testComplex() throws IOException {$/;"	m	class:ParserTest
+ParserTest.testInvalidBlockComment	.\tests\src\com\activeandroid\test\parser\ParserTest.java	/^    public void testInvalidBlockComment() throws IOException {$/;"	m	class:ParserTest
+ParserTest.testLineAndBlockEndComment	.\tests\src\com\activeandroid\test\parser\ParserTest.java	/^    public void testLineAndBlockEndComment() throws IOException {$/;"	m	class:ParserTest
+ParserTest.testLineComment	.\tests\src\com\activeandroid\test\parser\ParserTest.java	/^    public void testLineComment() throws IOException {$/;"	m	class:ParserTest
+ParserTest.testLineCommentWithSemicolon	.\tests\src\com\activeandroid\test\parser\ParserTest.java	/^    public void testLineCommentWithSemicolon() throws IOException {$/;"	m	class:ParserTest
+ParserTest.testLineCommentWithString	.\tests\src\com\activeandroid\test\parser\ParserTest.java	/^    public void testLineCommentWithString() throws IOException {$/;"	m	class:ParserTest
+ParserTest.testStringWithBlockComment	.\tests\src\com\activeandroid\test\parser\ParserTest.java	/^    public void testStringWithBlockComment() throws IOException {$/;"	m	class:ParserTest
+ParserTest.testStringWithLineComment	.\tests\src\com\activeandroid\test\parser\ParserTest.java	/^    public void testStringWithLineComment() throws IOException {$/;"	m	class:ParserTest
+ParserTest.testStringWithSemicolon	.\tests\src\com\activeandroid\test\parser\ParserTest.java	/^    public void testStringWithSemicolon() throws IOException {$/;"	m	class:ParserTest
+ParserTest.testStringWithWhitespace	.\tests\src\com\activeandroid\test\parser\ParserTest.java	/^    public void testStringWithWhitespace() throws IOException {$/;"	m	class:ParserTest
+ParserTest.testTwoStatements	.\tests\src\com\activeandroid\test\parser\ParserTest.java	/^    public void testTwoStatements() throws IOException {$/;"	m	class:ParserTest
+ParserTest.testWhitespace	.\tests\src\com\activeandroid\test\parser\ParserTest.java	/^    public void testWhitespace() throws IOException {$/;"	m	class:ParserTest
+REAL	.\src\com\activeandroid\util\SQLiteUtils.java	/^		INTEGER, REAL, TEXT, BLOB$/;"	e	enum:SQLiteUtils.SQLiteType	file:
+REPLACE	.\src\com\activeandroid\annotation\Column.java	/^		ROLLBACK, ABORT, FAIL, IGNORE, REPLACE$/;"	e	enum:Column.ConflictAction	file:
+RESTRICT	.\src\com\activeandroid\annotation\Column.java	/^		SET_NULL, SET_DEFAULT, CASCADE, RESTRICT, NO_ACTION$/;"	e	enum:Column.ForeignKeyAction	file:
+ROLLBACK	.\src\com\activeandroid\annotation\Column.java	/^		ROLLBACK, ABORT, FAIL, IGNORE, REPLACE$/;"	e	enum:Column.ConflictAction	file:
+ReflectionUtils	.\src\com\activeandroid\util\ReflectionUtils.java	/^public final class ReflectionUtils {$/;"	c
+ReflectionUtils.getDeclaredColumnFields	.\src\com\activeandroid\util\ReflectionUtils.java	/^	public static Set<Field> getDeclaredColumnFields(Class<?> type) {$/;"	m	class:ReflectionUtils
+ReflectionUtils.getMetaData	.\src\com\activeandroid\util\ReflectionUtils.java	/^	public static <T> T getMetaData(Context context, String name) {$/;"	m	class:ReflectionUtils
+ReflectionUtils.isModel	.\src\com\activeandroid\util\ReflectionUtils.java	/^	public static boolean isModel(Class<?> type) {$/;"	m	class:ReflectionUtils
+ReflectionUtils.isSubclassOf	.\src\com\activeandroid\util\ReflectionUtils.java	/^	public static boolean isSubclassOf(Class<?> type, Class<?> superClass) {$/;"	m	class:ReflectionUtils
+ReflectionUtils.isTypeSerializer	.\src\com\activeandroid\util\ReflectionUtils.java	/^	public static boolean isTypeSerializer(Class<?> type) {$/;"	m	class:ReflectionUtils
+ReflectionUtils.java	.\src\com\activeandroid\util\ReflectionUtils.java	1;"	F
+SELECT_PREFIX	.\tests\src\com\activeandroid\test\query\FromTest.java	/^	private static final String SELECT_PREFIX = "SELECT ALL * FROM MockModel ";$/;"	f	class:FromTest	file:
+SET_DEFAULT	.\src\com\activeandroid\annotation\Column.java	/^		SET_NULL, SET_DEFAULT, CASCADE, RESTRICT, NO_ACTION$/;"	e	enum:Column.ForeignKeyAction	file:
+SET_NULL	.\src\com\activeandroid\annotation\Column.java	/^		SET_NULL, SET_DEFAULT, CASCADE, RESTRICT, NO_ACTION$/;"	e	enum:Column.ForeignKeyAction	file:
+SQL_PARSER_DELIMITED	.\src\com\activeandroid\Configuration.java	/^    public final static String SQL_PARSER_DELIMITED = "delimited";$/;"	f	class:Configuration
+SQL_PARSER_LEGACY	.\src\com\activeandroid\Configuration.java	/^    public final static String SQL_PARSER_LEGACY = "legacy";$/;"	f	class:Configuration
+SQLiteType	.\src\com\activeandroid\util\SQLiteUtils.java	/^	public enum SQLiteType {$/;"	g	class:SQLiteUtils
+SQLiteUtils	.\src\com\activeandroid\util\SQLiteUtils.java	/^public final class SQLiteUtils {$/;"	c
+SQLiteUtils.FOREIGN_KEYS_SUPPORTED	.\src\com\activeandroid\util\SQLiteUtils.java	/^	public static final boolean FOREIGN_KEYS_SUPPORTED = Build.VERSION.SDK_INT >= Build.VERSION_CODES.FROYO;$/;"	f	class:SQLiteUtils
+SQLiteUtils.SQLiteType	.\src\com\activeandroid\util\SQLiteUtils.java	/^	public enum SQLiteType {$/;"	g	class:SQLiteUtils
+SQLiteUtils.TYPE_MAP	.\src\com\activeandroid\util\SQLiteUtils.java	/^	private static final HashMap<Class<?>, SQLiteType> TYPE_MAP = new HashMap<Class<?>, SQLiteType>() {$/;"	f	class:SQLiteUtils	file:
+SQLiteUtils.createColumnDefinition	.\src\com\activeandroid\util\SQLiteUtils.java	/^	public static String createColumnDefinition(TableInfo tableInfo, Field field) {$/;"	m	class:SQLiteUtils
+SQLiteUtils.createIndexColumnDefinition	.\src\com\activeandroid\util\SQLiteUtils.java	/^	public static void createIndexColumnDefinition(TableInfo tableInfo, Field field) {$/;"	m	class:SQLiteUtils
+SQLiteUtils.createIndexDefinition	.\src\com\activeandroid\util\SQLiteUtils.java	/^	public static String[] createIndexDefinition(TableInfo tableInfo) {$/;"	m	class:SQLiteUtils
+SQLiteUtils.createTableDefinition	.\src\com\activeandroid\util\SQLiteUtils.java	/^	public static String createTableDefinition(TableInfo tableInfo) {$/;"	m	class:SQLiteUtils
+SQLiteUtils.createUniqueColumnDefinition	.\src\com\activeandroid\util\SQLiteUtils.java	/^	public static void createUniqueColumnDefinition(TableInfo tableInfo, Field field) {$/;"	m	class:SQLiteUtils
+SQLiteUtils.createUniqueDefinition	.\src\com\activeandroid\util\SQLiteUtils.java	/^	public static ArrayList<String> createUniqueDefinition(TableInfo tableInfo) {$/;"	m	class:SQLiteUtils
+SQLiteUtils.execSql	.\src\com\activeandroid\util\SQLiteUtils.java	/^	public static void execSql(String sql) {$/;"	m	class:SQLiteUtils
+SQLiteUtils.execSql	.\src\com\activeandroid\util\SQLiteUtils.java	/^	public static void execSql(String sql, Object[] bindArgs) {$/;"	m	class:SQLiteUtils
+SQLiteUtils.intQuery	.\src\com\activeandroid\util\SQLiteUtils.java	/^	public static int intQuery(final String sql, final String[] selectionArgs) {$/;"	m	class:SQLiteUtils
+SQLiteUtils.java	.\src\com\activeandroid\util\SQLiteUtils.java	1;"	F
+SQLiteUtils.lexSqlScript	.\src\com\activeandroid\util\SQLiteUtils.java	/^	public static List<String> lexSqlScript(String sqlScript) {$/;"	m	class:SQLiteUtils
+SQLiteUtils.processCursor	.\src\com\activeandroid\util\SQLiteUtils.java	/^	public static <T extends Model> List<T> processCursor(Class<? extends Model> type, Cursor cursor) {$/;"	m	class:SQLiteUtils
+SQLiteUtils.processIntCursor	.\src\com\activeandroid\util\SQLiteUtils.java	/^	private static int processIntCursor(final Cursor cursor) {$/;"	m	class:SQLiteUtils	file:
+SQLiteUtils.rawQuery	.\src\com\activeandroid\util\SQLiteUtils.java	/^	public static <T extends Model> List<T> rawQuery(Class<? extends Model> type, String sql, String[] selectionArgs) {$/;"	m	class:SQLiteUtils
+SQLiteUtils.rawQuerySingle	.\src\com\activeandroid\util\SQLiteUtils.java	/^	public static <T extends Model> T rawQuerySingle(Class<? extends Model> type, String sql, String[] selectionArgs) {$/;"	m	class:SQLiteUtils
+SQLiteUtils.sIndexGroupMap	.\src\com\activeandroid\util\SQLiteUtils.java	/^	private static HashMap<String, List<String>> sIndexGroupMap;$/;"	f	class:SQLiteUtils	file:
+SQLiteUtils.sOnUniqueConflictsMap	.\src\com\activeandroid\util\SQLiteUtils.java	/^	private static HashMap<String, ConflictAction> sOnUniqueConflictsMap;$/;"	f	class:SQLiteUtils	file:
+SQLiteUtils.sUniqueGroupMap	.\src\com\activeandroid\util\SQLiteUtils.java	/^	private static HashMap<String, List<String>> sUniqueGroupMap;$/;"	f	class:SQLiteUtils	file:
+STATE_COMMENT	.\src\com\activeandroid\util\SqlParser.java	/^    public final static int STATE_COMMENT       = 2;$/;"	f	class:SqlParser
+STATE_COMMENT_BLOCK	.\src\com\activeandroid\util\SqlParser.java	/^    public final static int STATE_COMMENT_BLOCK = 3;$/;"	f	class:SqlParser
+STATE_NONE	.\src\com\activeandroid\util\SqlParser.java	/^    public final static int STATE_NONE          = 0;$/;"	f	class:SqlParser
+STATE_STRING	.\src\com\activeandroid\util\SqlParser.java	/^    public final static int STATE_STRING        = 1;$/;"	f	class:SqlParser
+Select	.\src\com\activeandroid\query\Select.java	/^	public Select() {$/;"	m	class:Select
+Select	.\src\com\activeandroid\query\Select.java	/^	public Select(Column... columns) {$/;"	m	class:Select
+Select	.\src\com\activeandroid\query\Select.java	/^	public Select(String... columns) {$/;"	m	class:Select
+Select	.\src\com\activeandroid\query\Select.java	/^public final class Select implements Sqlable {$/;"	c
+Select.Column	.\src\com\activeandroid\query\Select.java	/^	public static class Column {$/;"	c	class:Select
+Select.Column.Column	.\src\com\activeandroid\query\Select.java	/^		public Column(String name, String alias) {$/;"	m	class:Select.Column
+Select.Column.alias	.\src\com\activeandroid\query\Select.java	/^		String alias;$/;"	f	class:Select.Column
+Select.Column.name	.\src\com\activeandroid\query\Select.java	/^		String name;$/;"	f	class:Select.Column
+Select.Select	.\src\com\activeandroid\query\Select.java	/^	public Select() {$/;"	m	class:Select
+Select.Select	.\src\com\activeandroid\query\Select.java	/^	public Select(Column... columns) {$/;"	m	class:Select
+Select.Select	.\src\com\activeandroid\query\Select.java	/^	public Select(String... columns) {$/;"	m	class:Select
+Select.all	.\src\com\activeandroid\query\Select.java	/^	public Select all() {$/;"	m	class:Select
+Select.distinct	.\src\com\activeandroid\query\Select.java	/^	public Select distinct() {$/;"	m	class:Select
+Select.from	.\src\com\activeandroid\query\Select.java	/^	public From from(Class<? extends Model> table) {$/;"	m	class:Select
+Select.java	.\src\com\activeandroid\query\Select.java	1;"	F
+Select.mAll	.\src\com\activeandroid\query\Select.java	/^	private boolean mAll = false;$/;"	f	class:Select	file:
+Select.mColumns	.\src\com\activeandroid\query\Select.java	/^	private String[] mColumns;$/;"	f	class:Select	file:
+Select.mDistinct	.\src\com\activeandroid\query\Select.java	/^	private boolean mDistinct = false;$/;"	f	class:Select	file:
+Select.toSql	.\src\com\activeandroid\query\Select.java	/^	public String toSql() {$/;"	m	class:Select
+SelectTest	.\tests\src\com\activeandroid\test\query\SelectTest.java	/^public class SelectTest extends SqlableTestCase {$/;"	c
+SelectTest.java	.\tests\src\com\activeandroid\test\query\SelectTest.java	1;"	F
+SelectTest.testFrom	.\tests\src\com\activeandroid\test\query\SelectTest.java	/^	public void testFrom() {$/;"	m	class:SelectTest
+SelectTest.testSelectAll	.\tests\src\com\activeandroid\test\query\SelectTest.java	/^	public void testSelectAll() {$/;"	m	class:SelectTest
+SelectTest.testSelectDistinct	.\tests\src\com\activeandroid\test\query\SelectTest.java	/^	public void testSelectDistinct() {$/;"	m	class:SelectTest
+SelectTest.testSelectDistinctColumns	.\tests\src\com\activeandroid\test\query\SelectTest.java	/^	public void testSelectDistinctColumns() {$/;"	m	class:SelectTest
+SelectTest.testSelectEmpty	.\tests\src\com\activeandroid\test\query\SelectTest.java	/^	public void testSelectEmpty() {$/;"	m	class:SelectTest
+SelectTest.testSelectStringColumns	.\tests\src\com\activeandroid\test\query\SelectTest.java	/^	public void testSelectStringColumns() {$/;"	m	class:SelectTest
+Set	.\src\com\activeandroid\query\Set.java	/^	public Set(Update queryBase, String set) {$/;"	m	class:Set
+Set	.\src\com\activeandroid\query\Set.java	/^	public Set(Update queryBase, String set, Object... args) {$/;"	m	class:Set
+Set	.\src\com\activeandroid\query\Set.java	/^public final class Set implements Sqlable {$/;"	c
+Set.Set	.\src\com\activeandroid\query\Set.java	/^	public Set(Update queryBase, String set) {$/;"	m	class:Set
+Set.Set	.\src\com\activeandroid\query\Set.java	/^	public Set(Update queryBase, String set, Object... args) {$/;"	m	class:Set
+Set.execute	.\src\com\activeandroid\query\Set.java	/^	public void execute() {$/;"	m	class:Set
+Set.getArguments	.\src\com\activeandroid\query\Set.java	/^	public String[] getArguments() {$/;"	m	class:Set
+Set.java	.\src\com\activeandroid\query\Set.java	1;"	F
+Set.mSet	.\src\com\activeandroid\query\Set.java	/^	private String mSet;$/;"	f	class:Set	file:
+Set.mSetArguments	.\src\com\activeandroid\query\Set.java	/^	private List<Object> mSetArguments;$/;"	f	class:Set	file:
+Set.mUpdate	.\src\com\activeandroid\query\Set.java	/^	private Update mUpdate;$/;"	f	class:Set	file:
+Set.mWhere	.\src\com\activeandroid\query\Set.java	/^	private String mWhere;$/;"	f	class:Set	file:
+Set.mWhereArguments	.\src\com\activeandroid\query\Set.java	/^	private List<Object> mWhereArguments;$/;"	f	class:Set	file:
+Set.toSql	.\src\com\activeandroid\query\Set.java	/^	public String toSql() {$/;"	m	class:Set
+Set.where	.\src\com\activeandroid\query\Set.java	/^	public Set where(String where) {$/;"	m	class:Set
+Set.where	.\src\com\activeandroid\query\Set.java	/^	public Set where(String where, Object... args) {$/;"	m	class:Set
+SqlDateSerializer	.\src\com\activeandroid\serializer\SqlDateSerializer.java	/^public final class SqlDateSerializer extends TypeSerializer {$/;"	c
+SqlDateSerializer.deserialize	.\src\com\activeandroid\serializer\SqlDateSerializer.java	/^	public Date deserialize(Object data) {$/;"	m	class:SqlDateSerializer
+SqlDateSerializer.getDeserializedType	.\src\com\activeandroid\serializer\SqlDateSerializer.java	/^	public Class<?> getDeserializedType() {$/;"	m	class:SqlDateSerializer
+SqlDateSerializer.getSerializedType	.\src\com\activeandroid\serializer\SqlDateSerializer.java	/^	public Class<?> getSerializedType() {$/;"	m	class:SqlDateSerializer
+SqlDateSerializer.java	.\src\com\activeandroid\serializer\SqlDateSerializer.java	1;"	F
+SqlDateSerializer.serialize	.\src\com\activeandroid\serializer\SqlDateSerializer.java	/^	public Long serialize(Object data) {$/;"	m	class:SqlDateSerializer
+SqlParser	.\src\com\activeandroid\util\SqlParser.java	/^public class SqlParser {$/;"	c
+SqlParser.STATE_COMMENT	.\src\com\activeandroid\util\SqlParser.java	/^    public final static int STATE_COMMENT       = 2;$/;"	f	class:SqlParser
+SqlParser.STATE_COMMENT_BLOCK	.\src\com\activeandroid\util\SqlParser.java	/^    public final static int STATE_COMMENT_BLOCK = 3;$/;"	f	class:SqlParser
+SqlParser.STATE_NONE	.\src\com\activeandroid\util\SqlParser.java	/^    public final static int STATE_NONE          = 0;$/;"	f	class:SqlParser
+SqlParser.STATE_STRING	.\src\com\activeandroid\util\SqlParser.java	/^    public final static int STATE_STRING        = 1;$/;"	f	class:SqlParser
+SqlParser.isNewLine	.\src\com\activeandroid\util\SqlParser.java	/^    private static boolean isNewLine(final char c) {$/;"	m	class:SqlParser	file:
+SqlParser.isWhitespace	.\src\com\activeandroid\util\SqlParser.java	/^    private static boolean isWhitespace(final char c) {$/;"	m	class:SqlParser	file:
+SqlParser.java	.\src\com\activeandroid\util\SqlParser.java	1;"	F
+SqlParser.parse	.\src\com\activeandroid\util\SqlParser.java	/^    public static List<String> parse(final InputStream stream) throws IOException {$/;"	m	class:SqlParser
+Sqlable	.\src\com\activeandroid\query\Sqlable.java	/^public interface Sqlable {$/;"	i
+Sqlable.java	.\src\com\activeandroid\query\Sqlable.java	1;"	F
+Sqlable.toSql	.\src\com\activeandroid\query\Sqlable.java	/^	public String toSql();$/;"	m	interface:Sqlable
+SqlableTestCase	.\tests\src\com\activeandroid\test\query\SqlableTestCase.java	/^public abstract class SqlableTestCase extends ActiveAndroidTestCase {$/;"	c
+SqlableTestCase.assertSqlEquals	.\tests\src\com\activeandroid\test\query\SqlableTestCase.java	/^	public static void assertSqlEquals(Sqlable expected, Sqlable actual) {$/;"	m	class:SqlableTestCase
+SqlableTestCase.assertSqlEquals	.\tests\src\com\activeandroid\test\query\SqlableTestCase.java	/^	public static void assertSqlEquals(String expected, Sqlable actual) {$/;"	m	class:SqlableTestCase
+SqlableTestCase.java	.\tests\src\com\activeandroid\test\query\SqlableTestCase.java	1;"	F
+TEXT	.\src\com\activeandroid\util\SQLiteUtils.java	/^		INTEGER, REAL, TEXT, BLOB$/;"	e	enum:SQLiteUtils.SQLiteType	file:
+TYPE_CODES	.\src\com\activeandroid\content\ContentProvider.java	/^	private static final SparseArray<Class<? extends Model>> TYPE_CODES = new SparseArray<Class<? extends Model>>();$/;"	f	class:ContentProvider	file:
+TYPE_MAP	.\src\com\activeandroid\util\SQLiteUtils.java	/^	private static final HashMap<Class<?>, SQLiteType> TYPE_MAP = new HashMap<Class<?>, SQLiteType>() {$/;"	f	class:SQLiteUtils	file:
+Table	.\src\com\activeandroid\annotation\Table.java	/^public @interface Table {$/;"	i
+Table.DEFAULT_ID_NAME	.\src\com\activeandroid\annotation\Table.java	/^	public String id() default DEFAULT_ID_NAME;$/;"	f	interface:Table
+Table.DEFAULT_ID_NAME	.\src\com\activeandroid\annotation\Table.java	/^	public static final String DEFAULT_ID_NAME = "Id";$/;"	f	interface:Table
+Table.java	.\src\com\activeandroid\annotation\Table.java	1;"	F
+Table.name	.\src\com\activeandroid\annotation\Table.java	/^	public String name();$/;"	m	interface:Table
+TableInfo	.\src\com\activeandroid\TableInfo.java	/^	public TableInfo(Class<? extends Model> type) {$/;"	m	class:TableInfo
+TableInfo	.\src\com\activeandroid\TableInfo.java	/^public final class TableInfo {$/;"	c
+TableInfo.TableInfo	.\src\com\activeandroid\TableInfo.java	/^	public TableInfo(Class<? extends Model> type) {$/;"	m	class:TableInfo
+TableInfo.getColumnName	.\src\com\activeandroid\TableInfo.java	/^	public String getColumnName(Field field) {$/;"	m	class:TableInfo
+TableInfo.getFields	.\src\com\activeandroid\TableInfo.java	/^	public Collection<Field> getFields() {$/;"	m	class:TableInfo
+TableInfo.getIdField	.\src\com\activeandroid\TableInfo.java	/^    private Field getIdField(Class<?> type) {$/;"	m	class:TableInfo	file:
+TableInfo.getIdName	.\src\com\activeandroid\TableInfo.java	/^	public String getIdName() {$/;"	m	class:TableInfo
+TableInfo.getTableName	.\src\com\activeandroid\TableInfo.java	/^	public String getTableName() {$/;"	m	class:TableInfo
+TableInfo.getType	.\src\com\activeandroid\TableInfo.java	/^	public Class<? extends Model> getType() {$/;"	m	class:TableInfo
+TableInfo.java	.\src\com\activeandroid\TableInfo.java	1;"	F
+TableInfo.mColumnNames	.\src\com\activeandroid\TableInfo.java	/^	private Map<Field, String> mColumnNames = new LinkedHashMap<Field, String>();$/;"	f	class:TableInfo	file:
+TableInfo.mIdName	.\src\com\activeandroid\TableInfo.java	/^	private String mIdName = Table.DEFAULT_ID_NAME;$/;"	f	class:TableInfo	file:
+TableInfo.mTableName	.\src\com\activeandroid\TableInfo.java	/^	private String mTableName;$/;"	f	class:TableInfo	file:
+TableInfo.mType	.\src\com\activeandroid\TableInfo.java	/^	private Class<? extends Model> mType;$/;"	f	class:TableInfo	file:
+Tokenizer	.\src\com\activeandroid\util\Tokenizer.java	/^    public Tokenizer(final InputStream in) {$/;"	m	class:Tokenizer
+Tokenizer	.\src\com\activeandroid\util\Tokenizer.java	/^public class Tokenizer {$/;"	c
+Tokenizer.Tokenizer	.\src\com\activeandroid\util\Tokenizer.java	/^    public Tokenizer(final InputStream in) {$/;"	m	class:Tokenizer
+Tokenizer.hasNext	.\src\com\activeandroid\util\Tokenizer.java	/^    public boolean hasNext() throws IOException {$/;"	m	class:Tokenizer
+Tokenizer.java	.\src\com\activeandroid\util\Tokenizer.java	1;"	F
+Tokenizer.mCurrent	.\src\com\activeandroid\util\Tokenizer.java	/^    private int               mCurrent;$/;"	f	class:Tokenizer	file:
+Tokenizer.mIsNext	.\src\com\activeandroid\util\Tokenizer.java	/^    private boolean           mIsNext;$/;"	f	class:Tokenizer	file:
+Tokenizer.mStream	.\src\com\activeandroid\util\Tokenizer.java	/^    private final InputStream mStream;$/;"	f	class:Tokenizer	file:
+Tokenizer.next	.\src\com\activeandroid\util\Tokenizer.java	/^    public int next() throws IOException {$/;"	m	class:Tokenizer
+Tokenizer.skip	.\src\com\activeandroid\util\Tokenizer.java	/^    public boolean skip(final String s) throws IOException {$/;"	m	class:Tokenizer
+TypeSerializer	.\src\com\activeandroid\serializer\TypeSerializer.java	/^public abstract class TypeSerializer {$/;"	c
+TypeSerializer.deserialize	.\src\com\activeandroid\serializer\TypeSerializer.java	/^	public abstract Object deserialize(Object data);$/;"	m	class:TypeSerializer
+TypeSerializer.getDeserializedType	.\src\com\activeandroid\serializer\TypeSerializer.java	/^	public abstract Class<?> getDeserializedType();$/;"	m	class:TypeSerializer
+TypeSerializer.getSerializedType	.\src\com\activeandroid\serializer\TypeSerializer.java	/^	public abstract Class<?> getSerializedType();$/;"	m	class:TypeSerializer
+TypeSerializer.java	.\src\com\activeandroid\serializer\TypeSerializer.java	1;"	F
+TypeSerializer.serialize	.\src\com\activeandroid\serializer\TypeSerializer.java	/^	public abstract Object serialize(Object data);$/;"	m	class:TypeSerializer
+UPDATE_PREFIX	.\tests\src\com\activeandroid\test\query\UpdateTest.java	/^	private static final String UPDATE_PREFIX = "UPDATE MockModel ";$/;"	f	class:UpdateTest	file:
+URI_MATCHER	.\src\com\activeandroid\content\ContentProvider.java	/^	private static final UriMatcher URI_MATCHER = new UriMatcher(UriMatcher.NO_MATCH);$/;"	f	class:ContentProvider	file:
+UUIDSerializer	.\src\com\activeandroid\serializer\UUIDSerializer.java	/^public final class UUIDSerializer extends TypeSerializer {$/;"	c
+UUIDSerializer.deserialize	.\src\com\activeandroid\serializer\UUIDSerializer.java	/^	public UUID deserialize(Object data) {$/;"	m	class:UUIDSerializer
+UUIDSerializer.getDeserializedType	.\src\com\activeandroid\serializer\UUIDSerializer.java	/^	public Class<?> getDeserializedType() {$/;"	m	class:UUIDSerializer
+UUIDSerializer.getSerializedType	.\src\com\activeandroid\serializer\UUIDSerializer.java	/^	public Class<?> getSerializedType() {$/;"	m	class:UUIDSerializer
+UUIDSerializer.java	.\src\com\activeandroid\serializer\UUIDSerializer.java	1;"	F
+UUIDSerializer.serialize	.\src\com\activeandroid\serializer\UUIDSerializer.java	/^	public String serialize(Object data) {$/;"	m	class:UUIDSerializer
+Update	.\src\com\activeandroid\query\Update.java	/^	public Update(Class<? extends Model> table) {$/;"	m	class:Update
+Update	.\src\com\activeandroid\query\Update.java	/^public final class Update implements Sqlable {$/;"	c
+Update.Update	.\src\com\activeandroid\query\Update.java	/^	public Update(Class<? extends Model> table) {$/;"	m	class:Update
+Update.getType	.\src\com\activeandroid\query\Update.java	/^	Class<? extends Model> getType() {$/;"	m	class:Update
+Update.java	.\src\com\activeandroid\query\Update.java	1;"	F
+Update.mType	.\src\com\activeandroid\query\Update.java	/^	private Class<? extends Model> mType;$/;"	f	class:Update	file:
+Update.set	.\src\com\activeandroid\query\Update.java	/^	public Set set(String set) {$/;"	m	class:Update
+Update.set	.\src\com\activeandroid\query\Update.java	/^	public Set set(String set, Object... args) {$/;"	m	class:Update
+Update.toSql	.\src\com\activeandroid\query\Update.java	/^	public String toSql() {$/;"	m	class:Update
+UpdateTest	.\tests\src\com\activeandroid\test\query\UpdateTest.java	/^public class UpdateTest extends SqlableTestCase {$/;"	c
+UpdateTest.UPDATE_PREFIX	.\tests\src\com\activeandroid\test\query\UpdateTest.java	/^	private static final String UPDATE_PREFIX = "UPDATE MockModel ";$/;"	f	class:UpdateTest	file:
+UpdateTest.java	.\tests\src\com\activeandroid\test\query\UpdateTest.java	1;"	F
+UpdateTest.testUpdate	.\tests\src\com\activeandroid\test\query\UpdateTest.java	/^	public void testUpdate() {$/;"	m	class:UpdateTest
+UpdateTest.testUpdateSet	.\tests\src\com\activeandroid\test\query\UpdateTest.java	/^	public void testUpdateSet() {$/;"	m	class:UpdateTest
+UpdateTest.testUpdateWhereNoArguments	.\tests\src\com\activeandroid\test\query\UpdateTest.java	/^	public void testUpdateWhereNoArguments() {$/;"	m	class:UpdateTest
+UpdateTest.testUpdateWhereWithArguments	.\tests\src\com\activeandroid\test\query\UpdateTest.java	/^	public void testUpdateWhereWithArguments() {$/;"	m	class:UpdateTest
+UpdateTest.update	.\tests\src\com\activeandroid\test\query\UpdateTest.java	/^	private Update update() {$/;"	m	class:UpdateTest	file:
+UtilDateSerializer	.\src\com\activeandroid\serializer\UtilDateSerializer.java	/^public final class UtilDateSerializer extends TypeSerializer {$/;"	c
+UtilDateSerializer.deserialize	.\src\com\activeandroid\serializer\UtilDateSerializer.java	/^	public Date deserialize(Object data) {$/;"	m	class:UtilDateSerializer
+UtilDateSerializer.getDeserializedType	.\src\com\activeandroid\serializer\UtilDateSerializer.java	/^	public Class<?> getDeserializedType() {$/;"	m	class:UtilDateSerializer
+UtilDateSerializer.getSerializedType	.\src\com\activeandroid\serializer\UtilDateSerializer.java	/^	public Class<?> getSerializedType() {$/;"	m	class:UtilDateSerializer
+UtilDateSerializer.java	.\src\com\activeandroid\serializer\UtilDateSerializer.java	1;"	F
+UtilDateSerializer.serialize	.\src\com\activeandroid\serializer\UtilDateSerializer.java	/^	public Long serialize(Object data) {$/;"	m	class:UtilDateSerializer
+_SKIP	.\gradlew.bat	/^set _SKIP=2$/;"	v
+addArguments	.\src\com\activeandroid\query\From.java	/^	void addArguments(Object[] args) {$/;"	m	class:From
+addEntity	.\src\com\activeandroid\Cache.java	/^	public static synchronized void addEntity(Model entity) {$/;"	m	class:Cache
+addFrom	.\src\com\activeandroid\query\From.java	/^    private void addFrom(final StringBuilder sql) {$/;"	m	class:From	file:
+addGroupBy	.\src\com\activeandroid\query\From.java	/^    private void addGroupBy(final StringBuilder sql) {$/;"	m	class:From	file:
+addHaving	.\src\com\activeandroid\query\From.java	/^    private void addHaving(final StringBuilder sql) {$/;"	m	class:From	file:
+addJoins	.\src\com\activeandroid\query\From.java	/^    private void addJoins(final StringBuilder sql) {$/;"	m	class:From	file:
+addLimit	.\src\com\activeandroid\query\From.java	/^    private void addLimit(final StringBuilder sql) {$/;"	m	class:From	file:
+addModelClass	.\src\com\activeandroid\Configuration.java	/^		public Builder addModelClass(Class<? extends Model> modelClass) {$/;"	m	class:Configuration.Builder
+addModelClasses	.\src\com\activeandroid\Configuration.java	/^		public Builder addModelClasses(Class<? extends Model>... modelClasses) {$/;"	m	class:Configuration.Builder
+addOffset	.\src\com\activeandroid\query\From.java	/^    private void addOffset(final StringBuilder sql) {$/;"	m	class:From	file:
+addOrderBy	.\src\com\activeandroid\query\From.java	/^    private void addOrderBy(final StringBuilder sql) {$/;"	m	class:From	file:
+addTypeSerializer	.\src\com\activeandroid\Configuration.java	/^		public Builder addTypeSerializer(Class<? extends TypeSerializer> typeSerializer) {$/;"	m	class:Configuration.Builder
+addTypeSerializers	.\src\com\activeandroid\Configuration.java	/^		public Builder addTypeSerializers(Class<? extends TypeSerializer>... typeSerializers) {$/;"	m	class:Configuration.Builder
+addWhere	.\src\com\activeandroid\query\From.java	/^    private void addWhere(final StringBuilder sql) {$/;"	m	class:From	file:
+alias	.\src\com\activeandroid\query\Select.java	/^		String alias;$/;"	f	class:Select.Column
+all	.\src\com\activeandroid\query\Select.java	/^	public Select all() {$/;"	m	class:Select
+and	.\src\com\activeandroid\query\From.java	/^    public From and(String clause) {$/;"	m	class:From
+and	.\src\com\activeandroid\query\From.java	/^    public From and(String clause, Object... args) {$/;"	m	class:From
+as	.\src\com\activeandroid\query\From.java	/^	public From as(String alias) {$/;"	m	class:From
+as	.\src\com\activeandroid\query\Join.java	/^	public Join as(String alias) {$/;"	m	class:Join
+assertArrayEquals	.\tests\src\com\activeandroid\test\ActiveAndroidTestCase.java	/^	public static <T> void assertArrayEquals(T[] actual, T... expected) {$/;"	m	class:ActiveAndroidTestCase
+assertSqlEquals	.\tests\src\com\activeandroid\test\query\SqlableTestCase.java	/^	public static void assertSqlEquals(Sqlable expected, Sqlable actual) {$/;"	m	class:SqlableTestCase
+assertSqlEquals	.\tests\src\com\activeandroid\test\query\SqlableTestCase.java	/^	public static void assertSqlEquals(String expected, Sqlable actual) {$/;"	m	class:SqlableTestCase
+beginTransaction	.\src\com\activeandroid\ActiveAndroid.java	/^	public static void beginTransaction() {$/;"	m	class:ActiveAndroid
+block_comment.sql	.\tests\res\raw\block_comment.sql	1;"	F
+block_comment_with_semicolon.sql	.\tests\res\raw\block_comment_with_semicolon.sql	1;"	F
+block_comment_with_string.sql	.\tests\res\raw\block_comment_with_string.sql	1;"	F
+block_with_line_comment.sql	.\tests\res\raw\block_with_line_comment.sql	1;"	F
+booleanField	.\tests\src\com\activeandroid\test\MockModel.java	/^    public boolean booleanField;$/;"	f	class:MockModel
+booleanField	.\tests\src\com\activeandroid\test\ModelTest.java	/^        public boolean booleanField;$/;"	f	class:ModelTest.ParentJoinMockModel
+charAt	.\src\com\activeandroid\util\NaturalOrderComparator.java	/^	static char charAt(String s, int i) {$/;"	m	class:NaturalOrderComparator
+cleanTable	.\tests\src\com\activeandroid\test\query\CountTest.java	/^    private void cleanTable() {$/;"	m	class:CountTest	file:
+cleanTable	.\tests\src\com\activeandroid\test\query\ExistsTest.java	/^    private void cleanTable() {$/;"	m	class:ExistsTest	file:
+clear	.\src\com\activeandroid\Cache.java	/^	public static synchronized void clear() {$/;"	m	class:Cache
+clearCache	.\src\com\activeandroid\ActiveAndroid.java	/^	public static void clearCache() {$/;"	m	class:ActiveAndroid
+closeDatabase	.\src\com\activeandroid\Cache.java	/^	public static synchronized void closeDatabase() {$/;"	m	class:Cache
+closeQuietly	.\src\com\activeandroid\util\IOUtils.java	/^    public static void closeQuietly(final Closeable closeable) {$/;"	m	class:IOUtils
+closeQuietly	.\src\com\activeandroid\util\IOUtils.java	/^    public static void closeQuietly(final Cursor cursor) {$/;"	m	class:IOUtils
+com.activeandroid	.\src\com\activeandroid\ActiveAndroid.java	/^package com.activeandroid;$/;"	p
+com.activeandroid	.\src\com\activeandroid\Cache.java	/^package com.activeandroid;$/;"	p
+com.activeandroid	.\src\com\activeandroid\Configuration.java	/^package com.activeandroid;$/;"	p
+com.activeandroid	.\src\com\activeandroid\DatabaseHelper.java	/^package com.activeandroid;$/;"	p
+com.activeandroid	.\src\com\activeandroid\Model.java	/^package com.activeandroid;$/;"	p
+com.activeandroid	.\src\com\activeandroid\ModelInfo.java	/^package com.activeandroid;$/;"	p
+com.activeandroid	.\src\com\activeandroid\TableInfo.java	/^package com.activeandroid;$/;"	p
+com.activeandroid.annotation	.\src\com\activeandroid\annotation\Column.java	/^package com.activeandroid.annotation;$/;"	p
+com.activeandroid.annotation	.\src\com\activeandroid\annotation\Table.java	/^package com.activeandroid.annotation;$/;"	p
+com.activeandroid.app	.\src\com\activeandroid\app\Application.java	/^package com.activeandroid.app;$/;"	p
+com.activeandroid.content	.\src\com\activeandroid\content\ContentProvider.java	/^package com.activeandroid.content;$/;"	p
+com.activeandroid.query	.\src\com\activeandroid\query\Delete.java	/^package com.activeandroid.query;$/;"	p
+com.activeandroid.query	.\src\com\activeandroid\query\From.java	/^package com.activeandroid.query;$/;"	p
+com.activeandroid.query	.\src\com\activeandroid\query\Join.java	/^package com.activeandroid.query;$/;"	p
+com.activeandroid.query	.\src\com\activeandroid\query\Select.java	/^package com.activeandroid.query;$/;"	p
+com.activeandroid.query	.\src\com\activeandroid\query\Set.java	/^package com.activeandroid.query;$/;"	p
+com.activeandroid.query	.\src\com\activeandroid\query\Sqlable.java	/^package com.activeandroid.query;$/;"	p
+com.activeandroid.query	.\src\com\activeandroid\query\Update.java	/^package com.activeandroid.query;$/;"	p
+com.activeandroid.serializer	.\src\com\activeandroid\serializer\BigDecimalSerializer.java	/^package com.activeandroid.serializer;$/;"	p
+com.activeandroid.serializer	.\src\com\activeandroid\serializer\CalendarSerializer.java	/^package com.activeandroid.serializer;$/;"	p
+com.activeandroid.serializer	.\src\com\activeandroid\serializer\FileSerializer.java	/^package com.activeandroid.serializer;$/;"	p
+com.activeandroid.serializer	.\src\com\activeandroid\serializer\SqlDateSerializer.java	/^package com.activeandroid.serializer;$/;"	p
+com.activeandroid.serializer	.\src\com\activeandroid\serializer\TypeSerializer.java	/^package com.activeandroid.serializer;$/;"	p
+com.activeandroid.serializer	.\src\com\activeandroid\serializer\UUIDSerializer.java	/^package com.activeandroid.serializer;$/;"	p
+com.activeandroid.serializer	.\src\com\activeandroid\serializer\UtilDateSerializer.java	/^package com.activeandroid.serializer;$/;"	p
+com.activeandroid.test	.\tests\src\com\activeandroid\test\ActiveAndroidTestCase.java	/^package com.activeandroid.test;$/;"	p
+com.activeandroid.test	.\tests\src\com\activeandroid\test\CacheTest.java	/^package com.activeandroid.test;$/;"	p
+com.activeandroid.test	.\tests\src\com\activeandroid\test\ConfigurationTest.java	/^package com.activeandroid.test;$/;"	p
+com.activeandroid.test	.\tests\src\com\activeandroid\test\MockModel.java	/^package com.activeandroid.test;$/;"	p
+com.activeandroid.test	.\tests\src\com\activeandroid\test\ModelTest.java	/^package com.activeandroid.test;$/;"	p
+com.activeandroid.test.parser	.\tests\src\com\activeandroid\test\parser\ParserConfigurationTest.java	/^package com.activeandroid.test.parser;$/;"	p
+com.activeandroid.test.parser	.\tests\src\com\activeandroid\test\parser\ParserTest.java	/^package com.activeandroid.test.parser;$/;"	p
+com.activeandroid.test.query	.\tests\src\com\activeandroid\test\query\CountTest.java	/^package com.activeandroid.test.query;$/;"	p
+com.activeandroid.test.query	.\tests\src\com\activeandroid\test\query\DeleteTest.java	/^package com.activeandroid.test.query;$/;"	p
+com.activeandroid.test.query	.\tests\src\com\activeandroid\test\query\ExistsTest.java	/^package com.activeandroid.test.query;$/;"	p
+com.activeandroid.test.query	.\tests\src\com\activeandroid\test\query\FromTest.java	/^package com.activeandroid.test.query;$/;"	p
+com.activeandroid.test.query	.\tests\src\com\activeandroid\test\query\SelectTest.java	/^package com.activeandroid.test.query;$/;"	p
+com.activeandroid.test.query	.\tests\src\com\activeandroid\test\query\SqlableTestCase.java	/^package com.activeandroid.test.query;$/;"	p
+com.activeandroid.test.query	.\tests\src\com\activeandroid\test\query\UpdateTest.java	/^package com.activeandroid.test.query;$/;"	p
+com.activeandroid.util	.\src\com\activeandroid\util\IOUtils.java	/^package com.activeandroid.util;$/;"	p
+com.activeandroid.util	.\src\com\activeandroid\util\Log.java	/^package com.activeandroid.util;$/;"	p
+com.activeandroid.util	.\src\com\activeandroid\util\NaturalOrderComparator.java	/^package com.activeandroid.util;$/;"	p
+com.activeandroid.util	.\src\com\activeandroid\util\ReflectionUtils.java	/^package com.activeandroid.util;$/;"	p
+com.activeandroid.util	.\src\com\activeandroid\util\SQLiteUtils.java	/^package com.activeandroid.util;$/;"	p
+com.activeandroid.util	.\src\com\activeandroid\util\SqlParser.java	/^package com.activeandroid.util;$/;"	p
+com.activeandroid.util	.\src\com\activeandroid\util\Tokenizer.java	/^package com.activeandroid.util;$/;"	p
+com.activeandroid.widget	.\src\com\activeandroid\widget\ModelAdapter.java	/^package com.activeandroid.widget;$/;"	p
+compare	.\src\com\activeandroid\util\NaturalOrderComparator.java	/^	public int compare(Object o1, Object o2) {$/;"	m	class:NaturalOrderComparator
+compareRight	.\src\com\activeandroid\util\NaturalOrderComparator.java	/^	int compareRight(String a, String b) {$/;"	m	class:NaturalOrderComparator
+complex.sql	.\tests\res\raw\complex.sql	1;"	F
+copyAttachedDatabase	.\src\com\activeandroid\DatabaseHelper.java	/^	public void copyAttachedDatabase(Context context, String databaseName) {$/;"	m	class:DatabaseHelper
+count	.\src\com\activeandroid\query\From.java	/^    public int count() {$/;"	m	class:From
+create	.\src\com\activeandroid\Configuration.java	/^		public Configuration create() {$/;"	m	class:Configuration.Builder
+createColumnDefinition	.\src\com\activeandroid\util\SQLiteUtils.java	/^	public static String createColumnDefinition(TableInfo tableInfo, Field field) {$/;"	m	class:SQLiteUtils
+createIndexColumnDefinition	.\src\com\activeandroid\util\SQLiteUtils.java	/^	public static void createIndexColumnDefinition(TableInfo tableInfo, Field field) {$/;"	m	class:SQLiteUtils
+createIndexDefinition	.\src\com\activeandroid\util\SQLiteUtils.java	/^	public static String[] createIndexDefinition(TableInfo tableInfo) {$/;"	m	class:SQLiteUtils
+createTableDefinition	.\src\com\activeandroid\util\SQLiteUtils.java	/^	public static String createTableDefinition(TableInfo tableInfo) {$/;"	m	class:SQLiteUtils
+createUniqueColumnDefinition	.\src\com\activeandroid\util\SQLiteUtils.java	/^	public static void createUniqueColumnDefinition(TableInfo tableInfo, Field field) {$/;"	m	class:SQLiteUtils
+createUniqueDefinition	.\src\com\activeandroid\util\SQLiteUtils.java	/^	public static ArrayList<String> createUniqueDefinition(TableInfo tableInfo) {$/;"	m	class:SQLiteUtils
+createUri	.\src\com\activeandroid\content\ContentProvider.java	/^	public static Uri createUri(Class<? extends Model> type, Long id) {$/;"	m	class:ContentProvider
+crossJoin	.\src\com\activeandroid\query\From.java	/^	public Join crossJoin(Class<? extends Model> table) {$/;"	m	class:From
+d	.\src\com\activeandroid\util\Log.java	/^	public static int d(String msg) {$/;"	m	class:Log
+d	.\src\com\activeandroid\util\Log.java	/^	public static int d(String msg, Throwable tr) {$/;"	m	class:Log
+d	.\src\com\activeandroid\util\Log.java	/^	public static int d(String tag, String msg) {$/;"	m	class:Log
+d	.\src\com\activeandroid\util\Log.java	/^	public static int d(String tag, String msg, Throwable tr) {$/;"	m	class:Log
+dateField	.\tests\src\com\activeandroid\test\MockModel.java	/^    public Date dateField;$/;"	f	class:MockModel
+dateField	.\tests\src\com\activeandroid\test\ModelTest.java	/^        public Date dateField;$/;"	f	class:ModelTest.ParentJoinMockModel
+delete	.\src\com\activeandroid\Model.java	/^	public final void delete() {$/;"	m	class:Model
+delete	.\src\com\activeandroid\Model.java	/^	public static void delete(Class<? extends Model> type, long id) {$/;"	m	class:Model
+delete	.\src\com\activeandroid\content\ContentProvider.java	/^	public int delete(Uri uri, String selection, String[] selectionArgs) {$/;"	m	class:ContentProvider
+deserialize	.\src\com\activeandroid\serializer\BigDecimalSerializer.java	/^	public BigDecimal deserialize(Object data) {$/;"	m	class:BigDecimalSerializer
+deserialize	.\src\com\activeandroid\serializer\CalendarSerializer.java	/^	public Calendar deserialize(Object data) {$/;"	m	class:CalendarSerializer
+deserialize	.\src\com\activeandroid\serializer\FileSerializer.java	/^	public File deserialize(Object data) {$/;"	m	class:FileSerializer
+deserialize	.\src\com\activeandroid\serializer\SqlDateSerializer.java	/^	public Date deserialize(Object data) {$/;"	m	class:SqlDateSerializer
+deserialize	.\src\com\activeandroid\serializer\TypeSerializer.java	/^	public abstract Object deserialize(Object data);$/;"	m	class:TypeSerializer
+deserialize	.\src\com\activeandroid\serializer\UUIDSerializer.java	/^	public UUID deserialize(Object data) {$/;"	m	class:UUIDSerializer
+deserialize	.\src\com\activeandroid\serializer\UtilDateSerializer.java	/^	public Date deserialize(Object data) {$/;"	m	class:UtilDateSerializer
+dispose	.\src\com\activeandroid\ActiveAndroid.java	/^	public static void dispose() {$/;"	m	class:ActiveAndroid
+dispose	.\src\com\activeandroid\Cache.java	/^	public static synchronized void dispose() {$/;"	m	class:Cache
+distinct	.\src\com\activeandroid\query\Select.java	/^	public Select distinct() {$/;"	m	class:Select
+doubleField	.\tests\src\com\activeandroid\test\MockModel.java	/^    public double doubleField;$/;"	f	class:MockModel
+doubleField	.\tests\src\com\activeandroid\test\ModelTest.java	/^        public double doubleField;$/;"	f	class:ModelTest.ParentJoinMockModel
+e	.\src\com\activeandroid\util\Log.java	/^	public static int e(String msg) {$/;"	m	class:Log
+e	.\src\com\activeandroid\util\Log.java	/^	public static int e(String msg, Throwable tr) {$/;"	m	class:Log
+e	.\src\com\activeandroid\util\Log.java	/^	public static int e(String tag, String msg) {$/;"	m	class:Log
+e	.\src\com\activeandroid\util\Log.java	/^	public static int e(String tag, String msg, Throwable tr) {$/;"	m	class:Log
+end	.\gradlew.bat	/^:end$/;"	l
+endTransaction	.\src\com\activeandroid\ActiveAndroid.java	/^	public static void endTransaction() {$/;"	m	class:ActiveAndroid
+equals	.\src\com\activeandroid\Model.java	/^	public boolean equals(Object obj) {$/;"	m	class:Model
+execSQL	.\src\com\activeandroid\ActiveAndroid.java	/^	public static void execSQL(String sql) {$/;"	m	class:ActiveAndroid
+execSQL	.\src\com\activeandroid\ActiveAndroid.java	/^	public static void execSQL(String sql, Object[] bindArgs) {$/;"	m	class:ActiveAndroid
+execSql	.\src\com\activeandroid\util\SQLiteUtils.java	/^	public static void execSql(String sql) {$/;"	m	class:SQLiteUtils
+execSql	.\src\com\activeandroid\util\SQLiteUtils.java	/^	public static void execSql(String sql, Object[] bindArgs) {$/;"	m	class:SQLiteUtils
+execute	.\gradlew.bat	/^:execute$/;"	l
+execute	.\src\com\activeandroid\query\From.java	/^	public <T extends Model> List<T> execute() {$/;"	m	class:From
+execute	.\src\com\activeandroid\query\Set.java	/^	public void execute() {$/;"	m	class:Set
+executeCreate	.\src\com\activeandroid\DatabaseHelper.java	/^	private void executeCreate(SQLiteDatabase db) {$/;"	m	class:DatabaseHelper	file:
+executeCreateIndex	.\src\com\activeandroid\DatabaseHelper.java	/^	private void executeCreateIndex(SQLiteDatabase db) {$/;"	m	class:DatabaseHelper	file:
+executeDelimitedSqlScript	.\src\com\activeandroid\DatabaseHelper.java	/^	private void executeDelimitedSqlScript(SQLiteDatabase db, InputStream stream) throws IOException {$/;"	m	class:DatabaseHelper	file:
+executeLegacySqlScript	.\src\com\activeandroid\DatabaseHelper.java	/^	private void executeLegacySqlScript(SQLiteDatabase db, InputStream stream) throws IOException {$/;"	m	class:DatabaseHelper	file:
+executeMigrations	.\src\com\activeandroid\DatabaseHelper.java	/^	private boolean executeMigrations(SQLiteDatabase db, int oldVersion, int newVersion) {$/;"	m	class:DatabaseHelper	file:
+executePragmas	.\src\com\activeandroid\DatabaseHelper.java	/^	private void executePragmas(SQLiteDatabase db) {$/;"	m	class:DatabaseHelper	file:
+executeSingle	.\src\com\activeandroid\query\From.java	/^	public <T extends Model> T executeSingle() {$/;"	m	class:From
+executeSqlScript	.\src\com\activeandroid\DatabaseHelper.java	/^	private void executeSqlScript(SQLiteDatabase db, String file) {$/;"	m	class:DatabaseHelper	file:
+exists	.\src\com\activeandroid\query\From.java	/^    public boolean exists() {$/;"	m	class:From
+fail	.\gradlew.bat	/^:fail$/;"	l
+false	.\src\com\activeandroid\annotation\Column.java	/^	public boolean index() default false;$/;"	f	interface:Column
+false	.\src\com\activeandroid\annotation\Column.java	/^	public boolean notNull() default false;$/;"	f	interface:Column
+false	.\src\com\activeandroid\annotation\Column.java	/^	public boolean unique() default false;$/;"	f	interface:Column
+findJavaFromJavaHome	.\gradlew.bat	/^:findJavaFromJavaHome$/;"	l
+from	.\src\com\activeandroid\query\Delete.java	/^	public From from(Class<? extends Model> table) {$/;"	m	class:Delete
+from	.\src\com\activeandroid\query\Select.java	/^	public From from(Class<? extends Model> table) {$/;"	m	class:Select
+from	.\tests\src\com\activeandroid\test\query\FromTest.java	/^	private From from() {$/;"	m	class:FromTest	file:
+getArguments	.\src\com\activeandroid\query\From.java	/^	public String[] getArguments() {$/;"	m	class:From
+getArguments	.\src\com\activeandroid\query\Set.java	/^	public String[] getArguments() {$/;"	m	class:Set
+getAuthority	.\src\com\activeandroid\content\ContentProvider.java	/^	protected String getAuthority() {$/;"	m	class:ContentProvider
+getCacheSize	.\src\com\activeandroid\Configuration.java	/^	public int getCacheSize() {$/;"	m	class:Configuration
+getColumnName	.\src\com\activeandroid\TableInfo.java	/^	public String getColumnName(Field field) {$/;"	m	class:TableInfo
+getConfiguration	.\src\com\activeandroid\content\ContentProvider.java	/^	protected Configuration getConfiguration() {$/;"	m	class:ContentProvider
+getContext	.\src\com\activeandroid\Cache.java	/^	public static Context getContext() {$/;"	m	class:Cache
+getContext	.\src\com\activeandroid\Configuration.java	/^	public Context getContext() {$/;"	m	class:Configuration
+getDatabase	.\src\com\activeandroid\ActiveAndroid.java	/^	public static SQLiteDatabase getDatabase() {$/;"	m	class:ActiveAndroid
+getDatabaseName	.\src\com\activeandroid\Configuration.java	/^	public String getDatabaseName() {$/;"	m	class:Configuration
+getDatabaseVersion	.\src\com\activeandroid\Configuration.java	/^	public int getDatabaseVersion() {$/;"	m	class:Configuration
+getDeclaredColumnFields	.\src\com\activeandroid\util\ReflectionUtils.java	/^	public static Set<Field> getDeclaredColumnFields(Class<?> type) {$/;"	m	class:ReflectionUtils
+getDeserializedType	.\src\com\activeandroid\serializer\BigDecimalSerializer.java	/^	public Class<?> getDeserializedType() {$/;"	m	class:BigDecimalSerializer
+getDeserializedType	.\src\com\activeandroid\serializer\CalendarSerializer.java	/^	public Class<?> getDeserializedType() {$/;"	m	class:CalendarSerializer
+getDeserializedType	.\src\com\activeandroid\serializer\FileSerializer.java	/^	public Class<?> getDeserializedType() {$/;"	m	class:FileSerializer
+getDeserializedType	.\src\com\activeandroid\serializer\SqlDateSerializer.java	/^	public Class<?> getDeserializedType() {$/;"	m	class:SqlDateSerializer
+getDeserializedType	.\src\com\activeandroid\serializer\TypeSerializer.java	/^	public abstract Class<?> getDeserializedType();$/;"	m	class:TypeSerializer
+getDeserializedType	.\src\com\activeandroid\serializer\UUIDSerializer.java	/^	public Class<?> getDeserializedType() {$/;"	m	class:UUIDSerializer
+getDeserializedType	.\src\com\activeandroid\serializer\UtilDateSerializer.java	/^	public Class<?> getDeserializedType() {$/;"	m	class:UtilDateSerializer
+getEntity	.\src\com\activeandroid\Cache.java	/^	public static synchronized Model getEntity(Class<? extends Model> type, long id) {$/;"	m	class:Cache
+getFields	.\src\com\activeandroid\TableInfo.java	/^	public Collection<Field> getFields() {$/;"	m	class:TableInfo
+getId	.\src\com\activeandroid\Model.java	/^	public final Long getId() {$/;"	m	class:Model
+getIdField	.\src\com\activeandroid\TableInfo.java	/^    private Field getIdField(Class<?> type) {$/;"	m	class:TableInfo	file:
+getIdName	.\src\com\activeandroid\TableInfo.java	/^	public String getIdName() {$/;"	m	class:TableInfo
+getIdentifier	.\src\com\activeandroid\Cache.java	/^	public static String getIdentifier(Class<? extends Model> type, Long id) {$/;"	m	class:Cache
+getIdentifier	.\src\com\activeandroid\Cache.java	/^	public static String getIdentifier(Model entity) {$/;"	m	class:Cache
+getItemId	.\src\com\activeandroid\widget\ModelAdapter.java	/^	public long getItemId(int position) {$/;"	m	class:ModelAdapter
+getMany	.\src\com\activeandroid\Model.java	/^	protected final <T extends Model> List<T> getMany(Class<T> type, String foreignKey) {$/;"	m	class:Model
+getMetaData	.\src\com\activeandroid\util\ReflectionUtils.java	/^	public static <T> T getMetaData(Context context, String name) {$/;"	m	class:ReflectionUtils
+getMetaDataDatabaseNameOrDefault	.\src\com\activeandroid\Configuration.java	/^		private String getMetaDataDatabaseNameOrDefault() {$/;"	m	class:Configuration.Builder	file:
+getMetaDataDatabaseVersionOrDefault	.\src\com\activeandroid\Configuration.java	/^		private int getMetaDataDatabaseVersionOrDefault() {$/;"	m	class:Configuration.Builder	file:
+getMetaDataSqlParserOrDefault	.\src\com\activeandroid\Configuration.java	/^		private String getMetaDataSqlParserOrDefault() {$/;"	m	class:Configuration.Builder	file:
+getModelClasses	.\src\com\activeandroid\Configuration.java	/^	public List<Class<? extends Model>> getModelClasses() {$/;"	m	class:Configuration
+getModelType	.\src\com\activeandroid\content\ContentProvider.java	/^	private Class<? extends Model> getModelType(Uri uri) {$/;"	m	class:ContentProvider	file:
+getParserForType	.\src\com\activeandroid\Cache.java	/^	public static synchronized TypeSerializer getParserForType(Class<?> type) {$/;"	m	class:Cache
+getSerializedType	.\src\com\activeandroid\serializer\BigDecimalSerializer.java	/^	public Class<?> getSerializedType() {$/;"	m	class:BigDecimalSerializer
+getSerializedType	.\src\com\activeandroid\serializer\CalendarSerializer.java	/^	public Class<?> getSerializedType() {$/;"	m	class:CalendarSerializer
+getSerializedType	.\src\com\activeandroid\serializer\FileSerializer.java	/^	public Class<?> getSerializedType() {$/;"	m	class:FileSerializer
+getSerializedType	.\src\com\activeandroid\serializer\SqlDateSerializer.java	/^	public Class<?> getSerializedType() {$/;"	m	class:SqlDateSerializer
+getSerializedType	.\src\com\activeandroid\serializer\TypeSerializer.java	/^	public abstract Class<?> getSerializedType();$/;"	m	class:TypeSerializer
+getSerializedType	.\src\com\activeandroid\serializer\UUIDSerializer.java	/^	public Class<?> getSerializedType() {$/;"	m	class:UUIDSerializer
+getSerializedType	.\src\com\activeandroid\serializer\UtilDateSerializer.java	/^	public Class<?> getSerializedType() {$/;"	m	class:UtilDateSerializer
+getSqlParser	.\src\com\activeandroid\Configuration.java	/^	public String getSqlParser() {$/;"	m	class:Configuration
+getStream	.\tests\src\com\activeandroid\test\parser\ParserTest.java	/^    private InputStream getStream(int id) {$/;"	m	class:ParserTest	file:
+getTableInfo	.\src\com\activeandroid\Cache.java	/^	public static synchronized TableInfo getTableInfo(Class<? extends Model> type) {$/;"	m	class:Cache
+getTableInfo	.\src\com\activeandroid\ModelInfo.java	/^	public TableInfo getTableInfo(Class<? extends Model> type) {$/;"	m	class:ModelInfo
+getTableInfos	.\src\com\activeandroid\Cache.java	/^	public static synchronized Collection<TableInfo> getTableInfos() {$/;"	m	class:Cache
+getTableInfos	.\src\com\activeandroid\ModelInfo.java	/^	public Collection<TableInfo> getTableInfos() {$/;"	m	class:ModelInfo
+getTableName	.\src\com\activeandroid\Cache.java	/^	public static synchronized String getTableName(Class<? extends Model> type) {$/;"	m	class:Cache
+getTableName	.\src\com\activeandroid\TableInfo.java	/^	public String getTableName() {$/;"	m	class:TableInfo
+getType	.\src\com\activeandroid\TableInfo.java	/^	public Class<? extends Model> getType() {$/;"	m	class:TableInfo
+getType	.\src\com\activeandroid\content\ContentProvider.java	/^	public String getType(Uri uri) {$/;"	m	class:ContentProvider
+getType	.\src\com\activeandroid\query\Update.java	/^	Class<? extends Model> getType() {$/;"	m	class:Update
+getTypeSerializer	.\src\com\activeandroid\ModelInfo.java	/^	public TypeSerializer getTypeSerializer(Class<?> type) {$/;"	m	class:ModelInfo
+getTypeSerializers	.\src\com\activeandroid\Configuration.java	/^	public List<Class<? extends TypeSerializer>> getTypeSerializers() {$/;"	m	class:Configuration
+gradlew.bat	.\gradlew.bat	1;"	F
+groupBy	.\src\com\activeandroid\query\From.java	/^	public From groupBy(String groupBy) {$/;"	m	class:From
+hasNext	.\src\com\activeandroid\util\Tokenizer.java	/^    public boolean hasNext() throws IOException {$/;"	m	class:Tokenizer
+hashCode	.\src\com\activeandroid\Model.java	/^	public int hashCode() {$/;"	m	class:Model
+having	.\src\com\activeandroid\query\From.java	/^	public From having(String having) {$/;"	m	class:From
+i	.\src\com\activeandroid\util\Log.java	/^	public static int i(String msg) {$/;"	m	class:Log
+i	.\src\com\activeandroid\util\Log.java	/^	public static int i(String msg, Throwable tr) {$/;"	m	class:Log
+i	.\src\com\activeandroid\util\Log.java	/^	public static int i(String tag, String msg) {$/;"	m	class:Log
+i	.\src\com\activeandroid\util\Log.java	/^	public static int i(String tag, String msg, Throwable tr) {$/;"	m	class:Log
+idName	.\src\com\activeandroid\Model.java	/^	private final String idName;$/;"	f	class:Model	file:
+inTransaction	.\src\com\activeandroid\ActiveAndroid.java	/^	public static boolean inTransaction() {$/;"	m	class:ActiveAndroid
+init	.\gradlew.bat	/^:init$/;"	l
+initialize	.\src\com\activeandroid\ActiveAndroid.java	/^	public static void initialize(Configuration configuration) {$/;"	m	class:ActiveAndroid
+initialize	.\src\com\activeandroid\ActiveAndroid.java	/^	public static void initialize(Configuration configuration, boolean loggingEnabled) {$/;"	m	class:ActiveAndroid
+initialize	.\src\com\activeandroid\ActiveAndroid.java	/^	public static void initialize(Context context) {$/;"	m	class:ActiveAndroid
+initialize	.\src\com\activeandroid\ActiveAndroid.java	/^	public static void initialize(Context context, boolean loggingEnabled) {$/;"	m	class:ActiveAndroid
+initialize	.\src\com\activeandroid\Cache.java	/^	public static synchronized void initialize(Configuration configuration) {$/;"	m	class:Cache
+innerJoin	.\src\com\activeandroid\query\From.java	/^	public Join innerJoin(Class<? extends Model> table) {$/;"	m	class:From
+insert	.\src\com\activeandroid\content\ContentProvider.java	/^	public Uri insert(Uri uri, ContentValues values) {$/;"	m	class:ContentProvider
+intField	.\tests\src\com\activeandroid\test\MockModel.java	/^    public int intField;$/;"	f	class:MockModel
+intField	.\tests\src\com\activeandroid\test\ModelTest.java	/^        public int intField;$/;"	f	class:ModelTest.ParentJoinMockModel
+intQuery	.\src\com\activeandroid\util\SQLiteUtils.java	/^	public static int intQuery(final String sql, final String[] selectionArgs) {$/;"	m	class:SQLiteUtils
+invalid	.\tests\src\com\activeandroid\test\parser\ParserTest.java	/^    private final String invalid = "CREATE TABLE Entity1 ( Id INTEGER AUTOINCREMENT PRIMARY KEY NOT NULL, *\/ Column1 INTEGER )";$/;"	f	class:ParserTest	file:
+invalid_block_comment.sql	.\tests\res\raw\invalid_block_comment.sql	1;"	F
+isEnabled	.\src\com\activeandroid\util\Log.java	/^    public static boolean isEnabled() {$/;"	m	class:Log
+isInitialized	.\src\com\activeandroid\Cache.java	/^	public static boolean isInitialized() {$/;"	m	class:Cache
+isLoggingEnabled	.\src\com\activeandroid\util\Log.java	/^	public static boolean isLoggingEnabled() {$/;"	m	class:Log
+isModel	.\src\com\activeandroid\util\ReflectionUtils.java	/^	public static boolean isModel(Class<?> type) {$/;"	m	class:ReflectionUtils
+isNewLine	.\src\com\activeandroid\util\SqlParser.java	/^    private static boolean isNewLine(final char c) {$/;"	m	class:SqlParser	file:
+isSubclassOf	.\src\com\activeandroid\util\ReflectionUtils.java	/^	public static boolean isSubclassOf(Class<?> type, Class<?> superClass) {$/;"	m	class:ReflectionUtils
+isTypeSerializer	.\src\com\activeandroid\util\ReflectionUtils.java	/^	public static boolean isTypeSerializer(Class<?> type) {$/;"	m	class:ReflectionUtils
+isValid	.\src\com\activeandroid\Configuration.java	/^	public boolean isValid() {$/;"	m	class:Configuration
+isWhitespace	.\src\com\activeandroid\util\SqlParser.java	/^    private static boolean isWhitespace(final char c) {$/;"	m	class:SqlParser	file:
+join	.\src\com\activeandroid\query\From.java	/^	public Join join(Class<? extends Model> table) {$/;"	m	class:From
+leftJoin	.\src\com\activeandroid\query\From.java	/^	public Join leftJoin(Class<? extends Model> table) {$/;"	m	class:From
+lexSqlScript	.\src\com\activeandroid\util\SQLiteUtils.java	/^	public static List<String> lexSqlScript(String sqlScript) {$/;"	m	class:SQLiteUtils
+limit	.\src\com\activeandroid\query\From.java	/^	public From limit(String limit) {$/;"	m	class:From
+limit	.\src\com\activeandroid\query\From.java	/^	public From limit(int limit) {$/;"	m	class:From
+line_comment.sql	.\tests\res\raw\line_comment.sql	1;"	F
+line_comment_and_block_end.sql	.\tests\res\raw\line_comment_and_block_end.sql	1;"	F
+line_comment_with_semicolon.sql	.\tests\res\raw\line_comment_with_semicolon.sql	1;"	F
+line_comment_with_string.sql	.\tests\res\raw\line_comment_with_string.sql	1;"	F
+load	.\src\com\activeandroid\Model.java	/^	public static <T extends Model> T load(Class<T> type, long id) {$/;"	m	class:Model
+loadFromCursor	.\src\com\activeandroid\Model.java	/^	public final void loadFromCursor(Cursor cursor) {$/;"	m	class:Model
+loadModelFromMetaData	.\src\com\activeandroid\ModelInfo.java	/^	private boolean loadModelFromMetaData(Configuration configuration) {$/;"	m	class:ModelInfo	file:
+loadModelList	.\src\com\activeandroid\Configuration.java	/^		private List<Class<? extends Model>> loadModelList(String[] models) {$/;"	m	class:Configuration.Builder	file:
+loadSerializerList	.\src\com\activeandroid\Configuration.java	/^		private List<Class<? extends TypeSerializer>> loadSerializerList(String[] serializers) {$/;"	m	class:Configuration.Builder	file:
+mAlias	.\src\com\activeandroid\query\From.java	/^	private String mAlias;$/;"	f	class:From	file:
+mAlias	.\src\com\activeandroid\query\Join.java	/^	private String mAlias;$/;"	f	class:Join	file:
+mAll	.\src\com\activeandroid\query\Select.java	/^	private boolean mAll = false;$/;"	f	class:Select	file:
+mArguments	.\src\com\activeandroid\query\From.java	/^	private List<Object> mArguments;$/;"	f	class:From	file:
+mCacheSize	.\src\com\activeandroid\Configuration.java	/^		private Integer mCacheSize;$/;"	f	class:Configuration.Builder	file:
+mCacheSize	.\src\com\activeandroid\Configuration.java	/^	private int mCacheSize;$/;"	f	class:Configuration	file:
+mColumnNames	.\src\com\activeandroid\TableInfo.java	/^	private Map<Field, String> mColumnNames = new LinkedHashMap<Field, String>();$/;"	f	class:TableInfo	file:
+mColumns	.\src\com\activeandroid\query\Select.java	/^	private String[] mColumns;$/;"	f	class:Select	file:
+mContext	.\src\com\activeandroid\Configuration.java	/^		private Context mContext;$/;"	f	class:Configuration.Builder	file:
+mContext	.\src\com\activeandroid\Configuration.java	/^	private Context mContext;$/;"	f	class:Configuration	file:
+mCurrent	.\src\com\activeandroid\util\Tokenizer.java	/^    private int               mCurrent;$/;"	f	class:Tokenizer	file:
+mDatabaseName	.\src\com\activeandroid\Configuration.java	/^		private String mDatabaseName;$/;"	f	class:Configuration.Builder	file:
+mDatabaseName	.\src\com\activeandroid\Configuration.java	/^	private String mDatabaseName;$/;"	f	class:Configuration	file:
+mDatabaseVersion	.\src\com\activeandroid\Configuration.java	/^		private Integer mDatabaseVersion;$/;"	f	class:Configuration.Builder	file:
+mDatabaseVersion	.\src\com\activeandroid\Configuration.java	/^	private int mDatabaseVersion;$/;"	f	class:Configuration	file:
+mDistinct	.\src\com\activeandroid\query\Select.java	/^	private boolean mDistinct = false;$/;"	f	class:Select	file:
+mFrom	.\src\com\activeandroid\query\Join.java	/^	private From mFrom;$/;"	f	class:Join	file:
+mGroupBy	.\src\com\activeandroid\query\From.java	/^	private String mGroupBy;$/;"	f	class:From	file:
+mHaving	.\src\com\activeandroid\query\From.java	/^	private String mHaving;$/;"	f	class:From	file:
+mId	.\src\com\activeandroid\Model.java	/^	private Long mId = null;$/;"	f	class:Model	file:
+mIdName	.\src\com\activeandroid\TableInfo.java	/^	private String mIdName = Table.DEFAULT_ID_NAME;$/;"	f	class:TableInfo	file:
+mIsNext	.\src\com\activeandroid\util\Tokenizer.java	/^    private boolean           mIsNext;$/;"	f	class:Tokenizer	file:
+mJoinType	.\src\com\activeandroid\query\Join.java	/^	private JoinType mJoinType;$/;"	f	class:Join	file:
+mJoins	.\src\com\activeandroid\query\From.java	/^	private List<Join> mJoins;$/;"	f	class:From	file:
+mLimit	.\src\com\activeandroid\query\From.java	/^	private String mLimit;$/;"	f	class:From	file:
+mModelClasses	.\src\com\activeandroid\Configuration.java	/^		private List<Class<? extends Model>> mModelClasses;$/;"	f	class:Configuration.Builder	file:
+mModelClasses	.\src\com\activeandroid\Configuration.java	/^	private List<Class<? extends Model>> mModelClasses;$/;"	f	class:Configuration	file:
+mOffset	.\src\com\activeandroid\query\From.java	/^	private String mOffset;$/;"	f	class:From	file:
+mOn	.\src\com\activeandroid\query\Join.java	/^	private String mOn;$/;"	f	class:Join	file:
+mOrderBy	.\src\com\activeandroid\query\From.java	/^	private String mOrderBy;$/;"	f	class:From	file:
+mQueryBase	.\src\com\activeandroid\query\From.java	/^	private Sqlable mQueryBase;$/;"	f	class:From	file:
+mSet	.\src\com\activeandroid\query\Set.java	/^	private String mSet;$/;"	f	class:Set	file:
+mSetArguments	.\src\com\activeandroid\query\Set.java	/^	private List<Object> mSetArguments;$/;"	f	class:Set	file:
+mSqlParser	.\src\com\activeandroid\Configuration.java	/^		private String mSqlParser;$/;"	f	class:Configuration.Builder	file:
+mSqlParser	.\src\com\activeandroid\Configuration.java	/^	private String mSqlParser;$/;"	f	class:Configuration	file:
+mSqlParser	.\src\com\activeandroid\DatabaseHelper.java	/^    private final String mSqlParser;$/;"	f	class:DatabaseHelper	file:
+mStream	.\src\com\activeandroid\util\Tokenizer.java	/^    private final InputStream mStream;$/;"	f	class:Tokenizer	file:
+mTableInfo	.\src\com\activeandroid\Model.java	/^	private final TableInfo mTableInfo;$/;"	f	class:Model	file:
+mTableInfos	.\src\com\activeandroid\ModelInfo.java	/^	private Map<Class<? extends Model>, TableInfo> mTableInfos = new HashMap<Class<? extends Model>, TableInfo>();$/;"	f	class:ModelInfo	file:
+mTableName	.\src\com\activeandroid\TableInfo.java	/^	private String mTableName;$/;"	f	class:TableInfo	file:
+mType	.\src\com\activeandroid\TableInfo.java	/^	private Class<? extends Model> mType;$/;"	f	class:TableInfo	file:
+mType	.\src\com\activeandroid\query\From.java	/^	private Class<? extends Model> mType;$/;"	f	class:From	file:
+mType	.\src\com\activeandroid\query\Join.java	/^	private Class<? extends Model> mType;$/;"	f	class:Join	file:
+mType	.\src\com\activeandroid\query\Update.java	/^	private Class<? extends Model> mType;$/;"	f	class:Update	file:
+mTypeSerializers	.\src\com\activeandroid\Configuration.java	/^		private List<Class<? extends TypeSerializer>> mTypeSerializers;$/;"	f	class:Configuration.Builder	file:
+mTypeSerializers	.\src\com\activeandroid\Configuration.java	/^	private List<Class<? extends TypeSerializer>> mTypeSerializers;$/;"	f	class:Configuration	file:
+mTypeSerializers	.\src\com\activeandroid\ModelInfo.java	/^	private Map<Class<?>, TypeSerializer> mTypeSerializers = new HashMap<Class<?>, TypeSerializer>() {$/;"	f	class:ModelInfo	file:
+mUpdate	.\src\com\activeandroid\query\Set.java	/^	private Update mUpdate;$/;"	f	class:Set	file:
+mUsing	.\src\com\activeandroid\query\Join.java	/^	private String[] mUsing;$/;"	f	class:Join	file:
+mWhere	.\src\com\activeandroid\query\From.java	/^	private final StringBuilder mWhere = new StringBuilder();$/;"	f	class:From	file:
+mWhere	.\src\com\activeandroid\query\Set.java	/^	private String mWhere;$/;"	f	class:Set	file:
+mWhereArguments	.\src\com\activeandroid\query\Set.java	/^	private List<Object> mWhereArguments;$/;"	f	class:Set	file:
+mainEnd	.\gradlew.bat	/^:mainEnd$/;"	l
+name	.\src\com\activeandroid\annotation\Table.java	/^	public String name();$/;"	m	interface:Table
+name	.\src\com\activeandroid\query\Select.java	/^		String name;$/;"	f	class:Select.Column
+next	.\src\com\activeandroid\util\Tokenizer.java	/^    public int next() throws IOException {$/;"	m	class:Tokenizer
+notifyChange	.\src\com\activeandroid\content\ContentProvider.java	/^	private void notifyChange(Uri uri) {$/;"	m	class:ContentProvider	file:
+offset	.\src\com\activeandroid\query\From.java	/^	public From offset(String offset) {$/;"	m	class:From
+offset	.\src\com\activeandroid\query\From.java	/^	public From offset(int offset) {$/;"	m	class:From
+omega	.\gradlew.bat	/^:omega$/;"	l
+on	.\src\com\activeandroid\query\Join.java	/^	public From on(String on) {$/;"	m	class:Join
+on	.\src\com\activeandroid\query\Join.java	/^	public From on(String on, Object... args) {$/;"	m	class:Join
+onCreate	.\src\com\activeandroid\DatabaseHelper.java	/^	public void onCreate(SQLiteDatabase db) {$/;"	m	class:DatabaseHelper
+onCreate	.\src\com\activeandroid\app\Application.java	/^	public void onCreate() {$/;"	m	class:Application
+onCreate	.\src\com\activeandroid\content\ContentProvider.java	/^	public boolean onCreate() {$/;"	m	class:ContentProvider
+onOpen	.\src\com\activeandroid\DatabaseHelper.java	/^	public void onOpen(SQLiteDatabase db) {$/;"	m	class:DatabaseHelper
+onTerminate	.\src\com\activeandroid\app\Application.java	/^	public void onTerminate() {$/;"	m	class:Application
+onUpgrade	.\src\com\activeandroid\DatabaseHelper.java	/^	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {$/;"	m	class:DatabaseHelper
+openDatabase	.\src\com\activeandroid\Cache.java	/^	public static synchronized SQLiteDatabase openDatabase() {$/;"	m	class:Cache
+or	.\src\com\activeandroid\query\From.java	/^    public From or(String clause) {$/;"	m	class:From
+or	.\src\com\activeandroid\query\From.java	/^    public From or(String clause, Object... args) {$/;"	m	class:From
+orderBy	.\src\com\activeandroid\query\From.java	/^	public From orderBy(String orderBy) {$/;"	m	class:From
+outerJoin	.\src\com\activeandroid\query\From.java	/^	public Join outerJoin(Class<? extends Model> table) {$/;"	m	class:From
+parent	.\tests\src\com\activeandroid\test\ModelTest.java	/^        ParentJoinMockModel parent;$/;"	f	class:ModelTest.ChildMockModel
+parse	.\src\com\activeandroid\util\SqlParser.java	/^    public static List<String> parse(final InputStream stream) throws IOException {$/;"	m	class:SqlParser
+populateTable	.\tests\src\com\activeandroid\test\query\CountTest.java	/^    private void populateTable() {$/;"	m	class:CountTest	file:
+populateTable	.\tests\src\com\activeandroid\test\query\ExistsTest.java	/^    private void populateTable() {$/;"	m	class:ExistsTest	file:
+processCursor	.\src\com\activeandroid\util\SQLiteUtils.java	/^	public static <T extends Model> List<T> processCursor(Class<? extends Model> type, Cursor cursor) {$/;"	m	class:SQLiteUtils
+processIntCursor	.\src\com\activeandroid\util\SQLiteUtils.java	/^	private static int processIntCursor(final Cursor cursor) {$/;"	m	class:SQLiteUtils	file:
+query	.\src\com\activeandroid\content\ContentProvider.java	/^	public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {$/;"	m	class:ContentProvider
+rawQuery	.\src\com\activeandroid\util\SQLiteUtils.java	/^	public static <T extends Model> List<T> rawQuery(Class<? extends Model> type, String sql, String[] selectionArgs) {$/;"	m	class:SQLiteUtils
+rawQuerySingle	.\src\com\activeandroid\util\SQLiteUtils.java	/^	public static <T extends Model> T rawQuerySingle(Class<? extends Model> type, String sql, String[] selectionArgs) {$/;"	m	class:SQLiteUtils
+removeEntity	.\src\com\activeandroid\Cache.java	/^	public static synchronized void removeEntity(Model entity) {$/;"	m	class:Cache
+sAuthority	.\src\com\activeandroid\content\ContentProvider.java	/^	private static String sAuthority;$/;"	f	class:ContentProvider	file:
+sContext	.\src\com\activeandroid\Cache.java	/^	private static Context sContext;$/;"	f	class:Cache	file:
+sDatabaseHelper	.\src\com\activeandroid\Cache.java	/^	private static DatabaseHelper sDatabaseHelper;$/;"	f	class:Cache	file:
+sEnabled	.\src\com\activeandroid\util\Log.java	/^	private static boolean sEnabled = false;$/;"	f	class:Log	file:
+sEntities	.\src\com\activeandroid\Cache.java	/^	private static LruCache<String, Model> sEntities;$/;"	f	class:Cache	file:
+sIndexGroupMap	.\src\com\activeandroid\util\SQLiteUtils.java	/^	private static HashMap<String, List<String>> sIndexGroupMap;$/;"	f	class:SQLiteUtils	file:
+sIsInitialized	.\src\com\activeandroid\Cache.java	/^	private static boolean sIsInitialized = false;$/;"	f	class:Cache	file:
+sMimeTypeCache	.\src\com\activeandroid\content\ContentProvider.java	/^	private static SparseArray<String> sMimeTypeCache = new SparseArray<String>();$/;"	f	class:ContentProvider	file:
+sModelInfo	.\src\com\activeandroid\Cache.java	/^	private static ModelInfo sModelInfo;$/;"	f	class:Cache	file:
+sOnUniqueConflictsMap	.\src\com\activeandroid\util\SQLiteUtils.java	/^	private static HashMap<String, ConflictAction> sOnUniqueConflictsMap;$/;"	f	class:SQLiteUtils	file:
+sTag	.\src\com\activeandroid\util\Log.java	/^	private static String sTag = "ActiveAndroid";$/;"	f	class:Log	file:
+sUniqueGroupMap	.\src\com\activeandroid\util\SQLiteUtils.java	/^	private static HashMap<String, List<String>> sUniqueGroupMap;$/;"	f	class:SQLiteUtils	file:
+save	.\src\com\activeandroid\Model.java	/^	public final Long save() {$/;"	m	class:Model
+scanForModel	.\src\com\activeandroid\ModelInfo.java	/^	private void scanForModel(Context context) throws IOException {$/;"	m	class:ModelInfo	file:
+scanForModelClasses	.\src\com\activeandroid\ModelInfo.java	/^	private void scanForModelClasses(File path, String packageName, ClassLoader classLoader) {$/;"	m	class:ModelInfo	file:
+serialize	.\src\com\activeandroid\serializer\BigDecimalSerializer.java	/^	public String serialize(Object data) {$/;"	m	class:BigDecimalSerializer
+serialize	.\src\com\activeandroid\serializer\CalendarSerializer.java	/^	public Long serialize(Object data) {$/;"	m	class:CalendarSerializer
+serialize	.\src\com\activeandroid\serializer\FileSerializer.java	/^	public String serialize(Object data) {$/;"	m	class:FileSerializer
+serialize	.\src\com\activeandroid\serializer\SqlDateSerializer.java	/^	public Long serialize(Object data) {$/;"	m	class:SqlDateSerializer
+serialize	.\src\com\activeandroid\serializer\TypeSerializer.java	/^	public abstract Object serialize(Object data);$/;"	m	class:TypeSerializer
+serialize	.\src\com\activeandroid\serializer\UUIDSerializer.java	/^	public String serialize(Object data) {$/;"	m	class:UUIDSerializer
+serialize	.\src\com\activeandroid\serializer\UtilDateSerializer.java	/^	public Long serialize(Object data) {$/;"	m	class:UtilDateSerializer
+set	.\src\com\activeandroid\query\Update.java	/^	public Set set(String set) {$/;"	m	class:Update
+set	.\src\com\activeandroid\query\Update.java	/^	public Set set(String set, Object... args) {$/;"	m	class:Update
+setCacheSize	.\src\com\activeandroid\Configuration.java	/^		public Builder setCacheSize(int cacheSize) {$/;"	m	class:Configuration.Builder
+setData	.\src\com\activeandroid\widget\ModelAdapter.java	/^	public void setData(Collection<? extends T> collection) {$/;"	m	class:ModelAdapter
+setDatabaseName	.\src\com\activeandroid\Configuration.java	/^		public Builder setDatabaseName(String databaseName) {$/;"	m	class:Configuration.Builder
+setDatabaseVersion	.\src\com\activeandroid\Configuration.java	/^		public Builder setDatabaseVersion(int databaseVersion) {$/;"	m	class:Configuration.Builder
+setEnabled	.\src\com\activeandroid\util\Log.java	/^	public static void setEnabled(boolean enabled) {$/;"	m	class:Log
+setLoggingEnabled	.\src\com\activeandroid\ActiveAndroid.java	/^	public static void setLoggingEnabled(boolean enabled) {$/;"	m	class:ActiveAndroid
+setModelClasses	.\src\com\activeandroid\Configuration.java	/^		public Builder setModelClasses(Class<? extends Model>... modelClasses) {$/;"	m	class:Configuration.Builder
+setSqlParser	.\src\com\activeandroid\Configuration.java	/^		public Builder setSqlParser(String sqlParser) {$/;"	m	class:Configuration.Builder
+setTransactionSuccessful	.\src\com\activeandroid\ActiveAndroid.java	/^	public static void setTransactionSuccessful() {$/;"	m	class:ActiveAndroid
+setTypeSerializers	.\src\com\activeandroid\Configuration.java	/^		public Builder setTypeSerializers(Class<? extends TypeSerializer>... typeSerializers) {$/;"	m	class:Configuration.Builder
+setUp	.\tests\src\com\activeandroid\test\ActiveAndroidTestCase.java	/^	protected void setUp() throws Exception {$/;"	m	class:ActiveAndroidTestCase
+setUp	.\tests\src\com\activeandroid\test\CacheTest.java	/^    protected void setUp() {$/;"	m	class:CacheTest
+skip	.\src\com\activeandroid\util\Tokenizer.java	/^    public boolean skip(final String s) throws IOException {$/;"	m	class:Tokenizer
+sql1	.\tests\src\com\activeandroid\test\parser\ParserTest.java	/^    private final String sql1    = "CREATE TABLE Entity1 ( Id INTEGER AUTOINCREMENT PRIMARY KEY NOT NULL, Column1 INTEGER )";$/;"	f	class:ParserTest	file:
+sql2	.\tests\src\com\activeandroid\test\parser\ParserTest.java	/^    private final String sql2    = "CREATE TABLE Entity2 ( Id INTEGER AUTOINCREMENT PRIMARY KEY NOT NULL, Column1 INTEGER )";$/;"	f	class:ParserTest	file:
+sqlString	.\src\com\activeandroid\query\From.java	/^    private String sqlString(final StringBuilder sql) {$/;"	m	class:From	file:
+string_with_block_comment.sql	.\tests\res\raw\string_with_block_comment.sql	1;"	F
+string_with_line_comment.sql	.\tests\res\raw\string_with_line_comment.sql	1;"	F
+string_with_semicolon.sql	.\tests\res\raw\string_with_semicolon.sql	1;"	F
+string_with_whitespace.sql	.\tests\res\raw\string_with_whitespace.sql	1;"	F
+t	.\src\com\activeandroid\util\Log.java	/^	public static int t(String msg, Object... args) {$/;"	m	class:Log
+tearDown	.\tests\src\com\activeandroid\test\ActiveAndroidTestCase.java	/^	protected void tearDown() throws Exception {$/;"	m	class:ActiveAndroidTestCase
+testAll	.\tests\src\com\activeandroid\test\query\FromTest.java	/^	public void testAll() {$/;"	m	class:FromTest
+testAs	.\tests\src\com\activeandroid\test\query\FromTest.java	/^	public void testAs() {$/;"	m	class:FromTest
+testBlockAndLineComment	.\tests\src\com\activeandroid\test\parser\ParserTest.java	/^    public void testBlockAndLineComment() throws IOException {$/;"	m	class:ParserTest
+testBlockComment	.\tests\src\com\activeandroid\test\parser\ParserTest.java	/^    public void testBlockComment() throws IOException {$/;"	m	class:ParserTest
+testBlockCommentWithSemicolon	.\tests\src\com\activeandroid\test\parser\ParserTest.java	/^    public void testBlockCommentWithSemicolon() throws IOException {$/;"	m	class:ParserTest
+testBlockCommentWithString	.\tests\src\com\activeandroid\test\parser\ParserTest.java	/^    public void testBlockCommentWithString() throws IOException {$/;"	m	class:ParserTest
+testBooleanColumnType	.\tests\src\com\activeandroid\test\ModelTest.java	/^    public void testBooleanColumnType() {$/;"	m	class:ModelTest
+testColumnNamesDefaulToFieldNames	.\tests\src\com\activeandroid\test\ModelTest.java	/^    public void testColumnNamesDefaulToFieldNames() {$/;"	m	class:ModelTest
+testComplex	.\tests\src\com\activeandroid\test\parser\ParserTest.java	/^    public void testComplex() throws IOException {$/;"	m	class:ParserTest
+testCountEmptyResult	.\tests\src\com\activeandroid\test\query\CountTest.java	/^    public void testCountEmptyResult() {$/;"	m	class:CountTest
+testCountGroupBy	.\tests\src\com\activeandroid\test\query\CountTest.java	/^    public void testCountGroupBy() {$/;"	m	class:CountTest
+testCountGroupBy	.\tests\src\com\activeandroid\test\query\ExistsTest.java	/^    public void testCountGroupBy() {$/;"	m	class:ExistsTest
+testCountGroupByEmpty	.\tests\src\com\activeandroid\test\query\ExistsTest.java	/^    public void testCountGroupByEmpty() {$/;"	m	class:ExistsTest
+testCountOrderBy	.\tests\src\com\activeandroid\test\query\CountTest.java	/^    public void testCountOrderBy() {$/;"	m	class:CountTest
+testCountOrderBy	.\tests\src\com\activeandroid\test\query\ExistsTest.java	/^    public void testCountOrderBy() {$/;"	m	class:ExistsTest
+testCountOrderBySql	.\tests\src\com\activeandroid\test\query\CountTest.java	/^    public void testCountOrderBySql() {$/;"	m	class:CountTest
+testCountOrderBySql	.\tests\src\com\activeandroid\test\query\ExistsTest.java	/^    public void testCountOrderBySql() {$/;"	m	class:ExistsTest
+testCountTable	.\tests\src\com\activeandroid\test\query\CountTest.java	/^    public void testCountTable() {$/;"	m	class:CountTest
+testCountTableSql	.\tests\src\com\activeandroid\test\query\CountTest.java	/^    public void testCountTableSql() {$/;"	m	class:CountTest
+testCountTableSql	.\tests\src\com\activeandroid\test\query\ExistsTest.java	/^    public void testCountTableSql() {$/;"	m	class:ExistsTest
+testCountWhereClause	.\tests\src\com\activeandroid\test\query\CountTest.java	/^    public void testCountWhereClause() {$/;"	m	class:CountTest
+testCountWhereClauseSql	.\tests\src\com\activeandroid\test\query\CountTest.java	/^    public void testCountWhereClauseSql() {$/;"	m	class:CountTest
+testCountWhereClauseSql	.\tests\src\com\activeandroid\test\query\ExistsTest.java	/^    public void testCountWhereClauseSql() {$/;"	m	class:ExistsTest
+testCreateConfigurationWithMockModel	.\tests\src\com\activeandroid\test\ConfigurationTest.java	/^    public void testCreateConfigurationWithMockModel() {$/;"	m	class:ConfigurationTest
+testDefaultValue	.\tests\src\com\activeandroid\test\ConfigurationTest.java	/^    public void testDefaultValue() throws IOException, ClassNotFoundException {$/;"	m	class:ConfigurationTest
+testDelete	.\tests\src\com\activeandroid\test\query\DeleteTest.java	/^	public void testDelete() {$/;"	m	class:DeleteTest
+testDelimitedMigration	.\tests\src\com\activeandroid\test\parser\ParserConfigurationTest.java	/^    public void testDelimitedMigration() {$/;"	m	class:ParserConfigurationTest
+testEqualsDifferentModel	.\tests\src\com\activeandroid\test\ModelTest.java	/^	public void testEqualsDifferentModel() {$/;"	m	class:ModelTest
+testEqualsDifferentRows	.\tests\src\com\activeandroid\test\ModelTest.java	/^	public void testEqualsDifferentRows() {$/;"	m	class:ModelTest
+testEqualsNonModel	.\tests\src\com\activeandroid\test\ModelTest.java	/^	public void testEqualsNonModel() {$/;"	m	class:ModelTest
+testEqualsOnNew	.\tests\src\com\activeandroid\test\ModelTest.java	/^	public void testEqualsOnNew() {$/;"	m	class:ModelTest
+testExistsEmptyResult	.\tests\src\com\activeandroid\test\query\ExistsTest.java	/^    public void testExistsEmptyResult() {$/;"	m	class:ExistsTest
+testExistsTable	.\tests\src\com\activeandroid\test\query\ExistsTest.java	/^    public void testExistsTable() {$/;"	m	class:ExistsTest
+testExistsWhereClause	.\tests\src\com\activeandroid\test\query\ExistsTest.java	/^    public void testExistsWhereClause() {$/;"	m	class:ExistsTest
+testFrom	.\tests\src\com\activeandroid\test\query\DeleteTest.java	/^	public void testFrom() {$/;"	m	class:DeleteTest
+testFrom	.\tests\src\com\activeandroid\test\query\SelectTest.java	/^	public void testFrom() {$/;"	m	class:SelectTest
+testGetTableInfos	.\tests\src\com\activeandroid\test\CacheTest.java	/^    public void testGetTableInfos() {$/;"	m	class:CacheTest
+testGroupByHaving	.\tests\src\com\activeandroid\test\query\FromTest.java	/^	public void testGroupByHaving() {$/;"	m	class:FromTest
+testHashCode	.\tests\src\com\activeandroid\test\ModelTest.java	/^	public void testHashCode() {$/;"	m	class:ModelTest
+testHashCodeDifferentRows	.\tests\src\com\activeandroid\test\ModelTest.java	/^	public void testHashCodeDifferentRows() {$/;"	m	class:ModelTest
+testInvalidBlockComment	.\tests\src\com\activeandroid\test\parser\ParserTest.java	/^    public void testInvalidBlockComment() throws IOException {$/;"	m	class:ParserTest
+testJoinTypes	.\tests\src\com\activeandroid\test\query\FromTest.java	/^	public void testJoinTypes() {$/;"	m	class:FromTest
+testJoinWithSameNames	.\tests\src\com\activeandroid\test\ModelTest.java	/^    public void testJoinWithSameNames(){$/;"	m	class:ModelTest
+testJoins	.\tests\src\com\activeandroid\test\query\FromTest.java	/^	public void testJoins() {$/;"	m	class:FromTest
+testLegacyMigration	.\tests\src\com\activeandroid\test\parser\ParserConfigurationTest.java	/^    public void testLegacyMigration() {$/;"	m	class:ParserConfigurationTest
+testLimit	.\tests\src\com\activeandroid\test\query\FromTest.java	/^	public void testLimit() {$/;"	m	class:FromTest
+testLimitOffset	.\tests\src\com\activeandroid\test\query\FromTest.java	/^	public void testLimitOffset() {$/;"	m	class:FromTest
+testLineAndBlockEndComment	.\tests\src\com\activeandroid\test\parser\ParserTest.java	/^    public void testLineAndBlockEndComment() throws IOException {$/;"	m	class:ParserTest
+testLineComment	.\tests\src\com\activeandroid\test\parser\ParserTest.java	/^    public void testLineComment() throws IOException {$/;"	m	class:ParserTest
+testLineCommentWithSemicolon	.\tests\src\com\activeandroid\test\parser\ParserTest.java	/^    public void testLineCommentWithSemicolon() throws IOException {$/;"	m	class:ParserTest
+testLineCommentWithString	.\tests\src\com\activeandroid\test\parser\ParserTest.java	/^    public void testLineCommentWithString() throws IOException {$/;"	m	class:ParserTest
+testOffset	.\tests\src\com\activeandroid\test\query\FromTest.java	/^	public void testOffset() {$/;"	m	class:FromTest
+testOrderBy	.\tests\src\com\activeandroid\test\query\FromTest.java	/^	public void testOrderBy() {$/;"	m	class:FromTest
+testSelectAll	.\tests\src\com\activeandroid\test\query\SelectTest.java	/^	public void testSelectAll() {$/;"	m	class:SelectTest
+testSelectDistinct	.\tests\src\com\activeandroid\test\query\SelectTest.java	/^	public void testSelectDistinct() {$/;"	m	class:SelectTest
+testSelectDistinctColumns	.\tests\src\com\activeandroid\test\query\SelectTest.java	/^	public void testSelectDistinctColumns() {$/;"	m	class:SelectTest
+testSelectEmpty	.\tests\src\com\activeandroid\test\query\SelectTest.java	/^	public void testSelectEmpty() {$/;"	m	class:SelectTest
+testSelectStringColumns	.\tests\src\com\activeandroid\test\query\SelectTest.java	/^	public void testSelectStringColumns() {$/;"	m	class:SelectTest
+testSingleJoin	.\tests\src\com\activeandroid\test\query\FromTest.java	/^	public void testSingleJoin() {$/;"	m	class:FromTest
+testStringWithBlockComment	.\tests\src\com\activeandroid\test\parser\ParserTest.java	/^    public void testStringWithBlockComment() throws IOException {$/;"	m	class:ParserTest
+testStringWithLineComment	.\tests\src\com\activeandroid\test\parser\ParserTest.java	/^    public void testStringWithLineComment() throws IOException {$/;"	m	class:ParserTest
+testStringWithSemicolon	.\tests\src\com\activeandroid\test\parser\ParserTest.java	/^    public void testStringWithSemicolon() throws IOException {$/;"	m	class:ParserTest
+testStringWithWhitespace	.\tests\src\com\activeandroid\test\parser\ParserTest.java	/^    public void testStringWithWhitespace() throws IOException {$/;"	m	class:ParserTest
+testTwoStatements	.\tests\src\com\activeandroid\test\parser\ParserTest.java	/^    public void testTwoStatements() throws IOException {$/;"	m	class:ParserTest
+testUpdate	.\tests\src\com\activeandroid\test\query\UpdateTest.java	/^	public void testUpdate() {$/;"	m	class:UpdateTest
+testUpdateSet	.\tests\src\com\activeandroid\test\query\UpdateTest.java	/^	public void testUpdateSet() {$/;"	m	class:UpdateTest
+testUpdateWhereNoArguments	.\tests\src\com\activeandroid\test\query\UpdateTest.java	/^	public void testUpdateWhereNoArguments() {$/;"	m	class:UpdateTest
+testUpdateWhereWithArguments	.\tests\src\com\activeandroid\test\query\UpdateTest.java	/^	public void testUpdateWhereWithArguments() {$/;"	m	class:UpdateTest
+testWhereAlternateAndOrChaining	.\tests\src\com\activeandroid\test\query\FromTest.java	/^   public void testWhereAlternateAndOrChaining() {$/;"	m	class:FromTest
+testWhereAndChaining	.\tests\src\com\activeandroid\test\query\FromTest.java	/^   public void testWhereAndChaining() {$/;"	m	class:FromTest
+testWhereAndOrChaining	.\tests\src\com\activeandroid\test\query\FromTest.java	/^   public void testWhereAndOrChaining() {$/;"	m	class:FromTest
+testWhereChaining	.\tests\src\com\activeandroid\test\query\FromTest.java	/^	public void testWhereChaining() {$/;"	m	class:FromTest
+testWhereNoArguments	.\tests\src\com\activeandroid\test\query\FromTest.java	/^	public void testWhereNoArguments() {$/;"	m	class:FromTest
+testWhereOrChaining	.\tests\src\com\activeandroid\test\query\FromTest.java	/^   public void testWhereOrChaining() {$/;"	m	class:FromTest
+testWhereWithArguments	.\tests\src\com\activeandroid\test\query\FromTest.java	/^	public void testWhereWithArguments() {$/;"	m	class:FromTest
+testWhereWithNoArgumentsAndWithArguments	.\tests\src\com\activeandroid\test\query\FromTest.java	/^    public void testWhereWithNoArgumentsAndWithArguments() {$/;"	m	class:FromTest
+testWhitespace	.\tests\src\com\activeandroid\test\parser\ParserTest.java	/^    public void testWhitespace() throws IOException {$/;"	m	class:ParserTest
+toCountSql	.\src\com\activeandroid\query\From.java	/^    public String toCountSql() {$/;"	m	class:From
+toExistsSql	.\src\com\activeandroid\query\From.java	/^    public String toExistsSql() {$/;"	m	class:From
+toSql	.\src\com\activeandroid\query\Delete.java	/^	public String toSql() {$/;"	m	class:Delete
+toSql	.\src\com\activeandroid\query\From.java	/^    public String toSql() {$/;"	m	class:From
+toSql	.\src\com\activeandroid\query\Join.java	/^	public String toSql() {$/;"	m	class:Join
+toSql	.\src\com\activeandroid\query\Select.java	/^	public String toSql() {$/;"	m	class:Select
+toSql	.\src\com\activeandroid\query\Set.java	/^	public String toSql() {$/;"	m	class:Set
+toSql	.\src\com\activeandroid\query\Sqlable.java	/^	public String toSql();$/;"	m	interface:Sqlable
+toSql	.\src\com\activeandroid\query\Update.java	/^	public String toSql() {$/;"	m	class:Update
+toString	.\src\com\activeandroid\Model.java	/^	public String toString() {$/;"	m	class:Model
+two_statements.sql	.\tests\res\raw\two_statements.sql	1;"	F
+update	.\src\com\activeandroid\content\ContentProvider.java	/^	public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {$/;"	m	class:ContentProvider
+update	.\tests\src\com\activeandroid\test\query\UpdateTest.java	/^	private Update update() {$/;"	m	class:UpdateTest	file:
+using	.\src\com\activeandroid\query\Join.java	/^	public From using(String... columns) {$/;"	m	class:Join
+v	.\src\com\activeandroid\util\Log.java	/^	public static int v(String msg) {$/;"	m	class:Log
+v	.\src\com\activeandroid\util\Log.java	/^	public static int v(String msg, Throwable tr) {$/;"	m	class:Log
+v	.\src\com\activeandroid\util\Log.java	/^	public static int v(String tag, String msg) {$/;"	m	class:Log
+v	.\src\com\activeandroid\util\Log.java	/^	public static int v(String tag, String msg, Throwable tr) {$/;"	m	class:Log
+w	.\src\com\activeandroid\util\Log.java	/^	public static int w(String msg) {$/;"	m	class:Log
+w	.\src\com\activeandroid\util\Log.java	/^	public static int w(String msg, Throwable tr) {$/;"	m	class:Log
+w	.\src\com\activeandroid\util\Log.java	/^	public static int w(String tag, String msg) {$/;"	m	class:Log
+w	.\src\com\activeandroid\util\Log.java	/^	public static int w(String tag, String msg, Throwable tr) {$/;"	m	class:Log
+where	.\src\com\activeandroid\query\From.java	/^    public From where(String clause) {$/;"	m	class:From
+where	.\src\com\activeandroid\query\From.java	/^    public From where(String clause, Object... args) {$/;"	m	class:From
+where	.\src\com\activeandroid\query\Set.java	/^	public Set where(String where) {$/;"	m	class:Set
+where	.\src\com\activeandroid\query\Set.java	/^	public Set where(String where, Object... args) {$/;"	m	class:Set
+whitespace.sql	.\tests\res\raw\whitespace.sql	1;"	F
+win9xME_args	.\gradlew.bat	/^:win9xME_args$/;"	l
+win9xME_args_slurp	.\gradlew.bat	/^:win9xME_args_slurp$/;"	l
+Ó	.\src\com\activeandroid\annotation\Column.java	/^	public String name() default "";$/;"	f	interface:Column

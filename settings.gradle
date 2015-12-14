@@ -1,1 +1,1 @@
-include ':app', ':swipelistview', ':memorize'
+include ':app', ':ActiveAndroid', ':swipelistview', ':memorize'
