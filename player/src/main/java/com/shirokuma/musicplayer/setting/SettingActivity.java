@@ -66,23 +66,21 @@ public class SettingActivity extends BaseActivity {
     protected View.OnClickListener mBtnListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.btn_back:
-                    finish();
-                    break;
-                case R.id.scan:
-                    MediaScannerConnection.scanFile(getApplicationContext(), new String[]{Environment
-                            .getExternalStorageDirectory().getAbsolutePath()}, null, new MediaScannerConnection.OnScanCompletedListener() {
-                        @Override
-                        public void onScanCompleted(String path, Uri uri) {
-                            if (mProgress != null) {
-                                mProgress.dismiss();
-                                mProgress = null;
-                            }
+            int i = v.getId();
+            if (i == R.id.btn_back) {
+                finish();
+            } else if (i == R.id.scan) {
+                MediaScannerConnection.scanFile(getApplicationContext(), new String[]{Environment
+                        .getExternalStorageDirectory().getAbsolutePath()}, null, new MediaScannerConnection.OnScanCompletedListener() {
+                    @Override
+                    public void onScanCompleted(String path, Uri uri) {
+                        if (mProgress != null) {
+                            mProgress.dismiss();
+                            mProgress = null;
                         }
-                    });
-                    mProgress = ProgressDialog.show(SettingActivity.this, "", getString(R.string.scanning));
-                    break;
+                    }
+                });
+                mProgress = ProgressDialog.show(SettingActivity.this, "", getString(R.string.scanning));
             }
         }
     };

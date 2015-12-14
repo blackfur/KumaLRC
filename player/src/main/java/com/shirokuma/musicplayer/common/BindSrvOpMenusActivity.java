@@ -9,13 +9,13 @@ import android.os.Environment;
 import android.os.IBinder;
 import android.view.Menu;
 import android.view.MenuItem;
-import com.shirokuma.musicplayer.KumalrcApplication;
+import com.shirokuma.musicplayer.KumaPlayer;
 import com.shirokuma.musicplayer.R;
+import com.shirokuma.musicplayer.playback.MusicBroadcast;
+import com.shirokuma.musicplayer.playback.MusicService;
 import com.shirokuma.musicplayer.setting.MediaSetting;
 import com.shirokuma.musicplayer.setting.SettingActivity;
 import com.shirokuma.musicplayer.setting.TimerActivity;
-import com.shirokuma.musicplayer.playback.MusicBroadcast;
-import com.shirokuma.musicplayer.playback.MusicService;
 
 // bind service and create options menu
 public abstract class BindSrvOpMenusActivity extends BaseActivity implements MediaScannerConnection.OnScanCompletedListener {
@@ -32,7 +32,7 @@ public abstract class BindSrvOpMenusActivity extends BaseActivity implements Med
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((KumalrcApplication) getApplication()).addBoundActivity(this);
+        KumaPlayer.addBoundActivity(this);
     }
 
     @Override
@@ -80,7 +80,7 @@ public abstract class BindSrvOpMenusActivity extends BaseActivity implements Med
     @Override
     protected void onDestroy() {
         unregisterReceiver(mMusicBroadcastReceiver);
-        ((KumalrcApplication) getApplication()).removeBoundActivity(this);
+        KumaPlayer.removeBoundActivity(this);
         if (mMusicSrv != null) {
             unbindService(mMusicSrvConn);
             mMusicSrv = null;
@@ -109,42 +109,35 @@ public abstract class BindSrvOpMenusActivity extends BaseActivity implements Med
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         //menu item selected
-        switch (item.getItemId()) {
-            case R.id.action_scan:
-                if (mMusicSrv != null && mMusicSrv.isPlaying())
-                    mMusicSrv.stop();
-                MediaScannerConnection.scanFile(this, new String[]{Environment
-                        .getExternalStorageDirectory().getAbsolutePath()}, null, this);
-                mProgress = ProgressDialog.show(this, "", getString(R.string.scanning));
-                break;
-            case R.id.action_in_order:
-                mMusicSrv.setShuffle(false);
-                MediaSetting.getInstance(this).setShuffle(false);
-                break;
-            case R.id.action_shuffle:
-                mMusicSrv.setShuffle(true);
-                MediaSetting.getInstance(this).setShuffle(true);
-                break;
-            case R.id.action_end:
-                ((KumalrcApplication) getApplication()).exit();
-                break;
-            case R.id.action_timer:
-                startActivity(new Intent(this, TimerActivity.class));
-                break;
-            case R.id.action_setting:
-                if (mMusicSrv != null && mMusicSrv.isPlaying())
-                    mMusicSrv.stop();
-                startActivity(new Intent(this, SettingActivity.class));
-                break;
-            case R.id.action_share:
-                String content;
-                if (mMusicSrv != null && mMusicSrv.getCurrentSong() != null) {
-                    content = new StringBuilder(getString(R.string.listening)).append(mMusicSrv.getCurrentSong().title).toString();
-                } else {
-                    content = getString(R.string.using);
-                }
-                ((KumalrcApplication) getApplication()).webchatShare(content);
-                break;
+        int i = item.getItemId();
+        if (i == R.id.action_scan) {
+            if (mMusicSrv != null && mMusicSrv.isPlaying())
+                mMusicSrv.stop();
+            MediaScannerConnection.scanFile(this, new String[]{Environment
+                    .getExternalStorageDirectory().getAbsolutePath()}, null, this);
+            mProgress = ProgressDialog.show(this, "", getString(R.string.scanning));
+        } else if (i == R.id.action_in_order) {
+            mMusicSrv.setShuffle(false);
+            MediaSetting.getInstance(this).setShuffle(false);
+        } else if (i == R.id.action_shuffle) {
+            mMusicSrv.setShuffle(true);
+            MediaSetting.getInstance(this).setShuffle(true);
+        } else if (i == R.id.action_end) {
+            KumaPlayer.exit();
+        } else if (i == R.id.action_timer) {
+            startActivity(new Intent(this, TimerActivity.class));
+        } else if (i == R.id.action_setting) {
+            if (mMusicSrv != null && mMusicSrv.isPlaying())
+                mMusicSrv.stop();
+            startActivity(new Intent(this, SettingActivity.class));
+        } else if (i == R.id.action_share) {
+            String content;
+            if (mMusicSrv != null && mMusicSrv.getCurrentSong() != null) {
+                content = new StringBuilder(getString(R.string.listening)).append(mMusicSrv.getCurrentSong().title).toString();
+            } else {
+                content = getString(R.string.using);
+            }
+            KumaPlayer.webchatShare(content);
         }
         return super.onOptionsItemSelected(item);
     }

@@ -1,1 +1,1 @@
-include ':player', ':ActiveAndroid', ':swipelistview', ':memorize'
+include ':linguistics', ':player', ':ActiveAndroid', ':swipelistview', ':memorize'

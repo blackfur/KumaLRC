@@ -1,5 +1,5 @@
 package com.shirokuma.musicplayer.common;
 
-public interface FutureCallback {
+public interface Listener {
     void execute(Object... pars);
 }

@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Window;
 import android.widget.Toast;
-import com.shirokuma.musicplayer.KumalrcApplication;
+import com.shirokuma.musicplayer.KumaPlayer;
 import com.shirokuma.musicplayer.R;
 import com.tencent.mm.sdk.modelbase.BaseReq;
 import com.tencent.mm.sdk.modelbase.BaseResp;
@@ -15,7 +15,7 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
     public void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
-        ((KumalrcApplication) getApplication()).webchatHandleIntent(getIntent(), this);
+        KumaPlayer.webchatHandleIntent(getIntent(), this);
     }
 
     @Override

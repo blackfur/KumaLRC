@@ -8,7 +8,7 @@ import android.widget.SeekBar;
 import android.os.Handler;
 import com.shirokuma.musicplayer.R;
 import com.shirokuma.musicplayer.common.BindSrvOpMenusActivity;
-import com.shirokuma.musicplayer.common.FutureCallback;
+import com.shirokuma.musicplayer.common.Listener;
 import com.shirokuma.musicplayer.common.Utils;
 import com.shirokuma.musicplayer.playback.MusicService;
 import com.shirokuma.musicplayer.view.LyricListView;
@@ -40,42 +40,34 @@ public class LyricsActivity extends BindSrvOpMenusActivity {
     protected View.OnClickListener mBtnListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.play:
-                    mMusicSrv.play();
-                    mBtnPlay.setVisibility(View.GONE);
-                    mBtnPause.setVisibility(View.VISIBLE);
-                    break;
-                case R.id.next:
-                    mMusicSrv.playNext();
-                    mBtnPlay.setVisibility(View.GONE);
-                    mBtnPause.setVisibility(View.VISIBLE);
-                    break;
-                case R.id.previous:
-                    mMusicSrv.playPrev();
-                    mBtnPlay.setVisibility(View.GONE);
-                    mBtnPause.setVisibility(View.VISIBLE);
-                    break;
-                case R.id.stop:
-                    stop();
-                    mMusicSrv.stop();
-                    mBtnPlay.setVisibility(View.VISIBLE);
-                    mBtnPause.setVisibility(View.GONE);
-                    break;
-                case R.id.pause:
-                    mMusicSrv.pause();
-                    mBtnPlay.setVisibility(View.VISIBLE);
-                    mBtnPause.setVisibility(View.GONE);
-                    break;
-                case R.id.rewind:
-                    mMusicSrv.rewind();
-                    break;
-                case R.id.fastforward:
-                    mMusicSrv.fastForward();
-                    break;
-                case R.id.btn_back:
-                    finish();
-                    break;
+            int i = v.getId();
+            if (i == R.id.play) {
+                mMusicSrv.play();
+                mBtnPlay.setVisibility(View.GONE);
+                mBtnPause.setVisibility(View.VISIBLE);
+            } else if (i == R.id.next) {
+                mMusicSrv.playNext();
+                mBtnPlay.setVisibility(View.GONE);
+                mBtnPause.setVisibility(View.VISIBLE);
+            } else if (i == R.id.previous) {
+                mMusicSrv.playPrev();
+                mBtnPlay.setVisibility(View.GONE);
+                mBtnPause.setVisibility(View.VISIBLE);
+            } else if (i == R.id.stop) {
+                stop();
+                mMusicSrv.stop();
+                mBtnPlay.setVisibility(View.VISIBLE);
+                mBtnPause.setVisibility(View.GONE);
+            } else if (i == R.id.pause) {
+                mMusicSrv.pause();
+                mBtnPlay.setVisibility(View.VISIBLE);
+                mBtnPause.setVisibility(View.GONE);
+            } else if (i == R.id.rewind) {
+                mMusicSrv.rewind();
+            } else if (i == R.id.fastforward) {
+                mMusicSrv.fastForward();
+            } else if (i == R.id.btn_back) {
+                finish();
             }
         }
     };
@@ -150,7 +142,7 @@ public class LyricsActivity extends BindSrvOpMenusActivity {
         super.onDestroy();
     }
 
-    private void reset(final FutureCallback callback) {
+    private void reset(final Listener callback) {
         mWorkHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -239,7 +231,7 @@ public class LyricsActivity extends BindSrvOpMenusActivity {
             mBtnPause.setVisibility(View.VISIBLE);
         }
         if (mMusicSrv.getCurrentSong() != null) {
-            reset(new FutureCallback() {
+            reset(new Listener() {
                 @Override
                 public void execute(Object... pars) {
                     start();
@@ -257,7 +249,7 @@ public class LyricsActivity extends BindSrvOpMenusActivity {
     protected void onMusicPrev() {
         if (mMusicSrv != null && mLrcView != null && mMusicSrv.getCurrentSong() != null) {
 //            mLrcView.reset(mMusicSrv.getPlayer(), mMusicSrv.getCurrentSong());
-            reset(new FutureCallback() {
+            reset(new Listener() {
                 @Override
                 public void execute(Object... pars) {
                     if (mTimer == null)
@@ -271,7 +263,7 @@ public class LyricsActivity extends BindSrvOpMenusActivity {
     protected void onMusicNext() {
         if (mMusicSrv != null && mLrcView != null && mMusicSrv.getCurrentSong() != null) {
 //            mLrcView.reset(mMusicSrv.getPlayer(), mMusicSrv.getCurrentSong());
-            reset(new FutureCallback() {
+            reset(new Listener() {
                 @Override
                 public void execute(Object... pars) {
                     if (mTimer == null)

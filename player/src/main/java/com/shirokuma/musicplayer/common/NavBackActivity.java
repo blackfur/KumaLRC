@@ -16,10 +16,9 @@ public abstract class NavBackActivity extends BaseActivity {
     protected View.OnClickListener mBtnListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.btn_back:
-                    finish();
-                    break;
+            int i = v.getId();
+            if (i == R.id.btn_back) {
+                finish();
             }
         }
     };

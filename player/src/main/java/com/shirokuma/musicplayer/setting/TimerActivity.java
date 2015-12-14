@@ -9,7 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.shirokuma.musicplayer.KumalrcApplication;
+import com.shirokuma.musicplayer.KumaPlayer;
 import com.shirokuma.musicplayer.R;
 import com.shirokuma.musicplayer.common.BlackTextArrayAdapter;
 
@@ -50,7 +50,7 @@ public class TimerActivity extends Activity {
                     default:
                         mMinutes = -1;
                 }
-                ((KumalrcApplication) getApplication()).sleepMode(mMinutes);
+                KumaPlayer.sleepMode(mMinutes);
                 if (mMinutes > 0)
                     Toast.makeText(getApplicationContext(), getString(R.string.shutdown) + String.valueOf(mMinutes), Toast.LENGTH_LONG).show();
                 else

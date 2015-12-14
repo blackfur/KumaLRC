@@ -36,31 +36,29 @@ public class MusicListActivity extends BindSrvOpMenusActivity {
     private AdapterView.OnItemSelectedListener mItemSelectListener = new AdapterView.OnItemSelectedListener() {
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-            switch (adapterView.getId()) {
-                // songs filter
-                case R.id.spinner:
-                    if (view == null && i == -1 && l == -1) {
-                        i = adapterView.getSelectedItemPosition();
-                    }
-                    switch (i) {
-                        // song
-                        case 0:
-                            displayList(new Filter(Filter.FilterType.Song, null, null));
-                            break;
-                        // artist
-                        case 1:
-                            displayList(new Filter(Filter.FilterType.Artist, null, null));
-                            break;
-                        // album
-                        case 2:
-                            displayList(new Filter(Filter.FilterType.Album, null, null));
-                            break;
-                        // playlist
-                        case 3:
-                            displayList(new Filter(Filter.FilterType.Playlist, null, null));
-                            break;
-                    }
-                    break;
+            int i1 = adapterView.getId();
+            if (i1 == R.id.spinner) {
+                if (view == null && i == -1 && l == -1) {
+                    i = adapterView.getSelectedItemPosition();
+                }
+                switch (i) {
+                    // song
+                    case 0:
+                        displayList(new Filter(Filter.FilterType.Song, null, null));
+                        break;
+                    // artist
+                    case 1:
+                        displayList(new Filter(Filter.FilterType.Artist, null, null));
+                        break;
+                    // album
+                    case 2:
+                        displayList(new Filter(Filter.FilterType.Album, null, null));
+                        break;
+                    // playlist
+                    case 3:
+                        displayList(new Filter(Filter.FilterType.Playlist, null, null));
+                        break;
+                }
             }
         }
 
@@ -72,38 +70,33 @@ public class MusicListActivity extends BindSrvOpMenusActivity {
     private View.OnClickListener mOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.info_layout:
-                    startActivity(new Intent(getApplicationContext(), LyricsActivity.class));
-                    break;
-                case R.id.simple_ctrl_next:
-                    mMusicSrv.playNext();
-                    if (mMusicSrv.getCurrentSong() != null) {
-                        mName.setText(mMusicSrv.getCurrentSong().title);
-                        mArtist.setText(mMusicSrv.getCurrentSong().artist);
-                        mBtnPause.setVisibility(View.VISIBLE);
-                        mBtnPlay.setVisibility(View.GONE);
-                    }
-                    break;
-                case R.id.simple_ctrl_prev:
-                    mMusicSrv.playPrev();
-                    if (mMusicSrv.getCurrentSong() != null) {
-                        mName.setText(mMusicSrv.getCurrentSong().title);
-                        mArtist.setText(mMusicSrv.getCurrentSong().artist);
-                        mBtnPause.setVisibility(View.VISIBLE);
-                        mBtnPlay.setVisibility(View.GONE);
-                    }
-                    break;
-                case R.id.simple_ctrl_play:
+            int i = view.getId();
+            if (i == R.id.info_layout) {
+                startActivity(new Intent(getApplicationContext(), LyricsActivity.class));
+            } else if (i == R.id.simple_ctrl_next) {
+                mMusicSrv.playNext();
+                if (mMusicSrv.getCurrentSong() != null) {
+                    mName.setText(mMusicSrv.getCurrentSong().title);
+                    mArtist.setText(mMusicSrv.getCurrentSong().artist);
                     mBtnPause.setVisibility(View.VISIBLE);
                     mBtnPlay.setVisibility(View.GONE);
-                    mMusicSrv.play();
-                    break;
-                case R.id.simple_ctrl_pause:
-                    mBtnPlay.setVisibility(View.VISIBLE);
-                    mBtnPause.setVisibility(View.GONE);
-                    mMusicSrv.pause();
-                    break;
+                }
+            } else if (i == R.id.simple_ctrl_prev) {
+                mMusicSrv.playPrev();
+                if (mMusicSrv.getCurrentSong() != null) {
+                    mName.setText(mMusicSrv.getCurrentSong().title);
+                    mArtist.setText(mMusicSrv.getCurrentSong().artist);
+                    mBtnPause.setVisibility(View.VISIBLE);
+                    mBtnPlay.setVisibility(View.GONE);
+                }
+            } else if (i == R.id.simple_ctrl_play) {
+                mBtnPause.setVisibility(View.VISIBLE);
+                mBtnPlay.setVisibility(View.GONE);
+                mMusicSrv.play();
+            } else if (i == R.id.simple_ctrl_pause) {
+                mBtnPlay.setVisibility(View.VISIBLE);
+                mBtnPause.setVisibility(View.GONE);
+                mMusicSrv.pause();
             }
         }
     };
