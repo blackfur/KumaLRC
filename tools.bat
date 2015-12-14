@@ -4,7 +4,7 @@ set device=
 set PACKAGE=com.shirokuma.musicplayer
 set PROJECT_PATH=e:\work\kumalrc
 set project=kumalrc
-set module=app
+set module=player
 if "%1"=="reinstall" goto reinstall
 if [%1]==[sign] goto sign
 if [%1]==[release] goto release
