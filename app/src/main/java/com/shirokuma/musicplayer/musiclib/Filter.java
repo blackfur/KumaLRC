@@ -7,7 +7,7 @@ import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.provider.MediaStore;
-import com.shirokuma.musicplayer.common.Utils;
+import com.shirokuma.musicplayer.model.Song;
 
 import java.io.File;
 import java.util.ArrayList;

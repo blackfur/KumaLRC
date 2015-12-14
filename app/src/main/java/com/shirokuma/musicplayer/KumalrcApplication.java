@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
 import android.widget.Toast;
+import com.activeandroid.ActiveAndroid;
 import com.shirokuma.musicplayer.common.Utils;
 import com.shirokuma.musicplayer.playback.MusicService;
 import com.tencent.mm.sdk.modelmsg.SendMessageToWX;
@@ -31,6 +32,8 @@ public class KumalrcApplication extends Application {
             wxapi = WXAPIFactory.createWXAPI(this, Utils.WEBCHAT_APPID, false);
             wxapi.registerApp(Utils.WEBCHAT_APPID);
         }
+        // database
+        ActiveAndroid.initialize(this);
     }
 
     public void addBoundActivity(Activity bound) {

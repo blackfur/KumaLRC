@@ -10,7 +10,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import com.shirokuma.musicplayer.common.Utils;
 import com.shirokuma.musicplayer.lyrics.FollowPlayback;
-import com.shirokuma.musicplayer.musiclib.Song;
+import com.shirokuma.musicplayer.model.Song;
 
 public class TextScrollView extends ScrollView implements FollowPlayback {
     TextView content;

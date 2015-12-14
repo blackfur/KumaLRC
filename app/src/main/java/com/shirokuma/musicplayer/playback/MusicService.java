@@ -14,11 +14,14 @@ import android.os.Build;
 import android.os.IBinder;
 import android.os.PowerManager;
 import android.util.Log;
+import com.activeandroid.query.Delete;
+import com.activeandroid.query.Select;
+import com.activeandroid.query.Update;
 import com.shirokuma.musicplayer.R;
+import com.shirokuma.musicplayer.lyrics.LyricsActivity;
+import com.shirokuma.musicplayer.model.Song;
 import com.shirokuma.musicplayer.musiclib.Filter;
 import com.shirokuma.musicplayer.setting.MediaSetting;
-import com.shirokuma.musicplayer.musiclib.Song;
-import com.shirokuma.musicplayer.lyrics.LyricsActivity;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -43,7 +46,7 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
     private final IBinder musicBind = new MusicBinder();
     //title of current song
     private String songTitle = "";
-    //notification id
+    //notification songid
     private static final int NOTIFY_ID = 1;
     //shuffle flag and random
     private boolean shuffle;
@@ -115,9 +118,9 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
         MediaSetting.getInstance(getApplicationContext()).setLastPlayIndex(mPlaySongIndex);
         MediaSetting.getInstance(getApplicationContext()).setLastFilter(currentFilter);
         if (MediaSetting.getInstance(getApplicationContext()).getSaveLast() && (mCurrentState == State.Started || mCurrentState == State.Paused)) {
-            MediaSetting.getInstance(getApplicationContext()).setLastPlayProgress(mPlayer.getCurrentPosition());
-        } else
-            MediaSetting.getInstance(getApplicationContext()).setLastPlayProgress(0);
+            saveSongState();
+//            MediaSetting.getInstance(getApplicationContext()).setLastPlayProgress(mPlayer.getCurrentPosition());
+        }
         mPlayer.stop();
         mPlayer.release();
         mPlayer = null;
@@ -125,7 +128,7 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
     }
 
     public enum State {
-        Paused, Stopped, Started
+        Paused, Stopped, Started, Completed
     }
 
     public void play() {
@@ -148,8 +151,8 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
             return;
         //get title
         songTitle = playSong.title;
-        //get id
-        long currSong = playSong.id;
+        //get songid
+        long currSong = playSong.songid;
         //set uri
         Uri trackUri = ContentUris.withAppendedId(
                 android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
@@ -165,8 +168,23 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
         mCurrentState = State.Paused;
     }
 
+    private void saveSongState() {
+        if (isPlaying()) {
+            com.shirokuma.musicplayer.model.Song current = getCurrentSong();
+            current.progress = getCurrentPosition();
+            if (new Select().from(com.shirokuma.musicplayer.model.Song.class).where("title = ? and artist=?", current.title, current.artist).exists()) {
+                new Update(com.shirokuma.musicplayer.model.Song.class).set("progress=?", current.progress).where("title = ? and artist=?", current.title, current.artist).execute();
+            } else {
+                new com.shirokuma.musicplayer.model.Song(current.title, current.artist, current.progress).save();
+            }
+        }
+    }
+
     //reset a song
     private void playSong(int index) {
+        // before play next, saving previous played song state
+        saveSongState();
+        // play next
         if (index < mPlaySongs.size()) {
             mPlaySongIndex = index;
             //reset
@@ -177,8 +195,8 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
                 return;
             //get title
             songTitle = playSong.title;
-            //get id
-            long currSong = playSong.id;
+            //get songid
+            long currSong = playSong.songid;
             //set uri
             Uri trackUri = ContentUris.withAppendedId(
                     android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
@@ -195,6 +213,7 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
     }
 
     public void play(int index) {
+        // play next
         playSong(index);
         sendBroadcast(new Intent(MusicBroadcast.MUSIC_BROADCAST_ACTION_PLAYBACK).putExtra(MusicBroadcast.MUSIC_BROADCAST_EXTRA, MusicBroadcast.Playback.Play.getIndex()));
     }
@@ -203,6 +222,11 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
     public void onCompletion(MediaPlayer mp) {
         //check if playback has reached the end of a track
         if (mp != null && mp.getCurrentPosition() > 0 && mCurrentState == State.Started) {
+//            mCurrentState = State.Completed;
+            // It make no sense to still keep the song's play progress after it completed.
+            Song current = getCurrentSong();
+            new Delete().from(Song.class).where("title=? and artist=?", current.title, current.artist).executeSingle();
+            // play next
             mp.reset();
             playNext();
         }
@@ -218,12 +242,16 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onPrepared(MediaPlayer mp) {
-        if (mCurrentState == State.Started)
-            //start playback
+        // restore it's last progress if the song had been interrupted
+        com.shirokuma.musicplayer.model.Song current = getCurrentSong();
+        Song state = new Select().from(com.shirokuma.musicplayer.model.Song.class).where("title=? and artist=?", current.title, current.artist).executeSingle();
+        if (state != null)
+            mp.seekTo(state.progress);
+        // hint: no matter it's on application started or playing next song, saved state should be restored
+        // if it's application started, (mCurrentState == State.Paused), else (mCurrentState == State.Started)
+        //start playback
+        if (mCurrentState == State.Started) {
             mp.start();
-            // restore last progress when application start
-        else if (mCurrentState == State.Paused) {
-            mp.seekTo(MediaSetting.getInstance(this).getLastPlayProgress());
         }
         //notification
         Intent notIntent = new Intent(this, LyricsActivity.class);
@@ -243,21 +271,23 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
 
     //skip to previous track
     public void playPrev() {
-        mPlaySongIndex--;
-        if (mPlaySongIndex < 0) mPlaySongIndex = mPlaySongs.size() - 1;
-        playSong(mPlaySongIndex);
+        int prevIndex = mPlaySongIndex;
+        prevIndex--;
+        if (prevIndex < 0) prevIndex = mPlaySongs.size() - 1;
+        playSong(prevIndex);
         sendBroadcast(new Intent(MusicBroadcast.MUSIC_BROADCAST_ACTION_PLAYBACK).putExtra(MusicBroadcast.MUSIC_BROADCAST_EXTRA, MusicBroadcast.Playback.Previous.getIndex()));
     }
 
     //skip to next
     public void playNext() {
+        int nextIndex = mPlaySongIndex;
         if (shuffle) {
-            mPlaySongIndex = rand.nextInt(mPlaySongs.size());
+            nextIndex = rand.nextInt(mPlaySongs.size());
         } else {
-            mPlaySongIndex++;
+            nextIndex++;
         }
-        if (mPlaySongIndex >= mPlaySongs.size()) mPlaySongIndex = 0;
-        playSong(mPlaySongIndex);
+        if (nextIndex >= mPlaySongs.size()) nextIndex = 0;
+        playSong(nextIndex);
         sendBroadcast(new Intent(MusicBroadcast.MUSIC_BROADCAST_ACTION_PLAYBACK).putExtra(MusicBroadcast.MUSIC_BROADCAST_EXTRA, MusicBroadcast.Playback.Next.getIndex()));
     }
 

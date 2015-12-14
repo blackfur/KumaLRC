@@ -1,6 +1,6 @@
 package com.shirokuma.musicplayer.lyrics;
 
-import com.shirokuma.musicplayer.musiclib.Song;
+import com.shirokuma.musicplayer.model.Song;
 
 import java.io.*;
 import java.util.ArrayList;

@@ -67,7 +67,7 @@ public class MusicAdapter extends BaseAdapter {
             if (item.type() == Filter.FilterType.Song)
                 holder.delete = convertView.findViewById(R.id.delete);
 //            if (mOnTouchListener != null)
-//                convertView.findViewById(R.id.music_front).setOnTouchListener(mOnTouchListener);
+//                convertView.findViewById(R.songid.music_front).setOnTouchListener(mOnTouchListener);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();

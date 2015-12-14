@@ -1,5 +1,6 @@
 setlocal
-set DEVICE=-s 192.168.3.121:5555
+rem set DEVICE=-s 192.168.3.121:5555
+set device=
 set PACKAGE=com.shirokuma.musicplayer
 set PROJECT_PATH=e:\work\kumalrc
 set project=kumalrc
@@ -7,6 +8,7 @@ set module=app
 if "%1"=="reinstall" goto reinstall
 if [%1]==[sign] goto sign
 if [%1]==[release] goto release
+if [%1]==[debug] goto debug
 if [%1]==[run] goto run
 goto :eof
 :sign
@@ -32,6 +34,13 @@ call :install
 call :run
 call :log
 exit /b 0
+:debug
+set apk=%module%/build/outputs/apk/%module%-debug.apk
+call :uninstall
+call :install
+call :run
+call :log
+goto :eof
 :install
 adb %DEVICE% install %apk%
 exit /b 0
@@ -39,7 +48,6 @@ exit /b 0
 adb %DEVICE% uninstall %PACKAGE%
 exit /b 0
 :run
-rem set COMPONENT=android.app.NativeActivity
 set COMPONENT=%package%.musiclib.MusicListActivity
 adb %DEVICE% shell am start -n %PACKAGE%/%COMPONENT%
 exit /b 0

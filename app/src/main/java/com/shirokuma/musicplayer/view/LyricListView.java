@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.shirokuma.musicplayer.R;
 import com.shirokuma.musicplayer.lyrics.FollowPlayback;
 import com.shirokuma.musicplayer.lyrics.SimpleLyrics;
-import com.shirokuma.musicplayer.musiclib.Song;
+import com.shirokuma.musicplayer.model.Song;
 
 public class LyricListView extends ListView implements FollowPlayback {
     private SimpleLyrics mLyrics;

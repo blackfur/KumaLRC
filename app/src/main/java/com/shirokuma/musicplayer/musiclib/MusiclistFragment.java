@@ -18,6 +18,7 @@ import com.fortysevendeg.swipelistview.BaseSwipeListViewListener;
 import com.fortysevendeg.swipelistview.SwipeListView;
 import com.shirokuma.musicplayer.R;
 import com.shirokuma.musicplayer.common.Utils;
+import com.shirokuma.musicplayer.model.Song;
 import com.shirokuma.musicplayer.view.TouchSwipeListView;
 
 import java.io.File;
@@ -161,7 +162,7 @@ public class MusiclistFragment extends Fragment {
         final ProgressDialog dialog = ProgressDialog.show(getActivity(), "", getString(R.string.loading));
         final Song song = (Song) mDisplayMusic.get(position);
         // delete on database
-        getActivity().getContentResolver().delete(ContentUris.withAppendedId(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, song.id), null, null);
+        getActivity().getContentResolver().delete(ContentUris.withAppendedId(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, song.songid), null, null);
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -171,7 +172,7 @@ public class MusiclistFragment extends Fragment {
                     public void run() {
                         // adjust playback if current displayed list is playing list
                         if (main.getMusicSrv().getPlaySongs() == mDisplayMusic) {
-                            if (main.getMusicSrv().isPlaying() && main.getMusicSrv().getCurrentSong().id == song.id)
+                            if (main.getMusicSrv().isPlaying() && main.getMusicSrv().getCurrentSong().songid == song.songid)
                                 if (mDisplayMusic.size() > 1)
                                     main.getMusicSrv().playNext();
                                 else
