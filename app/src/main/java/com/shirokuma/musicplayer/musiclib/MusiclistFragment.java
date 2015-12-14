@@ -90,6 +90,7 @@ public class MusiclistFragment extends Fragment {
             if (filter != null) {
                 switch (filter.type) {
                     case Song:
+                        // initial animation material
                         mMusicNote = root.findViewById(R.id.music_note);
                         break;
                 }

@@ -71,7 +71,8 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
     }
 
     public void setFilter(Filter f) {
-        currentFilter = f;
+        if (currentFilter == null || currentFilter != f)
+            currentFilter = f;
     }
 
     public ArrayList getPlaySongs() {
@@ -267,7 +268,8 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
     }
 
     public void setPlaySongs(ArrayList songs) {
-        mPlaySongs = songs;
+        if (mPlaySongs == null || mPlaySongs != songs)
+            mPlaySongs = songs;
     }
 
     //toggle shuffle

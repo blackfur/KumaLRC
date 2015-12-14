@@ -31,24 +31,20 @@ public class FuncActivity extends AppCompatActivity {
     View.OnClickListener onClick = new View.OnClickListener() {
         @Override
         public void onClick(final View v) {
-            switch (v.getId()) {
-                case R.id.add:
-                    startActivity(new Intent(FuncActivity.this, RedactActivity.class));
-                    break;
-                case R.id.backup:
-                    if (com.shiro.memo.model.Util.export())
-                        Toast.makeText(FuncActivity.this, R.string.success, Toast.LENGTH_LONG).show();
-                    else Toast.makeText(FuncActivity.this, R.string.fail, Toast.LENGTH_LONG).show();
-                    break;
-                case R.id.restore:
-                    if (com.shiro.memo.model.Util.restore())
-                        Toast.makeText(FuncActivity.this, R.string.success, Toast.LENGTH_LONG).show();
-                    else Toast.makeText(FuncActivity.this, R.string.fail, Toast.LENGTH_LONG).show();
-                    break;
-                case R.id.import_from_text:
-                    loading(R.string.loading);
-                    new Thread(importTask).start();
-                    break;
+            int i = v.getId();
+            if (i == R.id.add) {
+                startActivity(new Intent(FuncActivity.this, RedactActivity.class));
+            } else if (i == R.id.backup) {
+                if (com.shiro.memo.model.Util.export())
+                    Toast.makeText(FuncActivity.this, R.string.success, Toast.LENGTH_LONG).show();
+                else Toast.makeText(FuncActivity.this, R.string.fail, Toast.LENGTH_LONG).show();
+            } else if (i == R.id.restore) {
+                if (com.shiro.memo.model.Util.restore())
+                    Toast.makeText(FuncActivity.this, R.string.success, Toast.LENGTH_LONG).show();
+                else Toast.makeText(FuncActivity.this, R.string.fail, Toast.LENGTH_LONG).show();
+            } else if (i == R.id.import_from_text) {
+                loading(R.string.loading);
+                new Thread(importTask).start();
             }
         }
     };

@@ -135,70 +135,63 @@ public class RedactActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             Entry item;
-            switch (v.getId()) {
-                case R.id.save:
-                    if (redactContent.getText().length() > 0) {
-                        String contentStr = redactContent.getText().toString();
-                        From from = new Select().from(Entry.class).where("content = ?", contentStr);
-                        if (from.count() > 0) {
-                            Toast.makeText(RedactActivity.this, R.string.duplicate, Toast.LENGTH_LONG).show();
-                        } else {
-                            new Entry(contentStr).save();
-                            mWorkHandler.postDelayed(mLoadTask, 200);
-                            Toast.makeText(RedactActivity.this, R.string.success, Toast.LENGTH_LONG).show();
-                            redactContent.setText("");
-                        }
+            int i = v.getId();
+            if (i == R.id.save) {
+                if (redactContent.getText().length() > 0) {
+                    String contentStr = redactContent.getText().toString();
+                    From from = new Select().from(Entry.class).where("content = ?", contentStr);
+                    if (from.count() > 0) {
+                        Toast.makeText(RedactActivity.this, R.string.duplicate, Toast.LENGTH_LONG).show();
                     } else {
-                        Toast.makeText(RedactActivity.this, R.string.nothing, Toast.LENGTH_LONG).show();
-                    }
-                    break;
-                case R.id.clear:
-                    redactContent.setText("");
-                    break;
-                case R.id.finish:
-                    finish();
-                    break;
-                case R.id.content:
-                    item = (Entry) v.getTag();
-                    redactContent.setText(item.content);
-                    save.setVisibility(View.GONE);
-                    update.setVisibility(View.VISIBLE);
-                    update.setTag(item);
-                    delete.setVisibility(View.VISIBLE);
-                    delete.setTag(item);
-                    finish.setVisibility(View.GONE);
-                    cancel.setVisibility(View.VISIBLE);
-                    break;
-                case R.id.cancel:
-                    save.setVisibility(View.VISIBLE);
-                    update.setVisibility(View.GONE);
-                    delete.setVisibility(View.GONE);
-                    finish.setVisibility(View.VISIBLE);
-                    cancel.setVisibility(View.GONE);
-                    break;
-                case R.id.update:
-                    item = (Entry) v.getTag();
-                    if (redactContent.getText().length() > 0) {
-                        String contentStr = redactContent.getText().toString();
-                        new Update(Entry.class).set("content = ?", contentStr).where("id = ?", item.getId()).execute();
-                        item.content = contentStr;
-                        int pos = entries.getVerticalScrollbarPosition();
-                        adapter.notifyDataSetChanged();
-                        entries.setVerticalScrollbarPosition(pos);
+                        new Entry(contentStr).save();
+                        mWorkHandler.postDelayed(mLoadTask, 200);
                         Toast.makeText(RedactActivity.this, R.string.success, Toast.LENGTH_LONG).show();
-                    } else {
-                        Toast.makeText(RedactActivity.this, R.string.nothing, Toast.LENGTH_LONG).show();
+                        redactContent.setText("");
                     }
-                    break;
-                case R.id.delete:
-                    item = (Entry) v.getTag();
-                    new Delete().from(Entry.class).where("id = ?", item.getId()).execute();
-                    dat.remove(item);
+                } else {
+                    Toast.makeText(RedactActivity.this, R.string.nothing, Toast.LENGTH_LONG).show();
+                }
+            } else if (i == R.id.clear) {
+                redactContent.setText("");
+            } else if (i == R.id.finish) {
+                finish();
+            } else if (i == R.id.content) {
+                item = (Entry) v.getTag();
+                redactContent.setText(item.content);
+                save.setVisibility(View.GONE);
+                update.setVisibility(View.VISIBLE);
+                update.setTag(item);
+                delete.setVisibility(View.VISIBLE);
+                delete.setTag(item);
+                finish.setVisibility(View.GONE);
+                cancel.setVisibility(View.VISIBLE);
+            } else if (i == R.id.cancel) {
+                save.setVisibility(View.VISIBLE);
+                update.setVisibility(View.GONE);
+                delete.setVisibility(View.GONE);
+                finish.setVisibility(View.VISIBLE);
+                cancel.setVisibility(View.GONE);
+            } else if (i == R.id.update) {
+                item = (Entry) v.getTag();
+                if (redactContent.getText().length() > 0) {
+                    String contentStr = redactContent.getText().toString();
+                    new Update(Entry.class).set("content = ?", contentStr).where("id = ?", item.getId()).execute();
+                    item.content = contentStr;
                     int pos = entries.getVerticalScrollbarPosition();
                     adapter.notifyDataSetChanged();
                     entries.setVerticalScrollbarPosition(pos);
                     Toast.makeText(RedactActivity.this, R.string.success, Toast.LENGTH_LONG).show();
-                    break;
+                } else {
+                    Toast.makeText(RedactActivity.this, R.string.nothing, Toast.LENGTH_LONG).show();
+                }
+            } else if (i == R.id.delete) {
+                item = (Entry) v.getTag();
+                new Delete().from(Entry.class).where("id = ?", item.getId()).execute();
+                dat.remove(item);
+                int pos = entries.getVerticalScrollbarPosition();
+                adapter.notifyDataSetChanged();
+                entries.setVerticalScrollbarPosition(pos);
+                Toast.makeText(RedactActivity.this, R.string.success, Toast.LENGTH_LONG).show();
             }
         }
     };

@@ -53,23 +53,21 @@ public class FlashCardActivity extends AppCompatActivity {
         @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR1)
         @Override
         public void onClick(final View v) {
-            switch (v.getId()) {
-                case R.id.content:
-                    if (++count == DAILY_TASK) {
-                        Util.alert(getContext(), "Daily task was completed, exit?", new Util.Listener() {
-                            @Override
-                            public Object process(Object msg) {
-                                finish();
-                                return null;
-                            }
-                        });
-                        return;
-                    }
-                    v.startAnimation(out2right);
-                    break;
-                case R.id.func:
-                    startActivity(new Intent(FlashCardActivity.this, FuncActivity.class));
-                    break;
+            int i = v.getId();
+            if (i == R.id.content) {
+                if (++count == DAILY_TASK) {
+                    Util.alert(getContext(), "Daily task was completed, exit?", new Util.Listener() {
+                        @Override
+                        public Object process(Object msg) {
+                            finish();
+                            return null;
+                        }
+                    });
+                    return;
+                }
+                v.startAnimation(out2right);
+            } else if (i == R.id.func) {
+                startActivity(new Intent(FlashCardActivity.this, FuncActivity.class));
             }
         }
     };
