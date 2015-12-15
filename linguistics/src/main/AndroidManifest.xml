@@ -2,12 +2,28 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.shiro.linguistics">
 
+    <!-- START Audio/lyrics search and play -->
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <!-- END Audio/lyrics search and play -->
+    <!-- START Share through Web Chat -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <!-- <uses-permission android:name="android.permission.READ_PHONE_STATE"/> -->
+    <!-- <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/> -->
+    <!-- END Share through Web Chat -->
     <application
             android:name=".LinguisticsApp"
-            android:allowBackup="true"
+            android:allowBackup="false"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme">
+            android:theme="@com.shirokuma.musicplayer:style/kumalrc_theme">
+        <meta-data
+                android:name="AA_MODELS"
+                android:value="com.shirokuma.musicplayer.model.Song" />
         <activity
                 android:name=".MainActivity"
                 android:label="@string/app_name">
@@ -17,6 +33,40 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity
+                android:name="com.shirokuma.musicplayer.WelcomeActivity"
+                android:label="@string/app_name"
+                android:screenOrientation="portrait">
+        </activity>
+        <activity
+                android:exported="true"
+                android:name="com.shirokuma.musicplayer.musiclib.MusicListActivity"
+                android:launchMode="singleTop"
+                android:screenOrientation="portrait"/>
+        <activity
+                android:name="com.shirokuma.musicplayer.lyrics.LyricsActivity"
+                android:launchMode="singleTop"
+                android:screenOrientation="portrait"/>
+        <activity
+                android:name="com.shirokuma.musicplayer.GuideActivity"
+                android:screenOrientation="portrait"
+                android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <activity
+                android:name="com.shirokuma.musicplayer.setting.SettingActivity"
+                android:screenOrientation="portrait"/>
+
+
+        <activity
+                android:name="com.shirokuma.musicplayer.setting.TimerActivity"
+                android:screenOrientation="portrait"
+                android:theme="@style/timer_dialog"/>
+        <activity
+                android:theme="@android:style/Theme.Translucent"
+                android:name="com.shirokuma.musicplayer.wxapi.WXEntryActivity"
+                android:exported="true"/>
+
+        <receiver android:name="com.shirokuma.musicplayer.playback.MusicBroadcast"/>
+        <service android:name="com.shirokuma.musicplayer.playback.MusicService"/>
     </application>
 
 </manifest>

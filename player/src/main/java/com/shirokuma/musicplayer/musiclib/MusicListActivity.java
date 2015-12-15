@@ -11,12 +11,11 @@ import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
-import com.shirokuma.musicplayer.GuideActivity;
 import com.shirokuma.musicplayer.R;
-import com.shirokuma.musicplayer.setting.MediaSetting;
 import com.shirokuma.musicplayer.common.BindSrvOpMenusActivity;
 import com.shirokuma.musicplayer.common.Utils;
 import com.shirokuma.musicplayer.lyrics.LyricsActivity;
+import com.shirokuma.musicplayer.setting.MediaSetting;
 
 public class MusicListActivity extends BindSrvOpMenusActivity {
     Spinner mSpinner;
@@ -127,14 +126,6 @@ public class MusicListActivity extends BindSrvOpMenusActivity {
 
     public void setAnimEnd(int[] endxy) {
         mArtist.getLocationOnScreen(endxy);
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (MediaSetting.getInstance(getApplicationContext()).getFirstInstall()) {
-            startActivity(new Intent(this, GuideActivity.class));
-        }
     }
 
     @Override
