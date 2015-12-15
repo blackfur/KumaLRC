@@ -21,6 +21,10 @@ public class MainActivity extends AppCompatActivity {
             int viewid = v.getId();
             if (viewid == R.id.listen) {
                 startActivity(new Intent(getContext(), MusicListActivity.class));
+            }else if(viewid == R.id.word)
+            {
+
+                startActivity(new Intent(getContext(), MusicListActivity.class));
             }
         }
     };
