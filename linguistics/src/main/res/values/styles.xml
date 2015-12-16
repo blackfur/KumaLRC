@@ -1,9 +1,10 @@
 <resources>
 
-    <style name="LinguisticsTheme"
-           parent="AlertDialog.AppCompat.Light"
-            ></style>
-
+    <style name="LinguisticsTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">false</item>
+        <item name="android:panelBackground">@android:color/white</item>
+    </style>
     <style name="func">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>

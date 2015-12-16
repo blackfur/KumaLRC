@@ -169,7 +169,7 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
     }
 
     private void saveSongState() {
-        if (mCurrentState != State.Completed && isPlaying()) {
+        if (mCurrentState == State.Started || mCurrentState == State.Paused) {
             com.shirokuma.musicplayer.model.Song current = getCurrentSong();
             current.progress = getCurrentPosition();
             if (new Select().from(com.shirokuma.musicplayer.model.Song.class).where("title = ? and artist=?", current.title, current.artist).exists()) {
@@ -177,6 +177,11 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
             } else {
                 new com.shirokuma.musicplayer.model.Song(current.title, current.artist, current.progress).save();
             }
+        } else if (mCurrentState == State.Completed || mCurrentState == State.Stopped) {
+            // It make no sense to still keep the song's play progress after it completed or stopped.
+            Song current = getCurrentSong();
+            if (new Select().from(com.shirokuma.musicplayer.model.Song.class).where("title=? and artist=?", current.title, current.artist).exists())
+                new Delete().from(Song.class).where("title=? and artist=?", current.title, current.artist).executeSingle();
         }
     }
 
@@ -223,9 +228,6 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
         //check if playback has reached the end of a track
         if (mp != null && mp.getCurrentPosition() > 0 && mCurrentState == State.Started) {
             mCurrentState = State.Completed;
-            // It make no sense to still keep the song's play progress after it completed.
-            Song current = getCurrentSong();
-            new Delete().from(Song.class).where("title=? and artist=?", current.title, current.artist).executeSingle();
             // play next
             mp.reset();
             playNext();
