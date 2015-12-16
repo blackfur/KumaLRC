@@ -2,28 +2,28 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.shiro.linguistics">
 
-    <!-- START Audio/lyrics search and play -->
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <!-- END Audio/lyrics search and play -->
-    <!-- START Share through Web Chat -->
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <!-- <uses-permission android:name="android.permission.READ_PHONE_STATE"/> -->
-    <!-- <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/> -->
-    <!-- END Share through Web Chat -->
     <application
             android:name=".LinguisticsApp"
             android:allowBackup="false"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
-            android:theme="@com.shirokuma.musicplayer:style/kumalrc_theme">
+            android:theme="@style/LinguisticsTheme">
+        <meta-data
+                android:name="AA_DB_NAME"
+                android:value="linguistics.db"/>
+        <meta-data
+                android:name="AA_DB_VERSION"
+                android:value="1"/>
         <meta-data
                 android:name="AA_MODELS"
-                android:value="com.shirokuma.musicplayer.model.Song" />
+                android:value="com.shiro.memo.model.Entry, com.shirokuma.musicplayer.model.Song" />
         <activity
                 android:name=".MainActivity"
                 android:label="@string/app_name">
@@ -67,6 +67,17 @@
 
         <receiver android:name="com.shirokuma.musicplayer.playback.MusicBroadcast"/>
         <service android:name="com.shirokuma.musicplayer.playback.MusicService"/>
+
+        <activity
+                android:name="com.shiro.memo.FlashCardActivity"
+                android:label="@string/app_name">
+        </activity>
+        <activity
+                android:label="@string/redact"
+                android:name="com.shiro.memo.RedactActivity"/>
+        <activity
+                android:name="com.shiro.memo.FuncActivity"
+                android:label="@string/func"/>
     </application>
 
 </manifest>

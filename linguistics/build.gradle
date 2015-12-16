@@ -23,6 +23,14 @@ android {
         versionCode 1
         versionName "1.0"
     }
+    signingConfigs {
+        release {
+            storeFile file("../kumalrc.jks")
+            storePassword "Aa123456"
+            keyAlias "shiro"
+            keyPassword "Aa123456"
+        }
+    }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_6
@@ -32,13 +40,19 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:23.1.1'
+//    compile 'com.android.support:appcompat-v7:23.1.1'
     compile project(':player')
-    compile project(':memorize')
+    compile(project(':memorize')) {
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude module: 'ActiveAndroid'
+    }
 }

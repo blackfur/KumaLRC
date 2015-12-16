@@ -1,14 +1,13 @@
 setlocal
 set project=kumalrc
 set alias=shiro
-set package=com.shiro.linguistics
+set package=com.shiro.memo
 rem set DEVICE=-s 192.168.3.121:5555
 rem set DEVICE=-s emulator-5554
 rem set DEVICE=-s ?
-set module=linguistics
+set module=memorize
 rem --- options ---
 if [%1]==[monkey] goto monkey
-if [%1]==[depend] goto depend
 if [%1]==[buildDebug] goto buildDebug
 if [%1]==[buildRelease] goto buildRelease
 if [%1]==[py] goto py
@@ -125,6 +124,3 @@ ndk-build
 ant debug install
 adb shell am start -n $PACKAGE/${PACKAGE}.$MAIN_ACTIVITY
 exit /b 0
-:depend
-gradlew -q :%module%:dependencies
-goto :eof

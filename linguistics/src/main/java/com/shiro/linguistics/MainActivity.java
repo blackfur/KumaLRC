@@ -21,18 +21,17 @@ public class MainActivity extends AppCompatActivity {
             int viewid = v.getId();
             if (viewid == R.id.listen) {
                 startActivity(new Intent(getContext(), MusicListActivity.class));
-            }else if(viewid == R.id.word)
-            {
-
-                startActivity(new Intent(getContext(), MusicListActivity.class));
+            } else if (viewid == R.id.word) {
+                startActivity(new Intent(getContext(), com.shiro.memo.FlashCardActivity.class));
             }
         }
     };
 
     private void initView() {
         View listen = findViewById(R.id.listen);
-        for (View v : new View[]{listen}) {
-            listen.setOnClickListener(onClick);
+        View word = findViewById(R.id.word);
+        for (View v : new View[]{listen, word}) {
+            v.setOnClickListener(onClick);
         }
     }
 

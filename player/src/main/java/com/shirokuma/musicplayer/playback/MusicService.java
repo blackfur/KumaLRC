@@ -169,7 +169,7 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
     }
 
     private void saveSongState() {
-        if (isPlaying()) {
+        if (mCurrentState != State.Completed && isPlaying()) {
             com.shirokuma.musicplayer.model.Song current = getCurrentSong();
             current.progress = getCurrentPosition();
             if (new Select().from(com.shirokuma.musicplayer.model.Song.class).where("title = ? and artist=?", current.title, current.artist).exists()) {
@@ -222,7 +222,7 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
     public void onCompletion(MediaPlayer mp) {
         //check if playback has reached the end of a track
         if (mp != null && mp.getCurrentPosition() > 0 && mCurrentState == State.Started) {
-//            mCurrentState = State.Completed;
+            mCurrentState = State.Completed;
             // It make no sense to still keep the song's play progress after it completed.
             Song current = getCurrentSong();
             new Delete().from(Song.class).where("title=? and artist=?", current.title, current.artist).executeSingle();
