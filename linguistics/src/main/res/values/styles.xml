@@ -2,7 +2,7 @@
 
     <style name="LinguisticsTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowActionBar">false</item>
-        <item name="android:windowNoTitle">false</item>
+        <item name="android:windowNoTitle">true</item>
         <item name="android:panelBackground">@android:color/white</item>
     </style>
     <style name="func">

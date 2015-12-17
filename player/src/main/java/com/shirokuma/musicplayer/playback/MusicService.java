@@ -169,8 +169,10 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
     }
 
     private void saveSongState() {
+        com.shirokuma.musicplayer.model.Song current = getCurrentSong();
+        if (current == null)
+            return;
         if (mCurrentState == State.Started || mCurrentState == State.Paused) {
-            com.shirokuma.musicplayer.model.Song current = getCurrentSong();
             current.progress = getCurrentPosition();
             if (new Select().from(com.shirokuma.musicplayer.model.Song.class).where("title = ? and artist=?", current.title, current.artist).exists()) {
                 new Update(com.shirokuma.musicplayer.model.Song.class).set("progress=?", current.progress).where("title = ? and artist=?", current.title, current.artist).execute();
@@ -179,14 +181,18 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
             }
         } else if (mCurrentState == State.Completed || mCurrentState == State.Stopped) {
             // It make no sense to still keep the song's play progress after it completed or stopped.
-            Song current = getCurrentSong();
-            if (new Select().from(com.shirokuma.musicplayer.model.Song.class).where("title=? and artist=?", current.title, current.artist).exists())
-                new Delete().from(Song.class).where("title=? and artist=?", current.title, current.artist).executeSingle();
+            if (new Select().from(com.shirokuma.musicplayer.model.Song.class).where("title=? and artist=?", current.title, current.artist).exists()) {
+                new Delete().from(Song.class).where("title=? and artist=?", current.title, current.artist).execute();
+//                SQLiteUtils.execSql("DELETE FROM Songs where title='" + current.title + "' and artist='" + current.artist + "'");
+            }
         }
     }
 
     //reset a song
     private void playSong(int index) {
+        // do not replay a same song
+        if (index < mPlaySongs.size() && getCurrentSong() == mPlaySongs.get(index))
+            return;
         // before play next, saving previous played song state
         saveSongState();
         // play next
