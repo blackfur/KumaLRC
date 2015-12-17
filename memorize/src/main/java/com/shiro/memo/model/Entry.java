@@ -8,6 +8,10 @@ import com.activeandroid.annotation.Table;
 public class Entry extends Model {
     @Column(name = "Content", index = true)
     public String content;
+    @Column(name = "Note", index = true)
+    public String note;
+    @Column(name = "Proficiency", index = true)
+    public int proficiency;
 
     public Entry() {
         super();
@@ -16,5 +20,11 @@ public class Entry extends Model {
     public Entry(String cont) {
         super();
         content = cont;
+    }
+
+    public Entry(String cont, String n) {
+        super();
+        content = cont;
+        note = n;
     }
 }

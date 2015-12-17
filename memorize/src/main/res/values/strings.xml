@@ -9,7 +9,11 @@
     <string name="func">functions</string>
     <string name="loading">loading</string>
     <string name="clear">clear</string>
+    <string name="easy">too easy</string>
+    <string name="next">next</string>
+    <string name="hard">what is it?</string>
     <string name="input">Please input content</string>
+    <string name="input_note">Please input note(can be null)</string>
     <string name="finish">finish</string>
     <string name="success">success</string>
     <string name="nothing">nothing</string>

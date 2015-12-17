@@ -17,7 +17,9 @@ public class FlashCardActivity extends AppCompatActivity {
     int count;
     static final int DAILY_TASK = 32;
     Animation out2right, leftIn;
-    TextView content;
+    View easy, hard, next;
+    TextView content, answer;
+    Entry currentEntry;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,15 +27,22 @@ public class FlashCardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_flash_card);
         // init data
         count = new Setting(this).getCount();
-        Entry entr = new Select().from(Entry.class).orderBy("RANDOM()").executeSingle();
+//        Entry entr = new Select().from(Entry.class).orderBy("RANDOM()").executeSingle();
+        currentEntry = new Select().from(Entry.class).orderBy("proficiency asc").executeSingle();
         out2right = AnimationUtils.loadAnimation(FlashCardActivity.this, R.anim.out2right);
         out2right.setAnimationListener(onAnimat);
         leftIn = AnimationUtils.loadAnimation(FlashCardActivity.this, R.anim.left_in);
         // init view
         content = (TextView) findViewById(R.id.content);
-        if (entr != null)
-            content.setText(entr.content);
-        for (View v : new View[]{content})
+        answer= (TextView) findViewById(R.id.answer);
+        easy = findViewById(R.id.easy);
+        hard = findViewById(R.id.hard);
+        next = findViewById(R.id.next);
+        if (currentEntry != null) {
+            content.setText(currentEntry.content);
+            answer.setText(currentEntry.content + "\n");
+        }
+        for (View v : new View[]{easy, hard, next})
             v.setOnClickListener(onClick);
     }
 
@@ -51,19 +60,38 @@ public class FlashCardActivity extends AppCompatActivity {
         @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR1)
         @Override
         public void onClick(final View v) {
+            if (++count == DAILY_TASK) {
+                com.shiro.tools.Utils.alert(getContext(), "Daily task was completed, exit?", new Listener() {
+                    @Override
+                    public Object process(Object... msg) {
+                        finish();
+                        return null;
+                    }
+                });
+                return;
+            }
             int i = v.getId();
             if (i == R.id.content) {
-                if (++count == DAILY_TASK) {
-                    com.shiro.tools.Utils.alert(getContext(), "Daily task was completed, exit?", new Listener() {
-                        @Override
-                        public Object process(Object... msg) {
-                            finish();
-                            return null;
-                        }
-                    });
-                    return;
-                }
-                v.startAnimation(out2right);
+            } else if (i == R.id.easy) {
+                currentEntry.proficiency += 2;
+                currentEntry.save();
+                answer.setVisibility(View.VISIBLE);
+                easy.setVisibility(View.GONE);
+                hard.setVisibility(View.GONE);
+                next.setVisibility(View.VISIBLE);
+            } else if (i == R.id.hard) {
+                currentEntry.proficiency += 1;
+                currentEntry.save();
+                answer.setVisibility(View.VISIBLE);
+                easy.setVisibility(View.GONE);
+                hard.setVisibility(View.GONE);
+                next.setVisibility(View.VISIBLE);
+            } else if (i == R.id.next) {
+                next.setVisibility(View.GONE);
+                easy.setVisibility(View.VISIBLE);
+                hard.setVisibility(View.VISIBLE);
+                answer.setVisibility(View.INVISIBLE);
+                content.startAnimation(out2right);
             }
         }
     };
@@ -74,9 +102,12 @@ public class FlashCardActivity extends AppCompatActivity {
 
         @Override
         public void onAnimationEnd(Animation animation) {
-            final Entry entr = new Select().from(Entry.class).orderBy("RANDOM()").executeSingle();
-            if (entr != null)
-                content.setText(entr.content);
+            currentEntry = new Select().from(Entry.class).orderBy("proficiency asc").executeSingle();
+//            final Entry entr = new Select().from(Entry.class).orderBy("RANDOM()").executeSingle();
+            if (currentEntry != null) {
+                content.setText(currentEntry.content);
+                answer.setText(currentEntry.content + "\n" + currentEntry.note);
+            }
             content.startAnimation(leftIn);
         }
 

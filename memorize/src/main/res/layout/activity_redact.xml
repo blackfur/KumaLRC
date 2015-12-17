@@ -78,9 +78,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
+    <EditText
+            android:hint="@string/input_note"
+            android:textSize="24sp"
+            android:id="@+id/redact_note"
+            android:layout_above="@id/redact_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
     <android.support.v4.widget.SwipeRefreshLayout
             android:layout_below="@id/head"
-            android:layout_above="@id/redact_content"
+            android:layout_above="@id/redact_note"
             android:id="@+id/swipe_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent">

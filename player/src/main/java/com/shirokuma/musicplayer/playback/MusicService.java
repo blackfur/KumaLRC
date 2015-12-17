@@ -185,7 +185,7 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
     //reset a song
     private void playSong(int index) {
         // do not replay a same song
-        if (index < mPlaySongs.size() && mPlaySongIndex == index && currentSong == mPlaySongs.get(index))
+        if (index < mPlaySongs.size() && mPlaySongIndex == index && currentSong == mPlaySongs.get(index) && mCurrentState != State.Completed)
             return;
         // before play next, saving previous played song state
         saveSongState();

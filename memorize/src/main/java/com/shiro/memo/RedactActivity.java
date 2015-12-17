@@ -30,7 +30,7 @@ public class RedactActivity extends AppCompatActivity {
     ArrayList<Entry> dat = new ArrayList<Entry>();
     Handler mWorkHandler;
     SwipeRefreshLayout mRefreshView;
-    EditText redactContent;
+    EditText redactContent, redactNote;
     View save, update, finish, cancel, clear, delete;
     RecyclerView entries;
     private EntryAdapter adapter;
@@ -49,6 +49,7 @@ public class RedactActivity extends AppCompatActivity {
         setContentView(R.layout.activity_redact);
         // init buttons
         redactContent = (EditText) findViewById(R.id.redact_content);
+        redactNote = (EditText) findViewById(R.id.redact_note);
 //        int[] ids = new int[]{R.id.update, R.id.save, R.id.clear, R.id.cancel, R.id.finish};
         save = findViewById(R.id.save);
         delete = findViewById(R.id.delete);
@@ -139,25 +140,29 @@ public class RedactActivity extends AppCompatActivity {
             if (i == R.id.save) {
                 if (redactContent.getText().length() > 0) {
                     String contentStr = redactContent.getText().toString();
+                    String noteStr = redactNote.getText().toString();
                     From from = new Select().from(Entry.class).where("content = ?", contentStr);
                     if (from.count() > 0) {
                         Toast.makeText(RedactActivity.this, R.string.duplicate, Toast.LENGTH_LONG).show();
                     } else {
-                        new Entry(contentStr).save();
+                        new Entry(contentStr, noteStr).save();
                         mWorkHandler.postDelayed(mLoadTask, 200);
                         Toast.makeText(RedactActivity.this, R.string.success, Toast.LENGTH_LONG).show();
                         redactContent.setText("");
+                        redactNote.setText("");
                     }
                 } else {
                     Toast.makeText(RedactActivity.this, R.string.nothing, Toast.LENGTH_LONG).show();
                 }
             } else if (i == R.id.clear) {
                 redactContent.setText("");
+                redactNote.setText("");
             } else if (i == R.id.finish) {
                 finish();
             } else if (i == R.id.content) {
                 item = (Entry) v.getTag();
                 redactContent.setText(item.content);
+                redactNote.setText(item.note);
                 save.setVisibility(View.GONE);
                 update.setVisibility(View.VISIBLE);
                 update.setTag(item);
@@ -175,7 +180,12 @@ public class RedactActivity extends AppCompatActivity {
                 item = (Entry) v.getTag();
                 if (redactContent.getText().length() > 0) {
                     String contentStr = redactContent.getText().toString();
-                    new Update(Entry.class).set("content = ?", contentStr).where("id = ?", item.getId()).execute();
+                    if (redactNote.getText().length() > 0) {
+                        String noteStr = redactNote.getText().toString();
+                        new Update(Entry.class).set("content = ? and note = ?", contentStr, noteStr).where("id = ?", item.getId()).execute();
+                    } else {
+                        new Update(Entry.class).set("content = ?", contentStr).where("id = ?", item.getId()).execute();
+                    }
                     item.content = contentStr;
                     int pos = entries.getVerticalScrollbarPosition();
                     adapter.notifyDataSetChanged();
