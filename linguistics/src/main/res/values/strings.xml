@@ -5,4 +5,6 @@
     <string name="action_settings">Settings</string>
     <string name="listening">Listening</string>
     <string name="words">Words</string>
+    <string name="learn">learn</string>
+    <string name="press_again_exit">Press again to exit</string>
 </resources>

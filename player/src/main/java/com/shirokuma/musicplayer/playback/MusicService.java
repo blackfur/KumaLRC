@@ -27,13 +27,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
 
-/*
- * This is demo code to accompany the Mobiletuts+ series:
- * Android SDK: Creating a Music Player
- * 
- * Sue Smith - February 2014
- */
-
 public class MusicService extends Service implements MediaPlayer.OnPreparedListener, MediaPlayer.OnErrorListener,
         MediaPlayer.OnCompletionListener {
     //media mPlayer
@@ -44,8 +37,8 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
     private int mPlaySongIndex;
     //binder
     private final IBinder musicBind = new MusicBinder();
-    //title of current song
-    private String songTitle = "";
+    //current song
+    private Song currentSong;
     //notification songid
     private static final int NOTIFY_ID = 1;
     //shuffle flag and random
@@ -83,6 +76,7 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
     }
 
     public Song getCurrentSong() {
+        if (currentSong != null) return currentSong;
         if (mPlaySongIndex < mPlaySongs.size())
             return mPlaySongs.get(mPlaySongIndex);
         else return null;
@@ -150,7 +144,7 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
         if (!new File(playSong.path).exists())
             return;
         //get title
-        songTitle = playSong.title;
+        currentSong = playSong;
         //get songid
         long currSong = playSong.songid;
         //set uri
@@ -191,7 +185,7 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
     //reset a song
     private void playSong(int index) {
         // do not replay a same song
-        if (index < mPlaySongs.size() && getCurrentSong() == mPlaySongs.get(index))
+        if (index < mPlaySongs.size() && mPlaySongIndex == index && currentSong == mPlaySongs.get(index))
             return;
         // before play next, saving previous played song state
         saveSongState();
@@ -205,7 +199,7 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
             if (!new File(playSong.path).exists())
                 return;
             //get title
-            songTitle = playSong.title;
+            currentSong = playSong;
             //get songid
             long currSong = playSong.songid;
             //set uri
@@ -269,10 +263,10 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
         Notification.Builder builder = new Notification.Builder(this);
         builder.setContentIntent(pendInt)
                 .setSmallIcon(R.drawable.button_general_mini_playing_play)
-                .setTicker(songTitle)
+                .setTicker(currentSong.title)
                 .setOngoing(true)
                 .setContentTitle(getString(R.string.playing))
-                .setContentText(songTitle);
+                .setContentText(currentSong.title);
         Notification not = builder.build();
         startForeground(NOTIFY_ID, not);
     }

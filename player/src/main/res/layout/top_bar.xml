@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:background="@drawable/general_title_two"
+              android:padding="9dp"
+              android:gravity="center_vertical"
+              android:layout_height="56dp">
+
+    <ImageView
+            android:id="@+id/icon"
+            style="@style/icon"
+            android:src="@drawable/kumalrc_icon_white" />
+
+</merge>
