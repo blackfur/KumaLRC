@@ -11,10 +11,11 @@ import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import com.shirokuma.musicplayer.KumaPlayer;
 import com.shirokuma.musicplayer.R;
 import com.shirokuma.musicplayer.common.BindSrvOpMenusActivity;
-import com.shirokuma.musicplayer.common.Utils;
 import com.shirokuma.musicplayer.lyrics.LyricsActivity;
+import com.shirokuma.musicplayer.model.Filter;
 import com.shirokuma.musicplayer.setting.MediaSetting;
 
 public class MusicListActivity extends BindSrvOpMenusActivity {
@@ -165,7 +166,7 @@ public class MusicListActivity extends BindSrvOpMenusActivity {
         transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_left, R.anim.slide_out_right);
         Fragment fragment = new MusiclistFragment();
         Bundle bundle = new Bundle();
-        bundle.putParcelable(Utils.ARGUMENTS_KEY_FILTER, filter);
+        bundle.putParcelable(KumaPlayer.ARGUMENTS_KEY_FILTER, filter);
         fragment.setArguments(bundle);
         transaction.replace(R.id.music_list_container, fragment);
         transaction.addToBackStack(null);

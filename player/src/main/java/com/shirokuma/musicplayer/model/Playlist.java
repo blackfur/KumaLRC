@@ -1,14 +1,12 @@
-package com.shirokuma.musicplayer.musiclib;
+package com.shirokuma.musicplayer.model;
 
 import android.graphics.Bitmap;
 
-public class Album implements Music{
-    public String album;
-    public int numsongs;
+public class Playlist implements Music {
+    String name;
 
-    public Album(String[] pars) {
-        album= pars[0];
-        numsongs = Integer.valueOf(pars[1]);
+    public Playlist(String[] pars) {
+        name = pars[0];
     }
 
     @Override
@@ -18,12 +16,12 @@ public class Album implements Music{
 
     @Override
     public String head() {
-        return album;
+        return name;
     }
 
     @Override
     public String subhead() {
-        return String.valueOf(numsongs);
+        return null;
     }
 
     @Override
@@ -33,6 +31,6 @@ public class Album implements Music{
 
     @Override
     public Filter.FilterType type() {
-        return Filter.FilterType.Album;
+        return Filter.FilterType.Playlist;
     }
 }

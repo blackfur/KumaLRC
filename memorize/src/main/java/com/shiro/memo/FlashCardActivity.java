@@ -2,7 +2,6 @@ package com.shiro.memo;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +11,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import com.activeandroid.query.Select;
 import com.shiro.memo.model.Entry;
+import com.shiro.tools.Listener;
 
 public class FlashCardActivity extends AppCompatActivity {
     int count;
@@ -33,15 +33,13 @@ public class FlashCardActivity extends AppCompatActivity {
         content = (TextView) findViewById(R.id.content);
         if (entr != null)
             content.setText(entr.content);
-        for (View v : new View[]{content, findViewById(R.id.func)})
+        for (View v : new View[]{content})
             v.setOnClickListener(onClick);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        // backup
-        com.shiro.memo.model.Util.export();
         // save task progress
         if (count < DAILY_TASK)
             new Setting(getContext()).setCount(count);
@@ -56,9 +54,9 @@ public class FlashCardActivity extends AppCompatActivity {
             int i = v.getId();
             if (i == R.id.content) {
                 if (++count == DAILY_TASK) {
-                    Util.alert(getContext(), "Daily task was completed, exit?", new Util.Listener() {
+                    com.shiro.tools.Utils.alert(getContext(), "Daily task was completed, exit?", new Listener() {
                         @Override
-                        public Object process(Object msg) {
+                        public Object process(Object... msg) {
                             finish();
                             return null;
                         }
@@ -66,8 +64,6 @@ public class FlashCardActivity extends AppCompatActivity {
                     return;
                 }
                 v.startAnimation(out2right);
-            } else if (i == R.id.func) {
-                startActivity(new Intent(FlashCardActivity.this, FuncActivity.class));
             }
         }
     };

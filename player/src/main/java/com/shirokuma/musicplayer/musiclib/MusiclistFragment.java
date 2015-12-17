@@ -16,8 +16,12 @@ import android.view.animation.AnimationSet;
 import android.view.animation.TranslateAnimation;
 import com.fortysevendeg.swipelistview.BaseSwipeListViewListener;
 import com.fortysevendeg.swipelistview.SwipeListView;
+import com.shiro.tools.Utils;
+import com.shirokuma.musicplayer.KumaPlayer;
 import com.shirokuma.musicplayer.R;
-import com.shirokuma.musicplayer.common.Utils;
+import com.shirokuma.musicplayer.model.Album;
+import com.shirokuma.musicplayer.model.Artist;
+import com.shirokuma.musicplayer.model.Filter;
 import com.shirokuma.musicplayer.model.Song;
 import com.shirokuma.musicplayer.view.TouchSwipeListView;
 
@@ -59,7 +63,7 @@ public class MusiclistFragment extends Fragment {
         main.setAnimEnd(mEndXY);
         mStartXY = new float[2];
         if (getArguments() != null) {
-            filter = getArguments().getParcelable(Utils.ARGUMENTS_KEY_FILTER);
+            filter = getArguments().getParcelable(KumaPlayer.ARGUMENTS_KEY_FILTER);
             mDisplayMusic = filter.fetch(getActivity());
             switch (filter.type) {
                 case Song:

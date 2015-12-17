@@ -8,7 +8,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import com.shirokuma.musicplayer.common.Utils;
+import com.shiro.tools.Utils;
 import com.shirokuma.musicplayer.lyrics.FollowPlayback;
 import com.shirokuma.musicplayer.model.Song;
 

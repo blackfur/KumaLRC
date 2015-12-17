@@ -1,4 +1,4 @@
-package com.shirokuma.musicplayer.musiclib;
+package com.shirokuma.musicplayer.model;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.provider.MediaStore;
-import com.shirokuma.musicplayer.model.Song;
 
 import java.io.File;
 import java.util.ArrayList;

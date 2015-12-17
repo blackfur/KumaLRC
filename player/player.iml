@@ -96,5 +96,6 @@
     <orderEntry type="library" exported="" name="appcompat-v7-23.1.1" level="project" />
     <orderEntry type="module" module-name="swipelistview" exported="" />
     <orderEntry type="module" module-name="ActiveAndroid" exported="" />
+    <orderEntry type="module" module-name="tools" exported="" />
   </component>
 </module>

@@ -20,7 +20,7 @@ import com.activeandroid.query.Update;
 import com.shirokuma.musicplayer.R;
 import com.shirokuma.musicplayer.lyrics.LyricsActivity;
 import com.shirokuma.musicplayer.model.Song;
-import com.shirokuma.musicplayer.musiclib.Filter;
+import com.shirokuma.musicplayer.model.Filter;
 import com.shirokuma.musicplayer.setting.MediaSetting;
 
 import java.io.File;

@@ -1,15 +1,15 @@
 package com.shirokuma.musicplayer.lyrics;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.HandlerThread;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
-import android.os.Handler;
+import com.shiro.tools.Listener;
+import com.shirokuma.musicplayer.KumaPlayer;
 import com.shirokuma.musicplayer.R;
 import com.shirokuma.musicplayer.common.BindSrvOpMenusActivity;
-import com.shirokuma.musicplayer.common.Listener;
-import com.shirokuma.musicplayer.common.Utils;
 import com.shirokuma.musicplayer.playback.MusicService;
 import com.shirokuma.musicplayer.view.LyricListView;
 import com.shirokuma.musicplayer.view.PlaybackSeekbar;
@@ -165,7 +165,7 @@ public class LyricsActivity extends BindSrvOpMenusActivity {
                     mSeekbar.post(new Runnable() {
                         @Override
                         public void run() {
-                            callback.execute();
+                            callback.process();
                         }
                     });
                 }
@@ -206,7 +206,7 @@ public class LyricsActivity extends BindSrvOpMenusActivity {
                             }
                         }
                     };
-                    mTimer.schedule(progressTask, 0, Utils.SEEK_INTERVAL);
+                    mTimer.schedule(progressTask, 0, KumaPlayer.SEEK_INTERVAL);
                 }
             }
         }, 200);
@@ -233,8 +233,9 @@ public class LyricsActivity extends BindSrvOpMenusActivity {
         if (mMusicSrv.getCurrentSong() != null) {
             reset(new Listener() {
                 @Override
-                public void execute(Object... pars) {
+                public Object process(Object... pars) {
                     start();
+                    return null;
                 }
             });
         }
@@ -251,9 +252,10 @@ public class LyricsActivity extends BindSrvOpMenusActivity {
 //            mLrcView.reset(mMusicSrv.getPlayer(), mMusicSrv.getCurrentSong());
             reset(new Listener() {
                 @Override
-                public void execute(Object... pars) {
+                public Object process(Object... pars) {
                     if (mTimer == null)
                         start();
+                    return null;
                 }
             });
         }
@@ -265,9 +267,10 @@ public class LyricsActivity extends BindSrvOpMenusActivity {
 //            mLrcView.reset(mMusicSrv.getPlayer(), mMusicSrv.getCurrentSong());
             reset(new Listener() {
                 @Override
-                public void execute(Object... pars) {
+                public Object process(Object... pars) {
                     if (mTimer == null)
                         start();
+                    return null;
                 }
             });
         }

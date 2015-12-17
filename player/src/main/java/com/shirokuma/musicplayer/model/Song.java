@@ -4,8 +4,6 @@ import android.graphics.Bitmap;
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
-import com.shirokuma.musicplayer.musiclib.Filter;
-import com.shirokuma.musicplayer.musiclib.Music;
 
 @Table(name = "Songs")
 public class Song extends Model implements Music {

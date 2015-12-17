@@ -3,7 +3,7 @@ package com.shirokuma.musicplayer.setting;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import com.shirokuma.musicplayer.musiclib.Filter;
+import com.shirokuma.musicplayer.model.Filter;
 
 public class MediaSetting {
     private static MediaSetting mInstance;

@@ -10,7 +10,6 @@ public class Memorize {
         ActiveAndroid.initialize(a);
         Setting setting = new Setting(a.getApplicationContext());
         if (setting.isFirst()) {
-            com.shiro.memo.model.Util.restore();
             setting.setFirst(false);
             // insert default values
             if (new Select().from(Entry.class).count() == 0) {

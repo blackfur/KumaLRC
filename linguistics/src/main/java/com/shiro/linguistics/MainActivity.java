@@ -1,15 +1,17 @@
 package com.shiro.linguistics;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
-import android.os.Handler;
 import com.shirokuma.musicplayer.musiclib.MusicListActivity;
 
 public class MainActivity extends AppCompatActivity {
+    ProgressDialog progress;
     boolean doubleBackToExitPressedOnce = false;
 
     @Override
@@ -27,6 +29,26 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(getContext(), MusicListActivity.class));
             } else if (viewid == R.id.word) {
                 startActivity(new Intent(getContext(), com.shiro.memo.FlashCardActivity.class));
+            } else if (viewid == R.id.import_data) {
+                progress = com.shiro.tools.Utils.loading(getContext(), progress, R.string.loading);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (Processor.importDat())
+                            com.shiro.tools.Utils.uitoast(getContext(), getString(R.string.success));
+                        else
+                            com.shiro.tools.Utils.uitoast(getContext(), getString(R.string.fail));
+                        com.shiro.tools.Utils.dismiss(getContext(), progress);
+                    }
+                }).start();
+            } else if (viewid == R.id.backup) {
+                if (Processor.backup()) Toast.makeText(getContext(), R.string.success, Toast.LENGTH_LONG).show();
+                else Toast.makeText(getContext(), R.string.fail, Toast.LENGTH_LONG).show();
+            } else if (viewid == R.id.restore) {
+                if (Processor.recover()) Toast.makeText(getContext(), R.string.success, Toast.LENGTH_LONG).show();
+                else Toast.makeText(getContext(), R.string.fail, Toast.LENGTH_LONG).show();
+            } else if (viewid == R.id.redact) {
+                startActivity(new Intent(getContext(), com.shiro.memo.RedactActivity.class));
             }
         }
     };
@@ -34,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     private void initView() {
         View listen = findViewById(R.id.listen);
         View word = findViewById(R.id.word);
-        for (View v : new View[]{listen, word}) {
+        for (View v : new View[]{listen, word, findViewById(R.id.import_data), findViewById(R.id.redact), findViewById(R.id.restore), findViewById(R.id.backup)}) {
             v.setOnClickListener(onClick);
         }
     }
@@ -53,6 +75,12 @@ public class MainActivity extends AppCompatActivity {
                 doubleBackToExitPressedOnce = false;
             }
         }, 2000);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Processor.backup();
     }
 
     private Activity getContext() {

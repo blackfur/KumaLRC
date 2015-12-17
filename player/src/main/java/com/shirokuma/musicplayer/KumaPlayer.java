@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.widget.Toast;
 import com.activeandroid.ActiveAndroid;
-import com.shirokuma.musicplayer.common.Utils;
 import com.shirokuma.musicplayer.playback.MusicService;
 import com.tencent.mm.sdk.modelmsg.SendMessageToWX;
 import com.tencent.mm.sdk.modelmsg.WXMediaMessage;
@@ -20,6 +19,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class KumaPlayer {
+    public static final String ARGUMENTS_KEY_FILTER = "filter";
+    public static final int SEEK_INTERVAL = 1000;
+    public static final String WEBCHAT_APPID = "wx8c97b24c8801739a";
     static Timer mTimer;
     static List<Activity> mBoundActivities = new ArrayList<Activity>();
     static private IWXAPI wxapi;
@@ -28,9 +30,9 @@ public class KumaPlayer {
     public static void init(Application app) {
         application = app;
         app.startService(new Intent(app, MusicService.class));
-        if (Utils.isNetworkAvailable(app)) {
-            wxapi = WXAPIFactory.createWXAPI(app, Utils.WEBCHAT_APPID, false);
-            wxapi.registerApp(Utils.WEBCHAT_APPID);
+        if (com.shiro.tools.Utils.isNetworkAvailable(app)) {
+            wxapi = WXAPIFactory.createWXAPI(app, WEBCHAT_APPID, false);
+            wxapi.registerApp(WEBCHAT_APPID);
         }
         // database
         ActiveAndroid.initialize(app);

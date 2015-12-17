@@ -1,4 +1,4 @@
-package com.shirokuma.musicplayer.musiclib;
+package com.shirokuma.musicplayer.model;
 
 import android.graphics.Bitmap;
 

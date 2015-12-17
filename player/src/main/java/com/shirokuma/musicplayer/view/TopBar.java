@@ -8,8 +8,8 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import com.shiro.tools.Utils;
 import com.shirokuma.musicplayer.R;
-import com.shirokuma.musicplayer.common.Utils;
 
 public class TopBar extends LinearLayout {
     public TopBar(Context context, AttributeSet attrs) {
@@ -19,7 +19,7 @@ public class TopBar extends LinearLayout {
         setBackgroundResource(R.drawable.general_title_two);
         setOrientation(LinearLayout.VERTICAL);
         setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, Utils.dp2px(getContext(), 56)));
-        int padding = Utils.dp2px(getContext(), 9);
+        int padding = com.shiro.tools.Utils.dp2px(getContext(), 9);
         setPadding(padding, padding, padding, padding);
         setGravity(Gravity.CENTER_VERTICAL);
         // set child view

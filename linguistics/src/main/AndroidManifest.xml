@@ -75,9 +75,6 @@
         <activity
                 android:label="@string/redact"
                 android:name="com.shiro.memo.RedactActivity"/>
-        <activity
-                android:name="com.shiro.memo.FuncActivity"
-                android:label="@string/func"/>
     </application>
 
 </manifest>
