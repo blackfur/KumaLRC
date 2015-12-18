@@ -6,5 +6,6 @@
     <string name="listening">Listening</string>
     <string name="words">Words</string>
     <string name="learn">learn</string>
+    <string name="create_shortcut">create shortcuts</string>
     <string name="press_again_exit">Press again to exit</string>
 </resources>

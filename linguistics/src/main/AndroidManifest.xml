@@ -9,6 +9,9 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <!--<uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT"/>-->
+    <!--<uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT"/>-->
+
     <application
             android:name=".LinguisticsApp"
             android:allowBackup="false"
@@ -23,9 +26,11 @@
                 android:value="1"/>
         <meta-data
                 android:name="AA_MODELS"
-                android:value="com.shiro.memo.model.Entry, com.shirokuma.musicplayer.model.Song" />
+                android:value="com.shiro.memo.model.Entry, com.shirokuma.musicplayer.model.Song"/>
+
         <activity
                 android:name=".MainActivity"
+                android:launchMode="singleTop"
                 android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -45,6 +50,7 @@
                 android:screenOrientation="portrait"/>
         <activity
                 android:name="com.shirokuma.musicplayer.lyrics.LyricsActivity"
+                android:exported="true"
                 android:launchMode="singleTop"
                 android:screenOrientation="portrait"/>
         <activity
@@ -73,8 +79,27 @@
                 android:label="@string/app_name">
         </activity>
         <activity
+                android:launchMode="singleTop"
                 android:label="@string/redact"
+                android:exported="true"
                 android:name="com.shiro.memo.RedactActivity"/>
+
+        <receiver android:name="PlayerAppWidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+            </intent-filter>
+            <meta-data
+                    android:name="android.appwidget.provider"
+                    android:resource="@xml/player_appwidget_info"/>
+        </receiver>
+        <receiver android:name="RedactWidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+            </intent-filter>
+            <meta-data
+                    android:name="android.appwidget.provider"
+                    android:resource="@xml/redact_widget_info"/>
+        </receiver>
     </application>
 
 </manifest>

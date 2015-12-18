@@ -49,6 +49,9 @@ public class MainActivity extends AppCompatActivity {
                 else Toast.makeText(getContext(), R.string.fail, Toast.LENGTH_LONG).show();
             } else if (viewid == R.id.redact) {
                 startActivity(new Intent(getContext(), com.shiro.memo.RedactActivity.class));
+//            } else if (viewid == R.id.create_shortcut) {
+//                Utils.shortcut(getContext(), com.shirokuma.musicplayer.lyrics.LyricsActivity.class, R.string.playing, R.drawable.ic_music_note);
+//                Toast.makeText(getContext(), R.string.success, Toast.LENGTH_LONG).show();
             }
         }
     };

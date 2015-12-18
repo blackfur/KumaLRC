@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+                    minResizeHeight="64dp"
+                    android:minWidth="32dp"
+                    android:minHeight="32dp"
+                    android:updatePeriodMillis="0"
+                    android:previewImage="@drawable/snowflake64"
+                    android:initialLayout="@layout/redact_widget"
+                    android:resizeMode="horizontal|vertical"
+                    android:widgetCategory="home_screen">
+</appwidget-provider>

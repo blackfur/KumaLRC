@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Environment;
@@ -119,7 +120,7 @@ public class Utils {
             builder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
-                    if (positiveCallback != null) positiveCallback.process(null);
+                    if (positiveCallback != null) positiveCallback.process();
                 }
             });
         if (negativeOnclick != null) builder.setNegativeButton(android.R.string.no, negativeOnclick);
@@ -128,7 +129,7 @@ public class Utils {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
-                    if (negativeCallback != null) negativeCallback.process(null);
+                    if (negativeCallback != null) negativeCallback.process();
                 }
             });
         builder.show();
@@ -211,5 +212,15 @@ public class Utils {
             buf.append(MORSE_CODE_BOOK[c - 'A']);
         }
         return buf.toString();
+    }
+
+    public static void shortcut(Context c, Class launchActivity, int titleRes, int drawableRes) {
+        Intent addIntent = new Intent();
+        Intent shortcutIntent = new Intent(c.getApplicationContext(), launchActivity);
+        addIntent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
+        addIntent.putExtra(Intent.EXTRA_SHORTCUT_NAME, c.getString(titleRes));
+        addIntent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, Intent.ShortcutIconResource.fromContext(c.getApplicationContext(), drawableRes));
+        addIntent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
+        c.getApplicationContext().sendBroadcast(addIntent);
     }
 }

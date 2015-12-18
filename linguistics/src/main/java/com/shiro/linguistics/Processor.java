@@ -14,7 +14,7 @@ public class Processor {
     private static final String BACKUP = Environment.getExternalStorageDirectory() + "/Linguistics/database.dat";
     private static final String DATABASE = "/data/data/com.shiro.linguistics/databases/linguistics.db";
     private static final String IMPORT_DATA = Environment.getExternalStorageDirectory() + "/Linguistics/import.dat";
-    static Pattern DELIMIT = Pattern.compile("[#\\s,.、，。。]");
+    static Pattern DELIMIT = Pattern.compile("[# \\s,.、，。。]");
 
     public static boolean backup() {
         try {

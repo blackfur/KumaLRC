@@ -2,7 +2,7 @@ setlocal
 set project=kumalrc
 set alias=shiro
 set package=com.shiro.linguistics
-rem set DEVICE=-s 192.168.3.121:5555
+set DEVICE=-s 192.168.3.110:5555
 rem set DEVICE=-s emulator-5554
 rem set DEVICE=-s ?
 set module=linguistics
@@ -111,7 +111,9 @@ rem send 512 pseudo-random events
 adb shell monkey -p %package% 512
 goto :eof
 :run
-set COMPONENT=%package%.MainActivity
+rem set COMPONENT=%package%.MainActivity
+rem set component=com.shirokuma.musicplayer.lyrics.LyricsActivity
+set component=com.shiro.memo.RedactActivity
 adb %DEVICE% shell am start -n %PACKAGE%/%COMPONENT%
 exit /b 0
 :lock

@@ -77,7 +77,7 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
 
     public Song getCurrentSong() {
         if (currentSong != null) return currentSong;
-        if (mPlaySongIndex < mPlaySongs.size())
+        if (mPlaySongs != null && mPlaySongIndex < mPlaySongs.size())
             return mPlaySongs.get(mPlaySongIndex);
         else return null;
     }
@@ -163,20 +163,19 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
     }
 
     private void saveSongState() {
-        com.shirokuma.musicplayer.model.Song current = getCurrentSong();
-        if (current == null)
+        if (currentSong == null)
             return;
         if (mCurrentState == State.Started || mCurrentState == State.Paused) {
-            current.progress = getCurrentPosition();
-            if (new Select().from(com.shirokuma.musicplayer.model.Song.class).where("title = ? and artist=?", current.title, current.artist).exists()) {
-                new Update(com.shirokuma.musicplayer.model.Song.class).set("progress=?", current.progress).where("title = ? and artist=?", current.title, current.artist).execute();
+            currentSong.progress = getCurrentPosition();
+            if (new Select().from(com.shirokuma.musicplayer.model.Song.class).where("title = ? and artist=?", currentSong.title, currentSong.artist).exists()) {
+                new Update(com.shirokuma.musicplayer.model.Song.class).set("progress=?", currentSong.progress).where("title = ? and artist=?", currentSong.title, currentSong.artist).execute();
             } else {
-                new com.shirokuma.musicplayer.model.Song(current.title, current.artist, current.progress).save();
+                new com.shirokuma.musicplayer.model.Song(currentSong.title, currentSong.artist, currentSong.progress).save();
             }
         } else if (mCurrentState == State.Completed || mCurrentState == State.Stopped) {
             // It make no sense to still keep the song's play progress after it completed or stopped.
-            if (new Select().from(com.shirokuma.musicplayer.model.Song.class).where("title=? and artist=?", current.title, current.artist).exists()) {
-                new Delete().from(Song.class).where("title=? and artist=?", current.title, current.artist).execute();
+            if (new Select().from(com.shirokuma.musicplayer.model.Song.class).where("title=? and artist=?", currentSong.title, currentSong.artist).exists()) {
+                new Delete().from(Song.class).where("title=? and artist=?", currentSong.title, currentSong.artist).execute();
 //                SQLiteUtils.execSql("DELETE FROM Songs where title='" + current.title + "' and artist='" + current.artist + "'");
             }
         }
@@ -185,7 +184,7 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
     //reset a song
     private void playSong(int index) {
         // do not replay a same song
-        if (index < mPlaySongs.size() && mPlaySongIndex == index && currentSong == mPlaySongs.get(index) && mCurrentState != State.Completed)
+        if (index < mPlaySongs.size() && mPlaySongIndex == index && currentSong == mPlaySongs.get(index) && mCurrentState != State.Completed && mCurrentState != State.Stopped)
             return;
         // before play next, saving previous played song state
         saveSongState();
