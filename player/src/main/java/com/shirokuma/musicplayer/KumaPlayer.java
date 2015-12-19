@@ -26,8 +26,11 @@ public class KumaPlayer {
     static List<Activity> mBoundActivities = new ArrayList<Activity>();
     static private IWXAPI wxapi;
     static Application application;
+    static boolean initialized = false;
 
     public static void init(Application app) {
+        if (initialized)
+            return;
         application = app;
         app.startService(new Intent(app, MusicService.class));
         if (com.shiro.tools.Utils.isNetworkAvailable(app)) {
@@ -36,6 +39,7 @@ public class KumaPlayer {
         }
         // database
         ActiveAndroid.initialize(app);
+        initialized = true;
     }
 
     public static void addBoundActivity(Activity bound) {

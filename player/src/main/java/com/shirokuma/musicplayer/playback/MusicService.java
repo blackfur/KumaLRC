@@ -83,6 +83,8 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
     }
 
     public void pause() {
+        if (!mPlayer.isPlaying())
+            return;
         mPlayer.pause();
         mCurrentState = State.Paused;
         sendBroadcast(new Intent(MusicBroadcast.MUSIC_BROADCAST_ACTION_PLAYBACK).putExtra(MusicBroadcast.MUSIC_BROADCAST_EXTRA, MusicBroadcast.Playback.Pause.getIndex()));
@@ -184,7 +186,8 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
     //reset a song
     private void playSong(int index) {
         // do not replay a same song
-        if (index < mPlaySongs.size() && mPlaySongIndex == index && currentSong == mPlaySongs.get(index) && mCurrentState != State.Completed && mCurrentState != State.Stopped)
+        if (mPlaySongs == null ||
+                (index < mPlaySongs.size() && mPlaySongIndex == index && currentSong == mPlaySongs.get(index) && mCurrentState != State.Completed && mCurrentState != State.Stopped))
             return;
         // before play next, saving previous played song state
         saveSongState();
@@ -272,6 +275,8 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
 
     //skip to previous track
     public void playPrev() {
+        if (mPlaySongs == null)
+            return;
         int prevIndex = mPlaySongIndex;
         prevIndex--;
         if (prevIndex < 0) prevIndex = mPlaySongs.size() - 1;
@@ -281,6 +286,8 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
 
     //skip to next
     public void playNext() {
+        if (mPlaySongs == null)
+            return;
         int nextIndex = mPlaySongIndex;
         if (shuffle) {
             nextIndex = rand.nextInt(mPlaySongs.size());

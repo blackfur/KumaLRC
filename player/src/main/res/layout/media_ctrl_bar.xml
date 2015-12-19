@@ -24,10 +24,9 @@
 
 
             <ImageButton
-
-                    android:id="@+id/rewind"
+                    android:id="@+id/next"
                     style="@style/full_ctrl_btn"
-                    android:src="@drawable/rewind_normal"/>
+                    android:src="@drawable/button_playing_next"/>
 
             <ImageButton
                     android:id="@+id/play"
@@ -61,15 +60,14 @@
 
 
             <ImageButton
+                    android:id="@+id/rewind"
+                    style="@style/full_ctrl_btn"
+                    android:src="@drawable/rewind_normal"/>
+
+            <ImageButton
                     android:id="@+id/stop"
                     style="@style/full_ctrl_btn"
                     android:src="@drawable/stop_normal"/>
-
-
-            <ImageButton
-                    android:id="@+id/next"
-                    style="@style/full_ctrl_btn"
-                    android:src="@drawable/button_playing_next"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

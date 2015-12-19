@@ -83,6 +83,12 @@
                         android:id="@+id/create_shortcut"
                         android:drawableTop="@drawable/plus"
                         android:text="@string/create_shortcut"/>
+
+                <TextView
+                        style="@style/textButton"
+                        android:id="@+id/export"
+                        android:drawableTop="@drawable/copy"
+                        android:text="@string/export"/>
             </LinearLayout>
         </LinearLayout>
 

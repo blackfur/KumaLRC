@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">linguistics</string>
 
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="listening">Listening</string>
     <string name="words">Words</string>
     <string name="learn">learn</string>
+    <string name="export">export to plain text</string>
     <string name="create_shortcut">create shortcuts</string>
     <string name="press_again_exit">Press again to exit</string>
 </resources>

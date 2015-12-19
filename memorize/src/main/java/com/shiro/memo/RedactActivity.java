@@ -1,13 +1,13 @@
 package com.shiro.memo;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -26,7 +26,7 @@ import com.shiro.memo.model.Entry;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RedactActivity extends AppCompatActivity {
+public class RedactActivity extends Activity {
     ArrayList<Entry> dat = new ArrayList<Entry>();
     Handler mWorkHandler;
     SwipeRefreshLayout mRefreshView;

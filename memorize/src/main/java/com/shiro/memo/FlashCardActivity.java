@@ -4,7 +4,6 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -13,12 +12,12 @@ import com.activeandroid.query.Select;
 import com.shiro.memo.model.Entry;
 import com.shiro.tools.Listener;
 
-public class FlashCardActivity extends AppCompatActivity {
+public class FlashCardActivity extends Activity {
     int count;
     static final int DAILY_TASK = 32;
     Animation out2right, leftIn;
-    View easy, hard, next;
-    TextView content, answer;
+    View easy, hard;
+    TextView content;
     Entry currentEntry;
 
     @Override
@@ -34,15 +33,12 @@ public class FlashCardActivity extends AppCompatActivity {
         leftIn = AnimationUtils.loadAnimation(FlashCardActivity.this, R.anim.left_in);
         // init view
         content = (TextView) findViewById(R.id.content);
-        answer= (TextView) findViewById(R.id.answer);
         easy = findViewById(R.id.easy);
         hard = findViewById(R.id.hard);
-        next = findViewById(R.id.next);
         if (currentEntry != null) {
             content.setText(currentEntry.content);
-            answer.setText(currentEntry.content + "\n");
         }
-        for (View v : new View[]{easy, hard, next})
+        for (View v : new View[]{easy, hard, content})
             v.setOnClickListener(onClick);
     }
 
@@ -60,7 +56,7 @@ public class FlashCardActivity extends AppCompatActivity {
         @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR1)
         @Override
         public void onClick(final View v) {
-            if (++count == DAILY_TASK) {
+            if (count == DAILY_TASK) {
                 com.shiro.tools.Utils.alert(getContext(), "Daily task was completed, exit?", new Listener() {
                     @Override
                     public Object process(Object... msg) {
@@ -72,47 +68,67 @@ public class FlashCardActivity extends AppCompatActivity {
             }
             int i = v.getId();
             if (i == R.id.content) {
+                if (onAnimat.callback == null || onAnimat.callback == callNext) {
+                    onAnimat.callback = callAnswer;
+                    content.startAnimation(out2right);
+                }
             } else if (i == R.id.easy) {
                 currentEntry.proficiency += 2;
-                currentEntry.save();
-                answer.setVisibility(View.VISIBLE);
-                easy.setVisibility(View.GONE);
-                hard.setVisibility(View.GONE);
-                next.setVisibility(View.VISIBLE);
+                next();
             } else if (i == R.id.hard) {
                 currentEntry.proficiency += 1;
-                currentEntry.save();
-                answer.setVisibility(View.VISIBLE);
-                easy.setVisibility(View.GONE);
-                hard.setVisibility(View.GONE);
-                next.setVisibility(View.VISIBLE);
-            } else if (i == R.id.next) {
-                next.setVisibility(View.GONE);
-                easy.setVisibility(View.VISIBLE);
-                hard.setVisibility(View.VISIBLE);
-                answer.setVisibility(View.INVISIBLE);
-                content.startAnimation(out2right);
+                next();
             }
         }
     };
-    Animation.AnimationListener onAnimat = new Animation.AnimationListener() {
+
+    private void next() {
+        currentEntry.save();
+        count++;
+        onAnimat.callback = callNext;
+        content.startAnimation(out2right);
+    }
+
+    AnimationListenerWithCallback onAnimat = new AnimationListenerWithCallback();
+
+    class AnimationListenerWithCallback implements Animation.AnimationListener {
+        public Listener callback;
+
         @Override
         public void onAnimationStart(Animation animation) {
         }
 
         @Override
         public void onAnimationEnd(Animation animation) {
-            currentEntry = new Select().from(Entry.class).orderBy("proficiency asc").executeSingle();
-//            final Entry entr = new Select().from(Entry.class).orderBy("RANDOM()").executeSingle();
-            if (currentEntry != null) {
-                content.setText(currentEntry.content);
-                answer.setText(currentEntry.content + "\n" + currentEntry.note);
-            }
-            content.startAnimation(leftIn);
+            if (callback != null)
+                callback.process();
         }
 
         @Override
         public void onAnimationRepeat(Animation animation) {
+        }
+    }
+
+    private Listener callNext = new Listener() {
+        @Override
+        public Object process(Object... pars) {
+            currentEntry = new Select().from(Entry.class).orderBy("proficiency asc").executeSingle();
+//            final Entry entr = new Select().from(Entry.class).orderBy("RANDOM()").executeSingle();
+            if (currentEntry != null) {
+                content.setText(currentEntry.content);
+            }
+            content.setBackgroundResource(R.drawable.pic2yellow);
+            content.startAnimation(leftIn);
+            return null;
+        }
+    };
+    private Listener callAnswer = new Listener() {
+        @Override
+        public Object process(Object... pars) {
+            content.append(" " + currentEntry.note);
+            content.setBackgroundResource(R.drawable.rice2null);
+            content.startAnimation(leftIn);
+            return null;
         }
     };
 

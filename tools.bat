@@ -1,8 +1,8 @@
 setlocal
 rem set DEVICE=-s 192.168.3.121:5555
 rem set device=
-set device=emulator-5554
-rem set device=-s ?
+rem set device=emulator-5554
+set device=-s ?
 set PACKAGE=com.shirokuma.musicplayer
 set PROJECT_PATH=e:\work\kumalrc
 set project=kumalrc

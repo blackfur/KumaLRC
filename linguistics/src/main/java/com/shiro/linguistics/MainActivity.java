@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        if (Processor.importDat())
+                        if (Processor.feed())
                             com.shiro.tools.Utils.uitoast(getContext(), getString(R.string.success));
                         else
                             com.shiro.tools.Utils.uitoast(getContext(), getString(R.string.fail));
@@ -49,9 +49,11 @@ public class MainActivity extends AppCompatActivity {
                 else Toast.makeText(getContext(), R.string.fail, Toast.LENGTH_LONG).show();
             } else if (viewid == R.id.redact) {
                 startActivity(new Intent(getContext(), com.shiro.memo.RedactActivity.class));
-//            } else if (viewid == R.id.create_shortcut) {
-//                Utils.shortcut(getContext(), com.shirokuma.musicplayer.lyrics.LyricsActivity.class, R.string.playing, R.drawable.ic_music_note);
-//                Toast.makeText(getContext(), R.string.success, Toast.LENGTH_LONG).show();
+            } else if (viewid == R.id.export) {
+                if (Processor.vomit())
+                    Toast.makeText(getContext(), R.string.success, Toast.LENGTH_LONG).show();
+                else
+                    Toast.makeText(getContext(), R.string.fail, Toast.LENGTH_LONG).show();
             }
         }
     };
@@ -59,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     private void initView() {
         View listen = findViewById(R.id.listen);
         View word = findViewById(R.id.word);
-        for (View v : new View[]{listen, word, findViewById(R.id.import_data), findViewById(R.id.redact), findViewById(R.id.restore), findViewById(R.id.backup)}) {
+        for (View v : new View[]{listen, word, findViewById(R.id.import_data), findViewById(R.id.redact), findViewById(R.id.restore), findViewById(R.id.backup),findViewById(R.id.export)}) {
             v.setOnClickListener(onClick);
         }
     }

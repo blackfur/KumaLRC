@@ -10,11 +10,15 @@ public abstract class BaseActivity extends Activity {
         setContentView(setContentViewRes());
         initData();
         initView();
+        process();
     }
 
     protected abstract void initData();
 
     protected abstract void initView();
+
+    protected void process() {
+    }
 
     protected abstract int setContentViewRes();
 }
