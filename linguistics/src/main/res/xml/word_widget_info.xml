@@ -4,8 +4,8 @@
                     android:minWidth="32dp"
                     android:minHeight="32dp"
                     android:updatePeriodMillis="0"
-                    android:previewImage="@drawable/spell_ico1_night"
-                    android:initialLayout="@layout/redact_widget"
+                    android:previewImage="@drawable/affix_ji"
+                    android:initialLayout="@layout/word_widget"
                     android:resizeMode="horizontal|vertical"
                     android:widgetCategory="home_screen">
 </appwidget-provider>

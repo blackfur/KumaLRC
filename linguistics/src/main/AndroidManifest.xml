@@ -15,7 +15,7 @@
     <application
             android:name=".LinguisticsApp"
             android:allowBackup="false"
-            android:icon="@mipmap/ic_launcher"
+            android:icon="@drawable/kumalrc_icon"
             android:label="@string/app_name"
             android:theme="@style/LinguisticsTheme">
         <meta-data
@@ -84,7 +84,7 @@
                 android:exported="true"
                 android:name="com.shiro.memo.RedactActivity"/>
 
-        <receiver android:name="PlayerAppWidgetProvider">
+        <receiver android:name=".widget.PlayerAppWidgetProvider">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
             </intent-filter>
@@ -92,13 +92,29 @@
                     android:name="android.appwidget.provider"
                     android:resource="@xml/player_appwidget_info"/>
         </receiver>
-        <receiver android:name="RedactWidgetProvider">
+        <receiver android:name=".widget.RedactWidgetProvider">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
             </intent-filter>
             <meta-data
                     android:name="android.appwidget.provider"
                     android:resource="@xml/redact_widget_info"/>
+        </receiver>
+        <receiver android:name=".widget.WordWidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+            </intent-filter>
+            <meta-data
+                    android:name="android.appwidget.provider"
+                    android:resource="@xml/word_widget_info"/>
+        </receiver>
+        <receiver android:name=".widget.SongsWidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+            </intent-filter>
+            <meta-data
+                    android:name="android.appwidget.provider"
+                    android:resource="@xml/songs_widget_info"/>
         </receiver>
     </application>
 

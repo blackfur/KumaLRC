@@ -1,4 +1,4 @@
-package com.shiro.linguistics;
+package com.shiro.linguistics.widget;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -6,6 +6,7 @@ import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.RemoteViews;
+import com.shiro.linguistics.R;
 
 public class PlayerAppWidgetProvider extends AppWidgetProvider {
     @Override
