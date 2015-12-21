@@ -6,44 +6,52 @@
     <com.shirokuma.musicplayer.view.TopBar
             style="@style/head"
             android:id="@+id/head"
-            android:src="@mipmap/ic_launcher"
+            android:src="@drawable/kumalrc_icon_white"
             android:layout_width="match_parent"
             android:layout_height="52dp"/>
 
     <LinearLayout
             android:id="@+id/ctrl"
             android:layout_alignParentBottom="true"
+            android:gravity="center_vertical"
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_height="wrap_content">
+            android:orientation="horizontal"
+            android:layout_height="138dp">
 
         <Button
-                android:background="@drawable/green2null"
+                android:background="@drawable/round2null"
+                android:layout_margin="16dp"
                 style="@style/button"
                 android:text="@string/easy"
                 android:id="@+id/easy"
-                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"/>
 
         <Button
+                android:layout_margin="16dp"
                 style="@style/button"
-                android:background="@drawable/blue2null"
+                android:background="@drawable/round_green2null"
                 android:text="@string/hard"
                 android:id="@+id/hard"
-                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"/>
 
     </LinearLayout>
 
 
     <TextView
+            android:layout_margin="32dp"
+            android:padding="16dp"
             android:layout_below="@id/head"
             android:layout_above="@id/ctrl"
+            android:text="Word#selector#owifjoweifnweoifneoifnefoeinfweofcnweufe"
             android:id="@+id/content"
             android:textSize="24sp"
             android:gravity="center"
             android:clickable="true"
-            android:background="@drawable/pic2yellow"
+            android:background="@android:drawable/picture_frame"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 

@@ -11,6 +11,7 @@ import android.net.NetworkInfo;
 import android.os.Environment;
 import android.util.DisplayMetrics;
 import android.view.Menu;
+import android.view.View;
 import android.widget.Toast;
 
 import java.io.*;
@@ -222,5 +223,10 @@ public class Utils {
         addIntent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, Intent.ShortcutIconResource.fromContext(c.getApplicationContext(), drawableRes));
         addIntent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
         c.getApplicationContext().sendBroadcast(addIntent);
+    }
+
+    public static int[] getCenter(View v) {
+        v.measure(0, 0);
+        return new int[]{v.getMeasuredWidth() / 2, v.getMeasuredHeight() / 2};
     }
 }

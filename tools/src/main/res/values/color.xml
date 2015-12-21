@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="rice">#E0E0D3</color>
+    <item name="grey" type="color">#4B4E4F</item>
+    <item name="green" type="color">#FF99CC00</item>
+    <item name="darkgreen" type="color">#FF669900</item>
 </resources>
