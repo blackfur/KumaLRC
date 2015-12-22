@@ -2,6 +2,16 @@
 <resources>
     <color name="rice">#E0E0D3</color>
     <item name="grey" type="color">#4B4E4F</item>
-    <item name="green" type="color">#FF99CC00</item>
     <item name="darkgreen" type="color">#FF669900</item>
+    <color name="orange">#E0A341</color>
+    <color name="yellow">#FAF7D9</color>
+    <color name="green">#90D4A4</color>
+    <item name="blue" type="color">#FF33B5E5</item>
+    <item name="purple" type="color">#FFAA66CC</item>
+    <item name="red" type="color">#FFFF4444</item>
+    <item name="darkblue" type="color">#FF0099CC</item>
+    <item name="darkpurple" type="color">#FF9933CC</item>
+    <item name="darkorange" type="color">#FFFF8800</item>
+    <item name="darkred" type="color">#FFCC0000</item>
+    <item name="alpha_grey" type="color">#504B4E4F</item>
 </resources>

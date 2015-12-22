@@ -1,6 +1,7 @@
 package com.shiro.memo;
 
 import android.app.Application;
+import android.os.Environment;
 import com.activeandroid.ActiveAndroid;
 import com.activeandroid.query.From;
 import com.activeandroid.query.Select;
@@ -13,11 +14,13 @@ import java.util.regex.Pattern;
 
 public class Memorize {
     static Pattern DELIMIT = Pattern.compile("[# \\s,.、，。。]");
+    private static final String DATA = Environment.getExternalStorageDirectory() + "/memorize/dat";
 
     public static void init(Application a) {
         ActiveAndroid.initialize(a);
         Setting setting = new Setting(a.getApplicationContext());
         if (setting.isFirst()) {
+            feed();
             setting.setFirst(false);
             // insert default values
             if (new Select().from(Entry.class).count() == 0) {
@@ -28,8 +31,8 @@ public class Memorize {
         }
     }
 
-    public static boolean feed(String path) {
-        File importDat = new File(path);
+    public static boolean feed() {
+        File importDat = new File(DATA);
         if (importDat.exists()) {
             ActiveAndroid.beginTransaction();
             try {
@@ -62,12 +65,12 @@ public class Memorize {
         return false;
     }
 
-    public static boolean vomit(String path) {
+    public static boolean vomit() {
         List<Entry> entries = new Select().from(Entry.class).execute();
         if (entries != null && entries.size() > 0) {
             try {
-                // append mode
-                BufferedWriter bw = new BufferedWriter(new FileWriter(path, true));
+                // true: append mode, false: override
+                BufferedWriter bw = new BufferedWriter(new FileWriter(DATA, false));
                 for (Entry e : entries) {
                     bw.write(e.content + '#' + e.note);
                     bw.newLine();

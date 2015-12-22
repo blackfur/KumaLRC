@@ -3,10 +3,7 @@ package com.shiro.memo;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.graphics.Color;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.HandlerThread;
+import android.os.*;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -41,7 +38,9 @@ public class RedactActivity extends Activity {
         super.onCreate(savedInstanceState);
         initData();
         initView();
-        // process
+        process();
+    }
+    void process(){
         reload();
     }
 
@@ -238,5 +237,8 @@ public class RedactActivity extends Activity {
             super(v);
             content = (TextView) v.findViewById(R.id.content);
         }
+    }
+    private Activity getContext(){
+        return this;
     }
 }

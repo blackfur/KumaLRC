@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
+import com.shiro.memo.Memorize;
 import com.shirokuma.musicplayer.musiclib.MusicListActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        if (Processor.feed())
+                        if (Memorize.feed())
                             com.shiro.tools.Utils.uitoast(getContext(), getString(R.string.success));
                         else
                             com.shiro.tools.Utils.uitoast(getContext(), getString(R.string.fail));
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
             } else if (viewid == R.id.redact) {
                 startActivity(new Intent(getContext(), com.shiro.memo.RedactActivity.class));
             } else if (viewid == R.id.export) {
-                if (Processor.vomit())
+                if (Memorize.vomit())
                     Toast.makeText(getContext(), R.string.success, Toast.LENGTH_LONG).show();
                 else
                     Toast.makeText(getContext(), R.string.fail, Toast.LENGTH_LONG).show();

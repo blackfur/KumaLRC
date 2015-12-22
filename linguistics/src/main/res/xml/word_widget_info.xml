@@ -4,7 +4,7 @@
                     android:minWidth="32dp"
                     android:minHeight="32dp"
                     android:updatePeriodMillis="0"
-                    android:previewImage="@drawable/affix_ji"
+                    android:previewImage="@drawable/word"
                     android:initialLayout="@layout/word_widget"
                     android:resizeMode="horizontal|vertical"
                     android:widgetCategory="home_screen">

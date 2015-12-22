@@ -9,15 +9,17 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import com.activeandroid.query.Select;
+import com.nineoldandroids.animation.Animator;
+import com.nineoldandroids.animation.AnimatorInflater;
+import com.nineoldandroids.animation.AnimatorSet;
 import com.shiro.memo.model.Entry;
 import com.shiro.tools.Listener;
-import com.shiro.tools.Utils;
-import com.shiro.tools.anim.Rotate3d;
 
 public class FlashCardActivity extends Activity {
     int count;
     static final int DAILY_TASK = 32;
-    Animation out2right, leftIn, rotateRight2left, rotateLeft2right, dismiss, null2full, turnOverBegin, turnOverEnd;
+    Animation out2right, leftIn;
+    AnimatorSet z0toz90, z90toz0;
     View easy, hard;
     TextView content;
     Entry currentEntry;
@@ -28,25 +30,17 @@ public class FlashCardActivity extends Activity {
         setContentView(R.layout.activity_flash_card);
         // init data
         count = new Setting(this).getCount();
-//        Entry entr = new Select().from(Entry.class).orderBy("RANDOM()").executeSingle();
         currentEntry = new Select().from(Entry.class).orderBy("proficiency asc").executeSingle();
         out2right = AnimationUtils.loadAnimation(FlashCardActivity.this, R.anim.out2right);
         out2right.setAnimationListener(onAnimat);
-        rotateRight2left = AnimationUtils.loadAnimation(getContext(), R.anim.rotate_right2left);
-        rotateRight2left.setAnimationListener(onAnimat);
-        rotateLeft2right = AnimationUtils.loadAnimation(getContext(), R.anim.rotate_left2right);
-        dismiss = AnimationUtils.loadAnimation(getContext(), R.anim.dismiss);
-        dismiss.setAnimationListener(onAnimat);
-        null2full = AnimationUtils.loadAnimation(getContext(), R.anim.null2full);
         leftIn = AnimationUtils.loadAnimation(FlashCardActivity.this, R.anim.left_in);
         // init view
         content = (TextView) findViewById(R.id.content);
-        int[] center = Utils.getCenter(content);
-        turnOverBegin = new Rotate3d(0, 90, center[0], center[1], 1, true);
-        turnOverBegin.setDuration(3000);
-        turnOverBegin.setAnimationListener(onAnimat);
-        turnOverEnd = new Rotate3d(-90, 0, center[0], center[1], 1, true);
-        turnOverEnd.setDuration(3000);
+        z0toz90 = (AnimatorSet) AnimatorInflater.loadAnimator(getContext(), R.animator.turn_over_shrink);
+        z0toz90.setTarget(content);
+        z0toz90.addListener(nineoldOnAnimat);
+        z90toz0 = (AnimatorSet) AnimatorInflater.loadAnimator(getContext(), R.animator.turn_over_manify);
+        z90toz0.setTarget(content);
         easy = findViewById(R.id.easy);
         hard = findViewById(R.id.hard);
         if (currentEntry != null) {
@@ -71,6 +65,7 @@ public class FlashCardActivity extends Activity {
         @Override
         public void onClick(final View v) {
             if (count == DAILY_TASK) {
+                count++;
                 com.shiro.tools.Utils.alert(getContext(), "Daily task was completed, exit?", new Listener() {
                     @Override
                     public Object process(Object... msg) {
@@ -82,12 +77,12 @@ public class FlashCardActivity extends Activity {
             }
             int i = v.getId();
             if (i == R.id.content) {
-                if (onAnimat.callback == null || onAnimat.callback == callNext || onAnimat.callback == callQuestion) {
-                    onAnimat.callback = callAnswer;
-                    content.startAnimation(dismiss);
-                } else if (onAnimat.callback == callAnswer) {
-                    onAnimat.callback = callQuestion;
-                    content.startAnimation(dismiss);
+                if (nineoldOnAnimat.callback == null || nineoldOnAnimat.callback == callNext || nineoldOnAnimat.callback == callQuestion) {
+                    nineoldOnAnimat.callback = callAnswer;
+                    z0toz90.start();
+                } else if (nineoldOnAnimat.callback == callAnswer) {
+                    nineoldOnAnimat.callback = callQuestion;
+                    z0toz90.start();
                 }
             } else if (i == R.id.easy) {
                 currentEntry.proficiency += 2;
@@ -104,6 +99,30 @@ public class FlashCardActivity extends Activity {
         count++;
         onAnimat.callback = callNext;
         content.startAnimation(out2right);
+    }
+
+    NineOldAnimatorListenerWithCallback nineoldOnAnimat = new NineOldAnimatorListenerWithCallback();
+
+    class NineOldAnimatorListenerWithCallback implements Animator.AnimatorListener {
+        public Listener callback;
+
+        @Override
+        public void onAnimationStart(Animator animation) {
+        }
+
+        @Override
+        public void onAnimationEnd(Animator animation) {
+            if (callback != null)
+                callback.process();
+        }
+
+        @Override
+        public void onAnimationCancel(Animator animation) {
+        }
+
+        @Override
+        public void onAnimationRepeat(Animator animation) {
+        }
     }
 
     AnimationListenerWithCallback onAnimat = new AnimationListenerWithCallback();
@@ -142,7 +161,7 @@ public class FlashCardActivity extends Activity {
         @Override
         public Object process(Object... pars) {
             content.append(" " + currentEntry.note);
-            content.startAnimation(null2full);
+            z90toz0.start();
             return null;
         }
     };
@@ -150,7 +169,7 @@ public class FlashCardActivity extends Activity {
         @Override
         public Object process(Object... pars) {
             content.setText(currentEntry.content);
-            content.startAnimation(null2full);
+            z90toz0.start();
             return null;
         }
     };

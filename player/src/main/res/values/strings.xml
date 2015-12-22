@@ -3,8 +3,6 @@
     <string name="lyrics">Lyrics</string>
     <string name="not_found">not found</string>
     <string name="loading">loading...</string>
-    <string name="zoom_out">zoom out</string>
-    <string name="zoom_in">zoom in</string>
     <string name="app_name">Kumalrc</string>
     <string name="title_activity_guide">GuideActivity</string>
 

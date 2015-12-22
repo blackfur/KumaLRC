@@ -4,7 +4,7 @@
                     android:minWidth="32dp"
                     android:minHeight="32dp"
                     android:updatePeriodMillis="0"
-                    android:previewImage="@drawable/spell_ico1_night"
+                    android:previewImage="@drawable/edit"
                     android:initialLayout="@layout/redact_widget"
                     android:resizeMode="horizontal|vertical"
                     android:widgetCategory="home_screen">
