@@ -131,14 +131,6 @@ public abstract class BindSrvOpMenusActivity extends BaseActivity implements Med
             if (mMusicSrv != null && mMusicSrv.isPlaying())
                 mMusicSrv.stop();
             startActivity(new Intent(this, SettingActivity.class));
-        } else if (i == R.id.action_share) {
-            String content;
-            if (mMusicSrv != null && mMusicSrv.getCurrentSong() != null) {
-                content = new StringBuilder(getString(R.string.listening)).append(mMusicSrv.getCurrentSong().title).toString();
-            } else {
-                content = getString(R.string.using);
-            }
-            KumaPlayer.webchatShare(content);
         }
         return super.onOptionsItemSelected(item);
     }

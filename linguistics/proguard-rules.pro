@@ -15,3 +15,11 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+-keep class com.tencent.mm.sdk.** {
+   *;
+}
+ 	# ActiveAndroid
+-keep class com.activeandroid.** { *; }
+-keep class com.activeandroid.**.** { *; }
+-keep class * extends com.activeandroid.Model
+-keep class * extends com.activeandroid.serializer.TypeSerializer

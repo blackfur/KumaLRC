@@ -16,10 +16,6 @@
             android:icon="@drawable/sleep"
             android:title="@string/sleep_mode"/>
     <item
-            android:id="@+id/action_share"
-            android:icon="@drawable/share"
-            android:title="@string/share"/>
-    <item
             android:id="@+id/action_setting"
             android:icon="@drawable/setting"
             android:title="@string/action_settings"/>
