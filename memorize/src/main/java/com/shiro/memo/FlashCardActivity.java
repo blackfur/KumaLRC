@@ -77,7 +77,7 @@ public class FlashCardActivity extends Activity {
             }
             int i = v.getId();
             if (i == R.id.content) {
-                if (nineoldOnAnimat.callback == null || nineoldOnAnimat.callback == callNext || nineoldOnAnimat.callback == callQuestion) {
+                if (nineoldOnAnimat.callback == null || nineoldOnAnimat.callback == callQuestion) {
                     nineoldOnAnimat.callback = callAnswer;
                     z0toz90.start();
                 } else if (nineoldOnAnimat.callback == callAnswer) {
@@ -95,6 +95,7 @@ public class FlashCardActivity extends Activity {
     };
 
     private void next() {
+        nineoldOnAnimat.callback = null;
         currentEntry.save();
         count++;
         onAnimat.callback = callNext;

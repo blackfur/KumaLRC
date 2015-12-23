@@ -13,7 +13,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Memorize {
-    static Pattern DELIMIT = Pattern.compile("[# \\s,.、，。。]");
+    static Pattern DELIMIT = Pattern.compile("[#  ,.、，。。]");
     private static final String DATA = Environment.getExternalStorageDirectory() + "/memorize/dat";
 
     public static void init(Application a) {
