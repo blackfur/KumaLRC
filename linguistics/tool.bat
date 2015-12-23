@@ -114,7 +114,7 @@ goto :eof
 rem set COMPONENT=%package%.MainActivity
 rem set component=com.shirokuma.musicplayer.lyrics.LyricsActivity
 rem set component=com.shiro.memo.RedactActivity
-set component=com.shiro.memo.FlashCardActivity
+set component=com.shiro.memo.WelcomeActivity
 adb %DEVICE% shell am start -n %PACKAGE%/%COMPONENT%
 exit /b 0
 :lock
