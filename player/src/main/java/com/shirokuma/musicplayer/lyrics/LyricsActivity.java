@@ -127,11 +127,6 @@ public class LyricsActivity extends BindSrvOpMenusActivity {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     public void onDestroy() {
         stop();
         if (mWorkHandler != null) {

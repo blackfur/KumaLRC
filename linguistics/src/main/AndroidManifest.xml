@@ -60,10 +60,6 @@
                 android:name="com.shirokuma.musicplayer.setting.TimerActivity"
                 android:screenOrientation="portrait"
                 android:theme="@style/timer_dialog"/>
-        <activity
-                android:theme="@android:style/Theme.Translucent"
-                android:name="com.shirokuma.musicplayer.wxapi.WXEntryActivity"
-                android:exported="true"/>
 
         <receiver android:name="com.shirokuma.musicplayer.playback.MusicBroadcast"/>
         <service android:name="com.shirokuma.musicplayer.playback.MusicService"/>

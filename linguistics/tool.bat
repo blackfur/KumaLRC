@@ -2,9 +2,9 @@ setlocal
 set project=kumalrc
 set alias=shiro
 set package=com.shiro.linguistics
-set DEVICE=-s 192.168.3.108:5555
+rem set DEVICE=-s 192.168.3.108:5555
 rem set DEVICE=-s emulator-5554
-rem set DEVICE=-s ?
+set DEVICE=-s ?
 set module=linguistics
 rem --- options ---
 if [%1]==[monkey] goto monkey

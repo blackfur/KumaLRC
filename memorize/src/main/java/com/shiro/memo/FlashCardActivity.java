@@ -46,7 +46,7 @@ public class FlashCardActivity extends Activity {
         if (currentEntry != null) {
             content.setText(currentEntry.content);
         }
-        for (View v : new View[]{easy, hard, content})
+        for (View v : new View[]{easy, hard, content,findViewById(R.id.delete)})
             v.setOnClickListener(onClick);
     }
 
@@ -89,6 +89,9 @@ public class FlashCardActivity extends Activity {
                 next();
             } else if (i == R.id.hard) {
                 currentEntry.proficiency += 1;
+                next();
+            } else if (i == R.id.delete) {
+                currentEntry.delete();
                 next();
             }
         }

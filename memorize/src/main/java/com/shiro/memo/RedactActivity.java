@@ -144,8 +144,11 @@ public class RedactActivity extends Activity {
                     if (from.count() > 0) {
                         Toast.makeText(RedactActivity.this, R.string.duplicate, Toast.LENGTH_LONG).show();
                     } else {
-                        new Entry(contentStr, noteStr).save();
-                        mWorkHandler.postDelayed(mLoadTask, 200);
+                        Entry newEntry = new Entry(contentStr, noteStr);
+                        newEntry.save();
+                        dat.add(newEntry);
+                        adapter.notifyDataSetChanged();
+//                        mWorkHandler.postDelayed(mLoadTask, 200);
                         Toast.makeText(RedactActivity.this, R.string.success, Toast.LENGTH_LONG).show();
                         redactContent.setText("");
                         redactNote.setText("");
