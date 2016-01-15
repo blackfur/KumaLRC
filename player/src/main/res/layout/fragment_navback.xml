@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:background="@drawable/general_title_two"
+              style="@style/head"
+              android:padding="9dp"
+              android:gravity="center_vertical"
+        >
+
+    <ImageButton
+            android:id="@+id/btn_back"
+            style="@style/ctrl_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:src="@drawable/kumalrc_back_normal"/>
+
+</LinearLayout>

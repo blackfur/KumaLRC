@@ -229,4 +229,5 @@ public class Utils {
         v.measure(0, 0);
         return new int[]{v.getMeasuredWidth() / 2, v.getMeasuredHeight() / 2};
     }
+
 }

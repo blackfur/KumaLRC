@@ -1,6 +1,5 @@
 package com.shirokuma.musicplayer.lyrics;
 
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.view.View;
@@ -77,7 +76,7 @@ public class LyricsActivity extends BindSrvOpMenusActivity {
             if (mMusicSrv != null && mMusicSrv.getCurrentState() != MusicService.State.Stopped && mMusicSrv.getDuration() > 0 && fromUser) {
                 mMusicSrv.seekTo(progress);
                 mLrcView.progress(progress);
-                mTextScroll.progress(mMusicSrv.getDuration(), progress);
+                //mTextScroll.progress(mMusicSrv.getDuration(), progress);
             }
         }
 
@@ -194,7 +193,7 @@ public class LyricsActivity extends BindSrvOpMenusActivity {
                                     @Override
                                     public void run() {
                                         mSeekbar.progress(mMusicSrv.getCurrentPosition());
-                                        mTextScroll.progress(mMusicSrv.getDuration(), mMusicSrv.getCurrentPosition());
+                                        //mTextScroll.progress(mMusicSrv.getDuration(), mMusicSrv.getCurrentPosition());
                                         mLrcView.progress(mMusicSrv.getCurrentPosition());
                                     }
                                 });
@@ -287,6 +286,6 @@ public class LyricsActivity extends BindSrvOpMenusActivity {
     protected void onMusicSeek() {
         mLrcView.progress(mMusicSrv.getCurrentPosition());
         mSeekbar.progress(mMusicSrv.getCurrentPosition());
-        mTextScroll.progress(mMusicSrv.getDuration(), mMusicSrv.getCurrentPosition());
+        //mTextScroll.progress(mMusicSrv.getDuration(), mMusicSrv.getCurrentPosition());
     }
 }

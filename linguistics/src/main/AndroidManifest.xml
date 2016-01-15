@@ -23,16 +23,6 @@
                 android:value="com.shiro.memo.model.Entry, com.shirokuma.musicplayer.model.Song"/>
 
         <activity
-                android:name=".MainActivity"
-                android:launchMode="singleTask"
-                android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
-        <activity
                 android:name="com.shirokuma.musicplayer.WelcomeActivity"
                 android:label="@string/app_name"
                 android:screenOrientation="portrait">
@@ -41,7 +31,13 @@
                 android:exported="true"
                 android:name="com.shirokuma.musicplayer.musiclib.MusicListActivity"
                 android:launchMode="singleTask"
-                android:screenOrientation="portrait"/>
+                android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
         <activity
                 android:name="com.shirokuma.musicplayer.lyrics.LyricsActivity"
                 android:exported="true"

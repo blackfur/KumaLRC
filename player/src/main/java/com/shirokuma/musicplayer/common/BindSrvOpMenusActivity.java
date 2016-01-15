@@ -1,17 +1,19 @@
 package com.shirokuma.musicplayer.common;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.*;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.IBinder;
 import android.view.Menu;
 import android.view.MenuItem;
 import com.shiro.tools.Utils;
+import com.shiro.tools.view.ProgressDialogWrapper;
 import com.shirokuma.musicplayer.KumaPlayer;
 import com.shirokuma.musicplayer.R;
+import com.shirokuma.musicplayer.musiclib.ScanActivity;
 import com.shirokuma.musicplayer.playback.MusicBroadcast;
 import com.shirokuma.musicplayer.playback.MusicService;
 import com.shirokuma.musicplayer.setting.MediaSetting;
@@ -22,6 +24,7 @@ import com.shirokuma.musicplayer.setting.TimerActivity;
 public abstract class BindSrvOpMenusActivity extends BaseActivity implements MediaScannerConnection.OnScanCompletedListener {
     protected MusicService mMusicSrv;
     protected ProgressDialog mProgress;
+    protected ProgressDialogWrapper progressWrapper;
 
     @Override
     protected void initData() {
@@ -42,6 +45,11 @@ public abstract class BindSrvOpMenusActivity extends BaseActivity implements Med
         // wait for service bound
         if (mMusicSrv == null)
             mProgress = ProgressDialog.show(this, "", getString(R.string.loading));
+        progressWrapper = new ProgressDialogWrapper(getContext());
+    }
+
+    private Activity getContext() {
+        return this;
     }
 
     //connect to the service
@@ -114,9 +122,8 @@ public abstract class BindSrvOpMenusActivity extends BaseActivity implements Med
         if (i == R.id.action_scan) {
             if (mMusicSrv != null && mMusicSrv.isPlaying())
                 mMusicSrv.stop();
-            MediaScannerConnection.scanFile(this, new String[]{Environment
-                    .getExternalStorageDirectory().getAbsolutePath()}, null, this);
-            mProgress = ProgressDialog.show(this, "", getString(R.string.scanning));
+            startActivity(new Intent(getContext(), ScanActivity.class));
+//            MediaScannerConnection.scanFile(this, new String[]{Environment.getExternalStorageDirectory().getAbsolutePath()}, null, this);
         } else if (i == R.id.action_in_order) {
             mMusicSrv.setShuffle(false);
             MediaSetting.getInstance(this).setShuffle(false);

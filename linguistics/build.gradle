@@ -23,6 +23,11 @@ android {
         versionCode 1
         versionName "1.0"
     }
+    productFlavors {
+        player {
+            applicationId = "com.shiro.linguistics.player"
+        }
+    }
     signingConfigs {
         release {
             storeFile file("../kumalrc.jks")
@@ -41,6 +46,14 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
+        }
+    }
+    sourceSets {
+        main {
+            manifest.srcFile 'src/main/AndroidManifest.xml'
+        }
+        player {
+            manifest.srcFile 'src/player/AndroidManifest.xml'
         }
     }
 }

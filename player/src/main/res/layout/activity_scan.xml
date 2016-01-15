@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <fragment
+            android:id="@+id/head"
+            android:name="com.shirokuma.musicplayer.common.NavbackFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    <LinearLayout
+            android:id="@+id/search"
+            android:background="@color/grey"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_height="54dp">
+
+        <TextView
+                android:clickable="true"
+                android:id="@+id/back"
+                android:background="@drawable/null2blue"
+                android:text="@string/back"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"/>
+
+        <TextView
+                android:id="@+id/cancel"
+                android:background="@drawable/null2blue"
+                android:text="@string/cancel"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"/>
+
+        <TextView
+                android:id="@+id/ok"
+                android:gravity="center"
+                android:background="@drawable/null2blue"
+                android:text="@android:string/ok"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"/>
+    </LinearLayout>
+
+    <TextView
+            android:layout_above="@id/search"
+            android:id="@+id/path_str"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    <ListView
+            android:id="@+id/list"
+            android:layout_below="@id/head"
+            android:layout_above="@id/path_str"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+</RelativeLayout>

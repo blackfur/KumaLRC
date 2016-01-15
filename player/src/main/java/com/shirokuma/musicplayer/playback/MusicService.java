@@ -177,7 +177,8 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
         } else if (mCurrentState == State.Completed || mCurrentState == State.Stopped) {
             // It make no sense to still keep the song's play progress after it completed or stopped.
             if (new Select().from(com.shirokuma.musicplayer.model.Song.class).where("title=? and artist=?", currentSong.title, currentSong.artist).exists()) {
-                new Delete().from(Song.class).where("title=? and artist=?", currentSong.title, currentSong.artist).execute();
+                new Update(com.shirokuma.musicplayer.model.Song.class).set("progress=?", 0).where("title = ? and artist=?", currentSong.title, currentSong.artist).execute();
+//                new Delete().from(Song.class).where("title=? and artist=?", currentSong.title, currentSong.artist).execute();
 //                SQLiteUtils.execSql("DELETE FROM Songs where title='" + current.title + "' and artist='" + current.artist + "'");
             }
         }

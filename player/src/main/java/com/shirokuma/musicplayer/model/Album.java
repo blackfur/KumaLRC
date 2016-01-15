@@ -1,13 +1,23 @@
 package com.shirokuma.musicplayer.model;
 
 import android.graphics.Bitmap;
+import com.activeandroid.Model;
+import com.activeandroid.annotation.Column;
+import com.activeandroid.annotation.Table;
 
-public class Album implements Music{
+@Table(name = "albums")
+public class Album extends Model implements Music {
+    @Column(name = "title", index = true)
     public String album;
+    @Column(name = "amount")
     public int numsongs;
 
+    public Album() {
+        super();
+    }
+
     public Album(String[] pars) {
-        album= pars[0];
+        album = pars[0];
         numsongs = Integer.valueOf(pars[1]);
     }
 

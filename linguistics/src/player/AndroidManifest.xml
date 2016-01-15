@@ -1,0 +1,14 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+        >
+
+    <application
+            android:label="@string/player"
+            tools:replace="android:name,android:label"
+            android:name="com.shiro.player.KumaPlayerApp">
+        <activity
+                android:name="com.shirokuma.musicplayer.musiclib.ScanActivity"
+                android:exported="true"/>
+    </application>
+
+</manifest>

@@ -4,12 +4,15 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import com.shirokuma.musicplayer.KumaPlayer;
 import com.shirokuma.musicplayer.R;
 import com.shirokuma.musicplayer.lyrics.FollowPlayback;
 import com.shirokuma.musicplayer.lyrics.SimpleLyrics;
@@ -19,6 +22,7 @@ public class LyricListView extends ListView implements FollowPlayback {
     private SimpleLyrics mLyrics;
     private Song mSong;
     private ProgressDialog progressDialog;
+    boolean touching;
 
     public LyricListView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -49,6 +53,7 @@ public class LyricListView extends ListView implements FollowPlayback {
                 progressDialog = ProgressDialog.show(getContext(), "", getContext().getString(R.string.loading));
             }
         });
+        Log.e(KumaPlayer.TAG, "lyrics file: " + song.lrc);
         mLyrics.parse(song.lrc);
         post(new Runnable() {
             @Override
@@ -62,7 +67,7 @@ public class LyricListView extends ListView implements FollowPlayback {
 
     @Override
     public void progress(Object... pars) {
-        if (getVisibility() == View.VISIBLE && mLyrics.isFoundLrc() && mLyrics.getParsed()) {
+        if (getVisibility() == View.VISIBLE && mLyrics.isFoundLrc() && mLyrics.getParsed() && !touching) {
             int progress = (Integer) pars[0];
             mLyrics.setCurrentTime(progress);
             post(new Runnable() {
@@ -83,7 +88,7 @@ public class LyricListView extends ListView implements FollowPlayback {
                             int index = position - getFirstVisiblePosition();
                             TextView textView = (TextView) getChildAt(index);
                             if (textView != null)
-                                textView.setTextColor(Color.BLUE);
+                                textView.setTextColor(Color.GREEN);
                         }
                     }, 128);
                 }
@@ -122,7 +127,7 @@ public class LyricListView extends ListView implements FollowPlayback {
             if (item != null) {
                 holder.line.setText(item.lrc);
                 if (item.begin == mLyrics.getCurrentTime())
-                    holder.line.setTextColor(Color.BLUE);
+                    holder.line.setTextColor(Color.GREEN);
                 else
                     holder.line.setTextColor(Color.WHITE);
             }
@@ -132,5 +137,18 @@ public class LyricListView extends ListView implements FollowPlayback {
 
     private static class ViewHolder {
         TextView line;
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent ev) {
+        switch (ev.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                touching = true;
+                break;
+            case MotionEvent.ACTION_UP:
+                touching = false;
+                break;
+        }
+        return super.onTouchEvent(ev);
     }
 }

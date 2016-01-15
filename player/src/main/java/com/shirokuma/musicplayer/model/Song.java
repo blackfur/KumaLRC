@@ -14,9 +14,12 @@ public class Song extends Model implements Music {
     public String artist;
     @Column(name = "progress")
     public int progress;
+    @Column(name = "lrc")
     public String lrc;
+    @Column(name = "album")
     public String album;
     public String dir;
+    @Column(name = "path")
     public String path;
 
     public Song() {
