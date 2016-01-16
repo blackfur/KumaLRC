@@ -37,7 +37,7 @@ public class SimpleLyrics {
     private int mCurrentTime;    //保存歌词TreeMap的下标
 
     public boolean findLrc(Song s) {
-        if (!new File(s.lrc).exists()) {
+        if (s.lrc == null || !new File(s.lrc).exists()) {
             mFoundLrc = false;
             return false;
         } else {

@@ -30,6 +30,7 @@
 
         <TextView
                 android:id="@+id/cancel"
+                android:visibility="gone"
                 android:background="@drawable/null2blue"
                 android:text="@string/cancel"
                 android:gravity="center"
@@ -48,6 +49,8 @@
     </LinearLayout>
 
     <TextView
+            android:textSize="16sp"
+            android:textColor="@color/green"
             android:layout_above="@id/search"
             android:id="@+id/path_str"
             android:layout_width="match_parent"

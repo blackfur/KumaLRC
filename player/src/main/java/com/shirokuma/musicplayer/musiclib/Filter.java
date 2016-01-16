@@ -1,4 +1,4 @@
-package com.shirokuma.musicplayer.model;
+package com.shirokuma.musicplayer.musiclib;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -7,11 +7,20 @@ import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.provider.MediaStore;
+import android.util.Log;
+import com.activeandroid.Model;
+import com.activeandroid.query.Select;
+import com.shirokuma.musicplayer.KumaPlayer;
+import com.shirokuma.musicplayer.model.Album;
+import com.shirokuma.musicplayer.model.Artist;
+import com.shirokuma.musicplayer.model.Playlist;
+import com.shirokuma.musicplayer.model.Song;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 // audio media filter for querying specific info: songs, artists, albums, playlist
 public class Filter implements Parcelable {
@@ -27,6 +36,12 @@ public class Filter implements Parcelable {
     // query media info
     public ArrayList fetch(Context context) {
         return type.musicStore.fetch(context, artist, album);
+    }
+
+    // query media info
+    public ArrayList fetch() {
+//        return type.musicStore.fetch(context, artist, album);
+        return type.fetch(artist, album);
     }
 
     @Override
@@ -181,8 +196,38 @@ public class Filter implements Parcelable {
             return id;
         }
 
-        public String getTag() {
-            return tag;
+        public ArrayList fetch(String artist, String album) {
+            List<Model> result = null;
+            switch (id) {
+                case 0:
+                    Log.e(KumaPlayer.TAG, "==== select songs ====");
+                    String whereClause = "";
+                    if (album != null) {
+                        com.shirokuma.musicplayer.model.Album songAlbum = new Select().from(com.shirokuma.musicplayer.model.Album.class).where("title=?", album).executeSingle();
+                        if (songAlbum != null)
+                            whereClause = "album=" + songAlbum.getId();
+                    }
+                    if (artist != null) {
+                        com.shirokuma.musicplayer.model.Artist songArtist = new Select().from(com.shirokuma.musicplayer.model.Artist.class).where("name=?", artist).executeSingle();
+                        if (songArtist != null)
+                            whereClause += (whereClause.length() == 0 ? "artist=" + songArtist.getId() : " and artist=" + songArtist.getId());
+                    }
+                    result = new Select().from(com.shirokuma.musicplayer.model.Song.class).where(whereClause).execute();
+                    break;
+                case 1:
+                    Log.e(KumaPlayer.TAG, "==== select artists ====");
+                    result = new Select().from(com.shirokuma.musicplayer.model.Artist.class).execute();
+                    break;
+                case 2:
+                    Log.e(KumaPlayer.TAG, "==== select albums ====");
+                    result = new Select().from(com.shirokuma.musicplayer.model.Album.class).execute();
+                    break;
+                case 3:
+                    Log.e(KumaPlayer.TAG, "==== select playlist ====");
+                    break;
+            }
+            Log.e(KumaPlayer.TAG, "result: " + result);
+            return (result == null ? new ArrayList() : new ArrayList(result));
         }
 
         public static FilterType valueOfId(int i) {

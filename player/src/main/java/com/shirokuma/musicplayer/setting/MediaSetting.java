@@ -3,7 +3,7 @@ package com.shirokuma.musicplayer.setting;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import com.shirokuma.musicplayer.model.Filter;
+import com.shirokuma.musicplayer.musiclib.Filter;
 
 public class MediaSetting {
     private static MediaSetting mInstance;
@@ -33,7 +33,7 @@ public class MediaSetting {
     public void setLastPlayIndex(int index) {
         SharedPreferences.Editor editor = mSharedPre.edit();
         editor.putInt(KEY_LAST_PLAY_INDEX, index);
-        editor.commit();
+        editor.apply();
     }
 
     public int getLastPlayIndex() {
@@ -43,7 +43,7 @@ public class MediaSetting {
     public void setFirstInstall(boolean b) {
         SharedPreferences.Editor editor = mSharedPre.edit();
         editor.putBoolean(KEY_FIRST_INSTALL, b);
-        editor.commit();
+        editor.apply();
     }
 
     public boolean getFirstInstall() {
@@ -53,7 +53,7 @@ public class MediaSetting {
     public void setShuffle(boolean b) {
         SharedPreferences.Editor editor = mSharedPre.edit();
         editor.putBoolean(KEY_SHUFFLE, b);
-        editor.commit();
+        editor.apply();
     }
 
     public boolean getShuffle() {
@@ -66,7 +66,7 @@ public class MediaSetting {
             editor.putInt(KEY_LAST_FITER_TYPE, f.type.getId());
             editor.putString(KEY_LAST_FITER_ALBUM, f.album);
             editor.putString(KEY_LAST_FITER_ARTIST, f.artist);
-            editor.commit();
+            editor.apply();
         }
     }
 
@@ -81,7 +81,7 @@ public class MediaSetting {
     public void setSaveLast(boolean b) {
         SharedPreferences.Editor editor = mSharedPre.edit();
         editor.putBoolean(KEY_LAST_PLAY_SAVE, b);
-        editor.commit();
+        editor.apply();
     }
 
     public boolean getSaveLast() {

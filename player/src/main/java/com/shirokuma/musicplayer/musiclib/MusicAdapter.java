@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 import com.shirokuma.musicplayer.R;
-import com.shirokuma.musicplayer.model.Filter;
 import com.shirokuma.musicplayer.model.Music;
 
 import java.util.ArrayList;

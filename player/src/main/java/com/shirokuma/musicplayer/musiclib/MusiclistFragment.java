@@ -1,11 +1,9 @@
 package com.shirokuma.musicplayer.musiclib;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.app.ProgressDialog;
-import android.content.ContentUris;
 import android.os.Bundle;
-import android.provider.MediaStore;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -14,6 +12,7 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.TranslateAnimation;
+import com.activeandroid.query.Delete;
 import com.fortysevendeg.swipelistview.BaseSwipeListViewListener;
 import com.fortysevendeg.swipelistview.SwipeListView;
 import com.shiro.tools.Utils;
@@ -21,7 +20,6 @@ import com.shirokuma.musicplayer.KumaPlayer;
 import com.shirokuma.musicplayer.R;
 import com.shirokuma.musicplayer.model.Album;
 import com.shirokuma.musicplayer.model.Artist;
-import com.shirokuma.musicplayer.model.Filter;
 import com.shirokuma.musicplayer.model.Song;
 import com.shirokuma.musicplayer.view.TouchSwipeListView;
 
@@ -64,7 +62,7 @@ public class MusiclistFragment extends Fragment {
         mStartXY = new float[2];
         if (getArguments() != null) {
             filter = getArguments().getParcelable(KumaPlayer.ARGUMENTS_KEY_FILTER);
-            mDisplayMusic = filter.fetch(getActivity());
+            mDisplayMusic = filter.fetch();
             switch (filter.type) {
                 case Song:
                     mAnimListener = new Animation.AnimationListener() {
@@ -142,10 +140,10 @@ public class MusiclistFragment extends Fragment {
                     mMusicNote.startAnimation(mAnimDrop);
                     break;
                 case Album:
-                    main.displayList(new Filter(Filter.FilterType.Song, ((Album) mDisplayMusic.get(position)).album, null));
+                    main.displayList(new Filter(Filter.FilterType.Song, ((Album) mDisplayMusic.get(position)).title, null));
                     break;
                 case Artist:
-                    main.displayList(new Filter(Filter.FilterType.Song, null, ((Artist) mDisplayMusic.get(position)).artist));
+                    main.displayList(new Filter(Filter.FilterType.Song, null, ((Artist) mDisplayMusic.get(position)).name));
                     break;
             }
         }
@@ -166,17 +164,18 @@ public class MusiclistFragment extends Fragment {
         final ProgressDialog dialog = ProgressDialog.show(getActivity(), "", getString(R.string.loading));
         final Song song = (Song) mDisplayMusic.get(position);
         // delete on database
-        getActivity().getContentResolver().delete(ContentUris.withAppendedId(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, song.songid), null, null);
+//        getActivity().getContentResolver().delete(ContentUris.withAppendedId(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, song.songid), null, null);
+        new Delete().from(Song.class).where("path=?", song.path).execute();
         new Thread(new Runnable() {
             @Override
             public void run() {
-                final ArrayList newDisplayMusic = filter.fetch(getActivity());
+                final ArrayList newDisplayMusic = filter.fetch();
                 mListView.post(new Runnable() {
                     @Override
                     public void run() {
                         // adjust playback if current displayed list is playing list
                         if (main.getMusicSrv().getPlaySongs() == mDisplayMusic) {
-                            if (main.getMusicSrv().isPlaying() && main.getMusicSrv().getCurrentSong().songid == song.songid)
+                            if (main.getMusicSrv().isPlaying() && main.getMusicSrv().getCurrentSong().path.equals(song.path))
                                 if (mDisplayMusic.size() > 1)
                                     main.getMusicSrv().playNext();
                                 else

@@ -18,9 +18,9 @@
         <meta-data
                 android:name="AA_DB_VERSION"
                 android:value="1"/>
-        <meta-data
-                android:name="AA_MODELS"
-                android:value="com.shiro.memo.model.Entry, com.shirokuma.musicplayer.model.Song"/>
+        <!--<meta-data-->
+                <!--android:name="AA_MODELS"-->
+                <!--android:value="com.shiro.memo.model.Entry, com.shirokuma.musicplayer.model.Song"/>-->
 
         <activity
                 android:name="com.shirokuma.musicplayer.WelcomeActivity"

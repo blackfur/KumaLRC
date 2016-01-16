@@ -4,23 +4,20 @@ import android.annotation.TargetApi;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
-import android.content.ContentUris;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Binder;
 import android.os.Build;
 import android.os.IBinder;
 import android.os.PowerManager;
 import android.util.Log;
-import com.activeandroid.query.Delete;
 import com.activeandroid.query.Select;
 import com.activeandroid.query.Update;
 import com.shirokuma.musicplayer.R;
 import com.shirokuma.musicplayer.lyrics.LyricsActivity;
 import com.shirokuma.musicplayer.model.Song;
-import com.shirokuma.musicplayer.model.Filter;
+import com.shirokuma.musicplayer.musiclib.Filter;
 import com.shirokuma.musicplayer.setting.MediaSetting;
 
 import java.io.File;
@@ -148,14 +145,13 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
         //get title
         currentSong = playSong;
         //get songid
-        long currSong = playSong.songid;
+//        long currSong = playSong.songid;
         //set uri
-        Uri trackUri = ContentUris.withAppendedId(
-                android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
-                currSong);
+//        Uri trackUri = ContentUris.withAppendedId( android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, currSong);
         //set the data source
         try {
-            mPlayer.setDataSource(getApplicationContext(), trackUri);
+//            mPlayer.setDataSource(getApplicationContext(), trackUri);
+            mPlayer.setDataSource(currentSong.path);
         } catch (Exception e) {
             Log.e("MUSIC SERVICE", "Error setting data source", e);
         }
@@ -169,15 +165,15 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
             return;
         if (mCurrentState == State.Started || mCurrentState == State.Paused) {
             currentSong.progress = getCurrentPosition();
-            if (new Select().from(com.shirokuma.musicplayer.model.Song.class).where("title = ? and artist=?", currentSong.title, currentSong.artist).exists()) {
-                new Update(com.shirokuma.musicplayer.model.Song.class).set("progress=?", currentSong.progress).where("title = ? and artist=?", currentSong.title, currentSong.artist).execute();
+            if (new Select().from(com.shirokuma.musicplayer.model.Song.class).where("path= ?", currentSong.path).exists()) {
+                new Update(com.shirokuma.musicplayer.model.Song.class).set("progress=?", currentSong.progress).where("path= ?", currentSong.path).execute();
             } else {
-                new com.shirokuma.musicplayer.model.Song(currentSong.title, currentSong.artist, currentSong.progress).save();
+                new com.shirokuma.musicplayer.model.Song(currentSong.title, currentSong.subhead(), currentSong.progress).save();
             }
         } else if (mCurrentState == State.Completed || mCurrentState == State.Stopped) {
             // It make no sense to still keep the song's play progress after it completed or stopped.
-            if (new Select().from(com.shirokuma.musicplayer.model.Song.class).where("title=? and artist=?", currentSong.title, currentSong.artist).exists()) {
-                new Update(com.shirokuma.musicplayer.model.Song.class).set("progress=?", 0).where("title = ? and artist=?", currentSong.title, currentSong.artist).execute();
+            if (new Select().from(com.shirokuma.musicplayer.model.Song.class).where("path=?", currentSong.path).exists()) {
+                new Update(com.shirokuma.musicplayer.model.Song.class).set("progress=?", 0).where("path= ?", currentSong.path).execute();
 //                new Delete().from(Song.class).where("title=? and artist=?", currentSong.title, currentSong.artist).execute();
 //                SQLiteUtils.execSql("DELETE FROM Songs where title='" + current.title + "' and artist='" + current.artist + "'");
             }
@@ -204,14 +200,13 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
             //get title
             currentSong = playSong;
             //get songid
-            long currSong = playSong.songid;
+//            long currSong = playSong.songid;
             //set uri
-            Uri trackUri = ContentUris.withAppendedId(
-                    android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
-                    currSong);
+//            Uri trackUri = ContentUris.withAppendedId( android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, currSong);
             //set the data source
             try {
-                mPlayer.setDataSource(getApplicationContext(), trackUri);
+                mPlayer.setDataSource(currentSong.path);
+//                mPlayer.setDataSource(getApplicationContext(), trackUri);
             } catch (Exception e) {
                 Log.e("MUSIC SERVICE", "Error setting data source", e);
             }
@@ -249,7 +244,7 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
     public void onPrepared(MediaPlayer mp) {
         // restore it's last progress if the song had been interrupted
         com.shirokuma.musicplayer.model.Song current = getCurrentSong();
-        Song state = new Select().from(com.shirokuma.musicplayer.model.Song.class).where("title=? and artist=?", current.title, current.artist).executeSingle();
+        Song state = new Select().from(com.shirokuma.musicplayer.model.Song.class).where("path=?", current.path).executeSingle();
         if (state != null)
             mp.seekTo(state.progress);
         // hint: no matter it's on application started or playing next song, saved state should be restored

@@ -4,24 +4,26 @@ import android.graphics.Bitmap;
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
+import com.activeandroid.util.Log;
+import com.shirokuma.musicplayer.KumaPlayer;
+import com.shirokuma.musicplayer.musiclib.Filter;
 
 @Table(name = "Songs")
 public class Song extends Model implements Music {
     public long songid;
-    @Column(name = "title", index = true)
+    @Column(name = "title")
     public String title;
-    @Column(name = "artist", index = true)
-    public String artist;
+    @Column(name = "artist")
+    public Artist artist;
     @Column(name = "progress")
     public int progress;
     @Column(name = "lrc")
     public String lrc;
     @Column(name = "album")
-    public String album;
+    public Album album;
     public String dir;
-    @Column(name = "path")
+    @Column(name = "path", index = true, unique = true, onUniqueConflict = Column.ConflictAction.ABORT)
     public String path;
-
     public Song() {
         super();
     }
@@ -29,16 +31,27 @@ public class Song extends Model implements Music {
     public Song(String t, String a, int p) {
         super();
         title = t;
-        artist = a;
+        artist = new Artist(a);
         progress = p;
+    }
+
+    public Song(String t, String a, String album, String path) {
+        super();
+        Log.e(KumaPlayer.TAG, "==== construct Song ====");
+        title = t;
+        artist = new Artist(a);
+        this.album = new Album(album);
+        this.path = path;
+        Log.e(KumaPlayer.TAG, "==== constructed ====");
     }
 
     public Song(String[] pars) {
         songid = Long.valueOf(pars[0]);
         title = pars[1];
-        artist = pars[2];
+        artist = new Artist(pars[2]);
         lrc = pars[3];
-        album = pars[4];
+        album = new Album();
+        album.title = pars[4];
         dir = pars[5];
         path = pars[6];
     }
@@ -50,12 +63,12 @@ public class Song extends Model implements Music {
 
     @Override
     public String head() {
-        return title;
+        return title == null ? "" : title;
     }
 
     @Override
     public String subhead() {
-        return artist;
+        return artist == null ? "" : artist.name;
     }
 
     @Override

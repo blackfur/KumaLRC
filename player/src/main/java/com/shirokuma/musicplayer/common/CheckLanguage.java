@@ -14,65 +14,65 @@ public class CheckLanguage {
     /**
      * @return true if the text contains Chinese characters
      */
-    public static boolean isChinese(String text) {
-        int fullNameStyle = guessFullNameStyle(text);
-        if (fullNameStyle == FullNameStyle.CJK) {
-            fullNameStyle = getAdjustedFullNameStyle(fullNameStyle);
-        }
-        return (fullNameStyle == FullNameStyle.CHINESE) ? true : false;
-    }
+//    public static boolean isChinese(String text) {
+//        int fullNameStyle = guessFullNameStyle(text);
+//        if (fullNameStyle == FullNameStyle.CJK) {
+//            fullNameStyle = getAdjustedFullNameStyle(fullNameStyle);
+//        }
+//        return (fullNameStyle == FullNameStyle.CHINESE) ? true : false;
+//    }
+//
+//    public static boolean isJapanese(String text) {
+//        int fullNameStyle = guessFullNameStyle(text);
+//        if (fullNameStyle == FullNameStyle.CJK) {
+//            fullNameStyle = getAdjustedFullNameStyle(fullNameStyle);
+//        }
+//        return (fullNameStyle == FullNameStyle.JAPANESE) ? true : false;
+//    }
+//
+//    public static boolean isKorean(String text) {
+//        int fullNameStyle = guessFullNameStyle(text);
+//        if (fullNameStyle == FullNameStyle.CJK) {
+//            fullNameStyle = getAdjustedFullNameStyle(fullNameStyle);
+//        }
+//        return (fullNameStyle == FullNameStyle.KOREAN) ? true : false;
+//    }
 
-    public static boolean isJapanese(String text) {
-        int fullNameStyle = guessFullNameStyle(text);
-        if (fullNameStyle == FullNameStyle.CJK) {
-            fullNameStyle = getAdjustedFullNameStyle(fullNameStyle);
-        }
-        return (fullNameStyle == FullNameStyle.JAPANESE) ? true : false;
-    }
-
-    public static boolean isKorean(String text) {
-        int fullNameStyle = guessFullNameStyle(text);
-        if (fullNameStyle == FullNameStyle.CJK) {
-            fullNameStyle = getAdjustedFullNameStyle(fullNameStyle);
-        }
-        return (fullNameStyle == FullNameStyle.KOREAN) ? true : false;
-    }
-
-    public static int guessFullNameStyle(String name) {
-        if (name == null) {
-            return FullNameStyle.UNDEFINED;
-        }
-
-        int nameStyle = FullNameStyle.UNDEFINED;
-        int length = name.length();
-        int offset = 0;
-        while (offset < length) {
-            int codePoint = Character.codePointAt(name, offset);
-            if (Character.isLetter(codePoint)) {
-                UnicodeBlock unicodeBlock = UnicodeBlock.of(codePoint);
-
-                if (!isLatinUnicodeBlock(unicodeBlock)) {
-
-                    if (isCJKUnicodeBlock(unicodeBlock)) {
-                        // We don't know if this is Chinese, Japanese or Korean -
-                        // trying to figure out by looking at other characters in the name
-                        return guessCJKNameStyle(name, offset + Character.charCount(codePoint));
-                    }
-
-                    if (isJapanesePhoneticUnicodeBlock(unicodeBlock)) {
-                        return FullNameStyle.JAPANESE;
-                    }
-
-                    if (isKoreanUnicodeBlock(unicodeBlock)) {
-                        return FullNameStyle.KOREAN;
-                    }
-                }
-                nameStyle = FullNameStyle.WESTERN;
-            }
-            offset += Character.charCount(codePoint);
-        }
-        return nameStyle;
-    }
+//    public static int guessFullNameStyle(String name) {
+//        if (name == null) {
+//            return FullNameStyle.UNDEFINED;
+//        }
+//
+//        int nameStyle = FullNameStyle.UNDEFINED;
+//        int length = name.length();
+//        int offset = 0;
+//        while (offset < length) {
+//            int codePoint = Character.codePointAt(name, offset);
+//            if (Character.isLetter(codePoint)) {
+//                UnicodeBlock unicodeBlock = UnicodeBlock.of(codePoint);
+//
+//                if (!isLatinUnicodeBlock(unicodeBlock)) {
+//
+//                    if (isCJKUnicodeBlock(unicodeBlock)) {
+//                        // We don't know if this is Chinese, Japanese or Korean -
+//                        // trying to figure out by looking at other characters in the name
+//                        return guessCJKNameStyle(name, offset + Character.charCount(codePoint));
+//                    }
+//
+//                    if (isJapanesePhoneticUnicodeBlock(unicodeBlock)) {
+//                        return FullNameStyle.JAPANESE;
+//                    }
+//
+//                    if (isKoreanUnicodeBlock(unicodeBlock)) {
+//                        return FullNameStyle.KOREAN;
+//                    }
+//                }
+//                nameStyle = FullNameStyle.WESTERN;
+//            }
+//            offset += Character.charCount(codePoint);
+//        }
+//        return nameStyle;
+//    }
 
     /**
      * If the supplied name style is undefined, returns a default based on the
@@ -80,49 +80,49 @@ public class CheckLanguage {
      * 
      * @param nameStyle See {@link FullNameStyle}.
      */
-    public static int getAdjustedFullNameStyle(int nameStyle) {
-        String mLanguage = Locale.getDefault().getLanguage().toLowerCase();
-        if (nameStyle == FullNameStyle.UNDEFINED) {
-            if (JAPANESE_LANGUAGE.equals(mLanguage)) {
-                return FullNameStyle.JAPANESE;
-            } else if (KOREAN_LANGUAGE.equals(mLanguage)) {
-                return FullNameStyle.KOREAN;
-            } else if (CHINESE_LANGUAGE.equals(mLanguage)) {
-                return FullNameStyle.CHINESE;
-            } else {
-                return FullNameStyle.WESTERN;
-            }
-        } else if (nameStyle == FullNameStyle.CJK) {
-            if (JAPANESE_LANGUAGE.equals(mLanguage)) {
-                return FullNameStyle.JAPANESE;
-            } else if (KOREAN_LANGUAGE.equals(mLanguage)) {
-                return FullNameStyle.KOREAN;
-            } else {
-                return FullNameStyle.CHINESE;
-            }
-        }
-        return nameStyle;
-    }
-
-    private static boolean isLatinUnicodeBlock(UnicodeBlock unicodeBlock) {
-        return unicodeBlock == UnicodeBlock.BASIC_LATIN ||
-                unicodeBlock == UnicodeBlock.LATIN_1_SUPPLEMENT ||
-                unicodeBlock == UnicodeBlock.LATIN_EXTENDED_A ||
-                unicodeBlock == UnicodeBlock.LATIN_EXTENDED_B ||
-                unicodeBlock == UnicodeBlock.LATIN_EXTENDED_ADDITIONAL;
-    }
-
-    private static boolean isCJKUnicodeBlock(UnicodeBlock block) {
-        return block == UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS
-                || block == UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A
-                || block == UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_B
-                || block == UnicodeBlock.CJK_SYMBOLS_AND_PUNCTUATION
-                || block == UnicodeBlock.CJK_RADICALS_SUPPLEMENT
-                || block == UnicodeBlock.CJK_COMPATIBILITY
-                || block == UnicodeBlock.CJK_COMPATIBILITY_FORMS
-                || block == UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS
-                || block == UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS_SUPPLEMENT;
-    }
+//    public static int getAdjustedFullNameStyle(int nameStyle) {
+//        String mLanguage = Locale.getDefault().getLanguage().toLowerCase();
+//        if (nameStyle == FullNameStyle.UNDEFINED) {
+//            if (JAPANESE_LANGUAGE.equals(mLanguage)) {
+//                return FullNameStyle.JAPANESE;
+//            } else if (KOREAN_LANGUAGE.equals(mLanguage)) {
+//                return FullNameStyle.KOREAN;
+//            } else if (CHINESE_LANGUAGE.equals(mLanguage)) {
+//                return FullNameStyle.CHINESE;
+//            } else {
+//                return FullNameStyle.WESTERN;
+//            }
+//        } else if (nameStyle == FullNameStyle.CJK) {
+//            if (JAPANESE_LANGUAGE.equals(mLanguage)) {
+//                return FullNameStyle.JAPANESE;
+//            } else if (KOREAN_LANGUAGE.equals(mLanguage)) {
+//                return FullNameStyle.KOREAN;
+//            } else {
+//                return FullNameStyle.CHINESE;
+//            }
+//        }
+//        return nameStyle;
+//    }
+//
+//    private static boolean isLatinUnicodeBlock(UnicodeBlock unicodeBlock) {
+//        return unicodeBlock == UnicodeBlock.BASIC_LATIN ||
+//                unicodeBlock == UnicodeBlock.LATIN_1_SUPPLEMENT ||
+//                unicodeBlock == UnicodeBlock.LATIN_EXTENDED_A ||
+//                unicodeBlock == UnicodeBlock.LATIN_EXTENDED_B ||
+//                unicodeBlock == UnicodeBlock.LATIN_EXTENDED_ADDITIONAL;
+//    }
+//
+//    private static boolean isCJKUnicodeBlock(UnicodeBlock block) {
+//        return block == UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS
+//                || block == UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A
+//                || block == UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_B
+//                || block == UnicodeBlock.CJK_SYMBOLS_AND_PUNCTUATION
+//                || block == UnicodeBlock.CJK_RADICALS_SUPPLEMENT
+//                || block == UnicodeBlock.CJK_COMPATIBILITY
+//                || block == UnicodeBlock.CJK_COMPATIBILITY_FORMS
+//                || block == UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS
+//                || block == UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS_SUPPLEMENT;
+//    }
 
     private static boolean isKoreanUnicodeBlock(UnicodeBlock unicodeBlock) {
         return unicodeBlock == UnicodeBlock.HANGUL_SYLLABLES ||
@@ -137,24 +137,24 @@ public class CheckLanguage {
                 unicodeBlock == UnicodeBlock.HIRAGANA;
     }
 
-    private static int guessCJKNameStyle(String name, int offset) {
-        int length = name.length();
-        while (offset < length) {
-            int codePoint = Character.codePointAt(name, offset);
-            if (Character.isLetter(codePoint)) {
-                UnicodeBlock unicodeBlock = UnicodeBlock.of(codePoint);
-                if (isJapanesePhoneticUnicodeBlock(unicodeBlock)) {
-                    return FullNameStyle.JAPANESE;
-                }
-                if (isKoreanUnicodeBlock(unicodeBlock)) {
-                    return FullNameStyle.KOREAN;
-                }
-            }
-            offset += Character.charCount(codePoint);
-        }
-
-        return FullNameStyle.CJK;
-    }
+//    private static int guessCJKNameStyle(String name, int offset) {
+//        int length = name.length();
+//        while (offset < length) {
+//            int codePoint = Character.codePointAt(name, offset);
+//            if (Character.isLetter(codePoint)) {
+//                UnicodeBlock unicodeBlock = UnicodeBlock.of(codePoint);
+//                if (isJapanesePhoneticUnicodeBlock(unicodeBlock)) {
+//                    return FullNameStyle.JAPANESE;
+//                }
+//                if (isKoreanUnicodeBlock(unicodeBlock)) {
+//                    return FullNameStyle.KOREAN;
+//                }
+//            }
+//            offset += Character.charCount(codePoint);
+//        }
+//
+//        return FullNameStyle.CJK;
+//    }
 
     /**
      * Constants for various styles of combining given name, family name etc

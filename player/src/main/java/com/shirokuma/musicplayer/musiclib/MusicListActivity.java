@@ -1,11 +1,11 @@
 package com.shirokuma.musicplayer.musiclib;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
@@ -15,7 +15,6 @@ import com.shirokuma.musicplayer.KumaPlayer;
 import com.shirokuma.musicplayer.R;
 import com.shirokuma.musicplayer.common.BindSrvOpMenusActivity;
 import com.shirokuma.musicplayer.lyrics.LyricsActivity;
-import com.shirokuma.musicplayer.model.Filter;
 import com.shirokuma.musicplayer.setting.MediaSetting;
 
 public class MusicListActivity extends BindSrvOpMenusActivity {
@@ -77,7 +76,7 @@ public class MusicListActivity extends BindSrvOpMenusActivity {
                 mMusicSrv.playNext();
                 if (mMusicSrv.getCurrentSong() != null) {
                     mName.setText(mMusicSrv.getCurrentSong().title);
-                    mArtist.setText(mMusicSrv.getCurrentSong().artist);
+                    mArtist.setText(mMusicSrv.getCurrentSong().subhead());
                     mBtnPause.setVisibility(View.VISIBLE);
                     mBtnPlay.setVisibility(View.GONE);
                 }
@@ -85,7 +84,7 @@ public class MusicListActivity extends BindSrvOpMenusActivity {
                 mMusicSrv.playPrev();
                 if (mMusicSrv.getCurrentSong() != null) {
                     mName.setText(mMusicSrv.getCurrentSong().title);
-                    mArtist.setText(mMusicSrv.getCurrentSong().artist);
+                    mArtist.setText(mMusicSrv.getCurrentSong().subhead());
                     mBtnPause.setVisibility(View.VISIBLE);
                     mBtnPlay.setVisibility(View.GONE);
                 }
@@ -134,7 +133,7 @@ public class MusicListActivity extends BindSrvOpMenusActivity {
         super.onResume();
         if (mMusicSrv != null && mMusicSrv.getCurrentSong() != null) {
             mName.setText(mMusicSrv.getCurrentSong().title);
-            mArtist.setText(mMusicSrv.getCurrentSong().artist);
+            mArtist.setText(mMusicSrv.getCurrentSong().subhead());
             if (mMusicSrv.isPlaying()) {
                 mBtnPause.setVisibility(View.VISIBLE);
                 mBtnPlay.setVisibility(View.GONE);
@@ -149,11 +148,11 @@ public class MusicListActivity extends BindSrvOpMenusActivity {
     protected void onMusicSrvConnected() {
         if (mMusicSrv != null) {
             Filter filter = MediaSetting.getInstance(this).getLastFilter();
-            mMusicSrv.setPlaySongs(filter.fetch(this));
+            mMusicSrv.setPlaySongs(filter.fetch());
             displayList(filter);
             if (mMusicSrv.getCurrentSong() != null) {
                 mName.setText(mMusicSrv.getCurrentSong().title);
-                mArtist.setText(mMusicSrv.getCurrentSong().artist);
+                mArtist.setText(mMusicSrv.getCurrentSong().subhead());
                 // restore last playback state
                 mMusicSrv.restore();
             }
@@ -161,9 +160,9 @@ public class MusicListActivity extends BindSrvOpMenusActivity {
     }
 
     public void displayList(Filter filter) {
-        FragmentManager mgr = getFragmentManager();
+        FragmentManager mgr = getSupportFragmentManager();
         FragmentTransaction transaction = mgr.beginTransaction();
-        transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_left, R.anim.slide_out_right);
+//        transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_left, R.anim.slide_out_right);
         Fragment fragment = new MusiclistFragment();
         Bundle bundle = new Bundle();
         bundle.putParcelable(KumaPlayer.ARGUMENTS_KEY_FILTER, filter);
@@ -184,7 +183,7 @@ public class MusicListActivity extends BindSrvOpMenusActivity {
     protected void onMusicNext() {
         if (mMusicSrv != null && mMusicSrv.getCurrentSong() != null) {
             mName.setText(mMusicSrv.getCurrentSong().title);
-            mArtist.setText(mMusicSrv.getCurrentSong().artist);
+            mArtist.setText(mMusicSrv.getCurrentSong().subhead());
         }
     }
 
@@ -194,13 +193,13 @@ public class MusicListActivity extends BindSrvOpMenusActivity {
             mBtnPlay.setVisibility(View.GONE);
             mBtnPause.setVisibility(View.VISIBLE);
             mName.setText(mMusicSrv.getCurrentSong().title);
-            mArtist.setText(mMusicSrv.getCurrentSong().artist);
+            mArtist.setText(mMusicSrv.getCurrentSong().subhead());
         }
     }
 
     @Override
     public void onBackPressed() {
-        if (getFragmentManager().getBackStackEntryCount() > 1)
+        if (getSupportFragmentManager().getBackStackEntryCount() > 1)
             super.onBackPressed();
     }
 }

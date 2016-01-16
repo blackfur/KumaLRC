@@ -1,6 +1,7 @@
 package com.shirokuma.musicplayer.model;
 
 import android.graphics.Bitmap;
+import com.shirokuma.musicplayer.musiclib.Filter;
 
 public class Playlist implements Music {
     String name;

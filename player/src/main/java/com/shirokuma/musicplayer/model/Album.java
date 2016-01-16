@@ -1,24 +1,34 @@
 package com.shirokuma.musicplayer.model;
 
 import android.graphics.Bitmap;
+import android.util.Log;
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
+import com.shirokuma.musicplayer.KumaPlayer;
+import com.shirokuma.musicplayer.musiclib.Filter;
 
 @Table(name = "albums")
 public class Album extends Model implements Music {
-    @Column(name = "title", index = true)
-    public String album;
+    @Column(name = "title", index = true, unique = true, onUniqueConflict = Column.ConflictAction.IGNORE)
+    public String title;
     @Column(name = "amount")
     public int numsongs;
 
     public Album() {
         super();
+        Log.e(KumaPlayer.TAG,"==== construct album ====");
     }
 
     public Album(String[] pars) {
-        album = pars[0];
+        title = pars[0];
         numsongs = Integer.valueOf(pars[1]);
+    }
+
+    public Album(String title) {
+        super();
+        Log.e(KumaPlayer.TAG,"==== construct album ====");
+        this.title = title;
     }
 
     @Override
@@ -28,7 +38,7 @@ public class Album extends Model implements Music {
 
     @Override
     public String head() {
-        return album;
+        return title;
     }
 
     @Override
