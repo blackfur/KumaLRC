@@ -1,5 +1,6 @@
 package com.shiro.player;
 
+import android.os.Environment;
 import android.support.test.runner.AndroidJUnit4;
 import android.util.Log;
 import com.shirokuma.musicplayer.KumaPlayer;
@@ -13,19 +14,31 @@ import org.junit.runner.RunWith;
 
 import java.io.File;
 import java.io.FileFilter;
+import java.io.IOException;
 
 @RunWith(AndroidJUnit4.class)
 public class PlayerTest {
     @Test
     public void testMain() {
-        Log.e(KumaPlayer.TAG, "---- test main ----");
-        testScan();
+//        testScan();
+        testBackup();
     }
 
     private void testLrc() {
         String lyricPath = "";
         SimpleLyrics mLyrics = new SimpleLyrics();
 //        mLyrics.parse(song.lrc);
+    }
+
+    void testBackup() {
+        Log.e(KumaPlayer.TAG, "==== test backup ====");
+        String BACKUP = Environment.getExternalStorageDirectory() + "/Linguistics/database.dat";
+        String DATABASE = "/data/data/com.shiro.linguistics.player/databases/linguistics.db";
+        try {
+            com.shiro.tools.Utils.copy(DATABASE, BACKUP);
+        } catch (IOException e) {
+            Log.e(KumaPlayer.TAG,e.getMessage());
+        }
     }
 
     void testScan() {
@@ -55,7 +68,7 @@ public class PlayerTest {
                 IMusicMetadata metadata = src_set.getSimplified();
                 Log.e(KumaPlayer.TAG, "IMusicMetadata: " + metadata);
                 Song newSong = new Song(metadata.getSongTitle(), metadata.getArtist(), metadata.getAlbum(), f.getAbsolutePath());
-                Log.e(KumaPlayer.TAG, "finding lyrics: "+ path);
+                Log.e(KumaPlayer.TAG, "finding lyrics: " + path);
                 String lrc = path.substring(0, path.lastIndexOf('.')) + ".lrc";
                 if (new File(lrc).exists()) {
                     Log.e(KumaPlayer.TAG, lrc);

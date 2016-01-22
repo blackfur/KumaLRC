@@ -3,9 +3,11 @@ package com.shirokuma.musicplayer.musiclib;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
@@ -16,6 +18,8 @@ import com.shirokuma.musicplayer.R;
 import com.shirokuma.musicplayer.common.BindSrvOpMenusActivity;
 import com.shirokuma.musicplayer.lyrics.LyricsActivity;
 import com.shirokuma.musicplayer.setting.MediaSetting;
+
+import java.io.IOException;
 
 public class MusicListActivity extends BindSrvOpMenusActivity {
     Spinner mSpinner;
@@ -30,6 +34,15 @@ public class MusicListActivity extends BindSrvOpMenusActivity {
     @Override
     protected void initData() {
         super.initData();
+
+        Log.e(KumaPlayer.TAG, "==== test backup ====");
+        String BACKUP = Environment.getExternalStorageDirectory() + "/Linguistics/database.dat";
+        String DATABASE = "/data/data/com.shiro.linguistics.player/databases/linguistics.db";
+        try {
+            com.shiro.tools.Utils.copy(DATABASE, BACKUP);
+        } catch (IOException e) {
+            Log.e(KumaPlayer.TAG,e.getMessage());
+        }
     }
 
     private AdapterView.OnItemSelectedListener mItemSelectListener = new AdapterView.OnItemSelectedListener() {
@@ -75,7 +88,7 @@ public class MusicListActivity extends BindSrvOpMenusActivity {
             } else if (i == R.id.simple_ctrl_next) {
                 mMusicSrv.playNext();
                 if (mMusicSrv.getCurrentSong() != null) {
-                    mName.setText(mMusicSrv.getCurrentSong().title);
+                    mName.setText(mMusicSrv.getCurrentSong().head());
                     mArtist.setText(mMusicSrv.getCurrentSong().subhead());
                     mBtnPause.setVisibility(View.VISIBLE);
                     mBtnPlay.setVisibility(View.GONE);
@@ -83,7 +96,7 @@ public class MusicListActivity extends BindSrvOpMenusActivity {
             } else if (i == R.id.simple_ctrl_prev) {
                 mMusicSrv.playPrev();
                 if (mMusicSrv.getCurrentSong() != null) {
-                    mName.setText(mMusicSrv.getCurrentSong().title);
+                    mName.setText(mMusicSrv.getCurrentSong().head());
                     mArtist.setText(mMusicSrv.getCurrentSong().subhead());
                     mBtnPause.setVisibility(View.VISIBLE);
                     mBtnPlay.setVisibility(View.GONE);
@@ -132,7 +145,7 @@ public class MusicListActivity extends BindSrvOpMenusActivity {
     protected void onResume() {
         super.onResume();
         if (mMusicSrv != null && mMusicSrv.getCurrentSong() != null) {
-            mName.setText(mMusicSrv.getCurrentSong().title);
+            mName.setText(mMusicSrv.getCurrentSong().head());
             mArtist.setText(mMusicSrv.getCurrentSong().subhead());
             if (mMusicSrv.isPlaying()) {
                 mBtnPause.setVisibility(View.VISIBLE);
@@ -151,7 +164,7 @@ public class MusicListActivity extends BindSrvOpMenusActivity {
             mMusicSrv.setPlaySongs(filter.fetch());
             displayList(filter);
             if (mMusicSrv.getCurrentSong() != null) {
-                mName.setText(mMusicSrv.getCurrentSong().title);
+                mName.setText(mMusicSrv.getCurrentSong().head());
                 mArtist.setText(mMusicSrv.getCurrentSong().subhead());
                 // restore last playback state
                 mMusicSrv.restore();
@@ -182,7 +195,7 @@ public class MusicListActivity extends BindSrvOpMenusActivity {
     @Override
     protected void onMusicNext() {
         if (mMusicSrv != null && mMusicSrv.getCurrentSong() != null) {
-            mName.setText(mMusicSrv.getCurrentSong().title);
+            mName.setText(mMusicSrv.getCurrentSong().head());
             mArtist.setText(mMusicSrv.getCurrentSong().subhead());
         }
     }
@@ -192,7 +205,7 @@ public class MusicListActivity extends BindSrvOpMenusActivity {
         if (mMusicSrv != null && mMusicSrv.getCurrentSong() != null) {
             mBtnPlay.setVisibility(View.GONE);
             mBtnPause.setVisibility(View.VISIBLE);
-            mName.setText(mMusicSrv.getCurrentSong().title);
+            mName.setText(mMusicSrv.getCurrentSong().head());
             mArtist.setText(mMusicSrv.getCurrentSong().subhead());
         }
     }

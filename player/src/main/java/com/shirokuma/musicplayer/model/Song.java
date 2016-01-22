@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
+import com.activeandroid.query.Select;
 import com.activeandroid.util.Log;
 import com.shirokuma.musicplayer.KumaPlayer;
 import com.shirokuma.musicplayer.musiclib.Filter;
@@ -24,6 +25,7 @@ public class Song extends Model implements Music {
     public String dir;
     @Column(name = "path", index = true, unique = true, onUniqueConflict = Column.ConflictAction.ABORT)
     public String path;
+
     public Song() {
         super();
     }
@@ -35,12 +37,38 @@ public class Song extends Model implements Music {
         progress = p;
     }
 
-    public Song(String t, String a, String album, String path) {
+    /**
+     * special for scanning then storing
+     *
+     * @param t
+     * @param a
+     * @param albumStr
+     * @param path
+     */
+    public Song(String t, String a, String albumStr, String path) {
         super();
         Log.e(KumaPlayer.TAG, "==== construct Song ====");
         title = t;
-        artist = new Artist(a);
-        this.album = new Album(album);
+        if (a != null) {
+            artist = new Select().from(Artist.class).where("name=?", a).executeSingle();
+            if (artist != null) {
+                artist.amount += 1;
+            } else {
+                artist = new Artist(a);
+                artist.amount = 1;
+            }
+            artist.save();
+        }
+        if (albumStr != null) {
+            album = new Select().from(Album.class).where("title=?", a).executeSingle();
+            if (album != null) {
+                album.numsongs += 1;
+            } else {
+                album = new Album(albumStr);
+                album.numsongs = 1;
+            }
+            album.save();
+        }
         this.path = path;
         Log.e(KumaPlayer.TAG, "==== constructed ====");
     }
@@ -63,7 +91,10 @@ public class Song extends Model implements Music {
 
     @Override
     public String head() {
-        return title == null ? "" : title;
+        if (title == null) {
+            return path.substring(path.lastIndexOf('/'));
+        }
+        return title;
     }
 
     @Override

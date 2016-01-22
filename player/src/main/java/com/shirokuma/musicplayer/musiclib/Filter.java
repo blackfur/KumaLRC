@@ -9,6 +9,7 @@ import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.util.Log;
 import com.activeandroid.Model;
+import com.activeandroid.query.From;
 import com.activeandroid.query.Select;
 import com.shirokuma.musicplayer.KumaPlayer;
 import com.shirokuma.musicplayer.model.Album;
@@ -201,26 +202,27 @@ public class Filter implements Parcelable {
             switch (id) {
                 case 0:
                     Log.e(KumaPlayer.TAG, "==== select songs ====");
-                    String whereClause = "";
                     if (album != null) {
-                        com.shirokuma.musicplayer.model.Album songAlbum = new Select().from(com.shirokuma.musicplayer.model.Album.class).where("title=?", album).executeSingle();
-                        if (songAlbum != null)
-                            whereClause = "album=" + songAlbum.getId();
+                        From from = new Select().from(com.shirokuma.musicplayer.model.Song.class).as("a").innerJoin(com.shirokuma.musicplayer.model.Album.class).as("b").on("a.album=b.Id").where("b.title=?", album);
+                        Log.e(KumaPlayer.TAG, from.toString());
+                        result = from.execute();
+                    } else if (artist != null) {
+                        From from = new Select().from(com.shirokuma.musicplayer.model.Song.class).as("a").innerJoin(com.shirokuma.musicplayer.model.Artist.class).as("b").on("a.artist=b.Id").where("b.name=?", artist);
+                        Log.e(KumaPlayer.TAG, from.toString());
+                        result = from.execute();
+                    } else {
+                        From from = new Select().all().from(com.shirokuma.musicplayer.model.Song.class);
+                        Log.e(KumaPlayer.TAG, from.toString());
+                        result = from.execute();
                     }
-                    if (artist != null) {
-                        com.shirokuma.musicplayer.model.Artist songArtist = new Select().from(com.shirokuma.musicplayer.model.Artist.class).where("name=?", artist).executeSingle();
-                        if (songArtist != null)
-                            whereClause += (whereClause.length() == 0 ? "artist=" + songArtist.getId() : " and artist=" + songArtist.getId());
-                    }
-                    result = new Select().from(com.shirokuma.musicplayer.model.Song.class).where(whereClause).execute();
                     break;
                 case 1:
                     Log.e(KumaPlayer.TAG, "==== select artists ====");
-                    result = new Select().from(com.shirokuma.musicplayer.model.Artist.class).execute();
+                    result = new Select().all().distinct().from(com.shirokuma.musicplayer.model.Artist.class).execute();
                     break;
                 case 2:
                     Log.e(KumaPlayer.TAG, "==== select albums ====");
-                    result = new Select().from(com.shirokuma.musicplayer.model.Album.class).execute();
+                    result = new Select().all().distinct().from(com.shirokuma.musicplayer.model.Album.class).execute();
                     break;
                 case 3:
                     Log.e(KumaPlayer.TAG, "==== select playlist ====");

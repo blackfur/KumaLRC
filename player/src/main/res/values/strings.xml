@@ -36,6 +36,7 @@
         <item>90 minutes</item>
     </string-array>
 
+    <string name="success">success</string>
     <string name="scanning">scanning</string>
     <string name="scanned">scanned</string>
     <string name="playing">Playing</string>

@@ -168,7 +168,7 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
             if (new Select().from(com.shirokuma.musicplayer.model.Song.class).where("path= ?", currentSong.path).exists()) {
                 new Update(com.shirokuma.musicplayer.model.Song.class).set("progress=?", currentSong.progress).where("path= ?", currentSong.path).execute();
             } else {
-                new com.shirokuma.musicplayer.model.Song(currentSong.title, currentSong.subhead(), currentSong.progress).save();
+                new com.shirokuma.musicplayer.model.Song(currentSong.head(), currentSong.subhead(), currentSong.progress).save();
             }
         } else if (mCurrentState == State.Completed || mCurrentState == State.Stopped) {
             // It make no sense to still keep the song's play progress after it completed or stopped.
@@ -261,10 +261,10 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
         Notification.Builder builder = new Notification.Builder(this);
         builder.setContentIntent(pendInt)
                 .setSmallIcon(R.drawable.button_general_mini_playing_play)
-                .setTicker(currentSong.title)
+                .setTicker(currentSong.head())
                 .setOngoing(true)
                 .setContentTitle(getString(R.string.playing))
-                .setContentText(currentSong.title);
+                .setContentText(currentSong.head());
         Notification not = builder.build();
         startForeground(NOTIFY_ID, not);
     }

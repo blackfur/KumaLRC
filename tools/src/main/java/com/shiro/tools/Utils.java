@@ -10,6 +10,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Environment;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Toast;
@@ -19,6 +20,7 @@ import java.lang.reflect.Method;
 import java.nio.channels.FileChannel;
 
 public class Utils {
+    private final static String TAG = "kumaplayer";
     private static boolean DEBUG = true;
 
     public static void alert(final Activity context, final String message) {
@@ -69,8 +71,10 @@ public class Utils {
     }
 
     public static boolean copy(String from, String to) throws IOException {
+        Log.e(TAG, "==== coping ====" + from);
         File fromFile = new File(from);
         if (fromFile.exists()) {
+            Log.e(TAG, "==== source exists ====");
             FileInputStream fromStream = new FileInputStream(fromFile);
             File toFile = new File(to);
             if (!toFile.exists()) {
@@ -80,12 +84,15 @@ public class Utils {
             FileOutputStream toStream = new FileOutputStream(toFile);
             FileChannel fromChannel = null;
             FileChannel toChannel = null;
+            Log.e(TAG, "==== transfer ====");
             try {
                 fromChannel = fromStream.getChannel();
                 toChannel = toStream.getChannel();
                 fromChannel.transferTo(0, fromChannel.size(), toChannel);
+                Log.e(TAG, "==== backup success ====");
                 return true;
             } finally {
+                Log.e(TAG, "==== close channel ====");
                 try {
                     if (fromChannel != null) {
                         fromChannel.close();
@@ -96,7 +103,10 @@ public class Utils {
                     }
                 }
             }
-        } else return false;
+        } else {
+            Log.e(TAG, "==== source not found ====");
+            return false;
+        }
     }
 
     public boolean isExternalStorageWritable() {
@@ -171,7 +181,7 @@ public class Utils {
         BufferedReader reader;
         try {
             FileInputStream stream = new FileInputStream(path);
-            reader = new BufferedReader(new InputStreamReader(stream, encode == null ? "GB2312" : encode));
+            reader = new BufferedReader(new InputStreamReader(stream, encode == null ? "utf-8" : encode));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             return null;
@@ -229,5 +239,41 @@ public class Utils {
         v.measure(0, 0);
         return new int[]{v.getMeasuredWidth() / 2, v.getMeasuredHeight() / 2};
     }
+    public static void warn(final Activity c, final int msgRes, final String msg, final ProgressDialog progress, final DialogInterface.OnClickListener callback) {
+        c.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (msgRes > 0)
+                    new AlertDialog.Builder(c).setMessage(c.getString(msgRes)).setCancelable(true).setPositiveButton(android.R.string.ok, callback).show();
+                else if (msg != null)
+                    new AlertDialog.Builder(c).setMessage(msg).setCancelable(true).setPositiveButton(android.R.string.ok, callback).show();
+                if (progress != null)
+                    progress.dismiss();
+            }
+        });
+    }
 
+    public static void warn(final Activity c, final String msg) {
+        warn(c, 0, msg, null, null);
+    }
+
+    public static void warn(final Activity c, final int strRes, final ProgressDialog progress) {
+        warn(c, strRes, null, progress, null);
+    }
+
+    public static void warn(final Activity c, final String msg, final ProgressDialog progress) {
+        warn(c, 0, msg, progress, null);
+    }
+
+    public static void warn(final Activity c, final int msgRes, final ProgressDialog progress, DialogInterface.OnClickListener callback) {
+        warn(c, msgRes, null, progress, callback);
+    }
+
+    public static void warn(final Activity c, final int msgRes, DialogInterface.OnClickListener callback) {
+        warn(c, msgRes, null, null, callback);
+    }
+
+    public static void warn(final Activity c, final int msgRes) {
+        warn(c, msgRes, null, null, null);
+    }
 }

@@ -1,16 +1,20 @@
 package com.shirokuma.musicplayer.musiclib;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import com.activeandroid.query.Select;
+import com.shiro.tools.Utils;
 import com.shiro.tools.view.ProgressDialogWrapper;
 import com.shirokuma.musicplayer.KumaPlayer;
 import com.shirokuma.musicplayer.R;
@@ -64,24 +68,29 @@ public class ScanActivity extends FragmentActivity {
             adapter.notifyDataSetChanged();
         }
     };
+
+    void updir() {
+        File currentDir = (File) path.getTag();
+        if (currentDir != null) {
+            File parentDir = currentDir.getParentFile();
+            if (parentDir != null) {
+                Log.e(KumaPlayer.TAG, "==== back path ====");
+                Log.e(KumaPlayer.TAG, parentDir.getAbsolutePath());
+                path.setText(parentDir.getAbsolutePath());
+                path.setTag(parentDir);
+                paths = dir2subdirs(parentDir);
+                adapter.notifyDataSetChanged();
+            } else {
+                Log.e(KumaPlayer.TAG, "parent directory null");
+            }
+        }
+    }
+
     View.OnClickListener onClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             if (v.getId() == R.id.back) {
-                File currentDir = (File) path.getTag();
-                if (currentDir != null) {
-                    File parentDir = currentDir.getParentFile();
-                    if (parentDir != null) {
-                        Log.e(KumaPlayer.TAG, "==== back path ====");
-                        Log.e(KumaPlayer.TAG, parentDir.getAbsolutePath());
-                        path.setText(parentDir.getAbsolutePath());
-                        path.setTag(parentDir);
-                        paths = dir2subdirs(parentDir);
-                        adapter.notifyDataSetChanged();
-                    } else {
-                        Log.e(KumaPlayer.TAG, "parent directory null");
-                    }
-                }
+                updir();
             } else if (v.getId() == R.id.ok) {
                 progress.loading(R.string.loading);
                 new Thread(new Runnable() {
@@ -103,20 +112,24 @@ public class ScanActivity extends FragmentActivity {
                                 Log.e(KumaPlayer.TAG, "==== read then store audio file meta data ====");
                                 for (File f : searchDir.listFiles(audioFilter)) {
                                     String path = f.getAbsolutePath();
-                                    Log.e(KumaPlayer.TAG, "reading: " + path);
-                                    MusicMetadataSet src_set = new MyID3().read(f);
-                                    Log.e(KumaPlayer.TAG, "MusicMetadataSet: " + src_set);
-                                    IMusicMetadata metadata = src_set.getSimplified();
-                                    Log.e(KumaPlayer.TAG, "IMusicMetadata: " + metadata);
-                                    Song newSong = new Song(metadata.getSongTitle(), metadata.getArtist(), metadata.getAlbum(), f.getAbsolutePath());
-                                    Log.e(KumaPlayer.TAG, "finding lyrics: "+ path);
-                                    String lrc = path.substring(0, path.lastIndexOf('.')) + ".lrc";
-                                    if (new File(lrc).exists()) {
-                                        Log.e(KumaPlayer.TAG, lrc);
-                                        newSong.lrc = lrc;
+                                    Log.e(KumaPlayer.TAG, "==== " + path + " ====");
+                                    if (!new Select().from(Song.class).where("path=?", path).exists()) {
+                                        MusicMetadataSet src_set = new MyID3().read(f);
+                                        Log.e(KumaPlayer.TAG, "MusicMetadataSet: " + src_set);
+                                        IMusicMetadata metadata = src_set.getSimplified();
+                                        Log.e(KumaPlayer.TAG, "IMusicMetadata: " + metadata);
+                                        Song newSong = new Song(metadata.getSongTitle(), metadata.getArtist(), metadata.getAlbum(), f.getAbsolutePath());
+                                        Log.e(KumaPlayer.TAG, "finding lyrics: " + path);
+                                        String lrc = path.substring(0, path.lastIndexOf('.')) + ".lrc";
+                                        if (new File(lrc).exists()) {
+                                            Log.e(KumaPlayer.TAG, "found: " + lrc);
+                                            newSong.lrc = lrc;
+                                        }
+                                        long result = newSong.save();
+                                        Log.e(KumaPlayer.TAG, "saved result: " + result);
+                                    } else {
+                                        Log.e(KumaPlayer.TAG, "already exists");
                                     }
-                                    newSong.save();
-                                    Log.e(KumaPlayer.TAG, "saved: " + path);
                                     progress.hint(f.getAbsolutePath());
                                 }
                             }
@@ -124,11 +137,19 @@ public class ScanActivity extends FragmentActivity {
                             Log.e(KumaPlayer.TAG, e.getMessage());
                         }
                         progress.dismiss();
+                        Utils.warn(getContext(), R.string.success, onDialogClick);
                     }
                 }).start();
             } else if (v.getId() == R.id.cancel) {
                 finish();
             }
+        }
+    };
+    DialogInterface.OnClickListener onDialogClick = new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            dialog.dismiss();
+            finish();
         }
     };
 
@@ -192,5 +213,15 @@ public class ScanActivity extends FragmentActivity {
 
     private static class ViewHolder {
         public TextView title;
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK
+                && event.getRepeatCount() == 0) {
+            updir();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
