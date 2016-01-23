@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import com.activeandroid.ActiveAndroid;
 import com.activeandroid.query.Select;
 import com.shiro.tools.Utils;
 import com.shiro.tools.view.ProgressDialogWrapper;
@@ -93,53 +94,7 @@ public class ScanActivity extends FragmentActivity {
                 updir();
             } else if (v.getId() == R.id.ok) {
                 progress.loading(R.string.loading);
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        File searchDir = (File) path.getTag();
-                        try {
-                            if (searchDir != null) {
-                                FileFilter audioFilter = new FileFilter() {
-                                    public boolean accept(File file) {
-                                        if (file.isFile()) {
-                                            String name = file.getName();
-                                            String extension = name.substring(name.lastIndexOf('.') + 1);
-                                            return extension.equalsIgnoreCase("mp3");
-                                        }
-                                        return false;
-                                    }
-                                };
-                                Log.e(KumaPlayer.TAG, "==== read then store audio file meta data ====");
-                                for (File f : searchDir.listFiles(audioFilter)) {
-                                    String path = f.getAbsolutePath();
-                                    Log.e(KumaPlayer.TAG, "==== " + path + " ====");
-                                    if (!new Select().from(Song.class).where("path=?", path).exists()) {
-                                        MusicMetadataSet src_set = new MyID3().read(f);
-                                        Log.e(KumaPlayer.TAG, "MusicMetadataSet: " + src_set);
-                                        IMusicMetadata metadata = src_set.getSimplified();
-                                        Log.e(KumaPlayer.TAG, "IMusicMetadata: " + metadata);
-                                        Song newSong = new Song(metadata.getSongTitle(), metadata.getArtist(), metadata.getAlbum(), f.getAbsolutePath());
-                                        Log.e(KumaPlayer.TAG, "finding lyrics: " + path);
-                                        String lrc = path.substring(0, path.lastIndexOf('.')) + ".lrc";
-                                        if (new File(lrc).exists()) {
-                                            Log.e(KumaPlayer.TAG, "found: " + lrc);
-                                            newSong.lrc = lrc;
-                                        }
-                                        long result = newSong.save();
-                                        Log.e(KumaPlayer.TAG, "saved result: " + result);
-                                    } else {
-                                        Log.e(KumaPlayer.TAG, "already exists");
-                                    }
-                                    progress.hint(f.getAbsolutePath());
-                                }
-                            }
-                        } catch (IOException e) {
-                            Log.e(KumaPlayer.TAG, e.getMessage());
-                        }
-                        progress.dismiss();
-                        Utils.warn(getContext(), R.string.success, onDialogClick);
-                    }
-                }).start();
+                new Thread(scanTask).start();
             } else if (v.getId() == R.id.cancel) {
                 finish();
             }
@@ -224,4 +179,57 @@ public class ScanActivity extends FragmentActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
+
+    Runnable scanTask = new Runnable() {
+        @Override
+        public void run() {
+            File searchDir = (File) path.getTag();
+            try {
+                if (searchDir != null) {
+                    FileFilter audioFilter = new FileFilter() {
+                        public boolean accept(File file) {
+                            if (file.isFile()) {
+                                String name = file.getName();
+                                String extension = name.substring(name.lastIndexOf('.') + 1);
+                                return extension.equalsIgnoreCase("mp3");
+                            }
+                            return false;
+                        }
+                    };
+                    Log.e(KumaPlayer.TAG, "==== read then store audio file meta data ====");
+                    //
+                    ActiveAndroid.beginTransaction();
+                    for (File f : searchDir.listFiles(audioFilter)) {
+                        String path = f.getAbsolutePath();
+                        Log.e(KumaPlayer.TAG, "==== " + path + " ====");
+                        if (!new Select().from(Song.class).where("path=?", path).exists()) {
+                            MusicMetadataSet src_set = new MyID3().read(f);
+                            Log.e(KumaPlayer.TAG, "MusicMetadataSet: " + src_set);
+                            IMusicMetadata metadata = src_set.getSimplified();
+                            Log.e(KumaPlayer.TAG, "IMusicMetadata: " + metadata);
+                            Song newSong = new Song(metadata.getSongTitle(), metadata.getArtist(), metadata.getAlbum(), f.getAbsolutePath());
+                            Log.e(KumaPlayer.TAG, "finding lyrics: " + path);
+                            String lrc = path.substring(0, path.lastIndexOf('.')) + ".lrc";
+                            if (new File(lrc).exists()) {
+                                Log.e(KumaPlayer.TAG, "found: " + lrc);
+                                newSong.lrc = lrc;
+                            }
+                            long result = newSong.save();
+                            Log.e(KumaPlayer.TAG, "saved result: " + result);
+                        } else {
+                            Log.e(KumaPlayer.TAG, "already exists");
+                        }
+                        progress.hint(f.getAbsolutePath());
+                    }
+                    ActiveAndroid.setTransactionSuccessful();
+                }
+            } catch (IOException e) {
+                Log.e(KumaPlayer.TAG, e.getMessage() == null ? "Null Pointer" : e.getMessage());
+            } finally {
+                ActiveAndroid.endTransaction();
+            }
+            progress.dismiss();
+            Utils.warn(getContext(), R.string.success, onDialogClick);
+        }
+    };
 }

@@ -3,11 +3,9 @@ package com.shirokuma.musicplayer.musiclib;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
@@ -18,8 +16,6 @@ import com.shirokuma.musicplayer.R;
 import com.shirokuma.musicplayer.common.BindSrvOpMenusActivity;
 import com.shirokuma.musicplayer.lyrics.LyricsActivity;
 import com.shirokuma.musicplayer.setting.MediaSetting;
-
-import java.io.IOException;
 
 public class MusicListActivity extends BindSrvOpMenusActivity {
     Spinner mSpinner;
@@ -35,14 +31,14 @@ public class MusicListActivity extends BindSrvOpMenusActivity {
     protected void initData() {
         super.initData();
 
-        Log.e(KumaPlayer.TAG, "==== test backup ====");
-        String BACKUP = Environment.getExternalStorageDirectory() + "/Linguistics/database.dat";
-        String DATABASE = "/data/data/com.shiro.linguistics.player/databases/linguistics.db";
-        try {
-            com.shiro.tools.Utils.copy(DATABASE, BACKUP);
-        } catch (IOException e) {
-            Log.e(KumaPlayer.TAG,e.getMessage());
-        }
+//        Log.e(KumaPlayer.TAG, "==== test backup ====");
+//        String BACKUP = Environment.getExternalStorageDirectory() + "/Linguistics/database.dat";
+//        String DATABASE = "/data/data/com.shiro.linguistics.player/databases/linguistics.db";
+//        try {
+//            com.shiro.tools.Utils.copy(DATABASE, BACKUP);
+//        } catch (IOException e) {
+//            Log.e(KumaPlayer.TAG,e.getMessage());
+//        }
     }
 
     private AdapterView.OnItemSelectedListener mItemSelectListener = new AdapterView.OnItemSelectedListener() {

@@ -48,7 +48,8 @@ public class Song extends Model implements Music {
     public Song(String t, String a, String albumStr, String path) {
         super();
         Log.e(KumaPlayer.TAG, "==== construct Song ====");
-        title = t;
+        if (t != null)
+            title = t;
         if (a != null) {
             artist = new Select().from(Artist.class).where("name=?", a).executeSingle();
             if (artist != null) {
@@ -57,17 +58,19 @@ public class Song extends Model implements Music {
                 artist = new Artist(a);
                 artist.amount = 1;
             }
-            artist.save();
+            long result = artist.save();
+            if (result == -1) artist = null;
         }
         if (albumStr != null) {
-            album = new Select().from(Album.class).where("title=?", a).executeSingle();
+            album = new Select().from(Album.class).where("title=?", albumStr).executeSingle();
             if (album != null) {
                 album.numsongs += 1;
             } else {
                 album = new Album(albumStr);
                 album.numsongs = 1;
             }
-            album.save();
+            long result = album.save();
+            if (result == -1) album = null;
         }
         this.path = path;
         Log.e(KumaPlayer.TAG, "==== constructed ====");

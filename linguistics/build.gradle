@@ -51,13 +51,17 @@ android {
     sourceSets {
         main {
             manifest.srcFile 'src/main/AndroidManifest.xml'
-            java.srcDirs = ['src/main/java', 'src/memorize/java/']
+            java.srcDirs = ['src/main/java']
         }
         player {
             manifest.srcFile 'src/player/AndroidManifest.xml'
+            java.srcDirs = ['src/player/java/']
+            res.srcDirs = ['src/player/res']
         }
         memorize {
             manifest.srcFile 'src/memorize/AndroidManifest.xml'
+            java.srcDirs = ['src/memorize/java/']
+            res.srcDirs = ['src/memorize/res']
         }
     }
 }
