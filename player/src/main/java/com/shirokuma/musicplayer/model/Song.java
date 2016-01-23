@@ -9,7 +9,7 @@ import com.activeandroid.util.Log;
 import com.shirokuma.musicplayer.KumaPlayer;
 import com.shirokuma.musicplayer.musiclib.Filter;
 
-@Table(name = "Songs")
+@Table(name = "songs")
 public class Song extends Model implements Music {
     public long songid;
     @Column(name = "title")

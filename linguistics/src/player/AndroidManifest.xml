@@ -12,6 +12,58 @@
         <meta-data
                 android:name="AA_MODELS"
                 android:value="com.shirokuma.musicplayer.model.Song,com.shirokuma.musicplayer.model.Artist,com.shirokuma.musicplayer.model.Album"/>
+
+        <activity
+                android:exported="true"
+                android:name="com.shirokuma.musicplayer.musiclib.MusicListActivity"
+                android:launchMode="singleTask"
+                android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+                android:name="com.shirokuma.musicplayer.lyrics.LyricsActivity"
+                android:exported="true"
+                android:launchMode="singleTask"
+                android:screenOrientation="portrait"/>
+        <activity
+                android:name="com.shirokuma.musicplayer.GuideActivity"
+                android:screenOrientation="portrait"
+                android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <activity
+                android:name="com.shirokuma.musicplayer.setting.SettingActivity"
+                android:screenOrientation="portrait"/>
+
+
+        <activity
+                android:name="com.shirokuma.musicplayer.setting.TimerActivity"
+                android:screenOrientation="portrait"
+                android:theme="@style/timer_dialog"/>
+
+        <receiver android:name="com.shirokuma.musicplayer.playback.MusicBroadcast"/>
+        <service android:name="com.shirokuma.musicplayer.playback.MusicService"/>
+
+        <receiver android:name="com.shiro.linguistics.widget.PlayerAppWidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+            </intent-filter>
+
+            <meta-data
+                    android:name="android.appwidget.provider"
+                    android:resource="@xml/player_appwidget_info"/>
+        </receiver>
+        <receiver android:name="com.shiro.linguistics.widget.SongsWidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+            </intent-filter>
+
+            <meta-data
+                    android:name="android.appwidget.provider"
+                    android:resource="@xml/songs_widget_info"/>
+        </receiver>
     </application>
 
 </manifest>
