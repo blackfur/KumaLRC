@@ -26,6 +26,7 @@
         <item>Artist</item>
         <item>Album</item>
         <item>Playlist</item>
+        <item>Folder</item>
     </string-array>
 
     <string-array name="timer_list">

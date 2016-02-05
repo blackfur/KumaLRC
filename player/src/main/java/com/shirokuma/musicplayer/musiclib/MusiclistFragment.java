@@ -20,6 +20,7 @@ import com.shirokuma.musicplayer.KumaPlayer;
 import com.shirokuma.musicplayer.R;
 import com.shirokuma.musicplayer.model.Album;
 import com.shirokuma.musicplayer.model.Artist;
+import com.shirokuma.musicplayer.model.Folder;
 import com.shirokuma.musicplayer.model.Song;
 import com.shirokuma.musicplayer.view.TouchSwipeListView;
 
@@ -144,6 +145,9 @@ public class MusiclistFragment extends Fragment {
                     break;
                 case Artist:
                     main.displayList(new Filter(Filter.FilterType.Song, null, ((Artist) mDisplayMusic.get(position)).name));
+                    break;
+                case Folder:
+                    main.displayList(new Filter(((Folder) mDisplayMusic.get(position))));
                     break;
             }
         }

@@ -22,7 +22,8 @@ public class Song extends Model implements Music {
     public String lrc;
     @Column(name = "album")
     public Album album;
-    public String dir;
+    @Column(name = "folder")
+    public Folder folder;
     @Column(name = "path", index = true, unique = true, onUniqueConflict = Column.ConflictAction.ABORT)
     public String path;
 
@@ -50,6 +51,7 @@ public class Song extends Model implements Music {
         Log.e(KumaPlayer.TAG, "==== construct Song ====");
         if (t != null)
             title = t;
+        // save artist information
         if (a != null) {
             artist = new Select().from(Artist.class).where("name=?", a).executeSingle();
             if (artist != null) {
@@ -61,6 +63,7 @@ public class Song extends Model implements Music {
             long result = artist.save();
             if (result == -1) artist = null;
         }
+        // save album information
         if (albumStr != null) {
             album = new Select().from(Album.class).where("title=?", albumStr).executeSingle();
             if (album != null) {
@@ -73,6 +76,21 @@ public class Song extends Model implements Music {
             if (result == -1) album = null;
         }
         this.path = path;
+        // save folder information
+        {
+            String direcotry = path.substring(0, path.lastIndexOf("/"));
+            folder = new Select().from(Folder.class).where("path=?", direcotry).executeSingle();
+            if (folder != null) {
+                folder.count += 1;
+            } else {
+                folder = new Folder();
+                folder.count = 1;
+                folder.path = direcotry;
+            }
+            long result = folder.save();
+            if (result == -1) folder = null;
+        }
+        //
         Log.e(KumaPlayer.TAG, "==== constructed ====");
     }
 
@@ -83,7 +101,7 @@ public class Song extends Model implements Music {
         lrc = pars[3];
         album = new Album();
         album.title = pars[4];
-        dir = pars[5];
+//        dir = pars[5];
         path = pars[6];
     }
 

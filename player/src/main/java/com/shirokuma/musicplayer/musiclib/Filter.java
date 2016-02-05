@@ -12,10 +12,7 @@ import com.activeandroid.Model;
 import com.activeandroid.query.From;
 import com.activeandroid.query.Select;
 import com.shirokuma.musicplayer.KumaPlayer;
-import com.shirokuma.musicplayer.model.Album;
-import com.shirokuma.musicplayer.model.Artist;
-import com.shirokuma.musicplayer.model.Playlist;
-import com.shirokuma.musicplayer.model.Song;
+import com.shirokuma.musicplayer.model.*;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -26,12 +23,18 @@ import java.util.List;
 // audio media filter for querying specific info: songs, artists, albums, playlist
 public class Filter implements Parcelable {
     public FilterType type;
+    public Folder folderFilter;
     public String album, artist;
 
     public Filter(FilterType type, String album, String artist) {
         this.type = type;
         this.album = album;
         this.artist = artist;
+    }
+
+    public Filter(Folder f) {
+        type = FilterType.Song;
+        folderFilter = f;
     }
 
     // query media info
@@ -42,6 +45,14 @@ public class Filter implements Parcelable {
     // query media info
     public ArrayList fetch() {
 //        return type.musicStore.fetch(context, artist, album);
+        // query classification, or query all songs without filter
+        if (type == FilterType.Folder || type == FilterType.Album || type == FilterType.Artist || type == FilterType.Playlist || (type == FilterType.Song && folderFilter == null && album == null && artist == null))
+            return type.fetch();
+        // query songs with filter
+        if (type == FilterType.Song) {
+            if (folderFilter != null)
+                return type.fetch(folderFilter);
+        }
         return type.fetch(artist, album);
     }
 
@@ -182,7 +193,7 @@ public class Filter implements Parcelable {
     };
 
     public enum FilterType {
-        Song(0, "song", SongStore), Artist(1, "artist", ArtistStore), Album(2, "album", AlbumStore), Playlist(3, "playlist", PlaylistStore);
+        Song(0, "song", SongStore), Artist(1, "artist", ArtistStore), Album(2, "album", AlbumStore), Playlist(3, "playlist", PlaylistStore), Folder(4, "folder", null);
         int id;
         String tag;
         MusicStore musicStore;
@@ -195,6 +206,49 @@ public class Filter implements Parcelable {
 
         public int getId() {
             return id;
+        }
+
+        public ArrayList fetch() {
+            List<Model> result = null;
+            switch (id) {
+                case 0:
+                    Log.e(KumaPlayer.TAG, "==== select all songs ====");
+                    From from = new Select().all().from(com.shirokuma.musicplayer.model.Song.class);
+                    Log.e(KumaPlayer.TAG, from.toString());
+                    result = from.execute();
+                    break;
+                case 1:
+                    Log.e(KumaPlayer.TAG, "==== select artists ====");
+                    result = new Select().all().distinct().from(com.shirokuma.musicplayer.model.Artist.class).execute();
+                    break;
+                case 2:
+                    Log.e(KumaPlayer.TAG, "==== select albums ====");
+                    result = new Select().all().distinct().from(com.shirokuma.musicplayer.model.Album.class).execute();
+                    break;
+                case 3:
+                    Log.e(KumaPlayer.TAG, "==== select playlist ====");
+                    break;
+                case 4:
+                    Log.e(KumaPlayer.TAG, "==== select folder ====");
+                    result = new Select().all().distinct().from(com.shirokuma.musicplayer.model.Folder.class).execute();
+                    break;
+            }
+            Log.e(KumaPlayer.TAG, "result: " + result);
+            return (result == null ? new ArrayList() : new ArrayList(result));
+        }
+
+        public ArrayList fetch(Folder f) {
+            List<Model> result = null;
+            if (id == 0) {
+                Log.e(KumaPlayer.TAG, "==== select songs filtered by folder ====");
+                if (f != null) {
+                    From from = new Select().from(com.shirokuma.musicplayer.model.Song.class).where("folder=?", f.getId());
+                    Log.e(KumaPlayer.TAG, from.toString());
+                    result = from.execute();
+                }
+            }
+            Log.e(KumaPlayer.TAG, "result: " + result);
+            return (result == null ? new ArrayList() : new ArrayList(result));
         }
 
         public ArrayList fetch(String artist, String album) {
@@ -216,17 +270,21 @@ public class Filter implements Parcelable {
                         result = from.execute();
                     }
                     break;
-                case 1:
-                    Log.e(KumaPlayer.TAG, "==== select artists ====");
-                    result = new Select().all().distinct().from(com.shirokuma.musicplayer.model.Artist.class).execute();
-                    break;
-                case 2:
-                    Log.e(KumaPlayer.TAG, "==== select albums ====");
-                    result = new Select().all().distinct().from(com.shirokuma.musicplayer.model.Album.class).execute();
-                    break;
-                case 3:
-                    Log.e(KumaPlayer.TAG, "==== select playlist ====");
-                    break;
+//                case 1:
+//                    Log.e(KumaPlayer.TAG, "==== select artists ====");
+//                    result = new Select().all().distinct().from(com.shirokuma.musicplayer.model.Artist.class).execute();
+//                    break;
+//                case 2:
+//                    Log.e(KumaPlayer.TAG, "==== select albums ====");
+//                    result = new Select().all().distinct().from(com.shirokuma.musicplayer.model.Album.class).execute();
+//                    break;
+//                case 3:
+//                    Log.e(KumaPlayer.TAG, "==== select playlist ====");
+//                    break;
+//                case 4:
+//                    Log.e(KumaPlayer.TAG, "==== select folder ====");
+//                    result = new Select().all().distinct().from(com.shirokuma.musicplayer.model.Folder.class).execute();
+//                    break;
             }
             Log.e(KumaPlayer.TAG, "result: " + result);
             return (result == null ? new ArrayList() : new ArrayList(result));

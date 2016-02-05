@@ -11,7 +11,7 @@
                 android:exported="true"/>
         <meta-data
                 android:name="AA_MODELS"
-                android:value="com.shirokuma.musicplayer.model.Song,com.shirokuma.musicplayer.model.Artist,com.shirokuma.musicplayer.model.Album"/>
+                android:value="com.shirokuma.musicplayer.model.Song,com.shirokuma.musicplayer.model.Artist,com.shirokuma.musicplayer.model.Album,com.shirokuma.musicplayer.model.Folder"/>
 
         <activity
                 android:exported="true"

@@ -30,7 +30,6 @@ public class MusicListActivity extends BindSrvOpMenusActivity {
     @Override
     protected void initData() {
         super.initData();
-
 //        Log.e(KumaPlayer.TAG, "==== test backup ====");
 //        String BACKUP = Environment.getExternalStorageDirectory() + "/Linguistics/database.dat";
 //        String DATABASE = "/data/data/com.shiro.linguistics.player/databases/linguistics.db";
@@ -65,6 +64,10 @@ public class MusicListActivity extends BindSrvOpMenusActivity {
                     // playlist
                     case 3:
                         displayList(new Filter(Filter.FilterType.Playlist, null, null));
+                        break;
+                    // folder
+                    case 4:
+                        displayList(new Filter(Filter.FilterType.Folder, null, null));
                         break;
                 }
             }
@@ -120,17 +123,12 @@ public class MusicListActivity extends BindSrvOpMenusActivity {
         findViewById(R.id.btn_back).setVisibility(View.GONE);
         mSpinner = (Spinner) findViewById(R.id.spinner);
         mSpinner.setVisibility(View.VISIBLE);
-        mSpinner.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                findViewById(R.id.info_layout).setOnClickListener(mOnClickListener);
-                findViewById(R.id.simple_ctrl_prev).setOnClickListener(mOnClickListener);
-                mBtnPlay.setOnClickListener(mOnClickListener);
-                mBtnPause.setOnClickListener(mOnClickListener);
-                findViewById(R.id.simple_ctrl_next).setOnClickListener(mOnClickListener);
-                mSpinner.setOnItemSelectedListener(mItemSelectListener);
-            }
-        }, 200);
+        findViewById(R.id.info_layout).setOnClickListener(mOnClickListener);
+        findViewById(R.id.simple_ctrl_prev).setOnClickListener(mOnClickListener);
+        mBtnPlay.setOnClickListener(mOnClickListener);
+        mBtnPause.setOnClickListener(mOnClickListener);
+        findViewById(R.id.simple_ctrl_next).setOnClickListener(mOnClickListener);
+        mSpinner.setOnItemSelectedListener(mItemSelectListener);
     }
 
     public void setAnimEnd(int[] endxy) {
