@@ -30,14 +30,6 @@ public class MusicListActivity extends BindSrvOpMenusActivity {
     @Override
     protected void initData() {
         super.initData();
-//        Log.e(KumaPlayer.TAG, "==== test backup ====");
-//        String BACKUP = Environment.getExternalStorageDirectory() + "/Linguistics/database.dat";
-//        String DATABASE = "/data/data/com.shiro.linguistics.player/databases/linguistics.db";
-//        try {
-//            com.shiro.tools.Utils.copy(DATABASE, BACKUP);
-//        } catch (IOException e) {
-//            Log.e(KumaPlayer.TAG,e.getMessage());
-//        }
     }
 
     private AdapterView.OnItemSelectedListener mItemSelectListener = new AdapterView.OnItemSelectedListener() {
@@ -51,23 +43,24 @@ public class MusicListActivity extends BindSrvOpMenusActivity {
                 switch (i) {
                     // song
                     case 0:
-                        displayList(new Filter(Filter.FilterType.Song, null, null));
+//                        displayList(new Filter(Filter.FilterType.Song, null, null));
+                        displayList(new Filter(Filter.FilterType.Song));
                         break;
                     // artist
                     case 1:
-                        displayList(new Filter(Filter.FilterType.Artist, null, null));
+                        displayList(new Filter(Filter.FilterType.Artist));
                         break;
                     // album
                     case 2:
-                        displayList(new Filter(Filter.FilterType.Album, null, null));
+                        displayList(new Filter(Filter.FilterType.Album));
                         break;
                     // playlist
                     case 3:
-                        displayList(new Filter(Filter.FilterType.Playlist, null, null));
+                        displayList(new Filter(Filter.FilterType.Playlist));
                         break;
                     // folder
                     case 4:
-                        displayList(new Filter(Filter.FilterType.Folder, null, null));
+                        displayList(new Filter(Filter.FilterType.Folder));
                         break;
                 }
             }
@@ -183,7 +176,7 @@ public class MusicListActivity extends BindSrvOpMenusActivity {
     public void onScanCompleted(String path, Uri uri) {
         super.onScanCompleted(path, uri);
         // when finish scanning, refresh song list
-        displayList(new Filter(Filter.FilterType.Song, null, null));
+        displayList(new Filter(Filter.FilterType.Song));
     }
 
     @Override

@@ -23,37 +23,57 @@ import java.util.List;
 // audio media filter for querying specific info: songs, artists, albums, playlist
 public class Filter implements Parcelable {
     public FilterType type;
-    public Folder folderFilter;
-    public String album, artist;
+    public Model filterBy;
+//    public String album, artist;
 
-    public Filter(FilterType type, String album, String artist) {
-        this.type = type;
-        this.album = album;
-        this.artist = artist;
+    public Filter() {
     }
 
-    public Filter(Folder f) {
+//    public Filter(FilterType type, String album, String artist) {
+//        this.type = type;
+//        this.album = album;
+//        this.artist = artist;
+//    }
+
+    // classification
+    public Filter(FilterType t) {
+        type = t;
+    }
+
+    // songs under classification
+    public Filter(Model f) {
         type = FilterType.Song;
-        folderFilter = f;
+        filterBy = f;
+//        if (f instanceof Folder)
+//            folderFilter = (Folder) f;
+//        else if (f instanceof Album)
+//            albumFilter = (Album) f;
+//        else if (f instanceof Artist)
+//            artistFilter = (Artist) f;
     }
 
     // query media info
-    public ArrayList fetch(Context context) {
-        return type.musicStore.fetch(context, artist, album);
-    }
+//    public ArrayList fetch(Context context) {
+//        return type.musicStore.fetch(context, artist, album);
+//    }
 
     // query media info
     public ArrayList fetch() {
 //        return type.musicStore.fetch(context, artist, album);
         // query classification, or query all songs without filter
-        if (type == FilterType.Folder || type == FilterType.Album || type == FilterType.Artist || type == FilterType.Playlist || (type == FilterType.Song && folderFilter == null && album == null && artist == null))
+        if (type == FilterType.Folder || type == FilterType.Album || type == FilterType.Artist || type == FilterType.Playlist || (type == FilterType.Song && filterBy == null ))
             return type.fetch();
         // query songs with filter
         if (type == FilterType.Song) {
-            if (folderFilter != null)
-                return type.fetch(folderFilter);
+            if (filterBy != null)
+                return type.fetch(filterBy);
+//            else if (albumFilter != null)
+//                return type.fetch(albumFilter);
+//            else if (artistFilter != null)
+//                return type.fetch(artistFilter);
         }
-        return type.fetch(artist, album);
+//        return type.fetch(artist, album);
+        return new ArrayList();
     }
 
     @Override
@@ -64,17 +84,40 @@ public class Filter implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeInt(type.getId());
-        parcel.writeString(album);
-        parcel.writeString(artist);
+        if (filterBy != null) {
+            // record identity
+            parcel.writeLong(filterBy.getId());
+            // filter detail
+            if (filterBy instanceof Folder) {
+                parcel.writeInt(FilterType.Folder.getId());
+//                parcel.writeString(((Folder) filterBy).path);
+            } else if (filterBy instanceof Album) {
+                parcel.writeInt(FilterType.Album.getId());
+//                parcel.writeString(((Album) filterBy).title);
+            } else if (filterBy instanceof Artist) {
+                parcel.writeInt(FilterType.Artist.getId());
+//                parcel.writeString(((Artist) filterBy).name);
+            }
+        }
+//        parcel.writeString(album);
+//        parcel.writeString(artist);
     }
 
     public static final Parcelable.Creator<Filter> CREATOR = new Parcelable.Creator<Filter>() {
         @Override
         public Filter createFromParcel(Parcel source) {
-            Filter f = new Filter(null, null, null);
+            Filter f = new Filter();
             f.type = FilterType.valueOfId(source.readInt());
-            f.album = source.readString();
-            f.artist = source.readString();
+            Long id = source.readLong();
+            FilterType ft = FilterType.valueOfId(source.readInt());
+            if (ft == FilterType.Folder)
+                f.filterBy = new Select().from(Folder.class).where("Id=?", id).executeSingle();
+            else if (ft == FilterType.Album)
+                f.filterBy = new Select().from(Album.class).where("Id=?", id).executeSingle();
+            else if (ft == FilterType.Artist)
+                f.filterBy = new Select().from(Artist.class).where("Id=?", id).executeSingle();
+//            f.album = source.readString();
+//            f.artist = source.readString();
             return f;
         }
 
@@ -237,14 +280,22 @@ public class Filter implements Parcelable {
             return (result == null ? new ArrayList() : new ArrayList(result));
         }
 
-        public ArrayList fetch(Folder f) {
+        public ArrayList fetch(Model f) {
             List<Model> result = null;
             if (id == 0) {
-                Log.e(KumaPlayer.TAG, "==== select songs filtered by folder ====");
+                Log.e(KumaPlayer.TAG, "==== select songs with filter ====");
                 if (f != null) {
-                    From from = new Select().from(com.shirokuma.musicplayer.model.Song.class).where("folder=?", f.getId());
-                    Log.e(KumaPlayer.TAG, from.toString());
-                    result = from.execute();
+                    From from = null;
+                    if (f instanceof Folder)
+                        from = new Select().from(com.shirokuma.musicplayer.model.Song.class).where("folder=?", f.getId());
+                    else if (f instanceof Album)
+                        from = new Select().from(com.shirokuma.musicplayer.model.Song.class).where("album=?", f.getId());
+                    else if (f instanceof Artist)
+                        from = new Select().from(com.shirokuma.musicplayer.model.Song.class).where("artist=?", f.getId());
+                    if (from != null) {
+                        Log.e(KumaPlayer.TAG, from.toString());
+                        result = from.execute();
+                    }
                 }
             }
             Log.e(KumaPlayer.TAG, "result: " + result);
@@ -264,11 +315,12 @@ public class Filter implements Parcelable {
                         From from = new Select().from(com.shirokuma.musicplayer.model.Song.class).as("a").innerJoin(com.shirokuma.musicplayer.model.Artist.class).as("b").on("a.artist=b.Id").where("b.name=?", artist);
                         Log.e(KumaPlayer.TAG, from.toString());
                         result = from.execute();
-                    } else {
-                        From from = new Select().all().from(com.shirokuma.musicplayer.model.Song.class);
-                        Log.e(KumaPlayer.TAG, from.toString());
-                        result = from.execute();
                     }
+//                    else {
+//                        From from = new Select().all().from(com.shirokuma.musicplayer.model.Song.class);
+//                        Log.e(KumaPlayer.TAG, from.toString());
+//                        result = from.execute();
+//                    }
                     break;
 //                case 1:
 //                    Log.e(KumaPlayer.TAG, "==== select artists ====");

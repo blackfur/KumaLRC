@@ -141,10 +141,12 @@ public class MusiclistFragment extends Fragment {
                     mMusicNote.startAnimation(mAnimDrop);
                     break;
                 case Album:
-                    main.displayList(new Filter(Filter.FilterType.Song, ((Album) mDisplayMusic.get(position)).title, null));
+//                    main.displayList(new Filter(Filter.FilterType.Song, ((Album) mDisplayMusic.get(position)).title, null));
+                    main.displayList(new Filter(((Album) mDisplayMusic.get(position))));
                     break;
                 case Artist:
-                    main.displayList(new Filter(Filter.FilterType.Song, null, ((Artist) mDisplayMusic.get(position)).name));
+//                    main.displayList(new Filter(Filter.FilterType.Song, null, ((Artist) mDisplayMusic.get(position)).name));
+                    main.displayList(new Filter(((Artist) mDisplayMusic.get(position))));
                     break;
                 case Folder:
                     main.displayList(new Filter(((Folder) mDisplayMusic.get(position))));
