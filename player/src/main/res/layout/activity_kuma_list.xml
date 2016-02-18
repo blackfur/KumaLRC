@@ -15,10 +15,15 @@
             android:layout_above="@id/bottom"
             android:id="@+id/head"
             layout="@layout/kumalrc_head"/>
-
+    <fragment
+            android:layout_above="@id/head"
+            android:layout_width="match_parent"
+            android:id="@+id/toolbar"
+            android:name="com.shirokuma.musicplayer.fragment.ToolbarFragment"
+            android:layout_height="wrap_content"/>
     <FrameLayout
             android:id="@+id/music_list_container"
-            android:layout_above="@id/head"
+            android:layout_above="@id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 </RelativeLayout>

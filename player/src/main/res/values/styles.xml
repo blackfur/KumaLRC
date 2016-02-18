@@ -24,7 +24,6 @@
     </style>
 
     <style name="icon">
-        <item name="android:visibility">gone</item>
         <item name="android:layout_width">32dp</item>
         <item name="android:layout_height">32dp</item>
         <item name="android:layout_margin">2dp</item>

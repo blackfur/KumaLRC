@@ -2,4 +2,10 @@
     <string name="delete">delete</string>
     <string name="player">player</string>
     <string name="back">back</string>
+    <string-array name="options">
+        <item>scan audios</item>
+        <item>shuffle/in order</item>
+        <item>sleep mode</item>
+        <item>exit</item>
+    </string-array>
 </resources>

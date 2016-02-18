@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="TAG_KEY_TYPE" type="id"/>
+    <item name="TAG_OPTION" type="id"/>
 </resources>

@@ -11,9 +11,11 @@ import android.net.NetworkInfo;
 import android.os.Environment;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
-import android.widget.Toast;
+import android.view.ViewGroup;
+import android.widget.*;
 
 import java.io.*;
 import java.lang.reflect.Method;
@@ -239,6 +241,7 @@ public class Utils {
         v.measure(0, 0);
         return new int[]{v.getMeasuredWidth() / 2, v.getMeasuredHeight() / 2};
     }
+
     public static void warn(final Activity c, final int msgRes, final String msg, final ProgressDialog progress, final DialogInterface.OnClickListener callback) {
         c.runOnUiThread(new Runnable() {
             @Override
@@ -275,5 +278,43 @@ public class Utils {
 
     public static void warn(final Activity c, final int msgRes) {
         warn(c, msgRes, null, null, null);
+    }
+
+    public static PopupWindow showPopupWindow(View showView, View anchorView) {
+//        final PopupWindow popupWindow = new PopupWindow(showView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+        final PopupWindow popupWindow = new PopupWindow(showView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+//        popupWindow.setTouchable(true);
+//        popupWindow.setFocusable(true);
+        popupWindow.setBackgroundDrawable(anchorView.getContext().getResources().getDrawable(
+                R.drawable.white_round));
+//        popupWindow.showAsDropDown(anchorView);
+        popupWindow.showAtLocation(anchorView.getRootView(), Gravity.CENTER, 0, 0);
+        return popupWindow;
+    }
+
+    /**
+     * only use this function after list has been attached to parent
+     * @param listView
+     */
+    public static void setListViewHeightBasedOnChildren(ListView listView) {
+        Log.e(TAG, "==== adapter height ====");
+        ListAdapter listAdapter = listView.getAdapter();
+        Log.e(TAG, "==== get adapter ====");
+        if (listAdapter == null) {
+            // pre-condition
+            return;
+        }
+        int totalHeight = 0;
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            View listItem = listAdapter.getView(i, null, listView);
+            listItem.measure(0, 0);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+        Log.e(TAG, "==== calculate height ====");
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+//        params.width = LinearLayout.LayoutParams.MATCH_PARENT;
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
+        Log.e(TAG, "==== set height ====");
     }
 }
