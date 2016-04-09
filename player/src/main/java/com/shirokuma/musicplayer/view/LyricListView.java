@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import com.shirokuma.musicplayer.KumaPlayer;
+import com.shirokuma.musicplayer.PlayerEnv;
 import com.shirokuma.musicplayer.R;
 import com.shirokuma.musicplayer.lyrics.FollowPlayback;
 import com.shirokuma.musicplayer.lyrics.SimpleLyrics;
@@ -53,7 +53,7 @@ public class LyricListView extends ListView implements FollowPlayback {
                 progressDialog = ProgressDialog.show(getContext(), "", getContext().getString(R.string.loading));
             }
         });
-        Log.e(KumaPlayer.TAG, "lyrics file: " + song.lrc);
+        Log.e(PlayerEnv.TAG, "lyrics file: " + song.lrc);
         mLyrics.parse(song.lrc);
         post(new Runnable() {
             @Override

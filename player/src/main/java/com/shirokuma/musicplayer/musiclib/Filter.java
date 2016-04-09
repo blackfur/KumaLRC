@@ -11,7 +11,7 @@ import android.util.Log;
 import com.activeandroid.Model;
 import com.activeandroid.query.From;
 import com.activeandroid.query.Select;
-import com.shirokuma.musicplayer.KumaPlayer;
+import com.shirokuma.musicplayer.PlayerEnv;
 import com.shirokuma.musicplayer.model.*;
 
 import java.io.File;
@@ -255,35 +255,35 @@ public class Filter implements Parcelable {
             List<Model> result = null;
             switch (id) {
                 case 0:
-                    Log.e(KumaPlayer.TAG, "==== select all songs ====");
+                    Log.e(PlayerEnv.TAG, "==== select all songs ====");
                     From from = new Select().all().from(com.shirokuma.musicplayer.model.Song.class);
-                    Log.e(KumaPlayer.TAG, from.toString());
+                    Log.e(PlayerEnv.TAG, from.toString());
                     result = from.execute();
                     break;
                 case 1:
-                    Log.e(KumaPlayer.TAG, "==== select artists ====");
+                    Log.e(PlayerEnv.TAG, "==== select artists ====");
                     result = new Select().all().distinct().from(com.shirokuma.musicplayer.model.Artist.class).execute();
                     break;
                 case 2:
-                    Log.e(KumaPlayer.TAG, "==== select albums ====");
+                    Log.e(PlayerEnv.TAG, "==== select albums ====");
                     result = new Select().all().distinct().from(com.shirokuma.musicplayer.model.Album.class).execute();
                     break;
                 case 3:
-                    Log.e(KumaPlayer.TAG, "==== select playlist ====");
+                    Log.e(PlayerEnv.TAG, "==== select playlist ====");
                     break;
                 case 4:
-                    Log.e(KumaPlayer.TAG, "==== select folder ====");
+                    Log.e(PlayerEnv.TAG, "==== select folder ====");
                     result = new Select().all().distinct().from(com.shirokuma.musicplayer.model.Folder.class).execute();
                     break;
             }
-            Log.e(KumaPlayer.TAG, "result: " + result);
+            Log.e(PlayerEnv.TAG, "result: " + result);
             return (result == null ? new ArrayList() : new ArrayList(result));
         }
 
         public ArrayList fetch(Model f) {
             List<Model> result = null;
             if (id == 0) {
-                Log.e(KumaPlayer.TAG, "==== select songs with filter ====");
+                Log.e(PlayerEnv.TAG, "==== select songs with filter ====");
                 if (f != null) {
                     From from = null;
                     if (f instanceof Folder)
@@ -293,12 +293,12 @@ public class Filter implements Parcelable {
                     else if (f instanceof Artist)
                         from = new Select().from(com.shirokuma.musicplayer.model.Song.class).where("artist=?", f.getId());
                     if (from != null) {
-                        Log.e(KumaPlayer.TAG, from.toString());
+                        Log.e(PlayerEnv.TAG, from.toString());
                         result = from.execute();
                     }
                 }
             }
-            Log.e(KumaPlayer.TAG, "result: " + result);
+            Log.e(PlayerEnv.TAG, "result: " + result);
             return (result == null ? new ArrayList() : new ArrayList(result));
         }
 
@@ -306,39 +306,39 @@ public class Filter implements Parcelable {
             List<Model> result = null;
             switch (id) {
                 case 0:
-                    Log.e(KumaPlayer.TAG, "==== select songs ====");
+                    Log.e(PlayerEnv.TAG, "==== select songs ====");
                     if (album != null) {
                         From from = new Select().from(com.shirokuma.musicplayer.model.Song.class).as("a").innerJoin(com.shirokuma.musicplayer.model.Album.class).as("b").on("a.album=b.Id").where("b.title=?", album);
-                        Log.e(KumaPlayer.TAG, from.toString());
+                        Log.e(PlayerEnv.TAG, from.toString());
                         result = from.execute();
                     } else if (artist != null) {
                         From from = new Select().from(com.shirokuma.musicplayer.model.Song.class).as("a").innerJoin(com.shirokuma.musicplayer.model.Artist.class).as("b").on("a.artist=b.Id").where("b.name=?", artist);
-                        Log.e(KumaPlayer.TAG, from.toString());
+                        Log.e(PlayerEnv.TAG, from.toString());
                         result = from.execute();
                     }
 //                    else {
 //                        From from = new Select().all().from(com.shirokuma.musicplayer.model.Song.class);
-//                        Log.e(KumaPlayer.TAG, from.toString());
+//                        Log.e(PlayerEnv.TAG, from.toString());
 //                        result = from.execute();
 //                    }
                     break;
 //                case 1:
-//                    Log.e(KumaPlayer.TAG, "==== select artists ====");
+//                    Log.e(PlayerEnv.TAG, "==== select artists ====");
 //                    result = new Select().all().distinct().from(com.shirokuma.musicplayer.model.Artist.class).execute();
 //                    break;
 //                case 2:
-//                    Log.e(KumaPlayer.TAG, "==== select albums ====");
+//                    Log.e(PlayerEnv.TAG, "==== select albums ====");
 //                    result = new Select().all().distinct().from(com.shirokuma.musicplayer.model.Album.class).execute();
 //                    break;
 //                case 3:
-//                    Log.e(KumaPlayer.TAG, "==== select playlist ====");
+//                    Log.e(PlayerEnv.TAG, "==== select playlist ====");
 //                    break;
 //                case 4:
-//                    Log.e(KumaPlayer.TAG, "==== select folder ====");
+//                    Log.e(PlayerEnv.TAG, "==== select folder ====");
 //                    result = new Select().all().distinct().from(com.shirokuma.musicplayer.model.Folder.class).execute();
 //                    break;
             }
-            Log.e(KumaPlayer.TAG, "result: " + result);
+            Log.e(PlayerEnv.TAG, "result: " + result);
             return (result == null ? new ArrayList() : new ArrayList(result));
         }
 

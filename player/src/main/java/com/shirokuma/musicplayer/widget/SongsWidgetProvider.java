@@ -1,4 +1,4 @@
-package com.shiro.linguistics.widget;
+package com.shirokuma.musicplayer.widget;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -6,7 +6,8 @@ import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.RemoteViews;
-import com.shiro.linguistics.R;
+import com.shirokuma.musicplayer.R;
+import com.shirokuma.musicplayer.MainActivity;
 
 public class SongsWidgetProvider extends AppWidgetProvider {
     @Override
@@ -16,7 +17,7 @@ public class SongsWidgetProvider extends AppWidgetProvider {
         for (int i = 0; i < N; i++) {
             int appWidgetId = appWidgetIds[i];
             // Create an Intent to launch ExampleActivity
-            Intent intent = new Intent(context, com.shirokuma.musicplayer.musiclib.MusicListActivity.class);
+            Intent intent = new Intent(context, MainActivity.class);
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
             // Get the layout for the App Widget and attach an on-click listener
             // to the button

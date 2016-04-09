@@ -5,8 +5,8 @@ import android.util.AttributeSet;
 import android.widget.SeekBar;
 import com.shirokuma.musicplayer.lyrics.FollowPlayback;
 
-public class PlaybackSeekbar extends SeekBar implements FollowPlayback {
-    public PlaybackSeekbar(Context context, AttributeSet attrs) {
+public class PlaybackSeekBar extends SeekBar implements FollowPlayback {
+    public PlaybackSeekBar(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 

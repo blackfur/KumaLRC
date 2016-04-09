@@ -53,11 +53,6 @@ android {
             manifest.srcFile 'src/main/AndroidManifest.xml'
             java.srcDirs = ['src/main/java']
         }
-        player {
-            manifest.srcFile 'src/player/AndroidManifest.xml'
-            java.srcDirs = ['src/player/java/']
-            res.srcDirs = ['src/player/res']
-        }
         memorize {
             manifest.srcFile 'src/memorize/AndroidManifest.xml'
             java.srcDirs = ['src/memorize/java/']
@@ -69,11 +64,6 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:23.1.1'
-    compile(project(':player')) {
-        exclude group: 'com.android.support', module: 'appcompat-v7'
-        exclude module: 'ActiveAndroid'
-        exclude module: 'tools'
-    }
     compile(project(':memorize')) {
         exclude group: 'com.android.support', module: 'appcompat-v7'
         exclude group: 'com.android.support', module: 'support-v4'

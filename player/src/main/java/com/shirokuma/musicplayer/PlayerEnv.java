@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class KumaPlayer {
-    public static final String TAG = "kumaplayer";
+public class PlayerEnv {
+    public static final String TAG = "#org.june.android#";
     public static final String ARGUMENTS_KEY_FILTER = "filter";
     public static final int SEEK_INTERVAL = 1000;
     static Timer mTimer;
@@ -58,8 +58,8 @@ public class KumaPlayer {
     }
 
     public static void exit() {
-        for (Activity binded : mBoundActivities) {
-            binded.finish();
+        for (Activity b: mBoundActivities) {
+            b.finish();
         }
         if (application != null)
             application.stopService(new Intent(application, MusicService.class));

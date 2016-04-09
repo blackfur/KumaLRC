@@ -5,7 +5,7 @@ import android.util.Log;
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
-import com.shirokuma.musicplayer.KumaPlayer;
+import com.shirokuma.musicplayer.PlayerEnv;
 import com.shirokuma.musicplayer.musiclib.Filter;
 
 @Table(name = "albums")
@@ -17,7 +17,7 @@ public class Album extends Model implements Music {
 
     public Album() {
         super();
-        Log.e(KumaPlayer.TAG,"==== construct album ====");
+        Log.e(PlayerEnv.TAG,"==== construct album ====");
     }
 
     public Album(String[] pars) {
@@ -27,7 +27,7 @@ public class Album extends Model implements Music {
 
     public Album(String title) {
         super();
-        Log.e(KumaPlayer.TAG,"==== construct album ====");
+        Log.e(PlayerEnv.TAG,"==== construct album ====");
         this.title = title;
     }
 

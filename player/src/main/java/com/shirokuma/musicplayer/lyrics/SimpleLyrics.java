@@ -1,7 +1,7 @@
 package com.shirokuma.musicplayer.lyrics;
 
 import android.util.Log;
-import com.shirokuma.musicplayer.KumaPlayer;
+import com.shirokuma.musicplayer.PlayerEnv;
 import com.shirokuma.musicplayer.model.Song;
 
 import java.io.*;
@@ -53,7 +53,7 @@ public class SimpleLyrics {
     private boolean mFoundLrc = false;
 
     public void parse(String file) {
-        Log.e(KumaPlayer.TAG, "---- parsing lyric file ----");
+        Log.e(PlayerEnv.TAG, "---- parsing lyric file ----");
         parsed = false;
         // the reason of using tree map is that it's keyset method would return a set already sorted
         mLines.clear();

@@ -1,6 +1,6 @@
 package com.shirokuma.musicplayer.fragment;
 
-import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,27 +11,27 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import com.shiro.tools.Utils;
-import com.shirokuma.musicplayer.KumaPlayer;
+import com.shirokuma.musicplayer.PlayerEnv;
 import com.shirokuma.musicplayer.R;
-import com.shirokuma.musicplayer.common.BindSrvOpMenusActivity;
+import com.shirokuma.musicplayer.common.BindMusicSrvActivity;
 import com.shirokuma.musicplayer.musiclib.ScanActivity;
 import com.shirokuma.musicplayer.setting.MediaSetting;
 import com.shirokuma.musicplayer.setting.TimerActivity;
 
 public class ToolbarFragment extends Fragment {
     ListView list;
-    BindSrvOpMenusActivity hostActivity;
+    BindMusicSrvActivity hostActivity;
     PopupWindow popupWindow;
 
-    public void onAttach(Activity context) {
+    public void onAttach(Context context) {
         super.onAttach(context);
-        hostActivity = (BindSrvOpMenusActivity) context;
+        hostActivity = (BindMusicSrvActivity) context;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // initial view
-        Log.e(KumaPlayer.TAG, "==== toolbar fragment: onCreateView ====");
+        Log.e(PlayerEnv.TAG, "==== toolbar fragment: onCreateView ====");
         View body = inflater.inflate(R.layout.fragment_toolbar, container, false);
         View tools = body.findViewById(R.id.tool);
         tools.setOnClickListener(onClick);
@@ -41,16 +41,16 @@ public class ToolbarFragment extends Fragment {
     View.OnClickListener onClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Log.e(KumaPlayer.TAG, "==== on click ====");
+            Log.e(PlayerEnv.TAG, "==== on click ====");
             if (v.getId() == R.id.tool) {
-                Log.e(KumaPlayer.TAG, "==== show options ====");
+                Log.e(PlayerEnv.TAG, "==== show options ====");
                 if (list == null) {
                     list = new ListView(getActivity());
 //                    String[] options = getResources().getStringArray(R.array.options);
 //                    list.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, options));
                     list.setAdapter(new OptionAdapter());
 //                    list.setClickable(true);
-                    Log.e(KumaPlayer.TAG, "==== list created ====");
+                    Log.e(PlayerEnv.TAG, "==== list created ====");
 //                    list.setFocusable(true);
                     list.setOnItemClickListener(onItemClick);
                 }
@@ -65,25 +65,25 @@ public class ToolbarFragment extends Fragment {
                 }
             }
 //            else if (v.getId() == R.id.content) {
-//                Log.e(KumaPlayer.TAG, "==== click options ====");
+//                Log.e(PlayerEnv.TAG, "==== click options ====");
 //                int position = (Integer) v.getTag(R.id.TAG_OPTION);
 //                if (position == 0) {
-//                    Log.e(KumaPlayer.TAG, "==== click scan ====");
+//                    Log.e(PlayerEnv.TAG, "==== click scan ====");
 //                    if (hostActivity.getMusicSrv() != null && hostActivity.getMusicSrv().isPlaying())
 //                        hostActivity.getMusicSrv().stop();
 //                    startActivity(new Intent(getActivity(), ScanActivity.class));
 //                } else if (position == 1) {
-//                    Log.e(KumaPlayer.TAG, "==== click play order ====");
+//                    Log.e(PlayerEnv.TAG, "==== click play order ====");
 //                    MediaSetting setting = MediaSetting.getInstance(getActivity());
 //                    Boolean oldConfig = setting.getShuffle();
 //                    hostActivity.getMusicSrv().setShuffle(!oldConfig);
 //                    setting.setShuffle(!oldConfig);
 //                } else if (position == 2) {
-//                    Log.e(KumaPlayer.TAG, "==== click sleep mode ====");
+//                    Log.e(PlayerEnv.TAG, "==== click sleep mode ====");
 //                    startActivity(new Intent(getActivity(), TimerActivity.class));
 //                } else if (position == 3) {
-//                    Log.e(KumaPlayer.TAG, "==== click exit ====");
-//                    KumaPlayer.exit();
+//                    Log.e(PlayerEnv.TAG, "==== click exit ====");
+//                    PlayerEnv.exit();
 //                }
 //                popupWindow.dismiss();
 //            }
@@ -92,30 +92,30 @@ public class ToolbarFragment extends Fragment {
     AdapterView.OnItemClickListener onItemClick = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            Log.e(KumaPlayer.TAG, "==== on item click ====");
+            Log.e(PlayerEnv.TAG, "==== on item click ====");
             if (position == 0) {
-                Log.e(KumaPlayer.TAG, "==== click scan ====");
+                Log.e(PlayerEnv.TAG, "==== click scan ====");
                 if (hostActivity.getMusicSrv() != null && hostActivity.getMusicSrv().isPlaying())
                     hostActivity.getMusicSrv().stop();
                 startActivity(new Intent(getActivity(), ScanActivity.class));
             } else if (position == 1) {
-                Log.e(KumaPlayer.TAG, "==== click play order ====");
+                Log.e(PlayerEnv.TAG, "==== click play order ====");
                 MediaSetting setting = MediaSetting.getInstance(getActivity());
                 Boolean oldConfig = setting.getShuffle();
                 hostActivity.getMusicSrv().setShuffle(!oldConfig);
                 setting.setShuffle(!oldConfig);
             } else if (position == 2) {
-                Log.e(KumaPlayer.TAG, "==== click sleep mode ====");
+                Log.e(PlayerEnv.TAG, "==== click sleep mode ====");
                 startActivity(new Intent(getActivity(), TimerActivity.class));
             } else if (position == 3) {
-                Log.e(KumaPlayer.TAG, "==== click exit ====");
-                KumaPlayer.exit();
+                Log.e(PlayerEnv.TAG, "==== click exit ====");
+                PlayerEnv.exit();
             }
             popupWindow.dismiss();
         }
     };
 
-    private class OptionAdapter extends BaseAdapter {
+    class OptionAdapter extends BaseAdapter {
         String[] options;
 
         public OptionAdapter() {

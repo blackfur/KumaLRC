@@ -6,7 +6,7 @@ buildscript {
         classpath 'com.android.tools.build:gradle:1.2.3'
     }
 }
-apply plugin: 'com.android.library'
+apply plugin: 'com.android.application'
 
 repositories {
     jcenter()
@@ -34,10 +34,19 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_6
         targetCompatibility JavaVersion.VERSION_1_6
     }
+    signingConfigs {
+        release {
+            storeFile file("../kumalrc.jks")
+            storePassword "Aa123456"
+            keyAlias "shiro"
+            keyPassword "Aa123456"
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
     lintOptions {

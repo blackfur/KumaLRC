@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
-import com.shirokuma.musicplayer.musiclib.MusicListActivity;
 
 public class WelcomeActivity extends Activity {
     @Override
@@ -23,7 +22,7 @@ public class WelcomeActivity extends Activity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        startActivity(new Intent(WelcomeActivity.this, MusicListActivity.class));
+                        startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
                         finish();
                     }
                 });

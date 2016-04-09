@@ -17,7 +17,7 @@ import com.activeandroid.ActiveAndroid;
 import com.activeandroid.query.Select;
 import com.shiro.tools.Utils;
 import com.shiro.tools.view.ProgressDialogWrapper;
-import com.shirokuma.musicplayer.KumaPlayer;
+import com.shirokuma.musicplayer.PlayerEnv;
 import com.shirokuma.musicplayer.R;
 import com.shirokuma.musicplayer.model.Song;
 import org.cmc.music.metadata.IMusicMetadata;
@@ -62,7 +62,7 @@ public class ScanActivity extends FragmentActivity {
             File selectDir = (File) parent.getAdapter().getItem(position);
             if (selectDir == null)
                 return;
-            Log.e(KumaPlayer.TAG, "==== change path ====");
+            Log.e(PlayerEnv.TAG, "==== change path ====");
             path.setText(selectDir.getAbsolutePath());
             path.setTag(selectDir);
             paths = dir2subdirs(selectDir);
@@ -75,14 +75,14 @@ public class ScanActivity extends FragmentActivity {
         if (currentDir != null) {
             File parentDir = currentDir.getParentFile();
             if (parentDir != null) {
-                Log.e(KumaPlayer.TAG, "==== back path ====");
-                Log.e(KumaPlayer.TAG, parentDir.getAbsolutePath());
+                Log.e(PlayerEnv.TAG, "==== back path ====");
+                Log.e(PlayerEnv.TAG, parentDir.getAbsolutePath());
                 path.setText(parentDir.getAbsolutePath());
                 path.setTag(parentDir);
                 paths = dir2subdirs(parentDir);
                 adapter.notifyDataSetChanged();
             } else {
-                Log.e(KumaPlayer.TAG, "parent directory null");
+                Log.e(PlayerEnv.TAG, "parent directory null");
             }
         }
     }
@@ -196,35 +196,35 @@ public class ScanActivity extends FragmentActivity {
                             return false;
                         }
                     };
-                    Log.e(KumaPlayer.TAG, "==== read then store audio file meta data ====");
+                    Log.e(PlayerEnv.TAG, "==== read then store audio file meta data ====");
                     //
                     ActiveAndroid.beginTransaction();
                     for (File f : searchDir.listFiles(audioFilter)) {
                         String path = f.getAbsolutePath();
-                        Log.e(KumaPlayer.TAG, "==== " + path + " ====");
+                        Log.e(PlayerEnv.TAG, "==== " + path + " ====");
                         if (!new Select().from(Song.class).where("path=?", path).exists()) {
                             MusicMetadataSet src_set = new MyID3().read(f);
-                            Log.e(KumaPlayer.TAG, "MusicMetadataSet: " + src_set);
+                            Log.e(PlayerEnv.TAG, "MusicMetadataSet: " + src_set);
                             IMusicMetadata metadata = src_set.getSimplified();
-                            Log.e(KumaPlayer.TAG, "IMusicMetadata: " + metadata);
+                            Log.e(PlayerEnv.TAG, "IMusicMetadata: " + metadata);
                             Song newSong = new Song(metadata.getSongTitle(), metadata.getArtist(), metadata.getAlbum(), f.getAbsolutePath());
-                            Log.e(KumaPlayer.TAG, "finding lyrics: " + path);
+                            Log.e(PlayerEnv.TAG, "finding lyrics: " + path);
                             String lrc = path.substring(0, path.lastIndexOf('.')) + ".lrc";
                             if (new File(lrc).exists()) {
-                                Log.e(KumaPlayer.TAG, "found: " + lrc);
+                                Log.e(PlayerEnv.TAG, "found: " + lrc);
                                 newSong.lrc = lrc;
                             }
                             long result = newSong.save();
-                            Log.e(KumaPlayer.TAG, "saved result: " + result);
+                            Log.e(PlayerEnv.TAG, "saved result: " + result);
                         } else {
-                            Log.e(KumaPlayer.TAG, "already exists");
+                            Log.e(PlayerEnv.TAG, "already exists");
                         }
                         progress.hint(f.getAbsolutePath());
                     }
                     ActiveAndroid.setTransactionSuccessful();
                 }
             } catch (IOException e) {
-                Log.e(KumaPlayer.TAG, e.getMessage() == null ? "Null Pointer" : e.getMessage());
+                Log.e(PlayerEnv.TAG, e.getMessage() == null ? "Null Pointer" : e.getMessage());
             } finally {
                 ActiveAndroid.endTransaction();
             }

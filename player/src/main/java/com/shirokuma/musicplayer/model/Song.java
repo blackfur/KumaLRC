@@ -6,7 +6,7 @@ import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 import com.activeandroid.query.Select;
 import com.activeandroid.util.Log;
-import com.shirokuma.musicplayer.KumaPlayer;
+import com.shirokuma.musicplayer.PlayerEnv;
 import com.shirokuma.musicplayer.musiclib.Filter;
 
 @Table(name = "songs")
@@ -48,7 +48,7 @@ public class Song extends Model implements Music {
      */
     public Song(String t, String a, String albumStr, String path) {
         super();
-        Log.e(KumaPlayer.TAG, "==== construct Song ====");
+        Log.e(PlayerEnv.TAG, "==== construct Song ====");
         if (t != null)
             title = t;
         // save artist information
@@ -91,7 +91,7 @@ public class Song extends Model implements Music {
             if (result == -1) folder = null;
         }
         //
-        Log.e(KumaPlayer.TAG, "==== constructed ====");
+        Log.e(PlayerEnv.TAG, "==== constructed ====");
     }
 
     public Song(String[] pars) {

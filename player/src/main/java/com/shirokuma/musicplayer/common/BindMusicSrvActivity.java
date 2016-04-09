@@ -7,21 +7,14 @@ import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.view.Menu;
-import android.view.MenuItem;
-import com.shiro.tools.Utils;
 import com.shiro.tools.view.ProgressDialogWrapper;
-import com.shirokuma.musicplayer.KumaPlayer;
+import com.shirokuma.musicplayer.PlayerEnv;
 import com.shirokuma.musicplayer.R;
-import com.shirokuma.musicplayer.musiclib.ScanActivity;
 import com.shirokuma.musicplayer.playback.MusicBroadcast;
 import com.shirokuma.musicplayer.playback.MusicService;
-import com.shirokuma.musicplayer.setting.MediaSetting;
-import com.shirokuma.musicplayer.setting.SettingActivity;
-import com.shirokuma.musicplayer.setting.TimerActivity;
 
 // bind service and create options menu
-public abstract class BindSrvOpMenusActivity extends BaseActivity implements MediaScannerConnection.OnScanCompletedListener {
+public abstract class BindMusicSrvActivity extends BaseActivity implements MediaScannerConnection.OnScanCompletedListener {
     protected MusicService mMusicSrv;
     protected ProgressDialog mProgress;
     protected ProgressDialogWrapper progressWrapper;
@@ -36,7 +29,7 @@ public abstract class BindSrvOpMenusActivity extends BaseActivity implements Med
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        KumaPlayer.addBoundActivity(this);
+        PlayerEnv.addBoundActivity(this);
     }
 
     @Override
@@ -89,7 +82,7 @@ public abstract class BindSrvOpMenusActivity extends BaseActivity implements Med
     @Override
     protected void onDestroy() {
         unregisterReceiver(mMusicBroadcastReceiver);
-        KumaPlayer.removeBoundActivity(this);
+        PlayerEnv.removeBoundActivity(this);
         if (mMusicSrv != null) {
             unbindService(mMusicSrvConn);
             mMusicSrv = null;
@@ -99,48 +92,6 @@ public abstract class BindSrvOpMenusActivity extends BaseActivity implements Med
         super.onDestroy();
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        Utils.setOptionMenuIconEnable(menu, true);
-//        getMenuInflater().inflate(R.menu.main, menu);
-//        return true;
-//    }
-
-//    @Override
-//    public boolean onPrepareOptionsMenu(Menu menu) {
-//        boolean b = MediaSetting.getInstance(this).getShuffle();
-//        menu.findItem(R.id.action_in_order).setVisible(b);
-//        menu.findItem(R.id.action_shuffle).setVisible(!b);
-//        return super.onPrepareOptionsMenu(menu);
-//    }
-
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        //menu item selected
-//        int i = item.getItemId();
-//        if (i == R.id.action_scan) {
-//            if (mMusicSrv != null && mMusicSrv.isPlaying())
-//                mMusicSrv.stop();
-//            startActivity(new Intent(getContext(), ScanActivity.class));
-////            MediaScannerConnection.scanFile(this, new String[]{Environment.getExternalStorageDirectory().getAbsolutePath()}, null, this);
-//        } else if (i == R.id.action_in_order) {
-//            mMusicSrv.setShuffle(false);
-//            MediaSetting.getInstance(this).setShuffle(false);
-//        } else if (i == R.id.action_shuffle) {
-//            mMusicSrv.setShuffle(true);
-//            MediaSetting.getInstance(this).setShuffle(true);
-//        } else if (i == R.id.action_end) {
-//            KumaPlayer.exit();
-//        } else if (i == R.id.action_timer) {
-//            startActivity(new Intent(this, TimerActivity.class));
-//        } else if (i == R.id.action_setting) {
-//            if (mMusicSrv != null && mMusicSrv.isPlaying())
-//                mMusicSrv.stop();
-//            startActivity(new Intent(this, SettingActivity.class));
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
 
     @Override
     public void onScanCompleted(String path, Uri uri) {

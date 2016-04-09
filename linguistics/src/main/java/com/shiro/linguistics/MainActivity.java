@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 import com.shiro.memo.Memorize;
-import com.shirokuma.musicplayer.musiclib.MusicListActivity;
 
 public class MainActivity extends AppCompatActivity {
     ProgressDialog progress;
@@ -27,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
             int viewid = v.getId();
             if (viewid == R.id.listen) {
-                startActivity(new Intent(getContext(), MusicListActivity.class));
+                startActivity(new Intent(getContext(), com.shirokuma.musicplayer.MainActivity.class));
             } else if (viewid == R.id.word) {
                 startActivity(new Intent(getContext(), com.shiro.memo.FlashCardActivity.class));
             } else if (viewid == R.id.import_data) {

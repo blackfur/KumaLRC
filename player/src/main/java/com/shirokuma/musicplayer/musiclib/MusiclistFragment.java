@@ -1,7 +1,7 @@
 package com.shirokuma.musicplayer.musiclib;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -16,7 +16,8 @@ import com.activeandroid.query.Delete;
 import com.fortysevendeg.swipelistview.BaseSwipeListViewListener;
 import com.fortysevendeg.swipelistview.SwipeListView;
 import com.shiro.tools.Utils;
-import com.shirokuma.musicplayer.KumaPlayer;
+import com.shirokuma.musicplayer.MainActivity;
+import com.shirokuma.musicplayer.PlayerEnv;
 import com.shirokuma.musicplayer.R;
 import com.shirokuma.musicplayer.model.Album;
 import com.shirokuma.musicplayer.model.Artist;
@@ -28,7 +29,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class MusiclistFragment extends Fragment {
-    MusicListActivity main;
+    MainActivity main;
     private TouchSwipeListView mListView;
     float[] mStartXY;
     int[] mEndXY;
@@ -50,9 +51,9 @@ public class MusiclistFragment extends Fragment {
     private Filter filter;
 
     @Override
-    public void onAttach(Activity activity) {
+    public void onAttach(Context activity) {
         super.onAttach(activity);
-        main = (MusicListActivity) activity;
+        main = (MainActivity) activity;
     }
 
     @Override
@@ -62,41 +63,32 @@ public class MusiclistFragment extends Fragment {
         main.setAnimEnd(mEndXY);
         mStartXY = new float[2];
         if (getArguments() != null) {
-            filter = getArguments().getParcelable(KumaPlayer.ARGUMENTS_KEY_FILTER);
+            filter = getArguments().getParcelable(PlayerEnv.ARGUMENTS_KEY_FILTER);
             mDisplayMusic = filter.fetch();
-            switch (filter.type) {
-                case Song:
-                    mAnimListener = new Animation.AnimationListener() {
-                        @Override
-                        public void onAnimationStart(Animation animation) {
-                            mMusicNote.setVisibility(View.VISIBLE);
-                        }
+            if (filter.type == Filter.FilterType.Song) {
+                mAnimListener = new Animation.AnimationListener() {
+                    public void onAnimationStart(Animation animation) {
+                        mMusicNote.setVisibility(View.VISIBLE);
+                    }
 
-                        @Override
-                        public void onAnimationEnd(Animation animation) {
-                            mMusicNote.setVisibility(View.GONE);
-                        }
+                    public void onAnimationEnd(Animation animation) {
+                        mMusicNote.setVisibility(View.GONE);
+                    }
 
-                        @Override
-                        public void onAnimationRepeat(Animation animation) {
-                        }
-                    };
-                    break;
+                    public void onAnimationRepeat(Animation animation) {
+                    }
+                };
             }
         }
     }
 
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_music_list, container, false);
         // filtrate media
         if (getArguments() != null) {
             if (filter != null) {
-                switch (filter.type) {
-                    case Song:
-                        // initial animation material
-                        mMusicNote = root.findViewById(R.id.music_note);
-                        break;
+                if (filter.type == Filter.FilterType.Song) {// initial animation material
+                    mMusicNote = root.findViewById(R.id.music_note);
                 }
             }
         }
@@ -110,12 +102,9 @@ public class MusiclistFragment extends Fragment {
 
     private int mLastSelectedPosition;
     private BaseSwipeListViewListener mSwipeListener = new BaseSwipeListViewListener() {
-        @Override
         public void onOpened(int position, boolean toRight) {
             mLastSelectedPosition = mListView.getFirstVisiblePosition();
         }
-
-        @Override
         public void onClickFrontView(int position) {
             switch (filter.type) {
                 case Song:

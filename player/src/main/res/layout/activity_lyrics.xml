@@ -11,22 +11,22 @@
             style="@style/bottom"
             layout="@layout/media_ctrl_bar"/>
 
-    <include
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:id="@+id/head"
-            android:layout_above="@id/bottom"
-            layout="@layout/kumalrc_head"/>
+    <!--<include-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="52dp"-->
+            <!--android:id="@+id/head"-->
+            <!--android:layout_above="@id/bottom"-->
+            <!--layout="@layout/kumalrc_head"/>-->
 
-    <fragment
-            android:layout_above="@id/head"
-            android:layout_width="match_parent"
-            android:id="@+id/toolbar"
-            android:name="com.shirokuma.musicplayer.fragment.ToolbarFragment"
-            android:layout_height="wrap_content"/>
+    <!--<fragment-->
+            <!--android:layout_above="@id/head"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:id="@+id/toolbar"-->
+            <!--android:name="com.shirokuma.musicplayer.fragment.ToolbarFragment"-->
+            <!--android:layout_height="wrap_content"/>-->
 
     <RelativeLayout
-            android:layout_above="@id/toolbar"
+            android:layout_above="@id/bottom"
             android:id="@+id/lyrics"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
