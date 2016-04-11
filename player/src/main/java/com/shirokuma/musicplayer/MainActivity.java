@@ -61,37 +61,6 @@ public class MainActivity extends BindMusicSrvActivity {
         super.initData();
     }
 
-//    AdapterView.OnItemSelectedListener mItemSelectListener = new AdapterView.OnItemSelectedListener() {
-//        @Override
-//        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-//            int i1 = adapterView.getId();
-//            if (i1 == R.id.spinner) {
-////                if (view == null && i == -1 && l == -1) {
-////                    i = adapterView.getSelectedItemPosition();
-////                }
-//                if (i == 0) {//displayList(new Filter(Filter.FilterType.Song, null, null));
-//                    displayList(new Filter(Filter.FilterType.Song));
-//                    // artist
-//                } else if (i == 1) {
-//                    displayList(new Filter(Filter.FilterType.Artist));
-//                    // album
-//                } else if (i == 2) {
-//                    displayList(new Filter(Filter.FilterType.Album));
-//                    // playlist
-//                } else if (i == 3) {
-//                    displayList(new Filter(Filter.FilterType.Playlist));
-//                    // folder
-//                } else if (i == 4) {
-//                    displayList(new Filter(Filter.FilterType.Folder));
-//                }
-//            }
-//        }
-
-//        @Override
-//        public void onNothingSelected(AdapterView<?> adapterView) {
-////            onItemSelected(adapterView, null, -1, -1);
-//        }
-//    };
     private View.OnClickListener mOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -268,8 +237,6 @@ public class MainActivity extends BindMusicSrvActivity {
                     holder = new OptionHolder();
                     convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.text_item, parent, false);
                     holder.content = (TextView) convertView.findViewById(R.id.content);
-//                holder.content.setOnClickListener(onClick);
-//                holder.content.setTag(R.id.TAG_OPTION, position);
                     convertView.setTag(holder);
                 } else {
                     holder = (OptionHolder) convertView.getTag();
