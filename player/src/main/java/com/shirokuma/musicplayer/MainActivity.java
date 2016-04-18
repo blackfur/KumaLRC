@@ -30,13 +30,10 @@ public class MainActivity extends BindMusicSrvActivity {
     ImageButton mBtnPlay, mBtnPause;
     TextView mName, mArtist;
     ProgressDialog progress;
-
-    @Override
     protected int setContentViewRes() {
         return R.layout.activity_kuma_list;
     }
 
-    @Override
     protected void initView() {
         super.initView();
         mName = (TextView) findViewById(R.id.name);
@@ -54,11 +51,6 @@ public class MainActivity extends BindMusicSrvActivity {
         findViewById(R.id.simple_ctrl_next).setOnClickListener(mOnClickListener);
 //        mSpinner.setOnItemSelectedListener(mItemSelectListener);
         progress = ProgressDialog.show(this, "", "loading", false, true);
-    }
-
-    @Override
-    protected void initData() {
-        super.initData();
     }
 
     private View.OnClickListener mOnClickListener = new View.OnClickListener() {

@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
 import com.shiro.tools.view.ProgressDialogWrapper;
+import com.shirokuma.musicplayer.CrashHandle;
 import com.shirokuma.musicplayer.PlayerEnv;
 import com.shirokuma.musicplayer.R;
 import com.shirokuma.musicplayer.playback.MusicBroadcast;
@@ -19,20 +20,18 @@ public abstract class BindMusicSrvActivity extends BaseActivity implements Media
     protected ProgressDialog mProgress;
     protected ProgressDialogWrapper progressWrapper;
 
-    @Override
     protected void initData() {
         IntentFilter filter = new IntentFilter();
         filter.addAction(MusicBroadcast.MUSIC_BROADCAST_ACTION_PLAYBACK);
         registerReceiver(mMusicBroadcastReceiver, filter);
     }
 
-    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         PlayerEnv.addBoundActivity(this);
+        Thread.setDefaultUncaughtExceptionHandler(new CrashHandle(this));
     }
 
-    @Override
     protected void initView() {
         // media control
         // wait for service bound
@@ -91,7 +90,6 @@ public abstract class BindMusicSrvActivity extends BaseActivity implements Media
         stopService(new Intent(this, MusicService.class));
         super.onDestroy();
     }
-
 
     @Override
     public void onScanCompleted(String path, Uri uri) {

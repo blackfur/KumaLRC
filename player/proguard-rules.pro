@@ -18,3 +18,6 @@
 -keep class com.tencent.mm.sdk.** {
    *;
 }
+# for tencent bugly
+-dontwarn com.tencent.bugly.**
+-keep public class com.tencent.bugly.**{*;}
